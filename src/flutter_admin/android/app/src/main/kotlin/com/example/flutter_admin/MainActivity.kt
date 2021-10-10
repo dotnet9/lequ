@@ -1,4 +1,4 @@
-package com.example.lequ_blog
+package com.example.flutter_admin
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,6 @@
 {
-    "name": "lequ_blog",
-    "short_name": "lequ_blog",
+    "name": "flutter_admin",
+    "short_name": "flutter_admin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
