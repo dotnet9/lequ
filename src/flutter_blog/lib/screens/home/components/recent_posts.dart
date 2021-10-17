@@ -16,13 +16,13 @@ class RecentPosts extends StatelessWidget {
       child: Column(
         children: [
           RecentPostCard(
-            image: "assets/images/recent_1.png",
+            image: "https://dotnet9.com/wp-content/uploads/2021/09/1-2-480x300.jpeg",
             title: "Our “Secret” Formula to Online Workshops",
             press: () {},
           ),
           const SizedBox(height: kDefaultPadding),
           RecentPostCard(
-            image: "assets/images/recent_2.png",
+            image: "https://dotnet9.com/wp-content/uploads/2021/09/1-2-480x300.jpeg",
             title: "Digital Product Innovations from Warsaw with Love",
             press: () {},
           ),
@@ -53,7 +53,7 @@ class RecentPostCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Image.asset(image),
+              child: Image.network(image),
             ),
             const SizedBox(width: kDefaultPadding),
             Expanded(

@@ -1,0 +1,13 @@
+{
+  "@@locale": "zh-Hant-TW",
+  "appTitle": "樂趣程式師|LEQU.co",
+  "@appTitle": {
+    "description": "application's title"
+  },
+  "welcomeDesc": "一個熱衷於互聯網分享精神的程式師個人網站，在這裡分享不止於：ASP.NET Core Web API開發、WPF/Winform用戶端開發、Flutter跨平臺應用開發、Qt跨平臺用戶端開發、SwiftUI用戶端開發…",
+  "@welcomeDesc": {},
+  "welcomeTitle": "歡迎來到我們的部落格",
+  "@welcomeTitle": {
+    "description": "welcome message"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "@@locale": "en-US",
+  "appTitle": "Fun programmer | LEQU.co",
+  "@appTitle": {
+    "description": "application's title"
+  },
+  "welcomeDesc": "A personal website of programmers who are keen on the spirit of Internet sharing, sharing here is more than: asp.net core web API development, WPF / WinForm client development, fluent cross platform application development, QT cross platform client development, swiftui client development",
+  "@welcomeDesc": {},
+  "welcomeTitle": "Welcome to Our Blog",
+  "@welcomeTitle": {
+    "description": "welcome message"
+  }
+}

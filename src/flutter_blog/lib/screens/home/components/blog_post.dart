@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/models/blog.dart';
+import 'package:flutter_blog/routers/routes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
@@ -17,7 +18,7 @@ class BlogPostCard extends StatelessWidget {
         children: [
           AspectRatio(
             aspectRatio: 1.78,
-            child: Image.asset(blog.image),
+            child: Image.network(blog.image, fit: BoxFit.cover),
           ),
           Container(
             padding: const EdgeInsets.all(kDefaultPadding),
@@ -72,7 +73,9 @@ class BlogPostCard extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, postRoute);
+                      },
                       child: Container(
                         padding:
                             const EdgeInsets.only(bottom: kDefaultPadding / 4),

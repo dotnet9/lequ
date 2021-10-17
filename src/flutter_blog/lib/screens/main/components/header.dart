@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/controllers/menu_controller.dart';
+import 'package:flutter_blog/generated/l10n.dart';
 import 'package:flutter_blog/responsive.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -48,19 +49,19 @@ class Header extends StatelessWidget {
               ),
             ),
             const SizedBox(height: kDefaultPadding * 2),
-            const Text(
-              'Welcome to Our Blog',
-              style: TextStyle(
+           Text(
+              S.of(context).welcomeTitle,
+              style: const TextStyle(
                   fontSize: 32,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
               child: Text(
-                'Stay updated with the newest design and development stories, case studies, \nand insights shared by DesignDK Team.',
+                S.of(context).welcomeDesc,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontFamily: 'Raleway',
                   height: 1.5,
