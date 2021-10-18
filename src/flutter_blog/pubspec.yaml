@@ -40,7 +40,7 @@ dependencies:
 
   flutter_svg: ^0.23.0+1
   get: ^4.3.8
-  flutter_markdown: ^0.6.7
+  markdown_widget: ^1.2.6-nullsafety
 
 dev_dependencies:
   flutter_test:

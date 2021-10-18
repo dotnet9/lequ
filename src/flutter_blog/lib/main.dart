@@ -4,6 +4,8 @@ import 'package:flutter_blog/generated/l10n.dart';
 import 'package:flutter_blog/routers/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'routers/routes.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: homeRoute,
       onGenerateRoute: onGenerateRoute,
       theme: ThemeData(
           primaryColor: kPrimaryColor,

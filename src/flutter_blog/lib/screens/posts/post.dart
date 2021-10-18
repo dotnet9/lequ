@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 
 class Post extends StatelessWidget {
-  const Post({Key? key}) : super(key: key);
+  Post({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return const Markdown(data: '''
+  final TocController tocController = TocController();
+
+  Widget buildTocWidget() => TocListWidget(controller: tocController);
+
+  Widget buildMarkdown() => MarkdownWidget(data: '''
     # .NET 5 开发WPF - 美食应用登录UI设计
 
 Demo演示：
@@ -156,6 +158,17 @@ private void ClosingCB_DialogClosing(object sender, MaterialDesignThemes.Wpf.Dia
 参考视频：[WPF Food App Login UI Material Design [Speed Design]](https://www.youtube.com/watch?v=1i5oWNvIYmo "WPF Food App Login UI Material Design [Speed Design]")
 
 Demo源码：[FoodAppLoginUI](https://github.com/dotnet9/TerminalMACS.ManagerForWPF/tree/master/src/TerminalMACS.TestDemo/Views/FoodAppLoginUI "FoodAppLoginUI")
-    ''');
+    ''', controller: tocController);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          Expanded(child: buildTocWidget()),
+          Expanded(child: buildMarkdown(), flex: 3,)
+        ],
+      )
+    );
   }
 }
