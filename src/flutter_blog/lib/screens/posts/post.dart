@@ -158,7 +158,8 @@ private void ClosingCB_DialogClosing(object sender, MaterialDesignThemes.Wpf.Dia
 参考视频：[WPF Food App Login UI Material Design [Speed Design]](https://www.youtube.com/watch?v=1i5oWNvIYmo "WPF Food App Login UI Material Design [Speed Design]")
 
 Demo源码：[FoodAppLoginUI](https://github.com/dotnet9/TerminalMACS.ManagerForWPF/tree/master/src/TerminalMACS.TestDemo/Views/FoodAppLoginUI "FoodAppLoginUI")
-    ''', controller: tocController);
+    ''',
+     controller: tocController,);
 
   @override
   Widget build(BuildContext context) {

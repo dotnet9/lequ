@@ -5,7 +5,7 @@ import 'package:flutter_blog/screens/posts/post.dart';
 
 final router = {
   homeRoute: (context) => MainScreen(),
-  postRoute: (context) => const Post()
+  postRoute: (context) => Post()
   };
 
 Route? onGenerateRoute(RouteSettings settings) {
