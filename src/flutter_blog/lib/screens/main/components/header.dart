@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blog/controllers/menu_controller.dart';
 import 'package:flutter_blog/generated/l10n.dart';
 import 'package:flutter_blog/responsive.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../constants.dart';
@@ -39,7 +38,9 @@ class Header extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                  SvgPicture.asset('assets/icons/logo.svg'),
+                  Image.asset(
+                    'assets/icons/logo.png', height: Responsive.isDesktop(context) ? 60: 40,
+                  ),
                   const Spacer(),
                   if (Responsive.isDesktop(context)) WebMenu(),
                   const Spacer(),
@@ -49,7 +50,7 @@ class Header extends StatelessWidget {
               ),
             ),
             const SizedBox(height: kDefaultPadding * 2),
-           Text(
+            Text(
               S.of(context).welcomeTitle,
               style: const TextStyle(
                   fontSize: 32,

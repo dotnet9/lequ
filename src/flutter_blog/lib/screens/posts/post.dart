@@ -6,13 +6,12 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Markdown(data: 
-    '''
+    return const Markdown(data: '''
     # .NET 5 开发WPF - 美食应用登录UI设计
 
 Demo演示：
 
-![演示动画](https://dotnet9.com/wp-content/uploads/2021/10/a-480x300.jpeg)
+![演示动画](https://img1.lequ.co/blog_contents/uploads/2021/10/test.png)
 
 你的时间宝贵，不想看啰嗦的文字，可直接拉到文末下载源码！
 
@@ -25,7 +24,7 @@ Demo演示：
 
 .NET 5 WPF 项目模板和 .NET Core 3.1 WPF 项目模板没有区别，创建好项目后，NuGet 引入 MaterialDesignThemes 库：
 
-![安装MaterialDesignThemes库](https://dotnet9.com/wp-content/uploads/2021/09/1-2-480x300.jpeg)
+![安装MaterialDesignThemes库](https://img1.lequ.co/blog_contents/uploads/2021/10/test.png)
 
 
 ## 2.引入样式

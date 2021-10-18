@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/controllers/menu_controller.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../constants.dart';
+import '../../../responsive.dart';
 
 class SideMenu extends StatelessWidget {
   final MenuController _controller = Get.put(MenuController());
@@ -22,7 +22,7 @@ class SideMenu extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: kDefaultPadding * 3.5),
-                  child: SvgPicture.asset("assets/icons/logo.svg"),
+                  child: Image.asset("assets/icons/logo.png", height: Responsive.isDesktop(context) ? 60: 40),
                 ),
               ),
               ...List.generate(

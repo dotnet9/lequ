@@ -3,7 +3,6 @@ import 'package:flutter_blog/screens/home/components/sidebar_container.dart';
 
 import '../../../constants.dart';
 
-
 class RecentPosts extends StatelessWidget {
   const RecentPosts({
     Key? key,
@@ -16,13 +15,15 @@ class RecentPosts extends StatelessWidget {
       child: Column(
         children: [
           RecentPostCard(
-            image: "https://dotnet9.com/wp-content/uploads/2021/09/1-2-480x300.jpeg",
+            image:
+                "https://img1.lequ.co/blog_contents/uploads/2021/10/test.png",
             title: "Our “Secret” Formula to Online Workshops",
             press: () {},
           ),
           const SizedBox(height: kDefaultPadding),
           RecentPostCard(
-            image: "https://dotnet9.com/wp-content/uploads/2021/09/1-2-480x300.jpeg",
+            image:
+                "https://img1.lequ.co/blog_contents/uploads/2021/10/test.png",
             title: "Digital Product Innovations from Warsaw with Love",
             press: () {},
           ),
