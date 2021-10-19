@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("乐趣程序员|LEQU.co"),
         "welcomeDesc": MessageLookupByLibrary.simpleMessage(
-            "一个热衷于互联网分享精神的程序员个人网站，在这里分享不止于：ASP.NET Core Web API开发、WPF/Winform客户端开发、Flutter跨平台应用开发、Qt跨平台客户端开发、SwiftUI客户端开发..."),
+            "一个热衷于互联网分享精神的程序员个人网站，在这里分享不止于技术..."),
         "welcomeTitle": MessageLookupByLibrary.simpleMessage("欢迎来到我们的博客")
       };
 }

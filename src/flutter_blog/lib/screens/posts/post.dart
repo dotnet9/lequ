@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
+import '../../responsive.dart';
+
 class Post extends StatelessWidget {
   Post({Key? key}) : super(key: key);
 
@@ -166,7 +168,7 @@ Demo源码：[FoodAppLoginUI](https://github.com/dotnet9/TerminalMACS.ManagerFor
     return Scaffold(
       body: Row(
         children: [
-          Expanded(child: buildTocWidget()),
+          Responsive.isDesktop(context) ? Expanded(child: buildTocWidget()) : const Text(''),
           Expanded(child: buildMarkdown(), flex: 3,)
         ],
       )

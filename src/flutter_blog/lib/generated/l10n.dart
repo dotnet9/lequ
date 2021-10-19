@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `A personal website of programmers who are keen on the spirit of Internet sharing, sharing here is more than: ASP.NET Core Web API development, WPF / WinForm client development, flutter cross platform application development, QT cross platform client development, SwiftUI client development`
+  /// `A programmer's personal website keen on Internet sharing spirit, sharing here is more than technology`
   String get welcomeDesc {
     return Intl.message(
-      'A personal website of programmers who are keen on the spirit of Internet sharing, sharing here is more than: ASP.NET Core Web API development, WPF / WinForm client development, flutter cross platform application development, QT cross platform client development, SwiftUI client development',
+      'A programmer\'s personal website keen on Internet sharing spirit, sharing here is more than technology',
       name: 'welcomeDesc',
       desc: '',
       args: [],

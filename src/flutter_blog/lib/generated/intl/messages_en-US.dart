@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle":
             MessageLookupByLibrary.simpleMessage("Fun programmer | LEQU.co"),
         "welcomeDesc": MessageLookupByLibrary.simpleMessage(
-            "A personal website of programmers who are keen on the spirit of Internet sharing, sharing here is more than: asp.net core web API development, WPF / WinForm client development, fluent cross platform application development, QT cross platform client development, swiftui client development"),
+            "A programmer\'s personal website keen on Internet sharing spirit, sharing here is more than technology"),
         "welcomeTitle":
             MessageLookupByLibrary.simpleMessage("Welcome to Our Blog")
       };

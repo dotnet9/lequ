@@ -39,7 +39,7 @@ class Header extends StatelessWidget {
                       ),
                     ),
                   Image.asset(
-                    'assets/icons/logo.png', height: Responsive.isDesktop(context) ? 60: 40,
+                    'assets/icons/logo.png', height: Responsive.isDesktop(context) ? 60: 45,
                   ),
                   const Spacer(),
                   if (Responsive.isDesktop(context)) WebMenu(),
@@ -64,7 +64,6 @@ class Header extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontFamily: 'Raleway',
                   height: 1.5,
                 ),
               ),
