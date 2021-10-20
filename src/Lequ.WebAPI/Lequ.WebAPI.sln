@@ -1,0 +1,65 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.WebAPI", "Lequ.WebAPI\Lequ.WebAPI.csproj", "{C47EAE63-6A19-4268-8513-C10565EFFC23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Model", "Lequ.Model\Lequ.Model.csproj", "{79C44621-3865-40D0-92ED-B414C886D613}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{4AB2B8B6-9E31-4FDB-8052-4B3FB0EBF9C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{EA0594AB-34EB-4FD1-9BED-98928FEFED72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.IService", "Lequ.IService\Lequ.IService.csproj", "{0F3FCF65-847D-4958-8F20-6AF95F2C3821}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Repository", "Lequ.Repository\Lequ.Repository.csproj", "{655B7733-30D5-4BE8-AD47-4A8EE45FD4AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.IRepository", "Lequ.IRepository\Lequ.IRepository.csproj", "{914EC4AF-6415-4B23-B111-42FC14A27248}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Services", "Lequ.Services\Lequ.Services.csproj", "{560861EE-42AE-438A-B8F2-FFF39C6B5C4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C47EAE63-6A19-4268-8513-C10565EFFC23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47EAE63-6A19-4268-8513-C10565EFFC23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47EAE63-6A19-4268-8513-C10565EFFC23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47EAE63-6A19-4268-8513-C10565EFFC23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C44621-3865-40D0-92ED-B414C886D613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C44621-3865-40D0-92ED-B414C886D613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C44621-3865-40D0-92ED-B414C886D613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C44621-3865-40D0-92ED-B414C886D613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F3FCF65-847D-4958-8F20-6AF95F2C3821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F3FCF65-847D-4958-8F20-6AF95F2C3821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F3FCF65-847D-4958-8F20-6AF95F2C3821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F3FCF65-847D-4958-8F20-6AF95F2C3821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655B7733-30D5-4BE8-AD47-4A8EE45FD4AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655B7733-30D5-4BE8-AD47-4A8EE45FD4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655B7733-30D5-4BE8-AD47-4A8EE45FD4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655B7733-30D5-4BE8-AD47-4A8EE45FD4AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914EC4AF-6415-4B23-B111-42FC14A27248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914EC4AF-6415-4B23-B111-42FC14A27248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914EC4AF-6415-4B23-B111-42FC14A27248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914EC4AF-6415-4B23-B111-42FC14A27248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{560861EE-42AE-438A-B8F2-FFF39C6B5C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{560861EE-42AE-438A-B8F2-FFF39C6B5C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{560861EE-42AE-438A-B8F2-FFF39C6B5C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{560861EE-42AE-438A-B8F2-FFF39C6B5C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0248B002-F95F-43E5-9943-DC10FA560365}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F3FCF65-847D-4958-8F20-6AF95F2C3821} = {EA0594AB-34EB-4FD1-9BED-98928FEFED72}
+		{655B7733-30D5-4BE8-AD47-4A8EE45FD4AF} = {4AB2B8B6-9E31-4FDB-8052-4B3FB0EBF9C0}
+		{914EC4AF-6415-4B23-B111-42FC14A27248} = {4AB2B8B6-9E31-4FDB-8052-4B3FB0EBF9C0}
+		{560861EE-42AE-438A-B8F2-FFF39C6B5C4E} = {EA0594AB-34EB-4FD1-9BED-98928FEFED72}
+	EndGlobalSection
+EndGlobal
