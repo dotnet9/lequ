@@ -7,6 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lequ.Model\Lequ.Models.csproj" />
+    <ProjectReference Include="..\Lequ.Models\Lequ.Models.csproj" />
   </ItemGroup>
 </Project>

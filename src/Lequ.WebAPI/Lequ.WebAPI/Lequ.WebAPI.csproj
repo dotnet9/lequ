@@ -15,9 +15,7 @@
     <ProjectReference Include="..\Lequ.IRepository\Lequ.IRepository.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\Lequ.IService\Lequ.IService.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <ProjectReference Include="..\Lequ.IServices\Lequ.IServices.csproj" />
     <ProjectReference Include="..\Lequ.Repository\Lequ.Repository.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
