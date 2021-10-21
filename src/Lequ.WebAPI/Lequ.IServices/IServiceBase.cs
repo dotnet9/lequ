@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Lequ.IService
+namespace Lequ.IServices
 {
     public interface IServiceBase<T, TID>
     {

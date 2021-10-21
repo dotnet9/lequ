@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Lequ.Model.DTO
+namespace Lequ.Models.DTO
 {
     public class DTOBase
     {

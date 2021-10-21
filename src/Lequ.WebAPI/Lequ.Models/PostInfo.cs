@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Model
+namespace Lequ.Models
 {
     public class PostInfo : EntityBase
     {

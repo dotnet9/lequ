@@ -1,7 +1,7 @@
 ﻿using System;
 using Lequ.IRepository;
-using Lequ.IService;
-using Lequ.Model;
+using Lequ.IServices;
+using Lequ.Models;
 
 namespace Lequ.Services
 {

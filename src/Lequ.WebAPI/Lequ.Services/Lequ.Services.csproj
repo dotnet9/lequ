@@ -8,6 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lequ.IRepository\Lequ.IRepository.csproj" />
-    <ProjectReference Include="..\Lequ.IService\Lequ.IService.csproj" />
+    <ProjectReference Include="..\Lequ.IServices\Lequ.IServices.csproj" />
   </ItemGroup>
 </Project>

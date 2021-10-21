@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Lequ.IRepository;
-using Lequ.IService;
+using Lequ.IServices;
 
 namespace Lequ.Services
 {
