@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lequ.Blog.Entity
+namespace Lequ.Blog.Model
 {
     public class Category : EntityBase
     {

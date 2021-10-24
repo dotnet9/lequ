@@ -1,4 +1,4 @@
-﻿using Lequ.Blog.Entity;
+﻿using Lequ.Blog.Model;
 
 namespace Lequ.Blog.IService
 {

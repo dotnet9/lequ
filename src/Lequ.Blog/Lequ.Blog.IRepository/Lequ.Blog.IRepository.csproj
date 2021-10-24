@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lequ.Blog.Entity\Lequ.Blog.Entity.csproj" />
+    <ProjectReference Include="..\Lequ.Blog.Model\Lequ.Blog.Model.csproj" />
   </ItemGroup>
 
 </Project>

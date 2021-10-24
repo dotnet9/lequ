@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog", "Lequ.Blog\Lequ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.IRepository", "Lequ.Blog.IRepository\Lequ.Blog.IRepository.csproj", "{DF541AEF-745F-47DF-BCB3-2C53B8809F3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.Entity", "Lequ.Blog.Entity\Lequ.Blog.Entity.csproj", "{6F0E85DE-D529-4FB2-AED8-92520D5396B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.Model", "Lequ.Blog.Model\Lequ.Blog.Model.csproj", "{6F0E85DE-D529-4FB2-AED8-92520D5396B8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.Repository", "Lequ.Blog.Repository\Lequ.Blog.Repository.csproj", "{D8CE947B-1BFA-4533-94B7-8E5277901253}"
 EndProject

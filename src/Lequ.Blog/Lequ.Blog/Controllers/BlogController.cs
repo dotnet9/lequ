@@ -14,7 +14,7 @@ namespace Lequ.Blog.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var values = await _blogService.GetAll();
+            var values = await _blogService.GetListWithCategory();
             return View(values);
         }
     }

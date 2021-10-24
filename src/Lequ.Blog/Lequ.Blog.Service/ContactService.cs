@@ -1,4 +1,4 @@
-﻿using Lequ.Blog.Entity;
+﻿using Lequ.Blog.Model;
 using Lequ.Blog.IRepository;
 using Lequ.Blog.IService;
 

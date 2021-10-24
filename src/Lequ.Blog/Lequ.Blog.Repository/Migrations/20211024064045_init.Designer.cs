@@ -39,7 +39,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.ToTable("BlogCategory");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.About", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.About", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.ToTable("Abouts");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Blog", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Blog", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Category", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Category", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -161,7 +161,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Comment", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Comment", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -205,7 +205,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Contact", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Contact", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -245,7 +245,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.UserInfo", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.UserInfo", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -293,37 +293,37 @@ namespace Lequ.Blog.Repository.Migrations
 
             modelBuilder.Entity("BlogCategory", b =>
                 {
-                    b.HasOne("Lequ.Blog.Entity.Blog", null)
+                    b.HasOne("Lequ.Blog.Model.Blog", null)
                         .WithMany()
                         .HasForeignKey("BlogsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Lequ.Blog.Entity.Category", null)
+                    b.HasOne("Lequ.Blog.Model.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoriesID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Category", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Category", b =>
                 {
-                    b.HasOne("Lequ.Blog.Entity.Category", "Parent")
+                    b.HasOne("Lequ.Blog.Model.Category", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentID");
 
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Comment", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Comment", b =>
                 {
-                    b.HasOne("Lequ.Blog.Entity.Blog", "Blog")
+                    b.HasOne("Lequ.Blog.Model.Blog", "Blog")
                         .WithMany("Comments")
                         .HasForeignKey("BlogID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Lequ.Blog.Entity.Comment", "Parent")
+                    b.HasOne("Lequ.Blog.Model.Comment", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentID");
 
@@ -332,7 +332,7 @@ namespace Lequ.Blog.Repository.Migrations
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("Lequ.Blog.Entity.Blog", b =>
+            modelBuilder.Entity("Lequ.Blog.Model.Blog", b =>
                 {
                     b.Navigation("Comments");
                 });

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Blog.Entity
+namespace Lequ.Blog.Model
 {
     public class About: EntityBase
     {
