@@ -1,6 +1,6 @@
-﻿@using Lequ.Blog.Model
+﻿@using Lequ.Blog.Model.ViewModels
 @using System.Text
-@model List<Blog>
+@model List<BlogDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -30,8 +30,13 @@
 												<i class="far fa-comment"></i> 0</a>
 										</li>
 										<li>
-											<a href="#">
-											<i class="fas fa-eye"></i> C#</a>
+											@if(item.Categories!=null)
+											{
+												@foreach(var category in item.Categories)
+												{
+													<a href="#"><i class="fas fa-eye"></i> @category?.Name</a>
+												}
+											}
 										</li>
 
 									</ul>

@@ -1,3 +1,4 @@
+using Lequ.Blog.Extensions.ServiceExtensions;
 using Lequ.Blog.IRepository;
 using Lequ.Blog.IService;
 using Lequ.Blog.Repository;
@@ -27,6 +28,7 @@ builder.Services.AddScoped<IUserInfoService, UserInfoService>();
 builder.Services.AddDbContext<Context>(option => {
     option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Lequ.Blog;integrated security=true;");
 });
+builder.Services.AddAutoMapperSetup();
 
 var app = builder.Build();
 

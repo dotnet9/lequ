@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lequ.Blog.Model
+namespace Lequ.Blog.Model.Models
 {
-    public class Category : EntityBase
+    public class Category : ModelBase
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lequ.Blog.Model
+namespace Lequ.Blog.Model.Models
 {
-    public class Comment : EntityBase
+    public class Comment : ModelBase
     {
         public string? Title { get; set; }
         public string? Content { get; set; }

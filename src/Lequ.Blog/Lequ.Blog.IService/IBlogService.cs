@@ -1,7 +1,7 @@
 ﻿namespace Lequ.Blog.IService
 {
-	public interface IBlogService : IServiceBase<Model.Blog, int>
+	public interface IBlogService : IServiceBase<Model.Models.Blog, int>
     {
-        Task<IEnumerable<Model.Blog>?> GetListWithCategory();
+        Task<IEnumerable<Model.Models.Blog>?> GetListWithCategory();
     }
 }

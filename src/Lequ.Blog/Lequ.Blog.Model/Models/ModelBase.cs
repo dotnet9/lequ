@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Blog.Model
+namespace Lequ.Blog.Model.Models
 {
-	public class EntityBase
+	public class ModelBase
 	{
 		[Key]
 		public int ID { get; set; }

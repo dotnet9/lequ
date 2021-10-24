@@ -1,7 +1,8 @@
-﻿namespace Lequ.Blog.IRepository
+﻿
+namespace Lequ.Blog.IRepository
 {
-    public interface IBlogRepository : IRepositoryBase<Model.Blog, int>
+    public interface IBlogRepository : IRepositoryBase<Model.Models.Blog, int>
     {
-        Task<IEnumerable<Model.Blog>?> GetListWithCategory();
+        Task<IEnumerable<Model.Models.Blog>?> GetListWithCategory();
     }
 }

@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lequ.Blog.Extensions\Lequ.Blog.Extensions.csproj" />
     <ProjectReference Include="..\Lequ.Blog.Repository\Lequ.Blog.Repository.csproj" />
     <ProjectReference Include="..\Lequ.Blog.Service\Lequ.Blog.Service.csproj" />
   </ItemGroup>

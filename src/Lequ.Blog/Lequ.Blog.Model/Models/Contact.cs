@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Blog.Model
+namespace Lequ.Blog.Model.Models
 {
-    public class Contact : EntityBase
+    public class Contact : ModelBase
     {
         public string? UserName { get; set; }
         public string? Email { get; set; }
