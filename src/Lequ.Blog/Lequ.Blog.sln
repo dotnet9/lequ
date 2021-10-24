@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.Repository", "Leq
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.IService", "Lequ.Blog.IService\Lequ.Blog.IService.csproj", "{14C34533-3B81-4701-9F5C-DA4DDAD90B61}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.Core", "Lequ.Blog.Core\Lequ.Blog.Core.csproj", "{D9AC6986-FF45-436E-BC37-D223A22BC4F8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Blog.Service", "Lequ.Blog.Service\Lequ.Blog.Service.csproj", "{656A242E-8C78-4AD1-83A5-0F4420E8A295}"
 EndProject
 Global
@@ -43,10 +41,6 @@ Global
 		{14C34533-3B81-4701-9F5C-DA4DDAD90B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14C34533-3B81-4701-9F5C-DA4DDAD90B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14C34533-3B81-4701-9F5C-DA4DDAD90B61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9AC6986-FF45-436E-BC37-D223A22BC4F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9AC6986-FF45-436E-BC37-D223A22BC4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9AC6986-FF45-436E-BC37-D223A22BC4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9AC6986-FF45-436E-BC37-D223A22BC4F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{656A242E-8C78-4AD1-83A5-0F4420E8A295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{656A242E-8C78-4AD1-83A5-0F4420E8A295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{656A242E-8C78-4AD1-83A5-0F4420E8A295}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -3,15 +3,21 @@
 @{
     Layout = null;
 }
-
-<table>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+<table class="table table-bordered">
     <tr>
-        <th></th>ID
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Control</th>
     </tr>
     @foreach(var item in Model)
     {
         <tr>
             <td>@item.ID</td>
+            <td>@item.Name</td>
+            <td>@item.Status</td>
+            <td><a href="#" class="btn btn-warning">detail</a></td>
         </tr>
     }
 </table>
