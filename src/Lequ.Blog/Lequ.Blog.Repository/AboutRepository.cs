@@ -6,7 +6,7 @@ namespace Lequ.Blog.Repository
 {
 	public class AboutRepository : RepositoryBase<About, int>, IAboutRepository
     {
-        public AboutRepository(DbContext dbContext) : base(dbContext)
+        public AboutRepository(Context context) : base(context)
         {
         }
     }

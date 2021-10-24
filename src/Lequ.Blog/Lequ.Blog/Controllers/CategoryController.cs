@@ -12,9 +12,9 @@ namespace Lequ.Blog.Controllers
 			_categoryService = categoryService;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			var values = _categoryService.GetAll();
+			var values = await _categoryService.GetAll();
 			return View(values);
 		}
 	}

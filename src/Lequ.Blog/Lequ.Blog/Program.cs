@@ -9,9 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<Context>(option => {
-    option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Lequ.Blog;integrated security=true;");
-});
 builder.Services.AddScoped<IAboutRepository, AboutRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -26,6 +23,9 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IUserInfoService, UserInfoService>();
 
+builder.Services.AddDbContext<Context>(option => {
+    option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Lequ.Blog;integrated security=true;");
+});
 
 var app = builder.Build();
 

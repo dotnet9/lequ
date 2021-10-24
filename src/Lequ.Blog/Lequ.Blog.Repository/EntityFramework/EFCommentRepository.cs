@@ -6,7 +6,7 @@ namespace Lequ.Blog.Repository.EntityFramework
 { 
     public class EFCommentRepository : RepositoryBase<Comment, int>, ICommentRepository
     {
-        public EFCommentRepository(DbContext dBContext) : base(dBContext)
+        public EFCommentRepository(Context context) : base(context)
         {
         }
     }

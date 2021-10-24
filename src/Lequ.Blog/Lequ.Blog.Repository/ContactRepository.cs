@@ -6,7 +6,7 @@ namespace Lequ.Blog.Repository
 {
 	public class ContactRepository : RepositoryBase<Contact, int>, IContactRepository
     {
-        public ContactRepository(DbContext dBContext) : base(dBContext)
+        public ContactRepository(Context context) : base(context)
         {
         }
     }

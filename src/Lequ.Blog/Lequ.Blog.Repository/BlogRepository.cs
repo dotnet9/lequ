@@ -5,7 +5,7 @@ namespace Lequ.Blog.Repository
 {
     public class BlogRepository : RepositoryBase<Entity.Blog, int>, IBlogRepository
     {
-        public BlogRepository(DbContext dbContext) : base(dbContext)
+        public BlogRepository(Context context) : base(context)
         {
         }
     }

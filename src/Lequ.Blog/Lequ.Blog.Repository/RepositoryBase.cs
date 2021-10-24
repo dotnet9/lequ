@@ -5,9 +5,9 @@ namespace Lequ.Blog.Repository
 {
     public class RepositoryBase<T, TID> : IRepositoryBase<T, TID> where T : class
     {
-        private DbContext _dbContext { get; set; }
+        private Context _dbContext { get; set; }
 
-        public RepositoryBase(DbContext dbContext)
+        public RepositoryBase(Context dbContext)
         {
             _dbContext = dbContext;
         }

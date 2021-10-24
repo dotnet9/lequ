@@ -6,7 +6,7 @@ namespace Lequ.Blog.Repository.EntityFramework
 { 
     public class EFCategoryRepository : RepositoryBase<Category, int>, ICategoryRepository
     {
-        public EFCategoryRepository(DbContext dBContext) : base(dBContext)
+        public EFCategoryRepository(Context context) : base(context)
         {
         }
     }

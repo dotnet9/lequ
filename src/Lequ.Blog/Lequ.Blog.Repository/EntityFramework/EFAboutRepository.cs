@@ -6,7 +6,7 @@ namespace Lequ.Blog.Repository.EntityFramework
 {
 	public class EFAboutRepository : RepositoryBase<About, int>, IAboutRepository
     {
-        public EFAboutRepository(DbContext dbContext) : base(dbContext)
+        public EFAboutRepository(Context context) : base(context)
         {
         }
     }

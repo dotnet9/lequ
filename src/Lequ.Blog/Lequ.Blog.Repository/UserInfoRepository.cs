@@ -6,7 +6,7 @@ namespace Lequ.Blog.Repository
 { 
     public class UserInfoRepository : RepositoryBase<UserInfo, int>, IUserInfoRepository
     {
-        public UserInfoRepository(DbContext dBContext) : base(dBContext)
+        public UserInfoRepository(Context context) : base(context)
         {
         }
     }
