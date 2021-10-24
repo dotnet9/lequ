@@ -9,5 +9,10 @@ namespace Lequ.Blog.Repository
         public CommentRepository(Context context) : base(context)
         {
         }
+
+        public async Task<IEnumerable<Comment>> List(int postID)
+		{
+            return await dbContext.Set<Comment>().Where(x=>x.BlogID == postID).ToListAsync();
+		}
     }
 }

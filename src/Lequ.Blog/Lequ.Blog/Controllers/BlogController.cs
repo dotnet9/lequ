@@ -12,7 +12,7 @@ namespace Lequ.Blog.Controllers
 
         public BlogController(IBlogService blogService, IMapper mapper)
         {
-            this._blogService = blogService;
+            _blogService = blogService;
             _mapper = mapper;
         }
 
@@ -22,5 +22,12 @@ namespace Lequ.Blog.Controllers
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
         }
+
+        public async Task<IActionResult> ReadAll(int id)
+		{
+            var posts = await _blogService.List(x=>x.ID==id);
+            var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
+            return View(postDtos);
+		}
     }
 }

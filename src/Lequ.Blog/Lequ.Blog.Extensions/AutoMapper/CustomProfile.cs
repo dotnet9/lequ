@@ -9,6 +9,7 @@ namespace Lequ.Blog.Extensions.AutoMapper
 		public CustomProfile()
 		{
 			CreateMap<Category, CategoryDto>();
+			CreateMap<Comment, CommentDto>();
 			CreateMap<Model.Models.Blog, BlogDto>();
 		}
 	}

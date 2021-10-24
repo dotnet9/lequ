@@ -1,5 +1,6 @@
 ﻿using Lequ.Blog.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Lequ.Blog.Repository
 {
@@ -33,10 +34,15 @@ namespace Lequ.Blog.Repository
             return true;
         }
 
-        public async Task<IEnumerable<T>?> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
             return await dbContext.Set<T>().ToListAsync();
         }
+
+        public async Task<IEnumerable<T>> List(Expression<Func<T, bool>> predicate)
+		{
+            return await dbContext.Set<T>().Where(predicate).ToListAsync();
+		}
 
         public async Task<T?> Get(TID id)
         {

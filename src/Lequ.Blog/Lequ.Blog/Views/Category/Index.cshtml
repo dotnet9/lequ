@@ -11,13 +11,16 @@
         <th>Status</th>
         <th>Control</th>
     </tr>
-    @foreach(var item in Model)
+    if(Model != null)
     {
-        <tr>
-            <td>@item.ID</td>
-            <td>@item.Name</td>
-            <td>@item.Status</td>
-            <td><a href="#" class="btn btn-warning">detail</a></td>
-        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.Status</td>
+                <td><a href="#" class="btn btn-warning">detail</a></td>
+            </tr>
+        }
     }
 </table>

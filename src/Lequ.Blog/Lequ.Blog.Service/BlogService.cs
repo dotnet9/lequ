@@ -12,7 +12,7 @@ namespace Lequ.Blog.Service
             _blogRepository = repository;
         }
 
-        public async Task<IEnumerable<Model.Models.Blog>?> GetListWithCategory()
+        public async Task<IEnumerable<Model.Models.Blog>> GetListWithCategory()
         {
             return await _blogRepository.GetListWithCategory();
         }

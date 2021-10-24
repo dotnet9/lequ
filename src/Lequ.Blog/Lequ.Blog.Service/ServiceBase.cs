@@ -1,5 +1,6 @@
 ﻿using Lequ.Blog.IRepository;
 using Lequ.Blog.IService;
+using System.Linq.Expressions;
 
 namespace Lequ.Blog.Service
 {
@@ -17,10 +18,14 @@ namespace Lequ.Blog.Service
             return await repositoryBase.Get(id);
         }
 
-        public async Task<IEnumerable<T>?> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
             return await repositoryBase.GetAll();
         }
+        public async Task<IEnumerable<T>> List(Expression<Func<T, bool>> predicate)
+		{
+            return await repositoryBase.List(predicate);
+		}
 
         public async Task<bool> Remove(T t)
         {
