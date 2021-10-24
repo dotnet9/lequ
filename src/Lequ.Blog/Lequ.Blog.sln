@@ -5,6 +5,14 @@ VisualStudioVersion = 17.0.31815.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Blog", "Lequ.Blog\Lequ.Blog.csproj", "{A444228C-C699-4624-85F0-DF4391777A71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Blog.DataAccessLayer", "Lequ.Blog.DataAccessLayer\Lequ.Blog.DataAccessLayer.csproj", "{8E41AAA9-6BB1-4DC5-9D74-EA54DDADA937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Blog.EntityLayer", "Lequ.Blog.EntityLayer\Lequ.Blog.EntityLayer.csproj", "{C5C69799-7DE9-42A1-9E1E-D4C075E22650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Blog.BusinessLayer", "Lequ.Blog.BusinessLayer\Lequ.Blog.BusinessLayer.csproj", "{332D7EEA-FEAB-4398-B234-C8D073F4697F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Blog.CoreLayer", "Lequ.Blog.CoreLayer\Lequ.Blog.CoreLayer.csproj", "{C35427AB-5AC8-4209-A80F-7D5939F1DA23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{A444228C-C699-4624-85F0-DF4391777A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A444228C-C699-4624-85F0-DF4391777A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A444228C-C699-4624-85F0-DF4391777A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E41AAA9-6BB1-4DC5-9D74-EA54DDADA937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E41AAA9-6BB1-4DC5-9D74-EA54DDADA937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E41AAA9-6BB1-4DC5-9D74-EA54DDADA937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E41AAA9-6BB1-4DC5-9D74-EA54DDADA937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C69799-7DE9-42A1-9E1E-D4C075E22650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C69799-7DE9-42A1-9E1E-D4C075E22650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C69799-7DE9-42A1-9E1E-D4C075E22650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C69799-7DE9-42A1-9E1E-D4C075E22650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{332D7EEA-FEAB-4398-B234-C8D073F4697F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{332D7EEA-FEAB-4398-B234-C8D073F4697F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{332D7EEA-FEAB-4398-B234-C8D073F4697F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{332D7EEA-FEAB-4398-B234-C8D073F4697F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35427AB-5AC8-4209-A80F-7D5939F1DA23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35427AB-5AC8-4209-A80F-7D5939F1DA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35427AB-5AC8-4209-A80F-7D5939F1DA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35427AB-5AC8-4209-A80F-7D5939F1DA23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
