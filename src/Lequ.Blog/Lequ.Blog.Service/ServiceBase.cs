@@ -17,7 +17,7 @@ namespace Lequ.Blog.Service
             return await repositoryBase.Get(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>?> GetAll()
         {
             return await repositoryBase.GetAll();
         }

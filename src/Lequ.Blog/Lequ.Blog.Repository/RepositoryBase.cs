@@ -33,7 +33,7 @@ namespace Lequ.Blog.Repository
             return true;
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>?> GetAll()
         {
             return await _dbContext.Set<T>().ToListAsync();
         }

@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lequ.Blog.IService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Blog.Controllers
 {
     public class BlogController : Controller
     {
-        public IActionResult Index()
+        private readonly IBlogService _blogService;
+
+        public BlogController(IBlogService blogService)
         {
-            return View();
+            this._blogService = blogService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var values = await _blogService.GetAll();
+            return View(values);
         }
     }
 }
