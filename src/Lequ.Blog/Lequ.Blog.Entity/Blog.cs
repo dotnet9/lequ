@@ -1,16 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Blog.EntityLayer.Concrete
+namespace Lequ.Blog.Entity
 {
-    public class Blog
+    public class Blog : EntityBase
     {
-        [Key]
-        public int ID { get; set; }
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? ThumbnailImage { get; set; }
         public string? Image { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool Status { get; set; }
+        public List<Category>? Categories { get; set; }
+        public List<Comment>? Comments { get; set; }
     }
 }

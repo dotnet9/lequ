@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ValidationRules\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lequ.Blog.IRepository\Lequ.Blog.IRepository.csproj" />
+    <ProjectReference Include="..\Lequ.Blog.IService\Lequ.Blog.IService.csproj" />
+  </ItemGroup>
+
+</Project>

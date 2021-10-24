@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lequ.Blog.Entity\Lequ.Blog.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

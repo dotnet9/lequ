@@ -1,0 +1,17 @@
+﻿@using Lequ.Blog.Entity
+@model List<Category>
+@{
+    Layout = null;
+}
+
+<table>
+    <tr>
+        <th></th>ID
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+        </tr>
+    }
+</table>
