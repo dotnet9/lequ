@@ -12,5 +12,9 @@ namespace Lequ.Blog.Repository
         {
             return await dbContext.Set<Model.Models.Blog>().Include(x => x.Categories).ToListAsync();
         }
+        public async Task<IEnumerable<Model.Models.Blog>> GetListByUser(int id)
+        {
+            return await dbContext.Set<Model.Models.Blog>().Where(x=>x.CreateBy == id).ToListAsync();
+        }
     }
 }

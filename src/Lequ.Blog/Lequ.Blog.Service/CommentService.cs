@@ -6,15 +6,15 @@ namespace Lequ.Blog.Service
 {
     public class CommentService : ServiceBase<Comment, int>, ICommentService
     {
-        protected readonly ICommentRepository _commentRepository;
+        protected readonly ICommentRepository _repository;
         public CommentService(ICommentRepository repository)
         {
-            _commentRepository = repository;
+            _repository = repository;
             base.repositoryBase = repository;
         }
-        public async Task<IEnumerable<Comment>> List(int postID)
+        public async Task<IEnumerable<Comment>> GetListByPost(int id)
 		{
-            return await _commentRepository.List(postID);
+            return await _repository.GetListByPost(id);
 		}
     }
 }

@@ -8,7 +8,7 @@ namespace Lequ.Blog.Service
     {
         public AboutService(IAboutRepository repository)
         {
-            base.repositoryBase = repositoryBase;
+            base.repositoryBase = repository;
         }
     }
 }

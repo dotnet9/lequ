@@ -28,7 +28,7 @@ namespace Lequ.Blog.Controllers
 
 		public async Task<PartialViewResult> List(int postID)
 		{
-			var comments = await _service.List(postID);
+			var comments = await _service.GetListByPost(postID);
 			var commentDtos = _mapper.Map<IEnumerable<CommentDto>>(comments);
 			return PartialView(comments);
 		}

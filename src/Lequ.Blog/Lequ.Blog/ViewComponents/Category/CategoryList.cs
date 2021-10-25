@@ -6,17 +6,17 @@ namespace Lequ.Blog.ViewComponents.Category
 {
     public class CategoryList : ViewComponent
     {
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoryService _service;
         private readonly IMapper _mapper;
 
-        public CategoryList(ICategoryService categoryService, IMapper mapper)
+        public CategoryList(ICategoryService service, IMapper mapper)
         {
-            _categoryService = categoryService;
+            _service = service;
             _mapper = mapper;
         }
         public IViewComponentResult Invoke(int id)
         {
-            var values = _categoryService.GetAll().Result;
+            var values = _service.GetAll().Result;
             return View(values);
         }
     }
