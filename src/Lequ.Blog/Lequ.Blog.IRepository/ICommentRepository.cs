@@ -4,6 +4,6 @@ namespace Lequ.Blog.IRepository
 {
     public interface ICommentRepository : IRepositoryBase<Comment, int>
     {
-        Task<IEnumerable<Comment>> GetListByPost(int id);
+        Task<IEnumerable<Comment>> ToListByPostIDAsync(int id);
     }
 }

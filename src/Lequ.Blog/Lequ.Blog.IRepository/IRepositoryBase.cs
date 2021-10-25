@@ -4,11 +4,11 @@ namespace Lequ.Blog.IRepository
 {
     public interface IRepositoryBase<T, TID>
     {
-        Task<bool> Add(T t);
-        Task<bool> Remove(T t);
-        Task<bool> Update(T t);
-        Task<IEnumerable<T>> GetAll();
-        Task<T?> Get(TID id);
-        Task<IEnumerable<T>> List(Expression<Func<T, bool>> predicate);
+        Task<bool> AddAsync(T t);
+        Task<bool> RemoveAsync(T t);
+        Task<bool> UpdateAsync(T t);
+        Task<IEnumerable<T>> ToListAsync();
+        Task<T?> GetAsync(TID id);
+        Task<IEnumerable<T>> ToListAsync(Expression<Func<T, bool>> predicate);
     }
 }

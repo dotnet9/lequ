@@ -11,6 +11,7 @@ namespace Lequ.Blog.Repository
         public DbSet<Comment>? Comments { get; set; }
         public DbSet<Contact>? Contacts { get; set; }
         public DbSet<UserInfo>? UserInfos { get; set; }
+        public DbSet<NewsLetter>? NewsLetters { get; set; }
 
         public Context(DbContextOptions<Context> options): base(options)
 		{

@@ -4,6 +4,6 @@ namespace Lequ.Blog.IService
 {
     public interface ICommentService : IServiceBase<Comment, int>
     {
-        Task<IEnumerable<Comment>> GetListByPost(int id);
+        Task<IEnumerable<Comment>> ToListByPostIDAsync(int id);
     }
 }

@@ -16,7 +16,7 @@ namespace Lequ.Blog.ViewComponents.Category
         }
         public IViewComponentResult Invoke(int id)
         {
-            var values = _service.GetAll().Result;
+            var values = _service.GetAllAsync().Result;
             return View(values);
         }
     }

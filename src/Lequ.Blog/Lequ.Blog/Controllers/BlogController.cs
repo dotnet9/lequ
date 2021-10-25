@@ -18,7 +18,7 @@ namespace Lequ.Blog.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var posts = await _service.GetListWithCategory();
+            var posts = await _service.ToListWithCategoryAsync();
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
         }
@@ -26,7 +26,7 @@ namespace Lequ.Blog.Controllers
         public async Task<IActionResult> ReadAll(int id)
 		{
             ViewBag.id = id;
-            var posts = await _service.List(x=>x.ID==id);
+            var posts = await _service.ListAsync(x=>x.ID==id);
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
 		}

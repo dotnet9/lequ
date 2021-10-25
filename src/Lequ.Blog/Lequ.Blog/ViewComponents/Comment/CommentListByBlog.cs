@@ -17,7 +17,7 @@ namespace Lequ.Blog.ViewComponents.Comment
         }
         public IViewComponentResult Invoke(int id)
         {
-            var comments = _service.GetListByPost(id).Result;
+            var comments = _service.ToListByPostIDAsync(id).Result;
             var commentDtos = _mapper.Map<IEnumerable<CommentDto>>(comments);
             return View(commentDtos);
         }

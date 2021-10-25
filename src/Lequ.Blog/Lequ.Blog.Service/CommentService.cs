@@ -12,9 +12,9 @@ namespace Lequ.Blog.Service
             _repository = repository;
             base.repositoryBase = repository;
         }
-        public async Task<IEnumerable<Comment>> GetListByPost(int id)
+        public async Task<IEnumerable<Comment>> ToListByPostIDAsync(int id)
 		{
-            return await _repository.GetListByPost(id);
+            return await _repository.ToListByPostIDAsync(id);
 		}
     }
 }

@@ -10,7 +10,7 @@ namespace Lequ.Blog.Repository
         {
         }
 
-        public async Task<IEnumerable<Comment>> GetListByPost(int id)
+        public async Task<IEnumerable<Comment>> ToListByPostIDAsync(int id)
 		{
             return await dbContext.Set<Comment>().Where(x=>x.BlogID == id).ToListAsync();
 		}

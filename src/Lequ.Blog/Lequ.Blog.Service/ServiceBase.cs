@@ -8,33 +8,33 @@ namespace Lequ.Blog.Service
     {
         protected IRepositoryBase<T, TID> repositoryBase;
 
-        public async Task<bool> Add(T t)
+        public async Task<bool> AddAsync(T t)
         {
-            return await repositoryBase.Add(t);
+            return await repositoryBase.AddAsync(t);
         }
 
-        public async Task<T?> Get(TID id)
+        public async Task<T?> GetAsync(TID id)
         {
-            return await repositoryBase.Get(id);
+            return await repositoryBase.GetAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await repositoryBase.GetAll();
+            return await repositoryBase.ToListAsync();
         }
-        public async Task<IEnumerable<T>> List(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> predicate)
 		{
-            return await repositoryBase.List(predicate);
+            return await repositoryBase.ToListAsync(predicate);
 		}
 
-        public async Task<bool> Remove(T t)
+        public async Task<bool> RemoveAsync(T t)
         {
-            return await repositoryBase.Remove(t);
+            return await repositoryBase.RemoveAsync(t);
         }
 
-        public async Task<bool> Update(T t)
+        public async Task<bool> UpdateAsync(T t)
         {
-            return await repositoryBase.Update(t);
+            return await repositoryBase.UpdateAsync(t);
         }
     }
 }

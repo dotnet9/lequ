@@ -31,7 +31,7 @@ namespace Lequ.Blog.Controllers
 			{
 				user.Status = true;
 				user.About = "Create user test";
-				await _service.Add(user);
+				await _service.AddAsync(user);
 				return RedirectToAction("Index", "Blog");
 			}
             else
