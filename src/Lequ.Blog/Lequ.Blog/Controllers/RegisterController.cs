@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Lequ.Blog.IService;
 using Lequ.Blog.Model.Models;
+using Lequ.Blog.Service.ValidationRules;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Blog.Controllers
@@ -24,10 +25,23 @@ namespace Lequ.Blog.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Index(UserInfo user)
 		{
-			user.Status = true;
-			user.About = "Create user test";
-			await _service.Add(user);
-			return RedirectToAction("Index", "Blog");
+			UserInfoValidator uv = new UserInfoValidator();
+			var results = uv.Validate(user);
+			if (results.IsValid)
+			{
+				user.Status = true;
+				user.About = "Create user test";
+				await _service.Add(user);
+				return RedirectToAction("Index", "Blog");
+			}
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+			return View();
 		}
 	}
 }
