@@ -22,11 +22,13 @@ namespace Lequ.Blog.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<PartialViewResult> Add()
         {
             return await Task.FromResult(PartialView());
         }
 
+        [HttpPost]
         public async Task<PartialViewResult> Add(Comment comment)
         {
             comment.CreateDate = DateTime.Now;
