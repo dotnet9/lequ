@@ -5,16 +5,16 @@ namespace Lequ.Blog.Controllers
 {
 	public class CategoryController : Controller
 	{
-		private readonly ICategoryService _categoryService;
+		private readonly ICategoryService _service;
 
-		public CategoryController(ICategoryService categoryService)
+		public CategoryController(ICategoryService service)
 		{
-			_categoryService = categoryService;
+			_service = service;
 		}
 
 		public async Task<IActionResult> Index()
 		{
-			var values = await _categoryService.GetAll();
+			var values = await _service.GetAll();
 			return View(values);
 		}
 	}

@@ -7,18 +7,18 @@ namespace Lequ.Blog.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IBlogService _blogService;
+        private readonly IBlogService _service;
         private readonly IMapper _mapper;
 
-        public BlogController(IBlogService blogService, IMapper mapper)
+        public BlogController(IBlogService service, IMapper mapper)
         {
-            _blogService = blogService;
+            _service = service;
             _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-            var posts = await _blogService.GetListWithCategory();
+            var posts = await _service.GetListWithCategory();
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
         }
@@ -26,7 +26,7 @@ namespace Lequ.Blog.Controllers
         public async Task<IActionResult> ReadAll(int id)
 		{
             ViewBag.id = id;
-            var posts = await _blogService.List(x=>x.ID==id);
+            var posts = await _service.List(x=>x.ID==id);
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
 		}

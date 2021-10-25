@@ -7,12 +7,12 @@ namespace Lequ.Blog.Controllers
 {
 	public class CommentController : Controller
 	{
-		private readonly ICommentService _commentService;
+		private readonly ICommentService _service;
 		private readonly IMapper _mapper;
 
-		public CommentController(ICommentService commentService, IMapper mapper)
+		public CommentController(ICommentService service, IMapper mapper)
 		{
-			_commentService = commentService;
+			_service = service;
 			_mapper = mapper;
 		}
 
@@ -28,7 +28,7 @@ namespace Lequ.Blog.Controllers
 
 		public async Task<PartialViewResult> List(int postID)
 		{
-			var comments = await _commentService.List(postID);
+			var comments = await _service.List(postID);
 			var commentDtos = _mapper.Map<IEnumerable<CommentDto>>(comments);
 			return PartialView(comments);
 		}
