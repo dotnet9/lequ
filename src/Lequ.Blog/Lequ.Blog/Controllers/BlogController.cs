@@ -25,6 +25,7 @@ namespace Lequ.Blog.Controllers
 
         public async Task<IActionResult> ReadAll(int id)
 		{
+            ViewBag.id = id;
             var posts = await _blogService.List(x=>x.ID==id);
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
