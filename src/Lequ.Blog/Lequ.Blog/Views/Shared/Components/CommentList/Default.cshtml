@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Lequ.Blog.Model.ViewModels.CommentDto>
+
+@foreach(var item in Model)
+{
+    <p>@item.ID</p>
+    <p>@item.CreateBy</p>
+}

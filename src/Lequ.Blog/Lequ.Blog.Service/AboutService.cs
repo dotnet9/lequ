@@ -1,0 +1,14 @@
+﻿using Lequ.Blog.Model.Models;
+using Lequ.Blog.IRepository;
+using Lequ.Blog.IService;
+
+namespace Lequ.Blog.Service
+{
+    public class AboutService : ServiceBase<About, int>, IAboutService
+    {
+        public AboutService(IAboutRepository repository)
+        {
+            base.repositoryBase = repository;
+        }
+    }
+}
