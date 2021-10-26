@@ -17,9 +17,9 @@ namespace Lequ.Blog.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return await Task.FromResult(View());
         }
 
 
@@ -27,7 +27,7 @@ namespace Lequ.Blog.Controllers
         public async Task<IActionResult> Index(Contact contact)
         {
             contact.Status = true;
-            contact.CreateDate= DateTime.Now;
+            contact.CreateDate = DateTime.Now;
             await _service.AddAsync(contact);
             return RedirectToAction("Index", "Blog");
         }

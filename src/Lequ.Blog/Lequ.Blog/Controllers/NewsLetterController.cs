@@ -17,9 +17,9 @@ namespace Lequ.Blog.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult SubscribeMail()
+        public async Task<PartialViewResult> SubscribeMail()
         {
-            return PartialView();
+            return await Task.FromResult(PartialView());
         }
 
         [HttpPost]

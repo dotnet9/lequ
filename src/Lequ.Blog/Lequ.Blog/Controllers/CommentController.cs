@@ -17,9 +17,9 @@ namespace Lequ.Blog.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return await Task.FromResult(View());
         }
 
         [HttpGet]

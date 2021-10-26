@@ -4,9 +4,9 @@ namespace Lequ.Blog.Controllers
 {
     public class ErrorPageController : Controller
     {
-        public IActionResult Error1()
+        public async Task<IActionResult> Error1()
         {
-            return View();
+            return await Task.FromResult(View());
         }
     }
 }
