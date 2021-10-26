@@ -1,0 +1,37 @@
+﻿@using Lequ.Blog.Model.ViewModels
+@model List<BlogDto>
+@{
+    ViewData["Title"] = "ListByUser";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>ListByUser</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>CreateDate</th>
+        <th>Categories</th>
+        <th>Status</th>
+        <th>Sil</th>
+        <th>Duzenle</th>
+    </tr>
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Title</td>
+                <td>@item.CreateDate</td>
+                <td>@item.Categories</td>
+                <td>@item.Status</td>
+                <td><a href="#" class="btn btn-danger">Sil</a></td>
+                <td><a href="#" class="btn btn-warning">Duzenle</a></td>
+            </tr>
+        }
+
+    }
+</table>
+<a href="#" class="btn btn-primary">Add</a>

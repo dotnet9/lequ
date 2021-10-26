@@ -10,7 +10,7 @@ namespace Lequ.Blog.Extensions.AutoMapper
 		{
 			CreateMap<Category, CategoryDto>();
 			CreateMap<Comment, CommentDto>();
-			CreateMap<Model.Models.Blog, BlogDto>();
+			CreateMap<Model.Models.Blog, BlogDto>().ReverseMap();
 		}
 	}
 }

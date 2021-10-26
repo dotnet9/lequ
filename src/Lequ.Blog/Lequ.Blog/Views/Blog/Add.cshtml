@@ -1,0 +1,37 @@
+﻿@model Lequ.Blog.Model.ViewModels.BlogDto
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Add</h1>
+<br />
+@using (Html.BeginForm("Add", "Blog", FormMethod.Post))
+{
+    @Html.Label("Title")
+    @Html.TextBoxFor(x=>x.Title, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.Title, "", new { @class = "field-validation-error text-danger" })
+    <br />
+
+    @Html.Label("Image")
+    @Html.TextBoxFor(x=>x.Image, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.Image, "", new { @class = "field-validation-error text-danger" })
+    <br />
+
+    @Html.Label("ThumbnailImage")
+    @Html.TextBoxFor(x=>x.ThumbnailImage, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.ThumbnailImage, "", new { @class = "field-validation-error text-danger" })
+    <br />
+
+    @Html.Label("Categories")
+    @Html.TextBoxFor(x=>x.Categories, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.Categories, "", new { @class = "field-validation-error text-danger" })
+    <br />
+
+    @Html.Label("Content")
+    @Html.TextAreaFor(x=>x.Content, 15, 3, new { @class="form-control"})
+    @Html.ValidationMessageFor(x=>x.Content, "", new { @class = "field-validation-error text-danger" })
+    <br />
+
+    <button class="btn btn-info">Save</button>
+}
