@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Lequ.Blog.IService;
 using Lequ.Blog.Model.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Blog.Controllers
 {
+    [AllowAnonymous]
     public class BlogController : Controller
     {
         private readonly IBlogService _service;

@@ -2,8 +2,7 @@
 @model IEnumerable<BlogDto>
 
 <div class="tech-btm">
-    <h4>Top stories of the week</h4>
-
+    <h3>Latest Posts</h3>
     @if (Model != null)
     {
         @foreach (var item in Model)
@@ -11,7 +10,7 @@
             <div class="blog-grids row mb-3">
                 <div class="col-md-5 blog-grid-left">
                     <a href="/Blog/ReadAll/@item.ID">
-                        <img src="@item.ThumbnailImage" class="img-fluid" alt="">
+                        <img src="@item.ThumbnailImage" class="card-img-top img-fluid" alt="">
                     </a>
                 </div>
                 <div class="col-md-7 blog-grid-right">
@@ -21,7 +20,7 @@
                     </h5>
                     <div class="sub-meta">
                         <span>
-                            <i class="far fa-clock"></i>@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))
+                            <i class="far fa-clock"></i> @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))
                         </span>
                     </div>
                 </div>

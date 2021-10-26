@@ -20,5 +20,9 @@ namespace Lequ.Blog.Service
         {
             return await _repository.ToListByUserIDAsync(id);
         }
+        public async Task<IEnumerable<Model.Models.Blog>> ToListTop3()
+        {
+            return await _repository.ToListTop3();
+        }
     }
 }

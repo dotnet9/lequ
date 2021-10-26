@@ -16,5 +16,9 @@ namespace Lequ.Blog.Repository
         {
             return await dbContext.Set<Model.Models.Blog>().Where(x=>x.CreateBy == id).ToListAsync();
         }
+        public async Task<IEnumerable<Model.Models.Blog>> ToListTop3()
+        {
+            return await dbContext.Set<Model.Models.Blog>().Take(3).ToListAsync();
+        }
     }
 }

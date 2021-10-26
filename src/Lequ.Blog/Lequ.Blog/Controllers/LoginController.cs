@@ -19,6 +19,7 @@ namespace Lequ.Blog.Controllers
             _service = service;
             _mapper = mapper;
         }
+
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
