@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.Blog.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Blog.Controllers
@@ -15,6 +16,7 @@ namespace Lequ.Blog.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var about = await _service.GetAllAsync();
