@@ -16,13 +16,25 @@ namespace Lequ.Blog.Service
         {
             return await _repository.ToListWithCategoryAsync();
         }
+
+        public async Task<IEnumerable<Model.Models.Blog>> ToListWithCategoryByUserAsync(int id)
+        {
+            return await _repository.ToListWithCategoryByUserAsync(id);
+        }
+
+        public async Task<Model.Models.Blog?> GetWithCategory(int id)
+        {
+            return await _repository.GetWithCategory(id);
+        }
+
+
         public async Task<IEnumerable<Model.Models.Blog>> ToListByUserIDAsync(int id)
         {
             return await _repository.ToListByUserIDAsync(id);
         }
-        public async Task<IEnumerable<Model.Models.Blog>> ToListTop3()
+        public async Task<IEnumerable<Model.Models.Blog>> ToListTop3Async()
         {
-            return await _repository.ToListTop3();
+            return await _repository.ToListTop3Async();
         }
     }
 }

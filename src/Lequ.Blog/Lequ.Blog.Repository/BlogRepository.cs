@@ -8,15 +8,28 @@ namespace Lequ.Blog.Repository
         public BlogRepository(Context context) : base(context)
         {
         }
+
         public async Task<IEnumerable<Model.Models.Blog>> ToListWithCategoryAsync()
         {
             return await dbContext.Set<Model.Models.Blog>().Include(x => x.Categories).ToListAsync();
         }
+
+        public async Task<IEnumerable<Model.Models.Blog>> ToListWithCategoryByUserAsync(int id)
+        {
+            return await dbContext.Set<Model.Models.Blog>().Include(x => x.Categories).Where(x => x.CreateBy == id).ToListAsync();
+        }
+
+        public async Task<Model.Models.Blog?> GetWithCategory(int id)
+        {
+            return await dbContext.Set<Model.Models.Blog>().Include(x=>x.Categories).Where(x=>x.ID == id).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<Model.Models.Blog>> ToListByUserIDAsync(int id)
         {
-            return await dbContext.Set<Model.Models.Blog>().Where(x=>x.CreateBy == id).ToListAsync();
+            return await dbContext.Set<Model.Models.Blog>().Where(x => x.CreateBy == id).ToListAsync();
         }
-        public async Task<IEnumerable<Model.Models.Blog>> ToListTop3()
+
+        public async Task<IEnumerable<Model.Models.Blog>> ToListTop3Async()
         {
             return await dbContext.Set<Model.Models.Blog>().Take(3).ToListAsync();
         }

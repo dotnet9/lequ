@@ -2,18 +2,19 @@
 @using Lequ.Blog.Model.ViewModels
 @model BlogDto
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h1>Add</h1>
+<h1>Edit</h1>
+
 <br />
-@using (Html.BeginForm("Add", "Blog", FormMethod.Post))
+@using (Html.BeginForm("Edit", "Blog", FormMethod.Post))
 {
     @Html.Label("Title")
     @Html.TextBoxFor(x=>x.Title, new {@class="form-control"})
     @Html.ValidationMessageFor(x=>x.Title, "", new { @class = "field-validation-error text-danger" })
-    <br />
+    <br /> 
 
     @Html.Label("Image")
     @Html.TextBoxFor(x=>x.Image, new {@class="form-control"})
@@ -35,5 +36,5 @@
     @Html.ValidationMessageFor(x=>x.Content, "", new { @class = "field-validation-error text-danger" })
     <br />
 
-    <button class="btn btn-info">Save</button>
+    <button class="btn btn-success">Save</button>
 }

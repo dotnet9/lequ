@@ -23,7 +23,7 @@ namespace Lequ.Blog.Controllers
 
         public async Task<PartialViewResult> SocialMediaAbout()
         {
-            return PartialView();
+            return await Task.FromResult(PartialView());
         }
     }
 }

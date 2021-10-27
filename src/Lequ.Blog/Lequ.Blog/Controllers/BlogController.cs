@@ -4,6 +4,7 @@ using Lequ.Blog.Model.ViewModels;
 using Lequ.Blog.Service.ValidationRules;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lequ.Blog.Controllers
 {
@@ -36,7 +37,7 @@ namespace Lequ.Blog.Controllers
 
         public async Task<IActionResult> ListByUser()
         {
-            var posts = await _service.ToListByUserIDAsync(1);
+            var posts = await _service.ToListWithCategoryByUserAsync(1);
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
         }
@@ -44,8 +45,10 @@ namespace Lequ.Blog.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            return await Task.FromResult(View());
+            await GetAllCategories();
+            return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Add(BlogDto blog)
@@ -54,12 +57,12 @@ namespace Lequ.Blog.Controllers
             var results = bv.Validate(blog);
             if (results.IsValid)
             {
-                blog.Status = true;
-                blog.CreateDate = DateTime.Now;
-                blog.CreateBy = 1;
                 var blogModelFromDto = _mapper.Map<Model.Models.Blog>(blog);
+                blogModelFromDto.Status = true;
+                blogModelFromDto.CreateDate = DateTime.Now;
+                blogModelFromDto.CreateBy = 1;
                 await _service.AddAsync(blogModelFromDto);
-                return RedirectToAction(nameof(ListByUser), "Blog");
+                return RedirectToAction(nameof(ListByUser));
             }
             else
             {
@@ -69,6 +72,59 @@ namespace Lequ.Blog.Controllers
                 }
                 return View();
             }
+        }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            var blog = await _service.GetAsync(id);
+            if (blog != null)
+            {
+                await _service.RemoveAsync(blog);
+            }
+            return RedirectToAction(nameof(ListByUser));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var blog = await _service.GetWithCategory(id);
+            if (blog == null)
+            {
+                return RedirectToAction(nameof(ListByUser));
+            }
+            var blogDto = _mapper.Map<BlogDto>(blog);
+            await GetAllCategories();
+            return View(blogDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(BlogDto blogDto)
+        {
+            var blogModelForDB = await _service.GetWithCategory(blogDto.ID);
+            if (blogModelForDB == null)
+            {
+                return RedirectToAction(nameof(Edit), blogDto.ID);
+            }
+            _mapper.Map(blogDto, blogModelForDB, typeof(BlogDto), typeof(Model.Models.Blog));
+            blogModelForDB.CreateBy = 1;
+            blogModelForDB.UpdateBy = 1;
+            blogModelForDB.UpdateDate = DateTime.Now;
+            blogModelForDB.Status = true;
+            await _service.UpdateAsync(blogModelForDB);
+            return RedirectToAction(nameof(ListByUser));
+        }
+
+
+        private async Task<bool> GetAllCategories()
+        {
+            var categoryValues = (from x in await _service.GetAllAsync()
+                                  select new SelectListItem
+                                  {
+                                      Text = x.Title,
+                                      Value = x.ID.ToString()
+                                  }).ToList();
+            ViewBag.categories = categoryValues;
+            return await Task.FromResult(true);
         }
     }
 }

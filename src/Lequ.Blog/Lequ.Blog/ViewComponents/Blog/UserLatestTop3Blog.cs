@@ -17,7 +17,7 @@ namespace Lequ.Blog.ViewComponents.Blog
         }
         public IViewComponentResult Invoke(int id)
         {
-            var posts = _service.ToListTop3().Result;
+            var posts = _service.ToListTop3Async().Result;
             var postDtos = _mapper.Map<IEnumerable<BlogDto>>(posts);
             return View(postDtos);
         }
