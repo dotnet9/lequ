@@ -6,6 +6,9 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
+<script src="~/bootstrap-markdown/js/bootstrap-markdown.min.js"></script>
+<link href="~/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+
 <h1>Add</h1>
 <br />
 @using (Html.BeginForm("Add", "Blog", FormMethod.Post))
@@ -37,3 +40,10 @@
 
     <button class="btn btn-info">Save</button>
 }
+
+<script>
+    var markDownObj = $("#editor").markDownObj({
+        autofocus:true,
+        savable:false
+    })
+</script>

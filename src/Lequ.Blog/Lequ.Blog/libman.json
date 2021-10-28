@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap-markdown@2.10.0",
+      "destination": "wwwroot/bootstrap-markdown/"
+    }
+  ]
+}
