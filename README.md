@@ -1,1 +1,1 @@
-# lequ
+# Lequ.CO
