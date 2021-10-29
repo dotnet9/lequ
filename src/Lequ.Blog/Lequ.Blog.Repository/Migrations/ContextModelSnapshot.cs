@@ -3,7 +3,6 @@ using System;
 using Lequ.Blog.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,19 +15,15 @@ namespace Lequ.Blog.Repository.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0-rc.2.21480.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.0-rc.2.21480.5");
 
             modelBuilder.Entity("BlogCategory", b =>
                 {
                     b.Property<int>("BlogsID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CategoriesID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("BlogsID", "CategoriesID");
 
@@ -41,39 +36,37 @@ namespace Lequ.Blog.Repository.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Details1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Details2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Image1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Image2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("MapLocation")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
@@ -84,120 +77,306 @@ namespace Lequ.Blog.Repository.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ThumbnailImage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("UserInfoID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
                     b.HasIndex("UserInfoID");
 
                     b.ToTable("Blogs");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Content = "test content 0",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7789),
+                            Status = true,
+                            Title = "test title 0"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Content = "test content 1",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7794),
+                            Status = true,
+                            Title = "test title 1"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Content = "test content 2",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7796),
+                            Status = true,
+                            Title = "test title 2"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Content = "test content 3",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7798),
+                            Status = true,
+                            Title = "test title 3"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Content = "test content 4",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7800),
+                            Status = true,
+                            Title = "test title 4"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Content = "test content 5",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7804),
+                            Status = true,
+                            Title = "test title 5"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Content = "test content 6",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7805),
+                            Status = true,
+                            Title = "test title 6"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Content = "test content 7",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7807),
+                            Status = true,
+                            Title = "test title 7"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Content = "test content 8",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7809),
+                            Status = true,
+                            Title = "test title 8"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            Content = "test content 9",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7812),
+                            Status = true,
+                            Title = "test title 9"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            Content = "test content 10",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7814),
+                            Status = true,
+                            Title = "test title 10"
+                        },
+                        new
+                        {
+                            ID = 12,
+                            Content = "test content 11",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7815),
+                            Status = true,
+                            Title = "test title 11"
+                        },
+                        new
+                        {
+                            ID = 13,
+                            Content = "test content 12",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7817),
+                            Status = true,
+                            Title = "test title 12"
+                        },
+                        new
+                        {
+                            ID = 14,
+                            Content = "test content 13",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7819),
+                            Status = true,
+                            Title = "test title 13"
+                        },
+                        new
+                        {
+                            ID = 15,
+                            Content = "test content 14",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7820),
+                            Status = true,
+                            Title = "test title 14"
+                        },
+                        new
+                        {
+                            ID = 16,
+                            Content = "test content 15",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7822),
+                            Status = true,
+                            Title = "test title 15"
+                        },
+                        new
+                        {
+                            ID = 17,
+                            Content = "test content 16",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7824),
+                            Status = true,
+                            Title = "test title 16"
+                        },
+                        new
+                        {
+                            ID = 18,
+                            Content = "test content 17",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7827),
+                            Status = true,
+                            Title = "test title 17"
+                        },
+                        new
+                        {
+                            ID = 19,
+                            Content = "test content 18",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7828),
+                            Status = true,
+                            Title = "test title 18"
+                        },
+                        new
+                        {
+                            ID = 20,
+                            Content = "test content 19",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7830),
+                            Status = true,
+                            Title = "test title 19"
+                        });
                 });
 
             modelBuilder.Entity("Lequ.Blog.Model.Models.Category", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("ParentID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ParentID");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7720),
+                            Name = "C#",
+                            Status = true
+                        });
                 });
 
             modelBuilder.Entity("Lequ.Blog.Model.Models.Comment", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("BlogID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("ParentID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
@@ -212,36 +391,34 @@ namespace Lequ.Blog.Repository.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
@@ -252,27 +429,25 @@ namespace Lequ.Blog.Repository.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
@@ -283,46 +458,58 @@ namespace Lequ.Blog.Repository.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Account")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("CreateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
                     b.ToTable("UserInfos");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            About = "Coder",
+                            Account = "Lequ.CO",
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 29, 13, 3, 10, 616, DateTimeKind.Local).AddTicks(7582),
+                            Email = "1012434131@qq.com",
+                            Name = "Lequ.CO",
+                            Password = "Lequ.CO",
+                            Status = true
+                        });
                 });
 
             modelBuilder.Entity("BlogCategory", b =>

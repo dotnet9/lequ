@@ -1,5 +1,4 @@
-﻿using Lequ.Blog.IRepository;
-using Lequ.Blog.Repository;
+﻿using Lequ.Blog.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +15,7 @@ namespace Lequ.Blog.Extensions.ServiceExtensions
 
 			services.AddDbContext<Context>(option =>
 			{
-				option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Lequ.Blog;integrated security=true;");
+				option.UseSqlite("Data Source=Lequ.CO.db");
 			});
 		}
 	}
