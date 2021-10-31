@@ -121,7 +121,7 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6349),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8238),
                             Password = "admin",
                             Status = true,
                             UserName = "admin"
@@ -173,7 +173,7 @@ namespace Lequ.Repository.Migrations
                             ID = 1,
                             About = "Coder",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6478),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8635),
                             Name = "Lequ.CO",
                             Status = true
                         });
@@ -229,7 +229,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 0",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6534),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8736),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 0"
                         },
@@ -239,7 +240,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 1",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6538),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8744),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 1"
                         },
@@ -249,7 +251,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 2",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6546),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8747),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 2"
                         },
@@ -259,7 +262,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 3",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6549),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8750),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 3"
                         },
@@ -269,7 +273,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 4",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6551),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8753),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 4"
                         },
@@ -279,7 +284,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 5",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6555),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8760),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 5"
                         },
@@ -289,7 +295,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 6",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6557),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8762),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 6"
                         },
@@ -299,7 +306,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 7",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6559),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8765),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 7"
                         },
@@ -309,7 +317,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 8",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6561),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8768),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 8"
                         },
@@ -319,7 +328,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 9",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6564),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8772),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 9"
                         },
@@ -329,7 +339,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 10",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6566),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8776),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 10"
                         },
@@ -339,7 +350,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 11",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6568),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8778),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 11"
                         },
@@ -349,7 +361,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 12",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6570),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8781),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 12"
                         },
@@ -359,7 +372,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 13",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6572),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8784),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 13"
                         },
@@ -369,7 +383,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 14",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6574),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8787),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 14"
                         },
@@ -379,7 +394,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 15",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6576),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8799),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 15"
                         },
@@ -389,7 +405,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 16",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6578),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8802),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 16"
                         },
@@ -399,7 +416,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 17",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6581),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8807),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 17"
                         },
@@ -409,7 +427,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 18",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6583),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8810),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 18"
                         },
@@ -419,7 +438,8 @@ namespace Lequ.Repository.Migrations
                             AuthorID = 1,
                             Content = "test content 19",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6585),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8812),
+                            Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 19"
                         });
@@ -466,7 +486,7 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 10, 54, 35, 913, DateTimeKind.Local).AddTicks(6493),
+                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8677),
                             Name = "C#",
                             Status = true
                         });

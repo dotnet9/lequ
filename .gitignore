@@ -348,7 +348,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-src/Lequ.Blog/Lequ.Blog.Repository/Migrations/
-src/Lequ.Blog/Lequ.Blog/Lequ.CO.db
-src/Lequ.Blog/Lequ.Blog/Lequ.CO.db-shm
-src/Lequ.Blog/Lequ.Blog/Lequ.CO.db-wal
+src/Lequ.Repository/Migrations

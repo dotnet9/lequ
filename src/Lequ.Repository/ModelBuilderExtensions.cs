@@ -40,6 +40,7 @@ namespace Lequ.Repository
 					ID = i + 1,
 					Title = $"test title {i}",
 					Content = $"test content {i}",
+					Image = "/Front/images/img_1.jpg",
 					Status = true,
 					AuthorID = authorUser.ID,
 					CreateBy = authorUser.ID,

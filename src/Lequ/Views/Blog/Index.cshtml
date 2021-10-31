@@ -4,5 +4,12 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h1>Blog list</h1>
+@await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
 
+@await Html.PartialAsync("~/Views/Blog/List.cshtml")
+
+@await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")
+
+@await Html.PartialAsync("~/Views/Blog/EmailSubscribe.cshtml")
+
+@await Html.PartialAsync("~/Views/About/Footer.cshtml")

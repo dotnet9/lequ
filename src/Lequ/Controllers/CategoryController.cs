@@ -17,5 +17,11 @@ namespace Lequ.Controllers
 			var values = await _service.GetAllAsync();
 			return View(values);
 		}
+
+		[HttpGet]
+		public async Task<PartialViewResult> BlogDetailsCategoryList()
+		{
+			return await Task.FromResult(PartialView());
+		}
 	}
 }
