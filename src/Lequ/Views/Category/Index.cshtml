@@ -1,0 +1,37 @@
+﻿@using Lequ.Model.Models
+@model IEnumerable<Category>
+@{
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Control</th>
+    </tr>
+    @if(Model != null)
+    {
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.Status</td>
+                <td><a href="#" class="btn btn-warning">detail</a></td>
+            </tr>
+        }
+    }
+</table>
+</body>
+</html>
