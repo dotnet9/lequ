@@ -106,7 +106,7 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3060),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7469),
                             Password = "admin",
                             Status = true,
                             UserName = "admin"
@@ -158,7 +158,7 @@ namespace Lequ.Repository.Migrations
                             ID = 1,
                             About = "Coder",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3170),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7591),
                             Name = "Lequ.CO",
                             Status = true
                         });
@@ -211,202 +211,202 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 1,
-                            Content = "test content 0",
+                            Content = "0 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3227),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7684),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 0"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 0"
                         },
                         new
                         {
                             ID = 2,
-                            Content = "test content 1",
+                            Content = "1 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3236),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7702),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 1"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 1"
                         },
                         new
                         {
                             ID = 3,
-                            Content = "test content 2",
+                            Content = "2 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3240),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7712),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 2"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 2"
                         },
                         new
                         {
                             ID = 4,
-                            Content = "test content 3",
+                            Content = "3 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3245),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7724),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 3"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 3"
                         },
                         new
                         {
                             ID = 5,
-                            Content = "test content 4",
+                            Content = "4 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3248),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7737),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 4"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 4"
                         },
                         new
                         {
                             ID = 6,
-                            Content = "test content 5",
+                            Content = "5 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3260),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7750),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 5"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 5"
                         },
                         new
                         {
                             ID = 7,
-                            Content = "test content 6",
+                            Content = "6 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3263),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7760),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 6"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 6"
                         },
                         new
                         {
                             ID = 8,
-                            Content = "test content 7",
+                            Content = "7 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3266),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7771),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 7"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 7"
                         },
                         new
                         {
                             ID = 9,
-                            Content = "test content 8",
+                            Content = "8 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3269),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7781),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 8"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 8"
                         },
                         new
                         {
                             ID = 10,
-                            Content = "test content 9",
+                            Content = "9 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3274),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7794),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 9"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 9"
                         },
                         new
                         {
                             ID = 11,
-                            Content = "test content 10",
+                            Content = "10 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3278),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7805),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 10"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 10"
                         },
                         new
                         {
                             ID = 12,
-                            Content = "test content 11",
+                            Content = "11 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3281),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7816),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 11"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 11"
                         },
                         new
                         {
                             ID = 13,
-                            Content = "test content 12",
+                            Content = "12 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3284),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7827),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 12"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 12"
                         },
                         new
                         {
                             ID = 14,
-                            Content = "test content 13",
+                            Content = "13 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3287),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7838),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 13"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 13"
                         },
                         new
                         {
                             ID = 15,
-                            Content = "test content 14",
+                            Content = "14 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3291),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7849),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 14"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 14"
                         },
                         new
                         {
                             ID = 16,
-                            Content = "test content 15",
+                            Content = "15 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3294),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7859),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 15"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 15"
                         },
                         new
                         {
                             ID = 17,
-                            Content = "test content 16",
+                            Content = "16 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3297),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7871),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 16"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 16"
                         },
                         new
                         {
                             ID = 18,
-                            Content = "test content 17",
+                            Content = "17 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3302),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7883),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 17"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 17"
                         },
                         new
                         {
                             ID = 19,
-                            Content = "test content 18",
+                            Content = "18 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3305),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7894),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 18"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 18"
                         },
                         new
                         {
                             ID = 20,
-                            Content = "test content 19",
+                            Content = "19 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3308),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7904),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
-                            Title = "test title 19"
+                            Title = "How to handle Many-To-Many in Entity Framework Core 19"
                         });
                 });
 
@@ -448,7 +448,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 1,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3230),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7686),
                             ID = 0,
                             Status = true
                         },
@@ -457,7 +457,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 1,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3233),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7689),
                             ID = 0,
                             Status = true
                         },
@@ -466,7 +466,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 2,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3237),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7702),
                             ID = 0,
                             Status = true
                         },
@@ -475,7 +475,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 2,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3238),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7703),
                             ID = 0,
                             Status = true
                         },
@@ -484,7 +484,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 3,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3241),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7713),
                             ID = 0,
                             Status = true
                         },
@@ -493,7 +493,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 3,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3243),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7715),
                             ID = 0,
                             Status = true
                         },
@@ -502,7 +502,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 4,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3245),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7725),
                             ID = 0,
                             Status = true
                         },
@@ -511,7 +511,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 4,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3246),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7726),
                             ID = 0,
                             Status = true
                         },
@@ -520,7 +520,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 5,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3249),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7738),
                             ID = 0,
                             Status = true
                         },
@@ -529,7 +529,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 5,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3257),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7739),
                             ID = 0,
                             Status = true
                         },
@@ -538,7 +538,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 6,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3260),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7750),
                             ID = 0,
                             Status = true
                         },
@@ -547,7 +547,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 6,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3261),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7751),
                             ID = 0,
                             Status = true
                         },
@@ -556,7 +556,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 7,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3264),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7761),
                             ID = 0,
                             Status = true
                         },
@@ -565,7 +565,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 7,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3264),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7762),
                             ID = 0,
                             Status = true
                         },
@@ -574,7 +574,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 8,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3267),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7771),
                             ID = 0,
                             Status = true
                         },
@@ -583,7 +583,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 8,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3268),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7772),
                             ID = 0,
                             Status = true
                         },
@@ -592,7 +592,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 9,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3270),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7782),
                             ID = 0,
                             Status = true
                         },
@@ -601,7 +601,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 9,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3272),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7784),
                             ID = 0,
                             Status = true
                         },
@@ -610,7 +610,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 10,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3275),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7795),
                             ID = 0,
                             Status = true
                         },
@@ -619,7 +619,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 10,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3276),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7795),
                             ID = 0,
                             Status = true
                         },
@@ -628,7 +628,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 11,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3278),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7805),
                             ID = 0,
                             Status = true
                         },
@@ -637,7 +637,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 11,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3279),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7806),
                             ID = 0,
                             Status = true
                         },
@@ -646,7 +646,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 12,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3282),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7817),
                             ID = 0,
                             Status = true
                         },
@@ -655,7 +655,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 12,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3282),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7817),
                             ID = 0,
                             Status = true
                         },
@@ -664,7 +664,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 13,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3285),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7828),
                             ID = 0,
                             Status = true
                         },
@@ -673,7 +673,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 13,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3285),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7828),
                             ID = 0,
                             Status = true
                         },
@@ -682,7 +682,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 14,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3288),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7839),
                             ID = 0,
                             Status = true
                         },
@@ -691,7 +691,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 14,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3289),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7839),
                             ID = 0,
                             Status = true
                         },
@@ -700,7 +700,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 15,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3291),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7849),
                             ID = 0,
                             Status = true
                         },
@@ -709,7 +709,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 15,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3292),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7850),
                             ID = 0,
                             Status = true
                         },
@@ -718,7 +718,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 16,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3295),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7860),
                             ID = 0,
                             Status = true
                         },
@@ -727,7 +727,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 16,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3295),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7861),
                             ID = 0,
                             Status = true
                         },
@@ -736,7 +736,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 17,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3298),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7872),
                             ID = 0,
                             Status = true
                         },
@@ -745,7 +745,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 17,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3299),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7873),
                             ID = 0,
                             Status = true
                         },
@@ -754,7 +754,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 18,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3303),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7884),
                             ID = 0,
                             Status = true
                         },
@@ -763,7 +763,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 18,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3303),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7884),
                             ID = 0,
                             Status = true
                         },
@@ -772,7 +772,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 19,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3306),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7894),
                             ID = 0,
                             Status = true
                         },
@@ -781,7 +781,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 19,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3306),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7895),
                             ID = 0,
                             Status = true
                         },
@@ -790,7 +790,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 20,
                             CategoryID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3309),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7904),
                             ID = 0,
                             Status = true
                         },
@@ -799,7 +799,7 @@ namespace Lequ.Repository.Migrations
                             BlogID = 20,
                             CategoryID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3310),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7905),
                             ID = 0,
                             Status = true
                         });
@@ -846,7 +846,7 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3189),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7610),
                             Name = "C#",
                             Status = true
                         },
@@ -854,7 +854,7 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 2,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3190),
+                            CreateDate = new DateTime(2021, 10, 31, 23, 10, 18, 736, DateTimeKind.Local).AddTicks(7611),
                             Name = "C++",
                             Status = true
                         });

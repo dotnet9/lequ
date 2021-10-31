@@ -35,6 +35,10 @@ namespace Lequ.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Featured()
 		{
+			ViewBag.title1 = "test title";
+			ViewBag.img1 = "/Front/images/img_3.jpg";
+			ViewBag.date1 = DateTime.Now;
+
 			return await Task.FromResult(PartialView());
 		}
 

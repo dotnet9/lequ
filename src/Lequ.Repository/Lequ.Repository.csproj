@@ -25,4 +25,10 @@
     <ProjectReference Include="..\Lequ.IRepository\Lequ.IRepository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestBlogContent.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

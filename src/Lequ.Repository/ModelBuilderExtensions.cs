@@ -41,8 +41,8 @@ namespace Lequ.Repository
 				var blog = new Blog
 				{
 					ID = i + 1,
-					Title = $"test title {i}",
-					Content = $"test content {i}",
+					Title = $"How to handle Many-To-Many in Entity Framework Core {i}",
+					Content = $"{i} {GetBlogContent()}",
 					Image = "/Front/images/img_1.jpg",
 					Status = true,
 					CreateBy = authorUser.ID,
@@ -55,6 +55,17 @@ namespace Lequ.Repository
 			modelBuilder.Entity<Blog>().HasData(blogs);
 
 			modelBuilder.Entity<BlogCategory>().HasData(blogCategories);
+		}
+
+		private static string? blogContent = null;
+		private static string GetBlogContent()
+		{
+			if (blogContent != null)
+			{
+				return blogContent;
+			}
+			blogContent = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TestBlogContent.txt");
+			return blogContent;
 		}
 	}
 }
