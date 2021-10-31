@@ -29,25 +29,32 @@ namespace Lequ.Repository
 			};
 			modelBuilder.Entity<Author>().HasData(authorUser);
 
-			var category = new Category { ID = 1, Name = "C#", Status = true, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-			modelBuilder.Entity<Category>().HasData(category);
+			var blogCategories = new List<BlogCategory>();
 
-			List<Model.Models.Blog> blogs = new List<Model.Models.Blog>();
+			var categoryCSharp = new Category { ID = 1, Name = "C#", Status = true, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+			var categoryCPlusPlus = new Category { ID = 2, Name = "C++", Status = true, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+			modelBuilder.Entity<Category>().HasData(categoryCSharp, categoryCPlusPlus);
+
+			List<Blog> blogs = new List<Blog>();
 			for (int i = 0; i < 20; i++)
 			{
-				blogs.Add(new Blog
+				var blog = new Blog
 				{
 					ID = i + 1,
 					Title = $"test title {i}",
 					Content = $"test content {i}",
 					Image = "/Front/images/img_1.jpg",
 					Status = true,
-					AuthorID = authorUser.ID,
 					CreateBy = authorUser.ID,
 					CreateDate = DateTime.Now,
-				});
+				};
+				blogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = categoryCSharp.ID, Status = true, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
+				blogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = categoryCPlusPlus.ID, Status = true, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
+				blogs.Add(blog);
 			}
-			modelBuilder.Entity<Model.Models.Blog>().HasData(blogs);
+			modelBuilder.Entity<Blog>().HasData(blogs);
+
+			modelBuilder.Entity<BlogCategory>().HasData(blogCategories);
 		}
 	}
 }

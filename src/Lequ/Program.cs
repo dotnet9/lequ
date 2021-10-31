@@ -1,10 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Lequ.Extensions;
 using Lequ.Extensions.ServiceExtensions;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +20,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie(x => x.LoginPath = "/Login/Index");
-
-builder.Services.AddDbSetup();
+builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddAutoMapperSetup();
 
 var app = builder.Build();

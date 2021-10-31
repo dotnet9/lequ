@@ -6,7 +6,7 @@ namespace Lequ.Extensions.ServiceExtensions
 {
 	public static class DbSetup
 	{
-		public static void AddDbSetup(this IServiceCollection services)
+		public static void AddDbSetup(this IServiceCollection services,string connectionStr)
 		{
 			if (services == null)
 			{
@@ -15,7 +15,7 @@ namespace Lequ.Extensions.ServiceExtensions
 
 			services.AddDbContext<Context>(option =>
 			{
-				option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Lequ;integrated security=true;");
+				option.UseSqlServer(connectionStr);
 			});
 		}
 	}

@@ -6,13 +6,13 @@ namespace Lequ.Controllers
 	{
 
 		[HttpGet]
-		public async Task<PartialViewResult> List()
+		public async Task<IActionResult> List()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> Leave()
+		public async Task<IActionResult> Leave()
 		{
 			return await Task.FromResult(PartialView());
 		}

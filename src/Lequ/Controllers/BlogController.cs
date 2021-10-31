@@ -21,14 +21,7 @@ namespace Lequ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> List()
-		{
-			var values = await _service.GetAllAsync();
-			return PartialView(values);
-		}
-
-		[HttpGet]
-		public async Task<PartialViewResult> ListByUser()
+		public async Task<IActionResult> ListByUser()
 		{
 			return await Task.FromResult(PartialView());
 		}
@@ -40,37 +33,37 @@ namespace Lequ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> Featured()
+		public async Task<IActionResult> Featured()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> OtherFeatured()
+		public async Task<IActionResult> OtherFeatured()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> EmailSubscribe()
+		public async Task<IActionResult> EmailSubscribe()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> Details()
+		public async Task<IActionResult> Details()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> Cover()
+		public async Task<IActionResult> Cover()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> ReadAll()
+		public async Task<IActionResult> ReadAll()
 		{
 			return await Task.FromResult(PartialView());
 		}

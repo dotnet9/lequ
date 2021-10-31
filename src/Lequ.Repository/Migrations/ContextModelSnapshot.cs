@@ -22,21 +22,6 @@ namespace Lequ.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BlogCategory", b =>
-                {
-                    b.Property<int>("BlogsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoriesID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BlogsID", "CategoriesID");
-
-                    b.HasIndex("CategoriesID");
-
-                    b.ToTable("BlogCategory");
-                });
-
             modelBuilder.Entity("Lequ.Model.Models.About", b =>
                 {
                     b.Property<int>("ID")
@@ -121,7 +106,7 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8238),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3060),
                             Password = "admin",
                             Status = true,
                             UserName = "admin"
@@ -173,7 +158,7 @@ namespace Lequ.Repository.Migrations
                             ID = 1,
                             About = "Coder",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8635),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3170),
                             Name = "Lequ.CO",
                             Status = true
                         });
@@ -187,7 +172,7 @@ namespace Lequ.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int>("AuthorID")
+                    b.Property<int?>("AuthorID")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -226,10 +211,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 1,
-                            AuthorID = 1,
                             Content = "test content 0",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8736),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3227),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 0"
@@ -237,10 +221,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 2,
-                            AuthorID = 1,
                             Content = "test content 1",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8744),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3236),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 1"
@@ -248,10 +231,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 3,
-                            AuthorID = 1,
                             Content = "test content 2",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8747),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3240),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 2"
@@ -259,10 +241,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 4,
-                            AuthorID = 1,
                             Content = "test content 3",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8750),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3245),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 3"
@@ -270,10 +251,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 5,
-                            AuthorID = 1,
                             Content = "test content 4",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8753),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3248),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 4"
@@ -281,10 +261,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 6,
-                            AuthorID = 1,
                             Content = "test content 5",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8760),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3260),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 5"
@@ -292,10 +271,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 7,
-                            AuthorID = 1,
                             Content = "test content 6",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8762),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3263),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 6"
@@ -303,10 +281,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 8,
-                            AuthorID = 1,
                             Content = "test content 7",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8765),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3266),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 7"
@@ -314,10 +291,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 9,
-                            AuthorID = 1,
                             Content = "test content 8",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8768),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3269),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 8"
@@ -325,10 +301,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 10,
-                            AuthorID = 1,
                             Content = "test content 9",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8772),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3274),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 9"
@@ -336,10 +311,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 11,
-                            AuthorID = 1,
                             Content = "test content 10",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8776),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3278),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 10"
@@ -347,10 +321,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 12,
-                            AuthorID = 1,
                             Content = "test content 11",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8778),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3281),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 11"
@@ -358,10 +331,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 13,
-                            AuthorID = 1,
                             Content = "test content 12",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8781),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3284),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 12"
@@ -369,10 +341,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 14,
-                            AuthorID = 1,
                             Content = "test content 13",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8784),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3287),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 13"
@@ -380,10 +351,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 15,
-                            AuthorID = 1,
                             Content = "test content 14",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8787),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3291),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 14"
@@ -391,10 +361,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 16,
-                            AuthorID = 1,
                             Content = "test content 15",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8799),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3294),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 15"
@@ -402,10 +371,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 17,
-                            AuthorID = 1,
                             Content = "test content 16",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8802),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3297),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 16"
@@ -413,10 +381,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 18,
-                            AuthorID = 1,
                             Content = "test content 17",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8807),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3302),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 17"
@@ -424,10 +391,9 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 19,
-                            AuthorID = 1,
                             Content = "test content 18",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8810),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3305),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 18"
@@ -435,13 +401,407 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 20,
-                            AuthorID = 1,
                             Content = "test content 19",
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8812),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3308),
                             Image = "/Front/images/img_1.jpg",
                             Status = true,
                             Title = "test title 19"
+                        });
+                });
+
+            modelBuilder.Entity("Lequ.Model.Models.BlogCategory", b =>
+                {
+                    b.Property<int>("BlogID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("UpdateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BlogID", "CategoryID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.ToTable("BlogCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            BlogID = 1,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3230),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 1,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3233),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 2,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3237),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 2,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3238),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 3,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3241),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 3,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3243),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 4,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3245),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 4,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3246),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 5,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3249),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 5,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3257),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 6,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3260),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 6,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3261),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 7,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3264),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 7,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3264),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 8,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3267),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 8,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3268),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 9,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3270),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 9,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3272),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 10,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3275),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 10,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3276),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 11,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3278),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 11,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3279),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 12,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3282),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 12,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3282),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 13,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3285),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 13,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3285),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 14,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3288),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 14,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3289),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 15,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3291),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 15,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3292),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 16,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3295),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 16,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3295),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 17,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3298),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 17,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3299),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 18,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3303),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 18,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3303),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 19,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3306),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 19,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3306),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 20,
+                            CategoryID = 1,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3309),
+                            ID = 0,
+                            Status = true
+                        },
+                        new
+                        {
+                            BlogID = 20,
+                            CategoryID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3310),
+                            ID = 0,
+                            Status = true
                         });
                 });
 
@@ -486,8 +846,16 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             CreateBy = 1,
-                            CreateDate = new DateTime(2021, 10, 31, 16, 26, 34, 746, DateTimeKind.Local).AddTicks(8677),
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3189),
                             Name = "C#",
+                            Status = true
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreateBy = 1,
+                            CreateDate = new DateTime(2021, 10, 31, 22, 37, 26, 264, DateTimeKind.Local).AddTicks(3190),
+                            Name = "C++",
                             Status = true
                         });
                 });
@@ -589,30 +957,30 @@ namespace Lequ.Repository.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("BlogCategory", b =>
-                {
-                    b.HasOne("Lequ.Model.Models.Blog", null)
-                        .WithMany()
-                        .HasForeignKey("BlogsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Lequ.Model.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Lequ.Model.Models.Blog", b =>
                 {
-                    b.HasOne("Lequ.Model.Models.Author", "Author")
+                    b.HasOne("Lequ.Model.Models.Author", null)
                         .WithMany("Blogs")
-                        .HasForeignKey("AuthorID")
+                        .HasForeignKey("AuthorID");
+                });
+
+            modelBuilder.Entity("Lequ.Model.Models.BlogCategory", b =>
+                {
+                    b.HasOne("Lequ.Model.Models.Blog", "Blog")
+                        .WithMany("BlogCategories")
+                        .HasForeignKey("BlogID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.HasOne("Lequ.Model.Models.Category", "Category")
+                        .WithMany("BlogCategories")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Lequ.Model.Models.Category", b =>
@@ -648,7 +1016,14 @@ namespace Lequ.Repository.Migrations
 
             modelBuilder.Entity("Lequ.Model.Models.Blog", b =>
                 {
+                    b.Navigation("BlogCategories");
+
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("Lequ.Model.Models.Category", b =>
+                {
+                    b.Navigation("BlogCategories");
                 });
 #pragma warning restore 612, 618
         }

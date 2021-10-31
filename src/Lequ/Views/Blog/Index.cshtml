@@ -6,7 +6,7 @@
 
 @await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
 
-@await Html.PartialAsync("~/Views/Blog/List.cshtml")
+@await Component.InvokeAsync("BlogList")
 
 @await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")
 

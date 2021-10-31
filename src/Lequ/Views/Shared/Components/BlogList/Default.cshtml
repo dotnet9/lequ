@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lequ.Model.Models.Blog>?
+﻿@model IEnumerable<Lequ.Model.Models.Blog>
 
 <div class="site-section">
     <div class="container">
@@ -16,20 +16,20 @@
                         <div class="entry2">
                             <a href="single.html"><img src="@item.Image" alt="Image" class="img-fluid rounded"></a>
                             <div class="excerpt">
-                                <span class="post-category text-white bg-secondary mb-3">
-                                    @if (item.Categories != null)
+                                @if (item.BlogCategories != null)
+                                {
+                                    @foreach (var category in item.BlogCategories)
                                     {
-                                        @foreach (var category in item.Categories)
-                                        {
-                                            <a href="#"><i class="fas fa-eye"></i> @category?.Name</a>
-                                        }
+                                        <span class="post-category text-white bg-secondary mb-3">
+                                            <a href="#"><i class="fas fa-eye"></i> @category?.Category?.Name</a>
+                                        </span>
                                     }
-                                </span>
+                                }
 
                                 <h2><a href="single.html">@item.Title</a></h2>
                                 <div class="post-meta align-items-center text-left clearfix">
                                     <figure class="author-figure mb-0 mr-3 float-left"><img src="~/Front/images/person_1.jpg" alt="Image" class="img-fluid"></figure>
-                                    <span class="d-inline-block mt-1"><a href="#">@item.Author?.Name</a></span>
+                                    <span class="d-inline-block mt-1"><a href="#">@item.CreateBy</a></span>
                                     <span>&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
                                 </div>
 

@@ -9,9 +9,7 @@ namespace Lequ.Model.Models
         [StringLength(100)]
         public string? Image { get; set; } 
         public string? Content { get; set; }
-        public int AuthorID { get; set; }
-        public Author? Author { get; set; }
-        public IEnumerable<Category>? Categories { get; set; }
-        public IEnumerable<Comment>? Comments { get; set; }
+		public List<BlogCategory>? BlogCategories { get; set; }
+		public List<Comment>? Comments { get; set; }
     }
 }

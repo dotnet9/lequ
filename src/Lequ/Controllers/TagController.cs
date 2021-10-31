@@ -10,7 +10,7 @@ namespace Lequ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> BlogDetailsTagList()
+		public async Task<IActionResult> BlogDetailsTagList()
 		{
 			return await Task.FromResult(PartialView());
 		}

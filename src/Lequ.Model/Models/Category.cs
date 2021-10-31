@@ -9,6 +9,6 @@ namespace Lequ.Model.Models
         public int? ParentID { get; set; }
         public Category? Parent { get; set; }
 
-        public IEnumerable<Blog>? Blogs { get; set; }
+        public List<BlogCategory>? BlogCategories { get; set; }
     }
 }

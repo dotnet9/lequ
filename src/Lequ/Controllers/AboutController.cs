@@ -10,13 +10,13 @@ namespace Lequ.Controllers
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> Footer()
+		public async Task<IActionResult> Footer()
 		{
 			return await Task.FromResult(PartialView());
 		}
 
 		[HttpGet]
-		public async Task<PartialViewResult> MeetTheTeam()
+		public async Task<IActionResult> MeetTheTeam()
 		{
 			return await Task.FromResult(PartialView());
 		}
