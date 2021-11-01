@@ -13,7 +13,7 @@ namespace Lequ.Extensions.ServiceExtensions
 				throw new ArgumentNullException(nameof(services));
 			}
 
-			services.AddDbContext<Context>(option =>
+			services.AddDbContext<LequDbContext>(option =>
 			{
 				option.UseSqlServer(connectionStr);
 			});

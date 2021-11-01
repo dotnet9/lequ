@@ -3,9 +3,9 @@ using Lequ.Model.Models;
 
 namespace Lequ.Repository
 {
-	public class CategoryRepository : RepositoryBase<Category, int>, ICategoryRepository
+	public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
-        public CategoryRepository(Context context) : base(context)
+        public CategoryRepository(LequDbContext context) : base(context)
         {
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Lequ.IRepository
 {
-	public interface IBlogRepository : IRepositoryBase<Blog, int>
+	public interface IBlogRepository : IBaseRepository<Blog>
 	{
 		Task<IEnumerable<Blog>> ListWithCategoryAsync();
 	}

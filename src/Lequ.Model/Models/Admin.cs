@@ -6,6 +6,7 @@ namespace Lequ.Model.Models
     {
         [StringLength(20)]
         public string? UserName { get; set; }
+
         [StringLength(20)]
         public string? Password { get; set; }
     }

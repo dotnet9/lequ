@@ -4,11 +4,10 @@ using Lequ.Model.Models;
 
 namespace Lequ.Service
 {
-	public class CategoryService : ServiceBase<Category, int>, ICategoryService
+	public class CategoryService : BaseService<Category>, ICategoryService
     {
-        public CategoryService(ICategoryRepository repository)
+        public CategoryService(ICategoryRepository repository):base(repository)
         {
-            base.repositoryBase = repository;
         }
     }
 }

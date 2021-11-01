@@ -6,12 +6,16 @@ namespace Lequ.Model.Models
     {
         [StringLength(50)]
         public string? Name { get; set; }
+
         [StringLength(50)]
         public string? SurName { get; set; }
+
         [StringLength(50)]
         public string? Email { get; set; }
+
         [StringLength(50)]
         public string? Subject { get; set; }
+
         public string? Message { get; set; }
     }
 }

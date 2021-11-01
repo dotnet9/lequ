@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lequ.Repository
 {
-	public class BlogRepository : RepositoryBase<Blog, int>, IBlogRepository
+	public class BlogRepository : BaseRepository<Blog>, IBlogRepository
 	{
-		public BlogRepository(Context context) : base(context)
+		public BlogRepository(LequDbContext context) : base(context)
 		{
 		}
 		public async Task<IEnumerable<Blog>> ListWithCategoryAsync()

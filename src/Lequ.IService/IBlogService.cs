@@ -2,7 +2,7 @@
 
 namespace Lequ.IService
 {
-	public interface IBlogService : IServiceBase<Blog, int>
+	public interface IBlogService : IBaseService<Blog>
     {
         Task<IEnumerable<Blog>> ListWithCategoryAsync();
     }

@@ -6,7 +6,9 @@ namespace Lequ.Model.Models
     {
         [StringLength(30)]
         public string? Name { get; set; }
+
         public int? ParentID { get; set; }
+
         public Category? Parent { get; set; }
 
         public List<BlogCategory>? BlogCategories { get; set; }

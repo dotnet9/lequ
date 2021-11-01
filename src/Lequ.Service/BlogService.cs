@@ -4,12 +4,11 @@ using Lequ.Model.Models;
 
 namespace Lequ.Service
 {
-	public class BlogService : ServiceBase<Blog, int>, IBlogService
+	public class BlogService : BaseService<Blog>, IBlogService
     {
         private readonly IBlogRepository _repository;
-        public BlogService(IBlogRepository repository)
+        public BlogService(IBlogRepository repository):base(repository)
         {
-            base.repositoryBase = repository;
             _repository = repository;
         }
         public async Task<IEnumerable<Blog>> ListWithCategoryAsync()

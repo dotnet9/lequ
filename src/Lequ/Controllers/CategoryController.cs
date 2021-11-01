@@ -14,7 +14,7 @@ namespace Lequ.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			var values = await _service.GetAllAsync();
+			var values = await _service.SelectAsync();
 			return View(values);
 		}
 

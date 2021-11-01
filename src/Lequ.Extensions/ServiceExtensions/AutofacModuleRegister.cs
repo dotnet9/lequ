@@ -20,7 +20,7 @@ namespace Lequ.Extensions.ServiceExtensions
 			{
 				throw new Exception($"Please prepare {servicesDllFile} and {repositoryDllFile}");
 			}
-			builder.RegisterGeneric(typeof(RepositoryBase<,>)).As(typeof(IRepositoryBase<,>)).InstancePerDependency();
+			builder.RegisterGeneric(typeof(BaseRepository<>)).As(typeof(IBaseRepository<>)).InstancePerDependency();
 
 			var assemblyServices = Assembly.LoadFrom(servicesDllFile);
 			builder.RegisterAssemblyTypes(assemblyServices)
