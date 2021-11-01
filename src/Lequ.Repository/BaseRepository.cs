@@ -62,23 +62,20 @@ namespace Lequ.Repository
         public async Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection)
         {
             var total = await dbContext.Set<T>().Where(whereLambda).CountAsync();
+            IQueryable<T>? entities = null;
 
-            if(sortDirection== SortDirection.Ascending)
-			{
-                var entities = await dbContext.Set<T>().Where(whereLambda)
-                                        .OrderBy<T,S>(orderByLambda)
-                                        .Skip(pageSize * (pageIndex - 1))
-                                        .Take(pageSize).ToListAsync();
-                return new Tuple<List<T>, int>(entities, total);
-			}
+            if (sortDirection == SortDirection.Ascending)
+            {
+                entities = dbContext.Set<T>().Where(whereLambda)
+                                        .OrderBy<T, S>(orderByLambda);
+            }
             else
             {
-                var entities = await dbContext.Set<T>().Where(whereLambda)
-                                        .OrderByDescending<T, S>(orderByLambda)
-                                        .Skip(pageSize * (pageIndex - 1))
-                                        .Take(pageSize).ToListAsync();
-                return new Tuple<List<T>, int>(entities, total);
+                entities = dbContext.Set<T>().Where(whereLambda)
+                                        .OrderByDescending<T, S>(orderByLambda);
             }
+            var lst = await entities.Skip(pageSize * (pageIndex - 1)).Take(pageSize).ToListAsync();
+            return new Tuple<List<T>, int>(lst, total);
         }
     }
 }

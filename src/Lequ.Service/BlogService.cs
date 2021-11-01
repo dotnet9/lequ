@@ -4,16 +4,16 @@ using Lequ.Model.Models;
 
 namespace Lequ.Service
 {
-	public class BlogService : BaseService<Blog>, IBlogService
+    public class BlogService : BaseService<Blog>, IBlogService
     {
-        private readonly IBlogRepository _repository;
+        private readonly IBlogRepository _currentRepository;
         public BlogService(IBlogRepository repository):base(repository)
         {
-            _repository = repository;
+            _currentRepository = repository;
         }
-        public async Task<IEnumerable<Blog>> ListWithCategoryAsync()
+        public async Task<Tuple<List<Blog>, int>> ListWithCategoryAsync(int pageIndex, int pageSize)
 		{
-            return await _repository.ListWithCategoryAsync();
+            return await _currentRepository.ListWithCategoryAsync(pageIndex, pageSize);
 		}
     }
 }

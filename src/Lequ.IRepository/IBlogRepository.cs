@@ -4,6 +4,6 @@ namespace Lequ.IRepository
 {
 	public interface IBlogRepository : IBaseRepository<Blog>
 	{
-		Task<IEnumerable<Blog>> ListWithCategoryAsync();
+		Task<Tuple<List<Blog>, int>> ListWithCategoryAsync(int pageIndex, int pageSize);
 	}
 }

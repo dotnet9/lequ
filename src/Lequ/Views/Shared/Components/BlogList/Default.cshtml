@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Lequ.Model.Models.Blog>
+﻿@model X.PagedList.IPagedList<Lequ.Model.Models.Blog>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
@@ -47,12 +49,7 @@
         <div class="row text-center pt-5 border-top">
             <div class="col-md-12">
                 <div class="custom-pagination">
-                    <span>1</span>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <span>...</span>
-                    <a href="#">15</a>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                 </div>
             </div>
         </div>

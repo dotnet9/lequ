@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Lequ.IService;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace Lequ.ViewComponents.Blog
 {
-	public class BlogList : ViewComponent
+    public class BlogList : ViewComponent
     {
         private readonly IBlogService _service;
         private readonly IMapper _mapper;
@@ -16,10 +17,11 @@ namespace Lequ.ViewComponents.Blog
         }
 
         [HttpGet]
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int page = 1, int pageSize = 6)
         {
-            var values = _service.ListWithCategoryAsync().Result;
-            return View(values);
+            var values = _service.SelectAsync().Result;
+
+            return View(values.ToPagedList(page, pageSize));
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Lequ.IService
 {
 	public interface IBlogService : IBaseService<Blog>
     {
-        Task<IEnumerable<Blog>> ListWithCategoryAsync();
+        Task<Tuple<List<Blog>, int>> ListWithCategoryAsync(int pageIndex, int pageSize);
     }
 }
