@@ -1,0 +1,44 @@
+﻿<div class="site-section">
+    <div class="container">
+        <div id="UserReviewsList" class="row">
+        </div>
+        <div class="row text-center pt-5 border-top">
+            <div class="col-md-12">
+                <button id="loadMore" class="btn btn-primary" onclick="loadmore()">Click load more</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var page = 0;
+    var _inCallback = false;
+
+    function loadmore() {
+        if (page <= -1 || _inCallback) {
+            return;
+        }
+        _inCallback = true;
+        page++;
+
+        $('#loadMore').html('Is loading ...');
+        $.get("/Blog/ListWithCategoryLoadMore?page=" + page, function (data) {
+            if (data != '') {
+                $("#UserReviewsList").append(data);
+                $('#loadMore').html('Click load more');
+            }
+            else {
+                page = -1;
+                $('#loadMore').prop('class', 'btn btn-danger');
+                $('#loadMore').html('No more data!');
+            }
+
+            _inCallback = false;
+        });
+    }
+    window.onload = function() {
+        loadmore();
+    };
+
+</script>
