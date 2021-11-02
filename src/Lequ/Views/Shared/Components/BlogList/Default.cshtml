@@ -1,21 +1,14 @@
-﻿@model X.PagedList.IPagedList<Lequ.Model.Models.Blog>
-@using X.PagedList
-@using X.PagedList.Mvc.Core
+﻿@model bool
 @{
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
 
 <div class="site-section">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-12">
-                <h2>Recent Posts</h2>
-            </div>
-        </div>
         <div class="row">
-            @if (Model != null)
+            @if (ViewBag.blogs != null)
             {
-                @foreach (var item in Model)
+                @foreach (var item in ViewBag.blogs)
                 {
                     <div class="col-lg-4 mb-4">
                         <div class="entry2">
@@ -48,9 +41,16 @@
         </div>
         <div class="row text-center pt-5 border-top">
             <div class="col-md-12">
-                <div class="custom-pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-                </div>
+                @{
+                    if (Model)
+                    {
+                        <a href="/Blog/Index?page=@(ViewBag.page + 1)" class="btn btn-info">Click load more</a>
+                    }
+                    else
+                    {
+                        <a href="#">It's over</a>
+                    }
+                }
             </div>
         </div>
     </div>

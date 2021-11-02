@@ -15,8 +15,9 @@ namespace Lequ.Controllers
 			_mapper = mapper;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(int page = 1)
 		{
+			ViewBag.Page = page;
 			return await Task.FromResult(View());
 		}
 

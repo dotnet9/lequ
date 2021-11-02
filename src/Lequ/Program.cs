@@ -17,7 +17,7 @@ builder.Services.AddControllersWithViews();
 //        .Build();
 //    config.Filters.Add(new AuthorizeFilter(policy));
 //});
-builder.Services.AddMvc();
+builder.Services.AddMvc().AddRazorRuntimeCompilation();
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie(x => x.LoginPath = "/Login/Index");
 builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));

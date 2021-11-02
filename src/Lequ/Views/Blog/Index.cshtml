@@ -1,12 +1,14 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-@await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
+@if (ViewBag.page <= 1)
+{
+    @await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
+}
 
-@await Component.InvokeAsync("BlogList")
+@await Component.InvokeAsync("BlogList", ViewBag.page)
 
 @*@await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")*@
 
