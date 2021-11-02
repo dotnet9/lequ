@@ -50,7 +50,7 @@ namespace Lequ.Repository
 			modelBuilder.Entity<Album>().HasData(albumCSharp, albumCPlusPlus);
 
 			List<Blog> blogs = new List<Blog>();
-			for (int i = 0; i < 120; i++)
+			for (int i = 0; i < 30; i++)
 			{
 				var blog = new Blog
 				{

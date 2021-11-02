@@ -6,7 +6,6 @@ namespace Lequ.Model.Models
     public class ModelBase
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public ModelStatus? Status { get; set; } = ModelStatus.Disable;

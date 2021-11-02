@@ -65,12 +65,6 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EmailSubscribe()
-        {
-            return await Task.FromResult(PartialView());
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Details()
         {
             return await Task.FromResult(PartialView());

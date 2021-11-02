@@ -12,6 +12,7 @@ namespace Lequ.Repository
 		public DbSet<Category>? Categories { get; set; }
 		public DbSet<Comment>? Comments { get; set; }
 		public DbSet<Contact>? Contacts { get; set; }
+		public DbSet<SubscribeEmail>? SubscribeEmails { get; set; }
 
 		public LequDbContext(DbContextOptions<LequDbContext> options) : base(options)
 		{

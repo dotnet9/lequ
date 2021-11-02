@@ -3,15 +3,12 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-@if (ViewBag.page <= 1)
-{
-    @await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
-}
+@await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
 
 @await Html.PartialAsync("~/Views/Blog/ListWithCategory.cshtml")
 
 @*@await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")*@
 
-@await Html.PartialAsync("~/Views/Blog/EmailSubscribe.cshtml")
+@await Html.PartialAsync("~/Views/SubscribeEmail/AddEmail.cshtml")
 
-@await Html.PartialAsync("~/Views/About/Footer.cshtml")
+@await Component.InvokeAsync("Footer")
