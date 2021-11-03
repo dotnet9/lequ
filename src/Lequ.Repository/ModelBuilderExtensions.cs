@@ -82,6 +82,8 @@ namespace Lequ.Repository
 			modelBuilder.Entity<BlogTag>().HasData(blogTags);
 
 			modelBuilder.Entity<BlogAlbum>().HasData(blogAlbums);
+
+			modelBuilder.Entity<About>().HasData(new About { ID = 1, Details1 = "优美胜于丑陋。\r\n 明了胜于晦涩。\r\n 简洁胜于复杂。\r\n 复杂胜于凌乱。\r\n 扁平胜于嵌套。\r\n 宽松胜于紧凑。\r\n 可读性很重要。" });
 		}
 
 		private static string? blogContent = null;
