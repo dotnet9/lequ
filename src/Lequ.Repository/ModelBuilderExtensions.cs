@@ -77,7 +77,7 @@ namespace Lequ.Repository
 
                 blogs.Add(blog);
 
-                comments.Add(new Comment { ID = i + 1, BlogID = blog.ID, Content = "This blog is very good , I like it, thank you!", CreateBy = 1, CreateDate = DateTime.Now });
+                comments.Add(new Comment { ID = i + 1, BlogID = blog.ID, UserName = "dotnet9", Email = "10134W@qq.com", Website = "https://dotnet9.com", Content = "This blog is very good , I like it, thank you!", CreateBy = 1, CreateDate = DateTime.Now });
             }
             modelBuilder.Entity<Blog>().HasData(blogs);
 

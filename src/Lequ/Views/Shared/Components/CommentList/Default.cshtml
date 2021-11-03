@@ -65,5 +65,5 @@
         }
     </ul>
     <!-- END comment-list -->
-    @await Html.PartialAsync("~/Views/Comment/Leave.cshtml")
+    @await Html.PartialAsync("~/Views/Comment/Leave.cshtml", new { blogID = ViewBag.blogID})
 </div>

@@ -5,7 +5,7 @@
     <p>
         <span>@Model?.CreateBy</span>
         <span>&nbsp;-&nbsp; @(((DateTime)(Model?.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
-        @if (Model.BlogCategories != null)
+        @if (Model?.BlogCategories != null)
         {
             @foreach (var category in Model.BlogCategories)
             {

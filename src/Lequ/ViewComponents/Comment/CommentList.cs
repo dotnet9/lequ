@@ -16,6 +16,7 @@ namespace Lequ.ViewComponents.Comment
         }
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
+            ViewBag.blogID = blogID;
             var comments = await _service.SelectAsync(x => x.BlogID == blogID);
             return View(comments);
         }
