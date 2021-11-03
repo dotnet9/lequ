@@ -1,0 +1,24 @@
+﻿@model Lequ.Model.Models.Blog
+
+<div class="post-content-body">
+    <h1>@Model?.Title</h1>
+    <p>
+        <span>@Model?.CreateBy</span>
+        <span>&nbsp;-&nbsp; @(((DateTime)(Model?.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+        @if (Model.BlogCategories != null)
+        {
+            @foreach (var category in Model.BlogCategories)
+            {
+                <span>
+                    <a href="#"><i class="fas fa-eye"></i> @category?.Category?.Name</a>
+                </span>
+            }
+        }
+    </p>
+    <p>@Model?.Content</p>
+    <div class="row mb-5 mt-5">
+        <div class="col-md-12 mb-4">
+            <img src="@Model?.Image" alt="Image placeholder" class="img-fluid rounded">
+        </div>
+    </div>
+</div>

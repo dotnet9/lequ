@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Lequ.IService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
 	public class CommentController : Controller
 	{
+		private readonly ICommentService _service;
+		private readonly IMapper _mapper;
 
-		[HttpGet]
-		public async Task<IActionResult> List()
+		public CommentController(ICommentService service, IMapper mapper)
 		{
-			return await Task.FromResult(PartialView());
+			_service = service;
+			_mapper = mapper;
 		}
 
 		[HttpGet]
