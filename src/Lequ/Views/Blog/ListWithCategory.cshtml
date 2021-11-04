@@ -4,7 +4,7 @@
         </div>
         <div class="row text-center pt-5 border-top">
             <div class="col-md-12">
-                <button id="loadMore" class="btn btn-primary" onclick="loadmore()">Click load more</button>
+                <button id="loadMore" class="btn btn-outline-primary" data-loading-text="Loading..." onclick="loadmore()">Click load more</button>
             </div>
         </div>
     </div>
@@ -19,18 +19,19 @@
         if (page <= -1 || _inCallback) {
             return;
         }
+
         _inCallback = true;
         page++;
 
-        $('#loadMore').html('Is loading ...');
+        $('#loadMore').button("loading");
         $.get("/Blog/ListWithCategoryLoadMore?page=" + page, function (data) {
             if (data != '') {
                 $("#UserReviewsList").append(data);
-                $('#loadMore').html('Click load more');
+                $('#loadMore').button("reset");
             }
             else {
                 page = -1;
-                $('#loadMore').prop('class', 'btn btn-danger');
+                $('#loadMore').prop('class', 'btn btn-outline-secondary');
                 $('#loadMore').html('No more data!');
             }
 
