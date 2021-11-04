@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.IService;
+using Lequ.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
@@ -7,12 +8,14 @@ namespace Lequ.Controllers
     public class BlogController : Controller
     {
         private readonly IBlogService _service;
+        private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
-
-        public BlogController(IBlogService service, IMapper mapper)
+        private const int PAGE_SIZE = 6;
+        public BlogController(IBlogService service, ICategoryService categoryService, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
+            _categoryService = categoryService;
         }
 
         public async Task<IActionResult> Index(int page = 1)
@@ -26,12 +29,32 @@ namespace Lequ.Controllers
             return await Task.FromResult(PartialView());
         }
 
-        public async Task<IActionResult> ListDetailsLoadMore(int page = 1)
+        public async Task<IActionResult> ListDetailsLoadMore(int? categoryID, int? tagID, int? albumID, int page = 1)
         {
-            var values = await _service.ListDetailsAsync(page, 6);
-            if (values.Item1.Count > 0)
+            List<Blog>? blogs;
+            if (categoryID.HasValue)
             {
-                return PartialView(values.Item1);
+                var values = await _service.ListDetailsAsync(x => x.BlogCategories != null && x.BlogCategories.Any(p => p.CategoryID == categoryID.Value), page, PAGE_SIZE);
+                blogs = values.Item1;
+            }
+            else if (tagID.HasValue)
+            {
+                var values = await _service.ListDetailsAsync(x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == categoryID), page, PAGE_SIZE);
+                blogs = values.Item1;
+            }
+            else if (albumID.HasValue)
+            {
+                var values = await _service.ListDetailsAsync(x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == categoryID), page, PAGE_SIZE);
+                blogs = values.Item1;
+            }
+            else
+            {
+                var values = await _service.ListDetailsAsync(x => x.Status == ModelStatus.Normal, page, PAGE_SIZE);
+                blogs = values.Item1;
+            }
+            if (blogs.Count > 0)
+            {
+                return PartialView(blogs);
             }
             return Json("");
         }
@@ -45,8 +68,8 @@ namespace Lequ.Controllers
         [HttpGet]
         public async Task<IActionResult> ListByCategory(int categoryID)
         {
-            
-            return await Task.FromResult(View());
+            var category = await _categoryService.GetAsync(x => x.ID == categoryID);
+            return await Task.FromResult(View(category));
         }
 
         [HttpGet]
