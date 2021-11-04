@@ -29,7 +29,7 @@ namespace Lequ.Controllers
             comment.CreateDate = DateTime.Now;
             comment.Status = ModelStatus.Normal;
             await _service.InsertAsync(comment);
-            return PartialView();
+            return RedirectToAction("Details", "Blog", new { id = comment.BlogID });
         }
     }
 }
