@@ -36,8 +36,8 @@ namespace Lequ.Repository
 
             var blogAlbums = new List<BlogAlbum>();
 
-            var categoryCSharp = new Category { ID = 1, Name = "C#", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var categoryCPlusPlus = new Category { ID = 2, Name = "C++", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var categoryCSharp = new Category { ID = 1, Name = "C#",Description="B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var categoryCPlusPlus = new Category { ID = 2, Name = "C++",Description="C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Category>().HasData(categoryCSharp, categoryCPlusPlus);
 
 

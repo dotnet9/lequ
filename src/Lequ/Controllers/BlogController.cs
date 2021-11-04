@@ -21,12 +21,12 @@ namespace Lequ.Controllers
             return await Task.FromResult(View());
         }
 
-        public async Task<IActionResult> ListWithCategory()
+        public async Task<IActionResult> ListDetails()
         {
             return await Task.FromResult(PartialView());
         }
 
-        public async Task<IActionResult> ListWithCategoryLoadMore(int page = 1)
+        public async Task<IActionResult> ListDetailsLoadMore(int page = 1)
         {
             var values = await _service.ListDetailsAsync(page, 6);
             if (values.Item1.Count > 0)
@@ -43,8 +43,9 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListByCategory()
+        public async Task<IActionResult> ListByCategory(int categoryID)
         {
+            
             return await Task.FromResult(View());
         }
 

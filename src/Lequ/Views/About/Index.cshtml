@@ -59,6 +59,6 @@
     </div>
 </div>
 
-@await Html.PartialAsync("~/Views/Blog/EmailSubscribe.cshtml")
+@await Html.PartialAsync("~/Views/SubscribeEmail/AddEmail.cshtml")
 
-@await Html.PartialAsync("~/Views/About/Footer.cshtml")
+@await Component.InvokeAsync("Footer")

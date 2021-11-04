@@ -24,7 +24,7 @@
         page++;
 
         $('#loadMore').button("loading");
-        $.get("/Blog/ListWithCategoryLoadMore?page=" + page, function (data) {
+        $.get("/Blog/ListDetailsLoadMore?page=" + page, function (data) {
             if (data != '') {
                 $("#UserReviewsList").append(data);
                 $('#loadMore').button("reset");
