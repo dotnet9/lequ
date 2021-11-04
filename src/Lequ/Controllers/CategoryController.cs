@@ -17,11 +17,5 @@ namespace Lequ.Controllers
 			var values = await _service.SelectAsync();
 			return View(values);
 		}
-
-		[HttpGet]
-		public async Task<IActionResult> BlogDetailsCategoryList()
-		{
-			return await Task.FromResult(PartialView());
-		}
 	}
 }

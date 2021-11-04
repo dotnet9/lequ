@@ -8,11 +8,5 @@ namespace Lequ.Controllers
 		{
 			return View();
 		}
-
-		[HttpGet]
-		public async Task<IActionResult> BlogDetailsTagList()
-		{
-			return await Task.FromResult(PartialView());
-		}
 	}
 }

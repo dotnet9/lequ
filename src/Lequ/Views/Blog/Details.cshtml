@@ -16,13 +16,18 @@
 
                 @await Component.InvokeAsync("UserPopularBlogList", new { id = @ViewBag.userID })
 
-                @await Html.PartialAsync("~/Views/Category/BlogDetailsCategoryList.cshtml")
+                @await Component.InvokeAsync("BlogDetailsAlbumList", new { blogID = @ViewBag.id })
 
-                @await Html.PartialAsync("~/Views/Tag/BlogDetailsTagList.cshtml")
+                @await Component.InvokeAsync("BlogDetailsCategoryList", new { blogID = @ViewBag.id })
+
+                @await Component.InvokeAsync("BlogDetailsTagList", new { blogID = @ViewBag.id })
             </div>
         </div>
     </div>
 </section>
-@await Html.PartialAsync("~/Views/SubscribeEmail/AddEmail.cshtml")
+
+@await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")
 
 @await Html.PartialAsync("~/Views/Blog/ListByUser.cshtml")
+
+@await Component.InvokeAsync("Footer")

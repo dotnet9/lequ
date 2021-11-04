@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Lequ.Model.Models.BlogAlbum>
+<div class="sidebar-box">
+    <h3 class="heading">Albums</h3>
+    <ul class="tags">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <li><a href="#">@item.Album?.Name</a></li>
+            }
+        }
+    </ul>
+</div>

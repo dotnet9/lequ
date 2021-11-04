@@ -15,7 +15,11 @@ namespace Lequ.Repository
             var entities = await dbContext.Set<Blog>()
                                     .Include(x => x.BlogCategories)
                                     .ThenInclude(row => row.Category)
-                                    .Include(x=>x.User)
+                                    .Include(x => x.BlogTags)
+                                    .ThenInclude(row => row.Tag)
+                                    .Include(x => x.BlogAlbums)
+                                    .ThenInclude(row => row.Album)
+                                    .Include(x => x.User)
                                     .OrderByDescending(x => x.CreateDate)
                                     .Skip(pageSize * (pageIndex - 1))
                                     .Take(pageSize)
@@ -27,7 +31,11 @@ namespace Lequ.Repository
             return await dbContext.Set<Blog>()
                             .Include(x => x.BlogCategories)
                             .ThenInclude(row => row.Category)
-                            .Include(x=>x.User)
+                            .Include(x => x.BlogTags)
+                            .ThenInclude(row => row.Tag)
+                            .Include(x => x.BlogAlbums)
+                            .ThenInclude(row => row.Album)
+                            .Include(x => x.User)
                             .FirstOrDefaultAsync(x => x.ID == id);
         }
     }
