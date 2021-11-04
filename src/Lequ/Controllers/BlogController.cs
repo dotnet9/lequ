@@ -28,7 +28,7 @@ namespace Lequ.Controllers
 
         public async Task<IActionResult> ListWithCategoryLoadMore(int page = 1)
         {
-            var values = await _service.ListWithCategoryAsync(page, 6);
+            var values = await _service.ListDetailsAsync(page, 6);
             if (values.Item1.Count > 0)
             {
                 return PartialView(values.Item1);
@@ -67,6 +67,8 @@ namespace Lequ.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            var blog = await _service.GetDetailsAsync(id);
+            ViewBag.userID = blog?.UserID;
             ViewBag.id = id;
             return await Task.FromResult(PartialView());
         }

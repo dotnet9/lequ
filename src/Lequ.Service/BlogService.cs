@@ -11,13 +11,13 @@ namespace Lequ.Service
         {
             _currentRepository = repository;
         }
-        public async Task<Tuple<List<Blog>, int>> ListWithCategoryAsync(int pageIndex, int pageSize)
+        public async Task<Tuple<List<Blog>, int>> ListDetailsAsync(int pageIndex, int pageSize)
 		{
-            return await _currentRepository.ListWithCategoryAsync(pageIndex, pageSize);
+            return await _currentRepository.ListDetailsAsync(pageIndex, pageSize);
         }
-        public async Task<Blog?> GetWithCategoryAsync(int id)
+        public async Task<Blog?> GetDetailsAsync(int id)
         {
-            return await _currentRepository.GetWithCategoryAsync(id);
+            return await _currentRepository.GetDetailsAsync(id);
         }
     }
 }

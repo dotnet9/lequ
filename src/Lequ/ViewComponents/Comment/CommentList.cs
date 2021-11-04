@@ -14,6 +14,7 @@ namespace Lequ.ViewComponents.Comment
             _service = service;
             _mapper = mapper;
         }
+
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
             ViewBag.blogID = blogID;

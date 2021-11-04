@@ -7,14 +7,14 @@
     <div class="container">
         <div class="row blog-entries element-animate">
             <div class="col-md-12 col-lg-8 main-content">
-                @await Component.InvokeAsync("ReadAll", new { id = @ViewBag.id})
+                @await Component.InvokeAsync("ReadAll", new { id = @ViewBag.id })
                 
-                @await Component.InvokeAsync("CommentList", new { blogID = @ViewBag.id})
+                @await Component.InvokeAsync("CommentList", new { blogID = @ViewBag.id })
             </div>
             <div class="col-md-12 col-lg-4 sidebar">
-                @await Html.PartialAsync("~/Views/Author/About.cshtml")
+                @await Component.InvokeAsync("UserAbout", new { blogID = @ViewBag.id })
 
-                @await Html.PartialAsync("~/Views/Author/Popular.cshtml")
+                @await Component.InvokeAsync("UserPopularBlogList", new { id = @ViewBag.userID })
 
                 @await Html.PartialAsync("~/Views/Category/BlogDetailsCategoryList.cshtml")
 

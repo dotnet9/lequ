@@ -22,7 +22,8 @@ namespace Lequ.Repository
             {
                 ID = 1,
                 Name = "Lequ.CO",
-                About = "Coder",
+                About = "C#\\C++ Coder",
+                Image= "/Front/images/person_2.jpg",
                 Status = ModelStatus.Normal,
                 CreateBy = adminUser.ID,
                 CreateDate = DateTime.Now

@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Lequ.Service\Lequ.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\User\" />
+  </ItemGroup>
+
 </Project>
