@@ -14,6 +14,10 @@ namespace Lequ.Service
         public async Task<Tuple<List<Blog>, int>> ListWithCategoryAsync(int pageIndex, int pageSize)
 		{
             return await _currentRepository.ListWithCategoryAsync(pageIndex, pageSize);
-		}
+        }
+        public async Task<Blog?> GetWithCategoryAsync(int id)
+        {
+            return await _currentRepository.GetWithCategoryAsync(id);
+        }
     }
 }

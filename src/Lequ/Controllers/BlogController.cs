@@ -65,20 +65,9 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int id)
         {
-            return await Task.FromResult(PartialView());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Cover()
-        {
-            return await Task.FromResult(PartialView());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> ReadAll()
-        {
+            ViewBag.id = id;
             return await Task.FromResult(PartialView());
         }
     }
