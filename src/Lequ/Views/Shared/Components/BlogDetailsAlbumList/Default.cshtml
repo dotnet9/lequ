@@ -6,7 +6,7 @@
         {
             @foreach (var item in Model)
             {
-                <li><a href="#">@item.Album?.Name</a></li>
+                <li><a href="/Blog/ListByAlbum?albumID=@item.Album?.ID">@item.Album?.Name</a></li>
             }
         }
     </ul>

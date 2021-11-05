@@ -8,14 +8,18 @@ namespace Lequ.Controllers
     public class BlogController : Controller
     {
         private readonly IBlogService _service;
+        private readonly IAlbumService _AlbumService;
         private readonly ICategoryService _categoryService;
+        private readonly ITagService _tagService;
         private readonly IMapper _mapper;
         private const int PAGE_SIZE = 6;
-        public BlogController(IBlogService service, ICategoryService categoryService, IMapper mapper)
+        public BlogController(IBlogService service, IAlbumService albumService, ICategoryService categoryService, ITagService tagService, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
+            _AlbumService = albumService;
             _categoryService = categoryService;
+            _tagService = tagService;
         }
 
         public async Task<IActionResult> Index(int page = 1)
@@ -39,12 +43,12 @@ namespace Lequ.Controllers
             }
             else if (tagID.HasValue)
             {
-                var values = await _service.ListDetailsAsync(x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == categoryID), page, PAGE_SIZE);
+                var values = await _service.ListDetailsAsync(x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == tagID.Value), page, PAGE_SIZE);
                 blogs = values.Item1;
             }
             else if (albumID.HasValue)
             {
-                var values = await _service.ListDetailsAsync(x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == categoryID), page, PAGE_SIZE);
+                var values = await _service.ListDetailsAsync(x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == albumID.Value), page, PAGE_SIZE);
                 blogs = values.Item1;
             }
             else
@@ -66,9 +70,23 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ListByAlbum(int albumID)
+        {
+            var category = await _AlbumService.GetAsync(x => x.ID == albumID);
+            return await Task.FromResult(View(category));
+        }
+
+        [HttpGet]
         public async Task<IActionResult> ListByCategory(int categoryID)
         {
             var category = await _categoryService.GetAsync(x => x.ID == categoryID);
+            return await Task.FromResult(View(category));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListByTag(int tagID)
+        {
+            var category = await _tagService.GetAsync(x => x.ID == tagID);
             return await Task.FromResult(View(category));
         }
 

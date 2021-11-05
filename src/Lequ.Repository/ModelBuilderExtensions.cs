@@ -23,7 +23,7 @@ namespace Lequ.Repository
                 ID = 1,
                 Name = "Lequ.CO",
                 About = "C#\\C++ Coder",
-                Image= "/Front/images/person_2.jpg",
+                Image = "/Front/images/person_2.jpg",
                 Status = ModelStatus.Normal,
                 CreateBy = adminUser.ID,
                 CreateDate = DateTime.Now
@@ -36,18 +36,18 @@ namespace Lequ.Repository
 
             var blogAlbums = new List<BlogAlbum>();
 
-            var categoryCSharp = new Category { ID = 1, Name = "C#",Description="B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var categoryCPlusPlus = new Category { ID = 2, Name = "C++",Description="C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var categoryCSharp = new Category { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var categoryCPlusPlus = new Category { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Category>().HasData(categoryCSharp, categoryCPlusPlus);
 
 
-            var tagCSharp = new Tag { ID = 1, Name = "C#", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var tagCPlusPlus = new Tag { ID = 2, Name = "C++", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var tagCSharp = new Tag { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var tagCPlusPlus = new Tag { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Tag>().HasData(tagCSharp, tagCPlusPlus);
 
 
-            var albumCSharp = new Album { ID = 1, Name = "C#", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var albumCPlusPlus = new Album { ID = 2, Name = "C++", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var albumCSharp = new Album { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var albumCPlusPlus = new Album { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Album>().HasData(albumCSharp, albumCPlusPlus);
 
             List<Comment> comments = new List<Comment>();

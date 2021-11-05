@@ -1,6 +1,6 @@
-﻿@model Lequ.Model.Models.Category
+﻿@model Lequ.Model.Models.Tag
 @{
-    ViewData["Title"] = "ListByCategory";
+    ViewData["Title"] = "ListByTag";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <span>Category</span>
+                <span>Tag</span>
                 <h3>@Model?.Name</h3>
                 <p>@Model?.Description</p>
             </div>
@@ -43,7 +43,7 @@
         page++;
 
         $('#loadMore').button("loading");
-        $.get('/Blog/ListDetailsLoadMore?categoryID=' + @Model?.ID + '&page=' + page, function (data) {
+        $.get('/Blog/ListDetailsLoadMore?tagID=' + @Model?.ID + '&page=' + page, function (data) {
             if (data != '') {
                 $("#UserReviewsList").append(data);
                 $('#loadMore').button("reset");

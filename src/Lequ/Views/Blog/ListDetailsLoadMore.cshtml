@@ -16,7 +16,7 @@
                         @foreach (var category in item.BlogCategories)
                         {
                             <span class="@((styles[new Random().Next(3)]))">
-                                <a href="#"><i class="fas fa-eye"></i> @category?.Category?.Name</a>
+                                <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID"><i class="fas fa-eye"></i> @category?.Category?.Name</a>
                             </span>
                         }
                     }
