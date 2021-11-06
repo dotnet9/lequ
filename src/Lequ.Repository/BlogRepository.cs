@@ -1,5 +1,5 @@
 ﻿using Lequ.IRepository;
-using Lequ.Model;
+using Lequ.Model.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -34,8 +34,6 @@ namespace Lequ.Repository
                                     .ThenInclude(row => row.Tag)
                                     .Include(x => x.BlogAlbums)
                                     .ThenInclude(row => row.Album)
-                                    .Include(x => x.CreateUser)
-                                    .Include(x => x.UpdateUser)
                                     .Where(whereLambda)
                                     .OrderByDescending(x => x.CreateDate)
                                     .Skip(pageSize * (pageIndex - 1))
@@ -53,8 +51,6 @@ namespace Lequ.Repository
                             .ThenInclude(row => row.Tag)
                             .Include(x => x.BlogAlbums)
                             .ThenInclude(row => row.Album)
-                            .Include(x => x.CreateUser)
-                            .Include(x => x.UpdateUser)
                             .FirstOrDefaultAsync(x => x.ID == id);
         }
     }

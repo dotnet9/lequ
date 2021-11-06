@@ -1,6 +1,6 @@
-﻿namespace Lequ.Models.Blogs
+﻿namespace Lequ.Model.ViewModels.Blogs
 {
-    public class AddBlogViewModel: ViewModelBase
+    public class UpdateBlogViewModel : ViewModelBase
     {
         public string? Title { get; set; }
 

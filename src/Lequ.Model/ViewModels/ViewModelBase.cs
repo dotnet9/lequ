@@ -1,6 +1,4 @@
-﻿using Lequ.Model;
-
-namespace Lequ.Models
+﻿namespace Lequ.Model.ViewModels
 {
     public class ViewModelBase
 	{
@@ -8,11 +6,11 @@ namespace Lequ.Models
 
 		public ModelStatus? Status { get; set; } = ModelStatus.Disable;
 
-		public int? CreateBy { get; set; }
+		public int? CreateUserID { get; set; }
 
 		public DateTime? CreateDate { get; set; }
 
-		public int? UpdateBy { get; set; }
+		public int? UpdateUserID { get; set; }
 
 		public DateTime? UpdateDate { get; set; }
 	}

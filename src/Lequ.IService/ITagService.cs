@@ -1,4 +1,4 @@
-﻿using Lequ.Model;
+﻿using Lequ.Model.Models;
 
 namespace Lequ.IService
 {

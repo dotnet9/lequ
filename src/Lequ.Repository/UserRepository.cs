@@ -1,6 +1,5 @@
 ﻿using Lequ.IRepository;
-using Lequ.Model;
-using Microsoft.EntityFrameworkCore;
+using Lequ.Model.Models;
 
 namespace Lequ.Repository
 {

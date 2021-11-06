@@ -1,11 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
-@model Lequ.Model.ViewModels.Blogs.AddBlogViewModel
+@model Lequ.Model.ViewModels.Blogs.UpdateBlogViewModel
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <form class="form-group" method="post">
+    <input type="hidden" asp-for="@Model.ID" />
     @Html.Label("Title")
     @Html.TextBoxFor(x=>x.Title, new { @class= "form-control" })
     <br />    

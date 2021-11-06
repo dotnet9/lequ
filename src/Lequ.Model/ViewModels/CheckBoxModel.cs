@@ -1,4 +1,4 @@
-﻿namespace Lequ.Models
+﻿namespace Lequ.Model.ViewModels
 {
 
     public class CheckBoxModel

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Lequ.IService;
 using Lequ.Model;
-using Lequ.Models;
-using Lequ.Models.Blogs;
-using Lequ.Models.User;
+using Lequ.Model.Models;
+using Lequ.Model.ViewModels;
+using Lequ.Model.ViewModels.Blogs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -130,7 +130,7 @@ namespace Lequ.Controllers
             {
                 blogList.ForEach(cu =>
                 {
-                    if(cu.CreateUserID.HasValue)
+                    if (cu.CreateUserID.HasValue)
                     {
                         cu.CreateUser = users.FirstOrDefault(x => x.ID == cu.CreateUserID.Value);
                     }
@@ -189,26 +189,23 @@ namespace Lequ.Controllers
                                  Text = x.Name,
                                  Value = x.ID.ToString()
                              }).ToList();
+
+            ViewBag.Statuses = (from x in Enum.GetValues<ModelStatus>()
+                                select new SelectListItem
+                                {
+                                    Text = x.ToString(),
+                                    Value = ((int)x).ToString()
+                                }).ToList();
+            viewModel.CreateDate = DateTime.Now;
+            viewModel.UpdateDate = DateTime.Now;
             return View(viewModel);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(AddBlogViewModel vm)
         {
-            var blog = new Blog()
-            {
-                Title = vm.Title,
-                Content = vm.Content,
-                Image = vm.Image,
-                Status = vm.Status,
-                BlogAlbums = new List<BlogAlbum>(),
-                BlogCategories = new List<BlogCategory>(),
-                BlogTags = new List<BlogTag>(),
-                CreateDate = vm.CreateDate,
-                CreateUserID = vm.CreateBy,
-                UpdateDate = vm.UpdateDate,
-                UpdateUserID = vm.UpdateBy,
-            };
+            var blog = _mapper.Map<Blog>(vm);
+            blog.BlogAlbums = new List<BlogAlbum>();
             var albums = vm.Albums?.Where(x => x.Checked).ToList();
             if (albums != null)
             {
@@ -217,6 +214,7 @@ namespace Lequ.Controllers
                     blog.BlogAlbums.Add(new BlogAlbum() { BlogID = blog.ID, AlbumID = item.Value });
                 }
             }
+            blog.BlogCategories = new List<BlogCategory>();
             var categories = vm.Categories?.Where(x => x.Checked).ToList();
             if (categories != null)
             {
@@ -225,6 +223,7 @@ namespace Lequ.Controllers
                     blog.BlogCategories.Add(new BlogCategory() { BlogID = blog.ID, CategoryID = item.Value });
                 }
             }
+            blog.BlogTags = new List<BlogTag>();
             var tags = vm.Tags?.Where(x => x.Checked).ToList();
             if (tags != null)
             {
@@ -235,6 +234,134 @@ namespace Lequ.Controllers
             }
 
             await _service.InsertAsync(blog);
+            return RedirectToAction(nameof(AdminBlogList));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteAsync(x => x.ID == id);
+            return RedirectToAction(nameof(AdminBlogList));
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            var blog = await _service.GetDetailsAsync(id);
+            var viewModel = _mapper.Map<UpdateBlogViewModel>(blog);
+
+            var albums = await _AlbumService.SelectAsync();
+            viewModel.Albums = new List<CheckBoxModel>();
+            if (albums != null)
+            {
+                foreach (var album in albums)
+                {
+                    if (album != null)
+                    {
+                        viewModel.Albums.Add(new CheckBoxModel(album.Name, album.ID, blog?.BlogAlbums?.Exists(x => x.AlbumID == album.ID) == true));
+                    }
+                }
+            }
+            var categories = await _categoryService.SelectAsync();
+            viewModel.Categories = new List<CheckBoxModel>();
+            if (categories != null)
+            {
+                foreach (var category in categories)
+                {
+                    if (category != null)
+                    {
+                        viewModel.Categories.Add(new CheckBoxModel(category.Name, category.ID, blog?.BlogCategories?.Exists(x => x.CategoryID == category.ID) == true));
+                    }
+                }
+            }
+            var tags = await _tagService.SelectAsync();
+            viewModel.Tags = new List<CheckBoxModel>();
+            if (tags != null)
+            {
+                foreach (var tag in tags)
+                {
+                    if (tag != null)
+                    {
+                        viewModel.Tags.Add(new CheckBoxModel(tag.Name, tag.ID, blog?.BlogTags?.Exists(x => x.TagID == tag.ID) == true));
+                    }
+                }
+            }
+            ViewBag.Users = (from x in await _userService.SelectAsync()
+                             select new SelectListItem
+                             {
+                                 Text = x.Name,
+                                 Value = x.ID.ToString()
+                             }).ToList();
+
+            ViewBag.Statuses = (from x in Enum.GetValues<ModelStatus>()
+                                select new SelectListItem
+                                {
+                                    Text = x.ToString(),
+                                    Value = ((int)x).ToString()
+                                }).ToList();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateBlogViewModel vm)
+        {
+            var blog = await _service.GetDetailsAsync(vm.ID);
+            if(blog== null)
+            {
+                return View();
+            }
+
+            _mapper.Map(vm, blog, typeof(UpdateBlogViewModel), typeof(Blog));
+            if (blog.BlogAlbums != null)
+            {
+                blog.BlogAlbums.Clear();
+            }
+            else
+            {
+                blog.BlogAlbums = new List<BlogAlbum>();
+            }
+            var albums = vm.Albums?.Where(x => x.Checked).ToList();
+            if (albums != null)
+            {
+                foreach (var item in albums)
+                {
+                    blog.BlogAlbums.Add(new BlogAlbum() { BlogID = blog.ID, AlbumID = item.Value });
+                }
+            }
+            if (blog.BlogCategories != null)
+            {
+                blog.BlogCategories.Clear();
+            }
+            else
+            {
+                blog.BlogCategories = new List<BlogCategory>();
+            }
+            var categories = vm.Categories?.Where(x => x.Checked).ToList();
+            if (categories != null)
+            {
+                foreach (var item in categories)
+                {
+                    blog.BlogCategories.Add(new BlogCategory() { BlogID = blog.ID, CategoryID = item.Value });
+                }
+            }
+            if (blog.BlogTags != null)
+            {
+                blog.BlogTags.Clear();
+            }
+            else
+            {
+                blog.BlogTags = new List<BlogTag>();
+            }
+            var tags = vm.Tags?.Where(x => x.Checked).ToList();
+            if (tags != null)
+            {
+                foreach (var item in tags)
+                {
+                    blog.BlogTags.Add(new BlogTag() { BlogID = blog.ID, TagID = item.Value });
+                }
+            }
+
+            await _service.UpdateAsync(blog);
             return RedirectToAction(nameof(AdminBlogList));
         }
     }

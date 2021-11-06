@@ -1,6 +1,6 @@
-﻿using Lequ.Model;
+﻿using Lequ.Model.Models;
 
-namespace Lequ.Models.Blogs
+namespace Lequ.Model.ViewModels.Blogs
 {
     public class BlogViewModel : ViewModelBase
     {

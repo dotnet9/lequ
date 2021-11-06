@@ -1,6 +1,6 @@
 ﻿using Lequ.IRepository;
 using Lequ.IService;
-using Lequ.Model;
+using Lequ.Model.Models;
 using System.Linq.Expressions;
 
 namespace Lequ.Service

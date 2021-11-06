@@ -1,4 +1,4 @@
-﻿namespace Lequ.Model
+﻿namespace Lequ.Model.Models
 {
 	public class BlogAlbum : ModelBase
 	{

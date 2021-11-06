@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lequ.Model.Blog>
+﻿@model IEnumerable<Lequ.Model.Models.Blog>
 @{
     ViewData["Title"] = "AdminBlogList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -12,6 +12,7 @@
     <tr>
         <th>ID</th>
         <th>Title</th>
+        <th>Status</th>
         <th>Album</th>
         <th>Category</th>
         <th>Tag</th>
@@ -28,6 +29,7 @@
             <tr>
                 <td>@item.ID</td>
                 <td>@item.Title</td>
+                <td>@item.Status</td>
                 <td>
                     @if (item.BlogAlbums != null)
                     {
@@ -66,8 +68,8 @@
                 <td>@item.UpdateUser?.Name</td>
                 <td>@(((DateTime)(item.UpdateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</td>
                 <td>
-                    <a href="" class="btn btn-danger">Delete</a>
-                    <a href="" class="btn btn-success">Edit</a>
+                    <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger">Delete</a>
+                    <a href="/Blog/Update?id=@item.ID" class="btn btn-success">Edit</a>
                     <a href="" class="btn btn-warning">Detaylar</a>
                     <a href="" class="btn btn-dark">Yorumlar</a>
                 </td>

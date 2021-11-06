@@ -23,7 +23,7 @@ namespace Lequ.Repository
 
         public async Task<int> UpdateAsync(T t)
         {
-            dbContext.Update(t);
+            dbContext.Set<T>().Update(t);
             return await dbContext.SaveChangesAsync();
         }
 

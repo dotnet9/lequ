@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Model
+namespace Lequ.Model.Models
 {
     public class Comment : ModelBase
     {
