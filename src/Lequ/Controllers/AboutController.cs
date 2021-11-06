@@ -1,28 +1,30 @@
 ﻿using AutoMapper;
 using Lequ.IService;
+using Lequ.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
-	public class AboutController : Controller
-	{
-		private readonly IAboutService _service;
-		private readonly IMapper _mapper;
+    public class AboutController : Controller
+    {
+        private readonly IAboutService _service;
+        private readonly IMapper _mapper;
 
-		public AboutController(IAboutService service, IMapper mapper)
-		{
-			_service = service;
-			_mapper = mapper;
-		}
-		public async Task<IActionResult> Index()
-		{
-			return await Task.FromResult(View());
-		}
+        public AboutController(IAboutService service, IMapper mapper)
+        {
+            _service = service;
+            _mapper = mapper;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var value = await _service.GetAsync(x => x.Status == ModelStatus.Normal);
+            return View(value);
+        }
 
-		[HttpGet]
-		public async Task<IActionResult> MeetTheTeam()
-		{
-			return await Task.FromResult(PartialView());
-		}
-	}
+        [HttpGet]
+        public async Task<IActionResult> MeetTheTeam()
+        {
+            return await Task.FromResult(PartialView());
+        }
+    }
 }

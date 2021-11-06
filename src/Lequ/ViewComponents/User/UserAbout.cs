@@ -16,8 +16,8 @@ namespace Lequ.ViewComponents.User
         }
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
-            var blog = await _service.GetAsync(x => x.ID == blogID, x => x.User);
-            return View(blog?.User);
+            var blog = await _service.GetAsync(x => x.ID == blogID, x => x.CreateUser);
+            return View(blog?.CreateUser);
         }
     }
 }

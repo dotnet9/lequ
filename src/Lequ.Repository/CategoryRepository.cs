@@ -1,5 +1,5 @@
 ﻿using Lequ.IRepository;
-using Lequ.Model.Models;
+using Lequ.Model;
 
 namespace Lequ.Repository
 {

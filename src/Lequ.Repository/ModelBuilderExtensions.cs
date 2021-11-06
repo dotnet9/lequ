@@ -1,4 +1,4 @@
-﻿using Lequ.Model.Models;
+﻿using Lequ.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lequ.Repository
@@ -13,7 +13,7 @@ namespace Lequ.Repository
                 UserName = "admin",
                 Password = "admin",
                 Status = ModelStatus.Normal,
-                CreateBy = 1,
+                CreateUserID = 1,
                 CreateDate = DateTime.Now
             };
             modelBuilder.Entity<Admin>().HasData(adminUser);
@@ -25,7 +25,7 @@ namespace Lequ.Repository
                 About = "C#\\C++ Coder",
                 Image = "/Front/images/person_2.jpg",
                 Status = ModelStatus.Normal,
-                CreateBy = adminUser.ID,
+                CreateUserID = adminUser.ID,
                 CreateDate = DateTime.Now
             };
             modelBuilder.Entity<User>().HasData(authorUser);
@@ -36,18 +36,18 @@ namespace Lequ.Repository
 
             var blogAlbums = new List<BlogAlbum>();
 
-            var categoryCSharp = new Category { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var categoryCPlusPlus = new Category { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var categoryCSharp = new Category { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now };
+            var categoryCPlusPlus = new Category { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Category>().HasData(categoryCSharp, categoryCPlusPlus);
 
 
-            var tagCSharp = new Tag { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var tagCPlusPlus = new Tag { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var tagCSharp = new Tag { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now };
+            var tagCPlusPlus = new Tag { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Tag>().HasData(tagCSharp, tagCPlusPlus);
 
 
-            var albumCSharp = new Album { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
-            var albumCPlusPlus = new Album { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now };
+            var albumCSharp = new Album { ID = 1, Name = "C#", Description = "B/S,C/S, App", Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now };
+            var albumCPlusPlus = new Album { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Album>().HasData(albumCSharp, albumCPlusPlus);
 
             List<Comment> comments = new List<Comment>();
@@ -62,23 +62,22 @@ namespace Lequ.Repository
                     Content = $"{i} {GetBlogContent()}",
                     Image = "/Front/images/img_1.jpg",
                     Status = ModelStatus.Normal,
-                    UserID = authorUser.ID,
-                    CreateBy = authorUser.ID,
+                    CreateUserID = authorUser.ID,
                     CreateDate = DateTime.Now,
                 };
 
-                blogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = categoryCSharp.ID, Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
-                blogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = categoryCPlusPlus.ID, Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
+                blogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = categoryCSharp.ID, Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now });
+                blogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = categoryCPlusPlus.ID, Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now });
 
-                blogTags.Add(new BlogTag { BlogID = blog.ID, TagID = tagCSharp.ID, Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
-                blogTags.Add(new BlogTag { BlogID = blog.ID, TagID = tagCPlusPlus.ID, Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
+                blogTags.Add(new BlogTag { BlogID = blog.ID, TagID = tagCSharp.ID, Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now });
+                blogTags.Add(new BlogTag { BlogID = blog.ID, TagID = tagCPlusPlus.ID, Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now });
 
-                blogAlbums.Add(new BlogAlbum { BlogID = blog.ID, AlbumID = albumCSharp.ID, Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
-                blogAlbums.Add(new BlogAlbum { BlogID = blog.ID, AlbumID = albumCPlusPlus.ID, Status = ModelStatus.Normal, CreateBy = authorUser.ID, CreateDate = DateTime.Now });
+                blogAlbums.Add(new BlogAlbum { BlogID = blog.ID, AlbumID = albumCSharp.ID, Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now });
+                blogAlbums.Add(new BlogAlbum { BlogID = blog.ID, AlbumID = albumCPlusPlus.ID, Status = ModelStatus.Normal, CreateUserID = authorUser.ID, CreateDate = DateTime.Now });
 
                 blogs.Add(blog);
 
-                comments.Add(new Comment { ID = i + 1, BlogID = blog.ID, UserName = "dotnet9", Email = "10134W@qq.com", Website = "https://dotnet9.com", Content = "This blog is very good , I like it, thank you!", CreateBy = 1, CreateDate = DateTime.Now });
+                comments.Add(new Comment { ID = i + 1, BlogID = blog.ID, UserName = "dotnet9", Email = "10134W@qq.com", Website = "https://dotnet9.com", Content = "This blog is very good , I like it, thank you!", CreateUserID = 1, CreateDate = DateTime.Now });
             }
             modelBuilder.Entity<Blog>().HasData(blogs);
 

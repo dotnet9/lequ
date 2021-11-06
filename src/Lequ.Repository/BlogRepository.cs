@@ -1,5 +1,5 @@
 ﻿using Lequ.IRepository;
-using Lequ.Model.Models;
+using Lequ.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -10,6 +10,20 @@ namespace Lequ.Repository
         public BlogRepository(LequDbContext context) : base(context)
         {
         }
+
+        public async Task<List<Blog>> ListDetailsAsync()
+        {
+            return await dbContext.Set<Blog>()
+                                .Include(x => x.BlogCategories)
+                                .ThenInclude(row => row.Category)
+                                .Include(x => x.BlogTags)
+                                .ThenInclude(row => row.Tag)
+                                .Include(x => x.BlogAlbums)
+                                .ThenInclude(row => row.Album)
+                                .OrderByDescending(x => x.CreateDate)
+                                .ToListAsync();
+        }
+
         public async Task<Tuple<List<Blog>, int>> ListDetailsAsync(Expression<Func<Blog, bool>> whereLambda, int pageIndex, int pageSize)
         {
             var total = await dbContext.Set<Blog>().Where(whereLambda).CountAsync();
@@ -20,7 +34,8 @@ namespace Lequ.Repository
                                     .ThenInclude(row => row.Tag)
                                     .Include(x => x.BlogAlbums)
                                     .ThenInclude(row => row.Album)
-                                    .Include(x => x.User)
+                                    .Include(x => x.CreateUser)
+                                    .Include(x => x.UpdateUser)
                                     .Where(whereLambda)
                                     .OrderByDescending(x => x.CreateDate)
                                     .Skip(pageSize * (pageIndex - 1))
@@ -38,7 +53,8 @@ namespace Lequ.Repository
                             .ThenInclude(row => row.Tag)
                             .Include(x => x.BlogAlbums)
                             .ThenInclude(row => row.Album)
-                            .Include(x => x.User)
+                            .Include(x => x.CreateUser)
+                            .Include(x => x.UpdateUser)
                             .FirstOrDefaultAsync(x => x.ID == id);
         }
     }

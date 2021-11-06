@@ -1,5 +1,5 @@
 ﻿using Lequ.IRepository;
-using Lequ.Model.Models;
+using Lequ.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Z.EntityFramework.Plus;

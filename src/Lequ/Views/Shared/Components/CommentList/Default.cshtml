@@ -1,4 +1,4 @@
-﻿@model List<Lequ.Model.Models.Comment>
+﻿@model List<Lequ.Model.Comment>
 <div class="pt-5">
     <h3 class="mb-5">@Model?.Count Comments</h3>
     <ul class="comment-list">
@@ -12,7 +12,7 @@
                         <img src="~/Front/images/person_1.jpg" alt="Image placeholder">
                     </div>
                     <div class="comment-body">
-                        <h3>@item.CreateBy</h3>
+                        <h3>@item.CreateUserID</h3>
                         <div class="meta">&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</div>
                         <p>@item.Content</p>
                         <p><a href="#" class="reply rounded">Reply</a></p>

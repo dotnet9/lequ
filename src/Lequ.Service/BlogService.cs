@@ -1,6 +1,6 @@
 ﻿using Lequ.IRepository;
 using Lequ.IService;
-using Lequ.Model.Models;
+using Lequ.Model;
 using System.Linq.Expressions;
 
 namespace Lequ.Service
@@ -11,6 +11,10 @@ namespace Lequ.Service
         public BlogService(IBlogRepository repository) : base(repository)
         {
             _currentRepository = repository;
+        }
+        public async Task<List<Blog>> ListDetailsAsync()
+        {
+            return await _currentRepository.ListDetailsAsync();
         }
 
         public async Task<Tuple<List<Blog>, int>> ListDetailsAsync(Expression<Func<Blog, bool>> whereLambda, int pageIndex, int pageSize)

@@ -17,7 +17,7 @@ namespace Lequ.ViewComponents.Album
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
             var value = await _service.GetDetailsAsync(blogID);
-            return View(value.BlogAlbums);
+            return View(value?.BlogAlbums);
         }
     }
 }

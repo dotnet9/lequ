@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Model.Models;
+using Lequ.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers

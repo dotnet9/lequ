@@ -1,9 +1,9 @@
-﻿@model Lequ.Model.Models.Blog
+﻿@model Lequ.Model.Blog
 
 <div class="post-content-body">
     <h1>@Model?.Title</h1>
     <p>
-        <span>@Model?.CreateBy</span>
+        <span>@Model?.CreateUserID</span>
         <span>&nbsp;-&nbsp; @(((DateTime)(Model?.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
         @if (Model?.BlogCategories != null)
         {

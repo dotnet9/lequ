@@ -1,4 +1,4 @@
-﻿@model List<Lequ.Model.Models.Blog>
+﻿@model List<Lequ.Model.Blog>
 @{
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
@@ -23,8 +23,8 @@
 
                     <h2><a href="/Blog/Details/@item.ID">@item.Title</a></h2>
                     <div class="post-meta align-items-center text-left clearfix">
-                        <figure class="author-figure mb-0 mr-3 float-left"><img src="@item.User?.Image" alt="Image" class="img-fluid"></figure>
-                        <span class="d-inline-block mt-1"><a href="#">@item.CreateBy</a></span>
+                        <figure class="author-figure mb-0 mr-3 float-left"><img src="@item.CreateUser?.Image" alt="Image" class="img-fluid"></figure>
+                        <span class="d-inline-block mt-1"><a href="#">@item.CreateUserID</a></span>
                         <span>&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
                     </div>
 

@@ -1,4 +1,4 @@
-﻿using Lequ.Model.Models;
+﻿using Lequ.Model;
 using System.Linq.Expressions;
 
 namespace Lequ.IService

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Model.Models;
+using Lequ.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.User
@@ -17,7 +17,7 @@ namespace Lequ.ViewComponents.User
         }
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            var value = await _service.SelectAsync(6, 1, x => x.UserID == id, x => x.CreateDate, SortDirection.Descending);
+            var value = await _service.SelectAsync(6, 1, x => x.CreateUserID == id, x => x.CreateDate, SortDirection.Descending);
             return View(value.Item1);
         }
     }
