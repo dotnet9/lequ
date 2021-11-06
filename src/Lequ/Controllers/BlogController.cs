@@ -4,6 +4,7 @@ using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
 using Lequ.Model.ViewModels.Blogs;
+using Lequ.Models.Blogs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -18,6 +19,7 @@ namespace Lequ.Controllers
         private readonly ITagService _tagService;
         private readonly IMapper _mapper;
         private const int PAGE_SIZE = 6;
+        private const int ADMIN_PAGE_SIZE = 10;
         public BlogController(IBlogService service, IUserService userService, IAlbumService albumService, ICategoryService categoryService, ITagService tagService, IMapper mapper)
         {
             _service = service;
@@ -122,13 +124,14 @@ namespace Lequ.Controllers
         }
 
 
-        public async Task<IActionResult> AdminBlogList()
+        public async Task<IActionResult> AdminBlogList(int page = 1)
         {
-            var blogList = await _service.ListDetailsAsync();
+            var vm = new AdminBlogListViewModel();
+            var pageBlog = await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: ADMIN_PAGE_SIZE);
             var users = await _userService.SelectAsync();
-            if (blogList != null && users != null)
+            if (pageBlog != null && users != null)
             {
-                blogList.ForEach(cu =>
+                pageBlog.Item1.ForEach(cu =>
                 {
                     if (cu.CreateUserID.HasValue)
                     {
@@ -139,8 +142,12 @@ namespace Lequ.Controllers
                         cu.UpdateUser = users.FirstOrDefault(x => x.ID == cu.UpdateUserID.Value);
                     }
                 });
+                vm.PageCount = (pageBlog.Item2 + ADMIN_PAGE_SIZE - 1) / ADMIN_PAGE_SIZE;
+                vm.PageIndex = page < 1 ? 1 : page;
+                vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
+                vm.Blogs = pageBlog.Item1;
             }
-            return await Task.FromResult(View(blogList));
+            return await Task.FromResult(View(vm));
         }
 
         [HttpGet]
@@ -183,19 +190,7 @@ namespace Lequ.Controllers
                     }
                 }
             }
-            ViewBag.Users = (from x in await _userService.SelectAsync()
-                             select new SelectListItem
-                             {
-                                 Text = x.Name,
-                                 Value = x.ID.ToString()
-                             }).ToList();
-
-            ViewBag.Statuses = (from x in Enum.GetValues<ModelStatus>()
-                                select new SelectListItem
-                                {
-                                    Text = x.ToString(),
-                                    Value = ((int)x).ToString()
-                                }).ToList();
+            await this.ReadBindInfo();
             viewModel.CreateDate = DateTime.Now;
             viewModel.UpdateDate = DateTime.Now;
             return View(viewModel);
@@ -286,19 +281,7 @@ namespace Lequ.Controllers
                     }
                 }
             }
-            ViewBag.Users = (from x in await _userService.SelectAsync()
-                             select new SelectListItem
-                             {
-                                 Text = x.Name,
-                                 Value = x.ID.ToString()
-                             }).ToList();
-
-            ViewBag.Statuses = (from x in Enum.GetValues<ModelStatus>()
-                                select new SelectListItem
-                                {
-                                    Text = x.ToString(),
-                                    Value = ((int)x).ToString()
-                                }).ToList();
+            await this.ReadBindInfo();
             return View(viewModel);
         }
 
@@ -306,7 +289,7 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Update(UpdateBlogViewModel vm)
         {
             var blog = await _service.GetDetailsAsync(vm.ID);
-            if(blog== null)
+            if (blog == null)
             {
                 return View();
             }
@@ -363,6 +346,18 @@ namespace Lequ.Controllers
 
             await _service.UpdateAsync(blog);
             return RedirectToAction(nameof(AdminBlogList));
+        }
+
+        private async Task ReadBindInfo()
+        {
+            ViewBag.Users = (from x in await _userService.SelectAsync()
+                             select new SelectListItem
+                             {
+                                 Text = x.Name,
+                                 Value = x.ID.ToString()
+                             }).ToList();
+
+            ViewBag.Statuses = Enum.GetValues<ModelStatus>();
         }
     }
 }
