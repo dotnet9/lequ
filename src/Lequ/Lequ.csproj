@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Tag\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
 
   <ItemGroup>

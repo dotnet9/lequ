@@ -2,6 +2,7 @@
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels.Blogs;
 using Lequ.Model.ViewModels.Comments;
+using Lequ.Model.ViewModels.Users;
 
 namespace Lequ.Extensions.AutoMapper
 {
@@ -12,6 +13,7 @@ namespace Lequ.Extensions.AutoMapper
 			CreateMap<Blog, AddBlogViewModel>().ReverseMap();
 			CreateMap<Blog, UpdateBlogViewModel>().ReverseMap();
 			CreateMap<Comment, CommentDto>();
+			CreateMap<User, UserViewModel>();
 			//CreateMap<Category, CategoryDto>();
 			//CreateMap<Model.Models.Blog, BlogDto>().ReverseMap();
 		}
