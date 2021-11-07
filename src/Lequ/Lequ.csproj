@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,16 +13,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0-rc.2.21511.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lequ.Common\Lequ.Common.csproj" />
     <ProjectReference Include="..\Lequ.Extensions\Lequ.Extensions.csproj" />
     <ProjectReference Include="..\Lequ.Service\Lequ.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Comment\" />
     <Folder Include="Views\Tag\" />
     <Folder Include="Views\User\" />
   </ItemGroup>

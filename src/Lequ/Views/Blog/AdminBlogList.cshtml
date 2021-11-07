@@ -1,4 +1,6 @@
-﻿@model Lequ.Models.Blogs.AdminBlogListViewModel
+﻿@using Lequ.Model.Models
+@using Lequ.Model.ViewModels
+@model PagingViewModelBase<Blog>
 @{
     ViewData["Title"] = "AdminBlogList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -22,9 +24,9 @@
         <th>Update Date</th>
         <th>Control</th>
     </tr>
-    @if (Model != null && Model.Blogs != null)
+    @if (Model != null && Model.Datas != null)
     {
-        @foreach (var item in Model.Blogs)
+        @foreach (var item in Model.Datas)
         {
             <tr>
                 <td>@item.ID</td>
@@ -71,7 +73,7 @@
                     <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger">Delete</a>
                     <a href="/Blog/Update?id=@item.ID" class="btn btn-warning">Edit</a>
                     <a href="/Blog/Details?id=@item.ID" class="btn btn-success">Detail</a>
-                    <a href="" class="btn btn-dark">Yorumlar</a>
+                    <a href="/Comment/AdminCommentList?blogID=@item.ID" class="btn btn-dark">Message(@item.Comments?.Count)</a>
                 </td>
             </tr>
         }

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using Lequ.Common;
 using Lequ.IService;
 using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
 using Lequ.Model.ViewModels.Blogs;
-using Lequ.Models.Blogs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -19,7 +19,6 @@ namespace Lequ.Controllers
         private readonly ITagService _tagService;
         private readonly IMapper _mapper;
         private const int PAGE_SIZE = 6;
-        private const int ADMIN_PAGE_SIZE = 10;
         public BlogController(IBlogService service, IUserService userService, IAlbumService albumService, ICategoryService categoryService, ITagService tagService, IMapper mapper)
         {
             _service = service;
@@ -133,8 +132,8 @@ namespace Lequ.Controllers
 
         public async Task<IActionResult> AdminBlogList(int page = 1)
         {
-            var vm = new AdminBlogListViewModel();
-            var pageBlog = await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: ADMIN_PAGE_SIZE);
+            var vm = new PagingViewModelBase<Blog>();
+            var pageBlog = await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVar.DEFAULT_PAGE_SIZE);
             var users = await _userService.SelectAsync();
             if (pageBlog != null && users != null)
             {
@@ -149,12 +148,12 @@ namespace Lequ.Controllers
                         cu.UpdateUser = users.FirstOrDefault(x => x.ID == cu.UpdateUserID.Value);
                     }
                 });
-                vm.PageCount = (pageBlog.Item2 + ADMIN_PAGE_SIZE - 1) / ADMIN_PAGE_SIZE;
+                vm.PageCount = (pageBlog.Item2 + GlobalVar.DEFAULT_PAGE_SIZE - 1) / GlobalVar.DEFAULT_PAGE_SIZE;
                 vm.PageIndex = page < 1 ? 1 : page;
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
-                vm.Blogs = pageBlog.Item1;
+                vm.Datas = pageBlog.Item1;
             }
-            return await Task.FromResult(View(vm));
+            return View(vm);
         }
 
         [HttpGet]

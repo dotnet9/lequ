@@ -34,6 +34,7 @@ namespace Lequ.Repository
                                     .ThenInclude(row => row.Tag)
                                     .Include(x => x.BlogAlbums)
                                     .ThenInclude(row => row.Album)
+                                    .Include(x=>x.Comments)
                                     .Where(whereLambda)
                                     .OrderByDescending(x => x.CreateDate)
                                     .Skip(pageSize * (pageIndex - 1))

@@ -74,6 +74,28 @@ namespace Lequ.Repository
             return await query.Where(whereLambda).ToListAsync();
         }
 
+        public async Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T>? query = null;
+
+            if (sortDirection == SortDirection.Ascending)
+            {
+                query = dbContext.Set<T>().AsNoTracking().Where(whereLambda)
+                                        .OrderBy<T, S>(orderByLambda);
+            }
+            else
+            {
+                query = dbContext.Set<T>().AsNoTracking().Where(whereLambda)
+                                        .OrderByDescending<T, S>(orderByLambda);
+            }
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+            return await query.ToListAsync();
+        }
+
+
         public async Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
         {
             var total = await dbContext.Set<T>().Where(whereLambda).CountAsync();

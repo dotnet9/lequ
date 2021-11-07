@@ -53,6 +53,11 @@ namespace Lequ.Service
         {
             return await _repository.SelectAsync(whereLambda, includes);
         }
+        
+        public async Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
+        {
+            return await _repository.SelectAsync<S>(whereLambda, orderByLambda, sortDirection, includes);
+        }
 
         public async Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
         {

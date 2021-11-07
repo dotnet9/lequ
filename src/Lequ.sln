@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31825.309
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ", "Lequ\Lequ.csproj", "{2D46D5EA-841B-48C7-944C-F43E0A646883}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ", "Lequ\Lequ.csproj", "{2D46D5EA-841B-48C7-944C-F43E0A646883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Model", "Lequ.Model\Lequ.Model.csproj", "{94A573EE-E576-4D79-B000-B0BEA753901E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Model", "Lequ.Model\Lequ.Model.csproj", "{94A573EE-E576-4D79-B000-B0BEA753901E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.IRepository", "Lequ.IRepository\Lequ.IRepository.csproj", "{77795DC7-A5FF-49F5-9369-16E3576E0F1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.IRepository", "Lequ.IRepository\Lequ.IRepository.csproj", "{77795DC7-A5FF-49F5-9369-16E3576E0F1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Repository", "Lequ.Repository\Lequ.Repository.csproj", "{5C30201E-6795-41A7-B736-CBB5F23D2AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Repository", "Lequ.Repository\Lequ.Repository.csproj", "{5C30201E-6795-41A7-B736-CBB5F23D2AC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.IService", "Lequ.IService\Lequ.IService.csproj", "{CD7D834E-1288-46D7-81FA-A997063971D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.IService", "Lequ.IService\Lequ.IService.csproj", "{CD7D834E-1288-46D7-81FA-A997063971D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Service", "Lequ.Service\Lequ.Service.csproj", "{F06CC9ED-12B5-4EB2-85EC-6732B14C2064}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Service", "Lequ.Service\Lequ.Service.csproj", "{F06CC9ED-12B5-4EB2-85EC-6732B14C2064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Extensions", "Lequ.Extensions\Lequ.Extensions.csproj", "{38BF23A7-87E6-4D6B-AA67-6151D79228C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lequ.Extensions", "Lequ.Extensions\Lequ.Extensions.csproj", "{38BF23A7-87E6-4D6B-AA67-6151D79228C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lequ.Common", "Lequ.Common\Lequ.Common.csproj", "{D2043A7E-2F32-44E1-97C6-7E437E43CF2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{38BF23A7-87E6-4D6B-AA67-6151D79228C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38BF23A7-87E6-4D6B-AA67-6151D79228C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38BF23A7-87E6-4D6B-AA67-6151D79228C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2043A7E-2F32-44E1-97C6-7E437E43CF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2043A7E-2F32-44E1-97C6-7E437E43CF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2043A7E-2F32-44E1-97C6-7E437E43CF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2043A7E-2F32-44E1-97C6-7E437E43CF2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

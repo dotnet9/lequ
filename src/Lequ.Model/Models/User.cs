@@ -13,6 +13,9 @@ namespace Lequ.Model.Models
         [StringLength(250)]
         public string? About { get; set; }
 
+        [StringLength(100)]
+        public string? Email { get; set; }
+
         public IEnumerable<Blog>? Blogs { get; set; }
     }
 }
