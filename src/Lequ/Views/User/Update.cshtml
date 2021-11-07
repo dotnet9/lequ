@@ -1,0 +1,53 @@
+﻿@model Lequ.Model.ViewModels.Users.UpdateUserViewModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form class="form-group" method="post">
+    <input type="hidden" asp-for="@Model.ID" />
+    <input type="hidden" asp-for="@Model.CreateDate" />
+    @Html.Label("Account")
+    @Html.TextBoxFor(x=>x.Account, new { @class= "form-control" })
+    <br />    
+    @Html.Label("Password")
+    @Html.TextBoxFor(x=>x.Password, new { @class= "form-control" })
+    <br />    
+    @Html.Label("Name")
+    @Html.TextBoxFor(x=>x.Name, new { @class= "form-control" })
+    <br />    
+    @Html.Label("Title")
+    @Html.TextBoxFor(x=>x.Title, new { @class= "form-control" })
+    <br />    
+    @Html.Label("Cover Image")
+    @Html.TextBoxFor(x=>x.Image, new { @class= "form-control" })
+    <br />    
+    @Html.Label("About Short")
+    @Html.TextAreaFor(x=>x.AboutShort, 3, 20, new { @class= "form-control" })
+    <br />    
+    @Html.Label("About")
+    @Html.TextAreaFor(x=>x.About, 5, 20, new { @class= "form-control" })
+    <br />    
+    @Html.Label("Address")
+    @Html.TextBoxFor(x=>x.Address, new { @class= "form-control" })
+    <br />    
+    @Html.Label("PhoneNumber")
+    @Html.TextBoxFor(x=>x.PhoneNumber, new { @class= "form-control" })
+    <br />    
+    @Html.Label("Email")
+    @Html.TextBoxFor(x=>x.Email, new { @class= "form-control" })
+    <br />      
+    @Html.Label("Status")
+    <br />
+    @if (Model != null && Model.Statuses != null)
+    {
+        @foreach (var item in Model.Statuses)
+        {
+            <input type="radio" asp-for="Status" value="@((int)item)"  checked='@(Model.Status == item)'/>@item.ToString()
+        }
+
+    }
+    <br />    
+    <button type="submit" class="btn btn-info">Save</button>
+</form>

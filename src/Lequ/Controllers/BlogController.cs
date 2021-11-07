@@ -197,6 +197,7 @@ namespace Lequ.Controllers
                 }
             }
             await this.ReadBindInfo();
+            viewModel.Statuses = Enum.GetValues<ModelStatus>();
             viewModel.CreateDate = DateTime.Now;
             viewModel.UpdateDate = DateTime.Now;
             return View(viewModel);
@@ -288,6 +289,7 @@ namespace Lequ.Controllers
                 }
             }
             await this.ReadBindInfo();
+            viewModel.Statuses = Enum.GetValues<ModelStatus>();
             return View(viewModel);
         }
 
@@ -362,8 +364,6 @@ namespace Lequ.Controllers
                                  Text = x.Name,
                                  Value = x.ID.ToString()
                              }).ToList();
-
-            ViewBag.Statuses = Enum.GetValues<ModelStatus>();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Lequ.Controllers
             // TODO
             comment.CreateUserID = 1;
             comment.CreateDate = DateTime.Now;
+            comment.UpdateDate= DateTime.Now;
             comment.Status = ModelStatus.Normal;
             await _service.InsertAsync(comment);
             return RedirectToAction("Details", "Blog", new { id = comment.BlogID });

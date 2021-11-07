@@ -26,6 +26,7 @@ namespace Lequ.Controllers
         public async Task<IActionResult> SendMessage(Contact contact)
         {
             contact.CreateDate = DateTime.Now;
+            contact.UpdateDate = DateTime.Now;
             contact.Status = ModelStatus.Normal;
             await _service.InsertAsync(contact);
             return RedirectToAction("SendMessage");

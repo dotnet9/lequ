@@ -7,74 +7,65 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-<body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-        <section class="content">
+<a href="/User/Add/" class="btn btn-primary">New</a>
 
-            <!-- Default box -->
-            <div class="card card-solid">
-                <div class="card-body pb-0">
-                    <div class="row d-flex align-items-stretch">
+<div class="card card-solid">
+    <div class="card-body pb-0">
+        <div class="row d-flex align-items-stretch">
 
-                        @if (Model != null && Model.Datas != null)
-                        {
-                            @foreach (var item in Model.Datas)
-                            {
-                                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">@item.Title</div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><b>@item.Name</b></h2>
-                                                    <p class="text-muted text-sm"><b>About: </b> @item.AboutShort</p>
-                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: @item.Address</li>
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: @item.PhoneNumber</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    <img src="@item.Image" alt="" class="img-circle img-fluid">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href="#" class="btn btn-sm bg-teal">
-                                                    <i class="fas fa-comments"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-user"></i> View Profile
-                                                </a>
-                                            </div>
-                                        </div>
+            @if (Model != null && Model.Datas != null)
+            {
+                @foreach (var item in Model.Datas)
+                {
+                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                        <div class="card bg-light">
+                            <div class="card-header text-muted border-bottom-0">@item.Title</div>
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="lead"><b>@item.Name</b></h2>
+                                        <p class="text-muted text-sm"><b>About: </b> @item.AboutShort</p>
+                                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: @item.Address</li>
+                                            <br />
+                                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: @item.PhoneNumber</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-5 text-center">
+                                        <img src="@item.Image" alt="" class="img-circle img-fluid">
                                     </div>
                                 </div>
-                            }
-                        }
-                    </div>
-                </div>
-                <!-- /.card-body -->
-                @if (Model != null && Model.PageCount > 1)
-                {
-                    <div class="card-footer">
-                        <nav aria-label="Contacts Page Navigation">
-                            <ul class="pagination justify-content-center m-0">
-                                @for (int i = 1; i <= Model.PageCount; i++)
-                                {
-                                    <li class='@(Model.PageIndex == i ? "page-item active" : "page-item")'><a class="page-link" href="/User/AdminUserList?page=@i">@i</a></li>
-                                }
-                            </ul>
-                        </nav>
+                            </div>
+                            <div class="card-footer">
+                                <div class="text-right">
+                                    <a href="#" class="btn btn-sm bg-teal">
+                                        <i class="fas fa-comments"></i>
+                                    </a>
+                                    <a href="/User/Delete?id=@item.ID" class="btn btn-sm bg-danger">
+                                        <i class="fas fa-delete"></i> Remove
+                                    </a>
+                                    <a href="/User/Update?id=@item.ID" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-user"></i> View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 }
-                <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-
-        </section>
+            }
+        </div>
     </div>
-</body>
-</html>
+</div>
+@if (Model != null && Model.PageCount > 1)
+{
+    <div class="card-footer">
+        <nav aria-label="Contacts Page Navigation">
+            <ul class="pagination justify-content-center m-0">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class='@(Model.PageIndex == i ? "page-item active" : "page-item")'><a class="page-link" href="/User/AdminUserList?page=@i">@i</a></li>
+                }
+            </ul>
+        </nav>
+    </div>
+}

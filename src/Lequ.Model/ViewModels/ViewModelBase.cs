@@ -19,5 +19,7 @@ namespace Lequ.Model.ViewModels
         public User? UpdateUser { get; set; }
 
         public DateTime? UpdateDate { get; set; }
+
+        public ModelStatus[]? Statuses { get; set; }
     }
 }

@@ -1,12 +1,12 @@
-﻿using Lequ.Model.Models;
-
-namespace Lequ.Model.ViewModels.Users
+﻿namespace Lequ.Model.ViewModels.Users
 {
-    public class UserViewModel : ViewModelBase
+    public class UpdateUserViewModel : ViewModelBase
     {
         public string? Name { get; set; }
 
         public string? Account { get; set; }
+
+        public string? Password { get; set; }
 
         public string? Title { get; set; }
 

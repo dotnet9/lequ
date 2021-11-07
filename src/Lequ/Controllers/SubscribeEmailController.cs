@@ -25,6 +25,8 @@ namespace Lequ.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEmail(SubscribeEmail subscribeEmail)
         {
+            subscribeEmail.CreateDate = DateTime.Now;
+            subscribeEmail.UpdateDate = DateTime.Now;
             await _service.InsertAsync(subscribeEmail);
             return PartialView();
         }

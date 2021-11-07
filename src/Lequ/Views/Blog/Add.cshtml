@@ -8,67 +8,73 @@
 <form class="form-group" method="post">
     @Html.Label("Title")
     @Html.TextBoxFor(x=>x.Title, new { @class= "form-control" })
-    <br />    
+    <br />
     @Html.Label("Cover Image")
     @Html.TextBoxFor(x=>x.Image, new { @class= "form-control" })
-    <br />    
+    <br />
     @Html.Label("Content")
     @Html.TextAreaFor(x=>x.Content, 10, 20, new { @class= "form-control" })
-    <br />    
+    <br />
     @Html.Label("Category")
-    <br />    
-    @if(Model?.Categories != null)
+    <br />
+    @if (Model?.Categories != null)
     {
-        for(int i = 0; i < Model.Categories.Count; i++)
+        for (int i = 0; i < Model.Categories.Count; i++)
         {
             <input type="hidden" asp-for="@Model.Categories[i].Value" />
             <input type="checkbox" asp-for="@Model.Categories[i].Checked" />
             <label asp-for="@Model.Categories[i].Checked">@Model.Categories[i].Text</label>
         }
     }
-    <br />    
+    <br />
     @Html.Label("Tag")
-    <br />    
-    @if(Model?.Tags != null)
+    <br />
+    @if (Model?.Tags != null)
     {
-        for(int i = 0; i <Model.Tags.Count; i++)
+        for (int i = 0; i < Model.Tags.Count; i++)
         {
             <input type="hidden" asp-for="@Model.Tags[i].Value" />
             <input type="checkbox" asp-for="@Model.Tags[i].Checked" />
             <label asp-for="@Model.Tags[i].Checked">@Model.Tags[i].Text</label>
         }
     }
-    <br />    
+    <br />
     @Html.Label("Album")
-    <br />    
-    @if(Model?.Albums != null)
+    <br />
+    @if (Model?.Albums != null)
     {
-        for(int i = 0; i <Model.Albums.Count; i++)
+        for (int i = 0; i < Model.Albums.Count; i++)
         {
             <input type="hidden" asp-for="@Model.Albums[i].Value" />
             <input type="checkbox" asp-for="@Model.Albums[i].Checked" />
             <label asp-for="@Model.Albums[i].Checked">@Model.Albums[i].Text</label>
         }
     }
-    <br />    
+    <br />
     @Html.Label("Status")
     <br />
-    @foreach(var item in ViewBag.Statuses)
+    @if (Model?.Statuses != null)
     {
-        <input type="radio" asp-for="Status" value="@((int)item)" />@item.ToString()
+        @foreach (var item in Model.Statuses)
+        {
+            <input type="radio" asp-for="Status" value="@((int)item)" />
+
+            @item.ToString()
+        }
+
     }
-    <br />    
+    <br />
     @Html.Label("Create User")
     @Html.DropDownListFor(x=>x.CreateUserID, (List<SelectListItem>)ViewBag.Users, new { @class = "form-control" })
-    <br />    
+    <br />
     @Html.Label("Create Date")
     @Html.TextBoxFor(x=>x.CreateDate, new { @class= "form-control" })
-    <br />    
+    <br />
     @Html.Label("Update User")
     @Html.DropDownListFor(x=>x.UpdateUserID, (List<SelectListItem>)ViewBag.Users, new { @class = "form-control" })
-    <br />    
+    <br />
     @Html.Label("Update Date")
     @Html.TextBoxFor(x=>x.UpdateDate, new { @class= "form-control" })
-    <br />    
+    <br />
     <button type="submit" class="btn btn-info">Save</button>
 </form>
