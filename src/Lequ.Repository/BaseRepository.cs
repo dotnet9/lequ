@@ -76,7 +76,7 @@ namespace Lequ.Repository
 
         public async Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
         {
-            IQueryable<T>? query = null;
+            IQueryable<T>? query;
 
             if (sortDirection == SortDirection.Ascending)
             {

@@ -55,9 +55,14 @@
     <br />    
     @Html.Label("Status")
     <br />
-    @foreach(var item in ViewBag.Statuses)
+    @if (Model.Statuses != null)
     {
-        <input type="radio" asp-for="Status" value="@((int)item)" checked='@(Model.Status == item)'/>@item.ToString()
+        @foreach (var item in Model.Statuses)
+        {
+            <input type="radio" asp-for="Status" value="@((int)item)" checked='@(Model.Status == item)'/>
+            @item.ToString()
+        }
+
     }
     <br />    
     @Html.Label("Create User")

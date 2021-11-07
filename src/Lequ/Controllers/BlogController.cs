@@ -159,7 +159,7 @@ namespace Lequ.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            AddBlogViewModel viewModel = new AddBlogViewModel();
+            AddBlogViewModel viewModel = new();
             var albums = await _AlbumService.SelectAsync();
             viewModel.Albums = new List<CheckBoxModel>();
             if (albums != null)

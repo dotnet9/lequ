@@ -8,7 +8,7 @@ namespace Lequ.Repository
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            Random random = new Random(DateTime.Now.Millisecond);
+            Random random = new(DateTime.Now.Millisecond);
             var adminUser = new Admin
             {
                 ID = 1,
@@ -63,9 +63,9 @@ namespace Lequ.Repository
             var albumCPlusPlus = new Album { ID = 2, Name = "C++", Description = "C/S, App", Status = ModelStatus.Normal, CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID, CreateDate = DateTime.Now };
             modelBuilder.Entity<Album>().HasData(albumCSharp, albumCPlusPlus);
 
-            List<Comment> comments = new List<Comment>();
+            List<Comment> comments = new();
 
-            List<Blog> blogs = new List<Blog>();
+            List<Blog> blogs = new();
             for (int i = 0; i < 30; i++)
             {
                 var blog = new Blog

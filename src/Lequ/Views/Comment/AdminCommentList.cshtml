@@ -1,58 +1,67 @@
-﻿@using Lequ.Model.Models
-@model List<Comment>
+﻿@using Lequ.Model.ViewModels
+@using Lequ.Model.ViewModels.Comments
+@model PagingViewModelBase<CommentDto>
 @{
     ViewData["Title"] = "AdminCommentList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-<body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <section class="content">
-            <div class="container-fluid">
-
-                <!-- Timelime example  -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- The time line -->
-                        <div class="timeline">
-                            @if (Model != null)
+<div class="row">
+    <div class="col-md-9">
+    <div class="card">
+        <div class="card-header p-2">
+        <ul class="nav nav-pills">
+        </ul>
+        </div>
+        <div class="card-body">
+        <div class="tab-content">
+            <div class="active tab-pane" id="activity">
+                        @if (Model != null && Model.Datas != null)
+                        {
+                            @foreach (var item in Model.Datas)
                             {
-                                @foreach (var item in Model)
-                                {
-                                    <!-- timeline time label -->
-                                    <div class="time-label">
-                                        <span class="bg-success">@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                                <div class="post">
+                                    <div class="user-block">
+                                        <img class="img-circle img-bordered-sm" src="@item.CreateUser?.Image" alt="user image">
+                                        <span class="username">
+                                            <a href="#">@item.CreateUser?.Name - @item.Blog?.Title</a>
+                                            <a href="/Comment/Delete?blogID=@item.BlogID&id=@item.ID" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                                        </span>
+                                        <span class="description">@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
                                     </div>
-                                    <!-- /.timeline-label -->
-                                    <!-- timeline item -->
-                                    <div>
-                                        <i class="fas fa-comment bg-yellow"></i>
-                                        <div class="timeline-item">
-                                            <h3 class="timeline-header"><a href="#">@item.CreateUser?.Name</a> @item.CreateUser?.Email</h3>
+                                    <p>@item.Content</p>
 
-                                            <div class="timeline-body">@item.Content</div>
-                                            <div class="timeline-footer">
-                                                <a href="/Blog/Details?id=@item.BlogID" class="btn btn-primary btn-sm">Read more</a>
-                                                <a href="/Comment/Delete?blogID=@item.BlogID&id=@item.ID" class="btn btn-danger btn-sm">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END timeline item -->
-                                }
+                                    <p>
+                                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                                        <span class="float-right">
+                                            <a href="#" class="link-black text-sm">
+                                                <i class="far fa-comments mr-1"></i> Comments (5)
+                                            </a>
+                                        </span>
+                                    </p>
+
+                                    <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                                </div>
                             }
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
+                        }
             </div>
-            <!-- /.timeline -->
-
-        </section>
-        <!-- /.content -->
+        </div>
+        </div>
     </div>
-    <!-- ./wrapper -->
-</body>
-</html>
+    </div>
+</div>
+
+@if (Model != null && Model.PageCount > 1)
+{
+    <div class="card-footer">
+        <nav aria-label="Contacts Page Navigation">
+            <ul class="pagination justify-content-center m-0">
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                    <li class='@(Model.PageIndex == i ? "page-item active" : "page-item")'><a class="page-link" href="/Comment/AdminCommentList?status=@Model.Status&page=@i">@i</a></li>
+            }
+            </ul>
+        </nav>
+    </div>
+}

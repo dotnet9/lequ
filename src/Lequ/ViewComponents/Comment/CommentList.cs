@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.IService;
+using Lequ.Model;
 using Lequ.Model.ViewModels.Comments;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ namespace Lequ.ViewComponents.Comment
 
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
-            var comments = await _service.SelectAsync(x => x.BlogID == blogID, x => x.Parent);
+            var comments = await _service.SelectAsync(x => x.BlogID == blogID && x.Status == ModelStatus.Normal, x => x.Parent);
             var vm = new BlogCommentListViewModel();
             vm.BlogID = blogID;
             if (comments != null && comments.Count > 0)

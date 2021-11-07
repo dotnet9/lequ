@@ -7,5 +7,7 @@
         public int PageCount { get; set; }
 
         public List<T>? Datas { get; set; }
+
+        public ModelStatus? Status { get; set; } = ModelStatus.Disable;
     }
 }

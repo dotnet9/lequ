@@ -4,7 +4,9 @@ using Lequ.IService;
 using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
+using Lequ.Model.ViewModels.Comments;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace Lequ.Controllers
 {
@@ -28,13 +30,51 @@ namespace Lequ.Controllers
             // TODO
             comment.CreateUserID = 1;
             comment.CreateDate = DateTime.Now;
-            comment.UpdateDate= DateTime.Now;
-            comment.Status = ModelStatus.Normal;
+            comment.UpdateDate = DateTime.Now;
+            comment.Status = ModelStatus.Check;
             await _service.InsertAsync(comment);
             return RedirectToAction("Details", "Blog", new { id = comment.BlogID });
         }
 
-        public async Task<IActionResult> AdminCommentList(int blogID)
+        public async Task<IActionResult> AdminCommentList(ModelStatus? status = null, int page = 1)
+        {
+            Expression<Func<Comment, bool>> whereLambda;
+            if (status == null)
+            {
+                whereLambda = x => x.ID > 0;
+            }
+            else
+            {
+                whereLambda = x => x.Status == status;
+            }
+            var pageComment = await _service.SelectAsync(pageSize: GlobalVar.SMALL_PAGE_SIZE, pageIndex: page, whereLambda, orderByLambda: x => x.UpdateDate, sortDirection: SortDirection.Descending, x => x.Blog);
+            var vm = new PagingViewModelBase<CommentDto>();
+            vm.Status = status;
+            if (pageComment != null && pageComment.Item1.Count > 0)
+            {
+                var commentVM = _mapper.Map<List<CommentDto>>(pageComment.Item1);
+                vm.PageCount = (pageComment.Item2 + GlobalVar.SMALL_PAGE_SIZE - 1) / GlobalVar.SMALL_PAGE_SIZE;
+                vm.PageIndex = page < 1 ? 1 : page;
+                vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
+                vm.Datas = commentVM;
+
+
+                var users = await _userService.SelectAsync();
+                if (users != null)
+                {
+                    commentVM.ForEach(cu =>
+                    {
+                        if (cu.CreateUserID.HasValue)
+                        {
+                            cu.CreateUser = users.FirstOrDefault(x => x.ID == cu.CreateUserID.Value);
+                        }
+                    });
+                }
+            }
+            return View(vm);
+        }
+
+        public async Task<IActionResult> AdminBlogCommentList(int blogID)
         {
             var comments = await _service.SelectAsync(whereLambda: x => x.BlogID == blogID, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending, x => x.Blog);
             var users = await _userService.SelectAsync();
