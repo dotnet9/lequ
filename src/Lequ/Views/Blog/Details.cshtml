@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Lequ.Model.ViewModels.Blogs.DetailsViewModel
+@{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
@@ -7,20 +8,20 @@
     <div class="container">
         <div class="row blog-entries element-animate">
             <div class="col-md-12 col-lg-8 main-content">
-                @await Component.InvokeAsync("ReadAll", new { id = @ViewBag.id })
+                @await Component.InvokeAsync("ReadAll", new { id = @Model?.ID })
                 
-                @await Component.InvokeAsync("CommentList", new { blogID = @ViewBag.id })
+                @await Component.InvokeAsync("CommentList", new { blogID = @Model?.ID })
             </div>
             <div class="col-md-12 col-lg-4 sidebar">
-                @await Component.InvokeAsync("UserAbout", new { blogID = @ViewBag.id })
+                @await Component.InvokeAsync("UserAbout", new { blogID = @Model?.ID })
 
-                @await Component.InvokeAsync("UserPopularBlogList", new { id = @ViewBag.userID })
+                @await Component.InvokeAsync("UserPopularBlogList", new { id = @Model?.UserID })
 
-                @await Component.InvokeAsync("BlogDetailsAlbumList", new { blogID = @ViewBag.id })
+                @await Component.InvokeAsync("BlogDetailsAlbumList", new { blogID = @Model?.ID })
 
-                @await Component.InvokeAsync("BlogDetailsCategoryList", new { blogID = @ViewBag.id })
+                @await Component.InvokeAsync("BlogDetailsCategoryList", new { blogID = @Model?.ID })
 
-                @await Component.InvokeAsync("BlogDetailsTagList", new { blogID = @ViewBag.id })
+                @await Component.InvokeAsync("BlogDetailsTagList", new { blogID = @Model?.ID })
             </div>
         </div>
     </div>

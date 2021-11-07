@@ -28,7 +28,7 @@
         {
             <tr>
                 <td>@item.ID</td>
-                <td>@item.Title</td>
+                <td><a href="/Blog/Details?id=@item.ID">@item.Title</a></td>
                 <td>@item.Status</td>
                 <td>
                     @if (item.BlogAlbums != null)
@@ -69,8 +69,8 @@
                 <td>@(((DateTime)(item.UpdateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</td>
                 <td>
                     <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger">Delete</a>
-                    <a href="/Blog/Update?id=@item.ID" class="btn btn-success">Edit</a>
-                    <a href="" class="btn btn-warning">Detaylar</a>
+                    <a href="/Blog/Update?id=@item.ID" class="btn btn-warning">Edit</a>
+                    <a href="/Blog/Details?id=@item.ID" class="btn btn-success">Detail</a>
                     <a href="" class="btn btn-dark">Yorumlar</a>
                 </td>
             </tr>

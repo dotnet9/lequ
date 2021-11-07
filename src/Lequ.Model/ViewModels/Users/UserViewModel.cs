@@ -1,4 +1,4 @@
-﻿namespace Lequ.Model.ViewModels.User
+﻿namespace Lequ.Model.ViewModels.Users
 {
     public class UserViewModel : ViewModelBase
     {

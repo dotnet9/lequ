@@ -9,7 +9,11 @@ namespace Lequ.Service
         private readonly IUserRepository _currentRepository;
         public UserService(IUserRepository repository):base(repository)
         {
-            this._currentRepository = repository;
+            _currentRepository = repository;
+        }
+        public async Task<User?> GetByBlogID(int id)
+        {
+            return await _currentRepository.GetByBlogID(id);
         }
     }
 }

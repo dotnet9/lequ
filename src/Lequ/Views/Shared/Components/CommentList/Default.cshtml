@@ -1,69 +1,73 @@
-﻿@model List<Lequ.Model.Models.Comment>
+﻿@model Lequ.Model.ViewModels.Comments.BlogCommentListViewModel
+
+<div class="comment-form-wrap pt-5">
+    <h3 class="mb-5">Leave a comment</h3>
+    <form method="post" action="/Comment/Leave" class="p-5 bg-light">
+        <input type="hidden" name="BlogID" value="@Model?.BlogID" />
+        <input type="hidden" id="parentid" name="ParentID" />
+        <div class="form-group">
+            <label id="messagetip" for="message">Message</label>
+            <a href="#message" id="remove_reply" onclick="remove_replay_parent()" class="reply rounded"></a>
+            <textarea name="Content" id="message" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Post Comment" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+
 <div class="pt-5">
-    <h3 class="mb-5">@Model?.Count Comments</h3>
+    <h3 class="mb-5">@Model?.Comments.Count Comments</h3>
     <ul class="comment-list">
 
-        @if (Model != null)
+        @if (Model != null && Model.Comments != null)
         {
-            @foreach (var item in Model)
+            @foreach (var item in Model.Comments)
             {
                 <li class="comment">
                     <div class="vcard">
-                        <img src="~/Front/images/person_1.jpg" alt="Image placeholder">
+                        <img src="@item.CreateUser?.Image" alt="Image placeholder">
                     </div>
                     <div class="comment-body">
-                        <h3>@item.CreateUserID</h3>
-                        <div class="meta">&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</div>
-                        <p>@item.Content</p>
-                        <p><a href="#" class="reply rounded">Reply</a></p>
-                    </div>
-
-                    <ul class="children">
-                        <li class="comment">
-                            <div class="vcard">
-                                <img src="~/Front/images/person_1.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>Jean Doe</h3>
-                                <div class="meta">January 9, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply rounded">Reply</a></p>
-                            </div>
+                        <span>Floor @item.Floor @item.CreateUser?.Name</span>
+                        <span class="meta">&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
 
 
-                            <ul class="children">
+                        @if (item.Parent != null)
+                        {
+                            <ul class="children bg-light">
                                 <li class="comment">
                                     <div class="vcard">
-                                        <img src="~/Front/images/person_1.jpg" alt="Image placeholder">
+                                        <img src="@item.Parent.CreateUser?.Image" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
-                                        <h3>Jean Doe</h3>
-                                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                        <p><a href="#" class="reply rounded">Reply</a></p>
+                                        <span>Floor @item.Parent.Floor：@item.Parent.CreateUser?.Name</span>
+                                        <span class="meta">&nbsp;-&nbsp; @(((DateTime)(item.Parent.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                                        <p>@item.Parent?.Content</p>
+                                        <p><a href="#message" onclick='reply(@item.Parent.ID, "@item.Parent.CreateUser?.Name")' class="reply rounded">Reply</a></p>
                                     </div>
-
-                                    <ul class="children">
-                                        <li class="comment">
-                                            <div class="vcard">
-                                                <img src="~/Front/images/person_1.jpg" alt="Image placeholder">
-                                            </div>
-                                            <div class="comment-body">
-                                                <h3>Jean Doe</h3>
-                                                <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                <p><a href="#" class="reply rounded">Reply</a></p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li>
                             </ul>
-                        </li>
-                    </ul>
+                        }
+
+                        <p>@item.Content</p>
+                        <p><a href="#message" onclick='reply(@item.ID, "@item.CreateUser?.Name")' class="reply rounded">Reply</a></p>
+                    </div>
                 </li>
             }
         }
     </ul>
-    <!-- END comment-list -->
-    @await Html.PartialAsync("~/Views/Comment/Leave.cshtml", new { blogID = ViewBag.blogID})
 </div>
+<script type="text/javascript">
+    function reply(commentid, username) {
+        $('#messagetip').html('Reply for ' + username)
+        $('#parentid').val(commentid)
+        $('#remove_reply').html('X')
+        $('#remove_reply').show()
+    }
+    function remove_replay_parent() {
+        $('#messagetip').html('Message')
+        $('#parentid').val('')
+        $('#remove_reply').hide()
+    }
+</script>

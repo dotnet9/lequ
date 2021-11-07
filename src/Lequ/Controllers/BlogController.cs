@@ -118,9 +118,16 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var blog = await _service.GetDetailsAsync(id);
-            ViewBag.userID = blog?.CreateUserID;
-            ViewBag.id = id;
-            return await Task.FromResult(PartialView());
+            if (blog == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var vm = new DetailsViewModel
+            {
+                ID = id,
+                UserID = blog.CreateUserID!.Value
+            };
+            return await Task.FromResult(PartialView(vm));
         }
 
 

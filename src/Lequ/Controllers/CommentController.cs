@@ -17,16 +17,10 @@ namespace Lequ.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Leave(int blogID)
-        {
-            ViewBag.BlogID = blogID;
-            return await Task.FromResult(PartialView());
-        }
-
         [HttpPost]
         public async Task<IActionResult> Leave(Comment comment)
         {
+            comment.CreateUserID = 1;
             comment.CreateDate = DateTime.Now;
             comment.Status = ModelStatus.Normal;
             await _service.InsertAsync(comment);

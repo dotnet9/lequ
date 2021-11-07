@@ -9,7 +9,7 @@
                 @foreach (var item in Model)
                 {
                     <li>
-                        <a href="/Blog/Details/@item.ID">
+                        <a href="/Blog/Details?id=@item.ID">
                             <img src="@item.Image" alt="Image placeholder" class="mr-4">
                             <div class="text">
                                 <h4>@item.Title</h4>
