@@ -1,4 +1,5 @@
 ﻿using Lequ.Model.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lequ.Model.ViewModels
 {
@@ -6,9 +7,30 @@ namespace Lequ.Model.ViewModels
 	{
         public int ID { get; set; }
 
-        public ModelStatus? Status { get; set; } = ModelStatus.Disable;
+		[Obsolete]
+		public int Status { get; set; }
 
-        public int? CreateUserID { get; set; }
+		[NotMapped]
+		public ModelStatus? StatusEnum
+		{
+			get
+			{
+				return (ModelStatus?)Enum.Parse(typeof(ModelStatus), Status.ToString());
+			}
+			set
+			{
+				if (value.HasValue)
+				{
+					this.Status = (int)value.Value;
+				}
+				else
+				{
+					this.Status = (int)ModelStatus.Check;
+				}
+			}
+		}
+
+		public int? CreateUserID { get; set; }
 
         public User? CreateUser { get; set; }
 

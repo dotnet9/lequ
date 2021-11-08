@@ -57,7 +57,7 @@
     {
         @foreach (var item in Model.Statuses)
         {
-            <input type="radio" asp-for="Status" value="@((int)item)" />
+            <input type="radio" asp-for="StatusEnum" value="@((int)item)" />
 
             @item.ToString()
         }

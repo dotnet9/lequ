@@ -3,24 +3,45 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lequ.Model.Models
 {
-    public class ModelBase
-    {
-        public int ID { get; set; }
+	public class ModelBase
+	{
+		public int ID { get; set; }
 
-        public ModelStatus? Status { get; set; } = ModelStatus.Disable;
+		[Obsolete]
+		public int Status { get; set; }
 
-        public int? CreateUserID { get; set; }
+		[NotMapped]
+		public ModelStatus? StatusEnum
+		{
+			get
+			{
+				return (ModelStatus?)Enum.Parse(typeof(ModelStatus), Status.ToString());
+			}
+			set
+			{
+				if (value.HasValue)
+				{
+					this.Status = (int)value.Value;
+				}
+				else
+				{
+					this.Status = (int)ModelStatus.Check;
+				}
+			}
+		} 
 
-        [NotMapped]
-        public User? CreateUser { get; set; }
+		public int? CreateUserID { get; set; }
 
-        public DateTime? CreateDate { get; set; }
+		[NotMapped]
+		public User? CreateUser { get; set; }
 
-        public int? UpdateUserID { get; set; }
+		public DateTime? CreateDate { get; set; }
 
-        [NotMapped]
-        public User? UpdateUser { get; set; }
+		public int? UpdateUserID { get; set; }
 
-        public DateTime? UpdateDate { get; set; }
-    }
+		[NotMapped]
+		public User? UpdateUser { get; set; }
+
+		public DateTime? UpdateDate { get; set; }
+	}
 }

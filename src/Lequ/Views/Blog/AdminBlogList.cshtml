@@ -31,7 +31,7 @@
             <tr>
                 <td>@item.ID</td>
                 <td><a href="/Blog/Details?id=@item.ID">@item.Title</a></td>
-                <td>@item.Status</td>
+                <td>@item.StatusEnum</td>
                 <td>
                     @if (item.BlogAlbums != null)
                     {
@@ -68,7 +68,7 @@
                 <td>@item.CreateUser?.Name</td>
                 <td>@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</td>
                 <td>@item.UpdateUser?.Name</td>
-                <td>@(((DateTime)(item.UpdateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                <td>@(item.UpdateDate == null ? "-" : ((DateTime)(item.UpdateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</td>
                 <td>
                     <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger">Delete</a>
                     <a href="/Blog/Update?id=@item.ID" class="btn btn-warning">Edit</a>

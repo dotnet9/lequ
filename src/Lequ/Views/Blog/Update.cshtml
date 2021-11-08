@@ -55,11 +55,11 @@
     <br />    
     @Html.Label("Status")
     <br />
-    @if (Model.Statuses != null)
+    @if (Model?.Statuses != null)
     {
         @foreach (var item in Model.Statuses)
         {
-            <input type="radio" asp-for="Status" value="@((int)item)" checked='@(Model.Status == item)'/>
+            <input type="radio" asp-for="StatusEnum" value="@((int)item)" checked='@(Model.StatusEnum == item)'/>
             @item.ToString()
         }
 

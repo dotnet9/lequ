@@ -17,7 +17,7 @@
 </div>
 
 <div class="pt-5">
-    <h3 class="mb-5">@Model?.Comments.Count Comments</h3>
+    <h3 class="mb-5">@Model?.Comments?.Count Comments</h3>
     <ul class="comment-list">
 
         @if (Model != null && Model.Comments != null)

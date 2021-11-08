@@ -18,7 +18,7 @@ namespace Lequ.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var value = await _service.GetAsync(x => x.Status == ModelStatus.Normal);
+            var value = await _service.GetAsync(x => x.Status == (int)ModelStatus.Normal);
             return View(value);
         }
 

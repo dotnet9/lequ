@@ -27,7 +27,7 @@ namespace Lequ.Controllers
         {
             contact.CreateDate = DateTime.Now;
             contact.UpdateDate = DateTime.Now;
-            contact.Status = ModelStatus.Normal;
+            contact.StatusEnum = ModelStatus.Normal;
             await _service.InsertAsync(contact);
             return RedirectToAction("SendMessage");
         }

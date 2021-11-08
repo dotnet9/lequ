@@ -36,7 +36,7 @@ namespace Lequ.Repository
                                     .ThenInclude(row => row.Album)
                                     .Include(x=>x.Comments)
                                     .Where(whereLambda)
-                                    .OrderByDescending(x => x.CreateDate)
+                                    .OrderByDescending(x => x.UpdateDate)
                                     .Skip(pageSize * (pageIndex - 1))
                                     .Take(pageSize)
                                     .ToListAsync();

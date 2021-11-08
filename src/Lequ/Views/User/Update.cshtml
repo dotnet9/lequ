@@ -44,7 +44,7 @@
     {
         @foreach (var item in Model.Statuses)
         {
-            <input type="radio" asp-for="Status" value="@((int)item)"  checked='@(Model.Status == item)'/>@item.ToString()
+            <input type="radio" asp-for="StatusEnum" value="@((int)item)"  checked='@(Model.StatusEnum == item)'/>@item.ToString()
         }
 
     }

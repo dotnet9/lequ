@@ -60,7 +60,7 @@ namespace Lequ.Controllers
             }
             else
             {
-                var values = await _service.ListDetailsAsync(x => x.Status == ModelStatus.Normal, page, PAGE_SIZE);
+                var values = await _service.ListDetailsAsync(x => x.Status == (int)ModelStatus.Normal, page, PAGE_SIZE);
                 blogs = values.Item1;
             }
             if (blogs.Count > 0)
