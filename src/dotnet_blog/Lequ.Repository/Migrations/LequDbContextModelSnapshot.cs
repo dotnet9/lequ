@@ -113,7 +113,7 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(2792),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(8886),
                             CreateUserID = 1,
                             Password = "admin",
                             Status = 1,
@@ -160,19 +160,82 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3893),
-                            CreateUserID = 89,
-                            Description = "B/S,C/S, App",
-                            Name = "C#",
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9679),
+                            CreateUserID = 41,
+                            Description = "Winform",
+                            Name = "Winform",
                             Status = 1
                         },
                         new
                         {
                             ID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3896),
-                            CreateUserID = 5,
-                            Description = "C/S, App",
-                            Name = "C++",
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9681),
+                            CreateUserID = 68,
+                            Description = "WPF",
+                            Name = "WPF",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9682),
+                            CreateUserID = 19,
+                            Description = "ASP.NET Core MVC",
+                            Name = "ASP.NET Core MVC",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9683),
+                            CreateUserID = 71,
+                            Description = ".NET Core Web API",
+                            Name = ".NET Core Web API",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9684),
+                            CreateUserID = 74,
+                            Description = "Xamarin.Forms",
+                            Name = "Xamarin.Forms",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9685),
+                            CreateUserID = 35,
+                            Description = "Flutter",
+                            Name = "Flutter",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9686),
+                            CreateUserID = 88,
+                            Description = "SwiftUI",
+                            Name = "SwiftUI",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9687),
+                            CreateUserID = 84,
+                            Description = "Qt Widget",
+                            Name = "Qt Widget",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9688),
+                            CreateUserID = 21,
+                            Description = "Qt Quick",
+                            Name = "Qt Quick",
                             Status = 1
                         });
                 });
@@ -197,6 +260,9 @@ namespace Lequ.Repository.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -225,9 +291,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 1,
                             Content = "0 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3988),
-                            CreateUserID = 80,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9756),
+                            CreateUserID = 16,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 1,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 0"
                         },
@@ -235,9 +302,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 2,
                             Content = "1 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4062),
-                            CreateUserID = 84,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9804),
+                            CreateUserID = 85,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 1"
                         },
@@ -245,9 +313,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 3,
                             Content = "2 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4137),
-                            CreateUserID = 33,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9842),
+                            CreateUserID = 71,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 9,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 2"
                         },
@@ -255,9 +324,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 4,
                             Content = "3 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4205),
-                            CreateUserID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9890),
+                            CreateUserID = 12,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 8,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 3"
                         },
@@ -265,9 +335,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 5,
                             Content = "4 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4261),
-                            CreateUserID = 81,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9930),
+                            CreateUserID = 63,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 7,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 4"
                         },
@@ -275,9 +346,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 6,
                             Content = "5 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4324),
-                            CreateUserID = 60,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9973),
+                            CreateUserID = 5,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 4,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 5"
                         },
@@ -285,9 +357,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 7,
                             Content = "6 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4383),
-                            CreateUserID = 92,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(12),
+                            CreateUserID = 59,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 7,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 6"
                         },
@@ -295,9 +368,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 8,
                             Content = "7 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4442),
-                            CreateUserID = 64,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(51),
+                            CreateUserID = 54,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 9,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 7"
                         },
@@ -305,9 +379,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 9,
                             Content = "8 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4499),
-                            CreateUserID = 87,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(89),
+                            CreateUserID = 88,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 5,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 8"
                         },
@@ -315,9 +390,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 10,
                             Content = "9 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4609),
-                            CreateUserID = 20,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(131),
+                            CreateUserID = 67,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 9"
                         },
@@ -325,9 +401,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 11,
                             Content = "10 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4666),
-                            CreateUserID = 92,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(169),
+                            CreateUserID = 64,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 5,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 10"
                         },
@@ -335,9 +412,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 12,
                             Content = "11 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4721),
-                            CreateUserID = 42,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(213),
+                            CreateUserID = 21,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 11"
                         },
@@ -345,9 +423,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 13,
                             Content = "12 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4777),
-                            CreateUserID = 18,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(252),
+                            CreateUserID = 59,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 9,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 12"
                         },
@@ -355,9 +434,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 14,
                             Content = "13 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4832),
-                            CreateUserID = 60,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(292),
+                            CreateUserID = 74,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 3,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 13"
                         },
@@ -365,9 +445,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 15,
                             Content = "14 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4886),
-                            CreateUserID = 59,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(330),
+                            CreateUserID = 99,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 14"
                         },
@@ -375,9 +456,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 16,
                             Content = "15 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4942),
-                            CreateUserID = 12,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(365),
+                            CreateUserID = 88,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 0,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 15"
                         },
@@ -385,9 +467,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 17,
                             Content = "16 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4998),
-                            CreateUserID = 54,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(399),
+                            CreateUserID = 66,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 2,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 16"
                         },
@@ -395,9 +478,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 18,
                             Content = "17 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5073),
-                            CreateUserID = 84,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(439),
+                            CreateUserID = 31,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 17"
                         },
@@ -405,9 +489,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 19,
                             Content = "18 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5130),
-                            CreateUserID = 62,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(477),
+                            CreateUserID = 90,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 3,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 18"
                         },
@@ -415,9 +500,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 20,
                             Content = "19 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5185),
-                            CreateUserID = 93,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(521),
+                            CreateUserID = 98,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 19"
                         },
@@ -425,9 +511,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 21,
                             Content = "20 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5241),
-                            CreateUserID = 19,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(561),
+                            CreateUserID = 53,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 20"
                         },
@@ -435,9 +522,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 22,
                             Content = "21 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5298),
-                            CreateUserID = 80,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(600),
+                            CreateUserID = 27,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 3,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 21"
                         },
@@ -445,9 +533,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 23,
                             Content = "22 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5354),
-                            CreateUserID = 46,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(639),
+                            CreateUserID = 56,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 0,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 22"
                         },
@@ -455,9 +544,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 24,
                             Content = "23 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5410),
-                            CreateUserID = 77,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(676),
+                            CreateUserID = 65,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 3,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 23"
                         },
@@ -465,9 +555,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 25,
                             Content = "24 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5467),
-                            CreateUserID = 15,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(714),
+                            CreateUserID = 94,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 7,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 24"
                         },
@@ -475,9 +566,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 26,
                             Content = "25 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5531),
-                            CreateUserID = 54,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(752),
+                            CreateUserID = 70,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 2,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 25"
                         },
@@ -485,9 +577,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 27,
                             Content = "26 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5591),
-                            CreateUserID = 11,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(790),
+                            CreateUserID = 47,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 6,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 26"
                         },
@@ -495,9 +588,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 28,
                             Content = "27 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5645),
-                            CreateUserID = 63,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(832),
+                            CreateUserID = 12,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 9,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 27"
                         },
@@ -505,9 +599,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 29,
                             Content = "28 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5701),
-                            CreateUserID = 69,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(870),
+                            CreateUserID = 85,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 1,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 28"
                         },
@@ -515,9 +610,10 @@ namespace Lequ.Repository.Migrations
                         {
                             ID = 30,
                             Content = "29 # WPF值得注意的IsHitTestVisible\r\n\r\n这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:\r\n\r\n![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)\r\n\r\n解释的非常专业,然而我并没有看懂。\r\n\r\n说说我的理解吧:把这个属性设置为false,看起来没有变化,但操作上已经把他完全忽视了,不触发事件,可以直接点到它下面的东西。\r\n\r\n这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:\r\n\r\n![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)\r\n\r\n注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.\r\n\r\n当然解决方案有很多:\r\n\r\n可以写两个ListBoxItem的样式,第一个放顶部有渐变的背景,和右部保持一致,通过样式选择器来实现.这显然比较麻烦.\r\n\r\n还可以在大背景下放个渐变,ListBoxItem的上半部分做成透明,这样相对简单,但不一定能实现理想的效果.\r\n\r\nIsHitTestVisible属性就很好的解决了这个问题.直接在上层放个border,背景设置成渐变,IsHitTestVisible设置为false.这样就既能看到渐变效果,又能透过border,直接点到ListBoxItem.设置一个属性就解决了问题,非常方便.相当于在上面放了个蒙板,但是这个蒙板能看到却点不到.\r\n\r\n类似的我还想到了一个场景:\r\n\r\n![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)\r\n\r\n这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.\r\n\r\n并不是图片是个背景,然后所有控件都是半透明效果.\r\n\r\n见代码:\r\n\r\n XMAL:\r\n \r\n```xaml\r\n<Grid>\r\n    <Grid>\r\n        <Grid.RowDefinitions>\r\n            <RowDefinition Height=\"70\"></RowDefinition>\r\n            <RowDefinition></RowDefinition>\r\n            <RowDefinition Height=\"50\"></RowDefinition>\r\n        </Grid.RowDefinitions>\r\n        <Border Background=\"#555F5F\">\r\n            <Label Content=\"logo\" Foreground=\"White\"></Label>\r\n        </Border>\r\n        <Grid Grid.Row=\"1\" Background=\"#AAAFAF\">\r\n            <StackPanel HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Button.Click=\"StackPanel_Click\">\r\n                <Button Width=\"132\" Height=\"32\" Content=\"金闪闪\" Margin=\"10\"></Button>\r\n                <Button Width=\"132\" Height=\"32\" Content=\"小圆\" Margin=\"10\"></Button>\r\n            </StackPanel>\r\n            <Label Content=\"我不透明\" Background=\"Green\" Foreground=\"Blue\" Width=\"100\" Height=\"100\" Margin=\"76,29,266,171\"></Label>\r\n            <Label Content=\"我不透明\" Background=\"Red\" Foreground=\"Blue\" Width=\"100\" Height=\"40\" Margin=\"112,40,230,220\"></Label>\r\n        </Grid>\r\n        <Border Grid.Row=\"2\" Background=\"#555F5F\">\r\n            <Label Content=\"状态栏\" Foreground=\"White\"></Label>\r\n        </Border>\r\n    </Grid>\r\n    <Image Name=\"img\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" Width=\"0\" Height=\"0\" Source=\"/Image/jinshanshan.jpg\" Stretch=\"Fill\" Opacity=\"0.1\" IsHitTestVisible=\"False\"></Image>\r\n</Grid>\r\n```\r\n\r\n后台:\r\n\r\n```C#\r\nprivate void StackPanel_Click(object sender, RoutedEventArgs e)\r\n{\r\n    Button btn = (Button)e.OriginalSource;\r\n    string content = btn.Content.ToString();\r\n    if (content == \"金闪闪\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/jinshanshan.jpg\", UriKind.Relative));\r\n    }\r\n    if (content == \"小圆\")\r\n    {\r\n        img.Source = new BitmapImage(new Uri(@\"/Image/xiaoyuan.jpg\", UriKind.Relative));\r\n    }\r\n\r\n    DoubleAnimation daX = new DoubleAnimation();\r\n    daX.From = 0;\r\n    daX.To = 400;\r\n    daX.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daX, img);\r\n    Storyboard.SetTargetProperty(daX, new PropertyPath(Image.WidthProperty));\r\n    DoubleAnimation daY = new DoubleAnimation();\r\n    daY.From = 0;\r\n    daY.To = 400;\r\n    daY.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daY, img);\r\n    Storyboard.SetTargetProperty(daY, new PropertyPath(Image.HeightProperty));\r\n    DoubleAnimation daOp = new DoubleAnimation();\r\n    daOp.From = 1;\r\n    daOp.To = 0.3;\r\n    daOp.FillBehavior = FillBehavior.HoldEnd;\r\n    Storyboard.SetTarget(daOp, img);\r\n    Storyboard.SetTargetProperty(daOp, new PropertyPath(Image.OpacityProperty));\r\n\r\n    Storyboard sb = new Storyboard();\r\n    sb.Children.Add(daX);\r\n    sb.Children.Add(daY);\r\n    sb.Children.Add(daOp);\r\n    sb.Begin();\r\n}\r\n```\r\n\r\n>\r\n>原文作者：普通的地球人\r\n>\r\n>原文链接：https://www.cnblogs.com/tsliwei/p/5923107.html",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5758),
-                            CreateUserID = 63,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(908),
+                            CreateUserID = 11,
                             Image = "/Front/images/img_1.jpg",
+                            Rating = 0,
                             Status = 1,
                             Title = "WPF值得注意的IsHitTestVisible 29"
                         });
@@ -560,44 +656,17 @@ namespace Lequ.Repository.Migrations
                         {
                             BlogID = 1,
                             AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4008),
-                            CreateUserID = 76,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 1,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4012),
-                            CreateUserID = 91,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9768),
+                            CreateUserID = 58,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 2,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4072),
-                            CreateUserID = 54,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 2,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4073),
-                            CreateUserID = 95,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 3,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4151),
-                            CreateUserID = 44,
+                            AlbumID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9809),
+                            CreateUserID = 12,
                             ID = 0,
                             Status = 1
                         },
@@ -605,26 +674,17 @@ namespace Lequ.Repository.Migrations
                         {
                             BlogID = 3,
                             AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4154),
-                            CreateUserID = 59,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9847),
+                            CreateUserID = 84,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 4,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4214),
-                            CreateUserID = 94,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 4,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4216),
-                            CreateUserID = 37,
+                            AlbumID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9894),
+                            CreateUserID = 79,
                             ID = 0,
                             Status = 1
                         },
@@ -632,62 +692,26 @@ namespace Lequ.Repository.Migrations
                         {
                             BlogID = 5,
                             AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4272),
-                            CreateUserID = 38,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 5,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4275),
-                            CreateUserID = 19,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9936),
+                            CreateUserID = 22,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 6,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4334),
-                            CreateUserID = 43,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 6,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4336),
-                            CreateUserID = 40,
+                            AlbumID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9978),
+                            CreateUserID = 36,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 7,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4391),
-                            CreateUserID = 73,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 7,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4392),
-                            CreateUserID = 92,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 8,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4450),
-                            CreateUserID = 47,
+                            AlbumID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(16),
+                            CreateUserID = 79,
                             ID = 0,
                             Status = 1
                         },
@@ -695,404 +719,206 @@ namespace Lequ.Repository.Migrations
                         {
                             BlogID = 8,
                             AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4452),
-                            CreateUserID = 72,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 9,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4546),
-                            CreateUserID = 55,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 9,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4549),
-                            CreateUserID = 3,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 10,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4618),
-                            CreateUserID = 77,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 10,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4619),
-                            CreateUserID = 73,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 11,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4674),
-                            CreateUserID = 19,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 11,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4676),
-                            CreateUserID = 16,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 12,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4729),
-                            CreateUserID = 46,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 12,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4731),
-                            CreateUserID = 18,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 13,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4785),
-                            CreateUserID = 47,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 13,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4787),
-                            CreateUserID = 74,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 14,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4841),
-                            CreateUserID = 38,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 14,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4842),
-                            CreateUserID = 73,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 15,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4895),
-                            CreateUserID = 19,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 15,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4896),
-                            CreateUserID = 72,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 16,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4951),
-                            CreateUserID = 57,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 16,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4953),
-                            CreateUserID = 45,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 17,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5011),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(56),
                             CreateUserID = 86,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 17,
+                            BlogID = 9,
                             AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5014),
-                            CreateUserID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(96),
+                            CreateUserID = 7,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 18,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5081),
-                            CreateUserID = 99,
+                            BlogID = 10,
+                            AlbumID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(135),
+                            CreateUserID = 86,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 18,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5083),
-                            CreateUserID = 33,
+                            BlogID = 11,
+                            AlbumID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(173),
+                            CreateUserID = 98,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 19,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5139),
-                            CreateUserID = 44,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 19,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5140),
-                            CreateUserID = 83,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 20,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5193),
-                            CreateUserID = 46,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 20,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5195),
-                            CreateUserID = 6,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 21,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5249),
-                            CreateUserID = 30,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 21,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5251),
-                            CreateUserID = 6,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 22,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5307),
-                            CreateUserID = 71,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 22,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5308),
-                            CreateUserID = 75,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 23,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5362),
-                            CreateUserID = 40,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 23,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5364),
-                            CreateUserID = 51,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 24,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5419),
-                            CreateUserID = 62,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 24,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5421),
-                            CreateUserID = 62,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 25,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5475),
+                            BlogID = 12,
+                            AlbumID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(217),
                             CreateUserID = 97,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 25,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5476),
-                            CreateUserID = 66,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 26,
+                            BlogID = 13,
                             AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5539),
-                            CreateUserID = 27,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(256),
+                            CreateUserID = 54,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 26,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5541),
-                            CreateUserID = 82,
+                            BlogID = 14,
+                            AlbumID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(296),
+                            CreateUserID = 34,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 27,
+                            BlogID = 15,
+                            AlbumID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(334),
+                            CreateUserID = 97,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 16,
                             AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5599),
-                            CreateUserID = 8,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 27,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5601),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(369),
                             CreateUserID = 47,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 28,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5653),
-                            CreateUserID = 56,
+                            BlogID = 17,
+                            AlbumID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(405),
+                            CreateUserID = 7,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 28,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5655),
-                            CreateUserID = 42,
+                            BlogID = 18,
+                            AlbumID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(443),
+                            CreateUserID = 94,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 29,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5709),
-                            CreateUserID = 45,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 29,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5711),
+                            BlogID = 19,
+                            AlbumID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(481),
                             CreateUserID = 65,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 30,
-                            AlbumID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5798),
-                            CreateUserID = 10,
+                            BlogID = 20,
+                            AlbumID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(525),
+                            CreateUserID = 55,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 21,
+                            AlbumID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(565),
+                            CreateUserID = 99,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 22,
+                            AlbumID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(603),
+                            CreateUserID = 59,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 23,
+                            AlbumID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(643),
+                            CreateUserID = 97,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 24,
+                            AlbumID = 2,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(680),
+                            CreateUserID = 71,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 25,
+                            AlbumID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(718),
+                            CreateUserID = 72,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 26,
+                            AlbumID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(756),
+                            CreateUserID = 3,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 27,
+                            AlbumID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(794),
+                            CreateUserID = 68,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 28,
+                            AlbumID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(836),
+                            CreateUserID = 92,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 29,
+                            AlbumID = 2,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(874),
+                            CreateUserID = 74,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 30,
-                            AlbumID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5800),
-                            CreateUserID = 93,
+                            AlbumID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(912),
+                            CreateUserID = 28,
                             ID = 0,
                             Status = 1
                         });
@@ -1134,540 +960,270 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             BlogID = 1,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3993),
-                            CreateUserID = 95,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 1,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3998),
-                            CreateUserID = 18,
+                            CategoryID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9761),
+                            CreateUserID = 72,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 2,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4064),
-                            CreateUserID = 49,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 2,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4066),
-                            CreateUserID = 75,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 3,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4139),
-                            CreateUserID = 76,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 3,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4144),
-                            CreateUserID = 10,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 4,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4207),
-                            CreateUserID = 9,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 4,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4209),
-                            CreateUserID = 95,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 5,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4262),
-                            CreateUserID = 30,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 5,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4266),
-                            CreateUserID = 67,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 6,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4326),
-                            CreateUserID = 84,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 6,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4328),
-                            CreateUserID = 10,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 7,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4385),
-                            CreateUserID = 67,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 7,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4386),
-                            CreateUserID = 25,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 8,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4444),
-                            CreateUserID = 12,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 8,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4445),
-                            CreateUserID = 43,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 9,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4501),
-                            CreateUserID = 24,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 9,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4505),
-                            CreateUserID = 71,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 10,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4611),
-                            CreateUserID = 8,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 10,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4612),
-                            CreateUserID = 47,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 11,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4668),
-                            CreateUserID = 100,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 11,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4669),
-                            CreateUserID = 37,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 12,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4723),
-                            CreateUserID = 70,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 12,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4724),
-                            CreateUserID = 12,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 13,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4779),
-                            CreateUserID = 24,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 13,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4780),
-                            CreateUserID = 16,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 14,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4834),
-                            CreateUserID = 39,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 14,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4836),
-                            CreateUserID = 8,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 15,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4888),
-                            CreateUserID = 78,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 15,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4890),
-                            CreateUserID = 67,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 16,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4944),
-                            CreateUserID = 6,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 16,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4946),
-                            CreateUserID = 38,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 17,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4999),
-                            CreateUserID = 60,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 17,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5003),
-                            CreateUserID = 89,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 18,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5075),
-                            CreateUserID = 32,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 18,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5076),
-                            CreateUserID = 85,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 19,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5132),
-                            CreateUserID = 30,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 19,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5133),
-                            CreateUserID = 29,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 20,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5187),
-                            CreateUserID = 45,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 20,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5188),
-                            CreateUserID = 32,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 21,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5243),
-                            CreateUserID = 78,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 21,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5244),
-                            CreateUserID = 43,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 22,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5300),
-                            CreateUserID = 19,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 22,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5302),
-                            CreateUserID = 44,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 23,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5356),
-                            CreateUserID = 83,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 23,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5357),
-                            CreateUserID = 21,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 24,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5412),
-                            CreateUserID = 10,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 24,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5414),
-                            CreateUserID = 31,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 25,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5468),
-                            CreateUserID = 57,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 25,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5470),
-                            CreateUserID = 36,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 26,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5533),
-                            CreateUserID = 42,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 26,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5534),
-                            CreateUserID = 60,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 27,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5593),
-                            CreateUserID = 85,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 27,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5594),
-                            CreateUserID = 35,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 28,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5647),
-                            CreateUserID = 12,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 28,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5648),
+                            CategoryID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9806),
                             CreateUserID = 61,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 29,
-                            CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5702),
+                            BlogID = 3,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9844),
+                            CreateUserID = 6,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 4,
+                            CategoryID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9892),
+                            CreateUserID = 59,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 5,
+                            CategoryID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9931),
+                            CreateUserID = 22,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 6,
+                            CategoryID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9975),
+                            CreateUserID = 52,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 7,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(13),
+                            CreateUserID = 65,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 8,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(53),
+                            CreateUserID = 85,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 9,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(91),
+                            CreateUserID = 17,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 10,
+                            CategoryID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(132),
+                            CreateUserID = 21,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 11,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(171),
+                            CreateUserID = 86,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 12,
+                            CategoryID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(215),
+                            CreateUserID = 38,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 13,
+                            CategoryID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(254),
                             CreateUserID = 13,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 29,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5704),
-                            CreateUserID = 19,
+                            BlogID = 14,
+                            CategoryID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(293),
+                            CreateUserID = 32,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 30,
+                            BlogID = 15,
+                            CategoryID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(331),
+                            CreateUserID = 16,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 16,
+                            CategoryID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(367),
+                            CreateUserID = 13,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 17,
+                            CategoryID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(400),
+                            CreateUserID = 31,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 18,
+                            CategoryID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(440),
+                            CreateUserID = 23,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 19,
+                            CategoryID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(479),
+                            CreateUserID = 4,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 20,
                             CategoryID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5759),
-                            CreateUserID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(523),
+                            CreateUserID = 30,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 21,
+                            CategoryID = 1,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(562),
+                            CreateUserID = 50,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 22,
+                            CategoryID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(601),
+                            CreateUserID = 32,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 23,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(640),
+                            CreateUserID = 10,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 24,
+                            CategoryID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(677),
+                            CreateUserID = 75,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 25,
+                            CategoryID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(716),
+                            CreateUserID = 11,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 26,
+                            CategoryID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(753),
+                            CreateUserID = 61,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 27,
+                            CategoryID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(791),
+                            CreateUserID = 40,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 28,
+                            CategoryID = 2,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(833),
+                            CreateUserID = 82,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 29,
+                            CategoryID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(871),
+                            CreateUserID = 87,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 30,
-                            CategoryID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5761),
-                            CreateUserID = 97,
+                            CategoryID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(909),
+                            CreateUserID = 46,
                             ID = 0,
                             Status = 1
                         });
@@ -1709,468 +1265,234 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             BlogID = 1,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4001),
-                            CreateUserID = 20,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 1,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4004),
-                            CreateUserID = 1,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 2,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4068),
-                            CreateUserID = 33,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 2,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4070),
-                            CreateUserID = 3,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 3,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4145),
-                            CreateUserID = 9,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 3,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4149),
-                            CreateUserID = 19,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 4,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4210),
-                            CreateUserID = 49,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 4,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4212),
-                            CreateUserID = 37,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 5,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4267),
-                            CreateUserID = 86,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 5,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4270),
-                            CreateUserID = 32,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 6,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4330),
-                            CreateUserID = 72,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 6,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4332),
-                            CreateUserID = 87,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 7,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4388),
-                            CreateUserID = 38,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 7,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4390),
-                            CreateUserID = 61,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 8,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4447),
-                            CreateUserID = 70,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 8,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4449),
-                            CreateUserID = 45,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 9,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4507),
-                            CreateUserID = 65,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 9,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4543),
-                            CreateUserID = 82,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 10,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4614),
-                            CreateUserID = 72,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 10,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4616),
-                            CreateUserID = 16,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 11,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4671),
-                            CreateUserID = 33,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 11,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4672),
-                            CreateUserID = 2,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 12,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4726),
-                            CreateUserID = 77,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 12,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4727),
-                            CreateUserID = 22,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 13,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4782),
-                            CreateUserID = 87,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 13,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4784),
-                            CreateUserID = 92,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 14,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4837),
-                            CreateUserID = 5,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 14,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4839),
-                            CreateUserID = 89,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 15,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4891),
-                            CreateUserID = 45,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 15,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4893),
-                            CreateUserID = 96,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 16,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4948),
-                            CreateUserID = 44,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 16,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4949),
-                            CreateUserID = 28,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 17,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5005),
-                            CreateUserID = 61,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 17,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5009),
-                            CreateUserID = 10,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 18,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5078),
-                            CreateUserID = 25,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 18,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5080),
-                            CreateUserID = 31,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 19,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5135),
-                            CreateUserID = 14,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 19,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5137),
-                            CreateUserID = 82,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 20,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5190),
-                            CreateUserID = 26,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 20,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5191),
-                            CreateUserID = 27,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 21,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5246),
-                            CreateUserID = 65,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 21,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5247),
-                            CreateUserID = 91,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 22,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5303),
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9764),
                             CreateUserID = 79,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 22,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5305),
-                            CreateUserID = 53,
+                            BlogID = 2,
+                            TagID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9807),
+                            CreateUserID = 32,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 23,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5359),
+                            BlogID = 3,
+                            TagID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9845),
+                            CreateUserID = 33,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 4,
+                            TagID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9893),
+                            CreateUserID = 77,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 5,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9933),
+                            CreateUserID = 87,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 6,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9976),
+                            CreateUserID = 2,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 7,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(15),
+                            CreateUserID = 79,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 8,
+                            TagID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(55),
+                            CreateUserID = 46,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 9,
+                            TagID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(94),
+                            CreateUserID = 22,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 10,
+                            TagID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(133),
                             CreateUserID = 66,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
+                            BlogID = 11,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(172),
+                            CreateUserID = 62,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 12,
+                            TagID = 1,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(216),
+                            CreateUserID = 20,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 13,
+                            TagID = 2,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(255),
+                            CreateUserID = 45,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 14,
+                            TagID = 2,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(294),
+                            CreateUserID = 75,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 15,
+                            TagID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(333),
+                            CreateUserID = 28,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 16,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(368),
+                            CreateUserID = 84,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 17,
+                            TagID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(403),
+                            CreateUserID = 72,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 18,
+                            TagID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(441),
+                            CreateUserID = 49,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 19,
+                            TagID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(480),
+                            CreateUserID = 28,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 20,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(524),
+                            CreateUserID = 91,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 21,
+                            TagID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(564),
+                            CreateUserID = 60,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            BlogID = 22,
+                            TagID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(602),
+                            CreateUserID = 67,
+                            ID = 0,
+                            Status = 1
+                        },
+                        new
+                        {
                             BlogID = 23,
                             TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5361),
-                            CreateUserID = 21,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(641),
+                            CreateUserID = 2,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 24,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5416),
-                            CreateUserID = 47,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 24,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5417),
-                            CreateUserID = 13,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 25,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5471),
-                            CreateUserID = 83,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 25,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5473),
+                            TagID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(679),
                             CreateUserID = 40,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
-                            BlogID = 26,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5536),
-                            CreateUserID = 41,
+                            BlogID = 25,
+                            TagID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(717),
+                            CreateUserID = 33,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 26,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5537),
-                            CreateUserID = 70,
+                            TagID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(754),
+                            CreateUserID = 4,
                             ID = 0,
                             Status = 1
                         },
@@ -2178,44 +1500,17 @@ namespace Lequ.Repository.Migrations
                         {
                             BlogID = 27,
                             TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5596),
-                            CreateUserID = 29,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 27,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5598),
-                            CreateUserID = 74,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(793),
+                            CreateUserID = 46,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 28,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5650),
-                            CreateUserID = 7,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 28,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5651),
-                            CreateUserID = 6,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 29,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5706),
-                            CreateUserID = 78,
+                            TagID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(835),
+                            CreateUserID = 89,
                             ID = 0,
                             Status = 1
                         },
@@ -2223,26 +1518,17 @@ namespace Lequ.Repository.Migrations
                         {
                             BlogID = 29,
                             TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5707),
-                            CreateUserID = 68,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(873),
+                            CreateUserID = 24,
                             ID = 0,
                             Status = 1
                         },
                         new
                         {
                             BlogID = 30,
-                            TagID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5762),
-                            CreateUserID = 13,
-                            ID = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            BlogID = 30,
-                            TagID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5764),
-                            CreateUserID = 74,
+                            TagID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(911),
+                            CreateUserID = 100,
                             ID = 0,
                             Status = 1
                         });
@@ -2292,19 +1578,82 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3845),
-                            CreateUserID = 40,
-                            Description = "B/S,C/S, App",
-                            Name = "C#",
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9589),
+                            CreateUserID = 16,
+                            Description = "Winform",
+                            Name = "Winform",
                             Status = 1
                         },
                         new
                         {
                             ID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3848),
-                            CreateUserID = 21,
-                            Description = "C/S, App",
-                            Name = "C++",
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9591),
+                            CreateUserID = 51,
+                            Description = "WPF",
+                            Name = "WPF",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9592),
+                            CreateUserID = 62,
+                            Description = "ASP.NET Core MVC",
+                            Name = "ASP.NET Core MVC",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9593),
+                            CreateUserID = 67,
+                            Description = ".NET Core Web API",
+                            Name = ".NET Core Web API",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9594),
+                            CreateUserID = 59,
+                            Description = "Xamarin.Forms",
+                            Name = "Xamarin.Forms",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9595),
+                            CreateUserID = 84,
+                            Description = "Flutter",
+                            Name = "Flutter",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9596),
+                            CreateUserID = 10,
+                            Description = "SwiftUI",
+                            Name = "SwiftUI",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9597),
+                            CreateUserID = 38,
+                            Description = "Qt Widget",
+                            Name = "Qt Widget",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9598),
+                            CreateUserID = 28,
+                            Description = "Qt Quick",
+                            Name = "Qt Quick",
                             Status = 1
                         });
                 });
@@ -2356,7 +1705,7 @@ namespace Lequ.Repository.Migrations
                             ID = 1,
                             BlogID = 1,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4016),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9772),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2365,7 +1714,7 @@ namespace Lequ.Repository.Migrations
                             ID = 2,
                             BlogID = 2,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4075),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9810),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2374,7 +1723,7 @@ namespace Lequ.Repository.Migrations
                             ID = 3,
                             BlogID = 3,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4156),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9848),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2383,7 +1732,7 @@ namespace Lequ.Repository.Migrations
                             ID = 4,
                             BlogID = 4,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4217),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9895),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2392,7 +1741,7 @@ namespace Lequ.Repository.Migrations
                             ID = 5,
                             BlogID = 5,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4278),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9938),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2401,7 +1750,7 @@ namespace Lequ.Repository.Migrations
                             ID = 6,
                             BlogID = 6,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4337),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9979),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2410,7 +1759,7 @@ namespace Lequ.Repository.Migrations
                             ID = 7,
                             BlogID = 7,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4394),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(17),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2419,7 +1768,7 @@ namespace Lequ.Repository.Migrations
                             ID = 8,
                             BlogID = 8,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4453),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(57),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2428,7 +1777,7 @@ namespace Lequ.Repository.Migrations
                             ID = 9,
                             BlogID = 9,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4552),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(98),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2437,7 +1786,7 @@ namespace Lequ.Repository.Migrations
                             ID = 10,
                             BlogID = 10,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4621),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(136),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2446,7 +1795,7 @@ namespace Lequ.Repository.Migrations
                             ID = 11,
                             BlogID = 11,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4677),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(174),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2455,7 +1804,7 @@ namespace Lequ.Repository.Migrations
                             ID = 12,
                             BlogID = 12,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4732),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(218),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2464,7 +1813,7 @@ namespace Lequ.Repository.Migrations
                             ID = 13,
                             BlogID = 13,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4789),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(257),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2473,7 +1822,7 @@ namespace Lequ.Repository.Migrations
                             ID = 14,
                             BlogID = 14,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4844),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(297),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2482,7 +1831,7 @@ namespace Lequ.Repository.Migrations
                             ID = 15,
                             BlogID = 15,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4898),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(335),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2491,7 +1840,7 @@ namespace Lequ.Repository.Migrations
                             ID = 16,
                             BlogID = 16,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(4954),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(370),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2500,7 +1849,7 @@ namespace Lequ.Repository.Migrations
                             ID = 17,
                             BlogID = 17,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5017),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(407),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2509,7 +1858,7 @@ namespace Lequ.Repository.Migrations
                             ID = 18,
                             BlogID = 18,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5084),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(444),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2518,7 +1867,7 @@ namespace Lequ.Repository.Migrations
                             ID = 19,
                             BlogID = 19,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5142),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(482),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2527,7 +1876,7 @@ namespace Lequ.Repository.Migrations
                             ID = 20,
                             BlogID = 20,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5196),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(526),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2536,7 +1885,7 @@ namespace Lequ.Repository.Migrations
                             ID = 21,
                             BlogID = 21,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5252),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(566),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2545,7 +1894,7 @@ namespace Lequ.Repository.Migrations
                             ID = 22,
                             BlogID = 22,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5309),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(604),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2554,7 +1903,7 @@ namespace Lequ.Repository.Migrations
                             ID = 23,
                             BlogID = 23,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5365),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(643),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2563,7 +1912,7 @@ namespace Lequ.Repository.Migrations
                             ID = 24,
                             BlogID = 24,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5422),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(681),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2572,7 +1921,7 @@ namespace Lequ.Repository.Migrations
                             ID = 25,
                             BlogID = 25,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5478),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(719),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2581,7 +1930,7 @@ namespace Lequ.Repository.Migrations
                             ID = 26,
                             BlogID = 26,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5542),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(757),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2590,7 +1939,7 @@ namespace Lequ.Repository.Migrations
                             ID = 27,
                             BlogID = 27,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5603),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(795),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2599,7 +1948,7 @@ namespace Lequ.Repository.Migrations
                             ID = 28,
                             BlogID = 28,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5656),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(837),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2608,7 +1957,7 @@ namespace Lequ.Repository.Migrations
                             ID = 29,
                             BlogID = 29,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5746),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(875),
                             CreateUserID = 1,
                             Status = 3
                         },
@@ -2617,7 +1966,7 @@ namespace Lequ.Repository.Migrations
                             ID = 30,
                             BlogID = 30,
                             Content = "This blog is very good , I like it, thank you!",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(5802),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 14, DateTimeKind.Local).AddTicks(913),
                             CreateUserID = 1,
                             Status = 3
                         });
@@ -2736,19 +2085,82 @@ namespace Lequ.Repository.Migrations
                         new
                         {
                             ID = 1,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3871),
-                            CreateUserID = 51,
-                            Description = "B/S,C/S, App",
-                            Name = "C#",
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9620),
+                            CreateUserID = 59,
+                            Description = "Winform",
+                            Name = "Winform",
                             Status = 1
                         },
                         new
                         {
                             ID = 2,
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3874),
-                            CreateUserID = 89,
-                            Description = "C/S, App",
-                            Name = "C++",
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9622),
+                            CreateUserID = 100,
+                            Description = "WPF",
+                            Name = "WPF",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9623),
+                            CreateUserID = 100,
+                            Description = "ASP.NET Core MVC",
+                            Name = "ASP.NET Core MVC",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9650),
+                            CreateUserID = 47,
+                            Description = ".NET Core Web API",
+                            Name = ".NET Core Web API",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9651),
+                            CreateUserID = 63,
+                            Description = "Xamarin.Forms",
+                            Name = "Xamarin.Forms",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9653),
+                            CreateUserID = 7,
+                            Description = "Flutter",
+                            Name = "Flutter",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9654),
+                            CreateUserID = 36,
+                            Description = "SwiftUI",
+                            Name = "SwiftUI",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9655),
+                            CreateUserID = 67,
+                            Description = "Qt Widget",
+                            Name = "Qt Widget",
+                            Status = 1
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9656),
+                            CreateUserID = 63,
+                            Description = "Qt Quick",
+                            Name = "Qt Quick",
                             Status = 1
                         });
                 });
@@ -2828,10 +2240,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User0",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3037),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9056),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 0",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2845,10 +2257,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User1",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3045),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9061),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 1",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2862,10 +2274,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User2",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3051),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9115),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 2",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2879,7 +2291,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User3",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3056),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9119),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_1.jpg",
@@ -2896,7 +2308,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User4",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3062),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9122),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_0.jpg",
@@ -2913,10 +2325,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User5",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3069),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9127),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 5",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2930,10 +2342,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User6",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3075),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9130),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 6",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2947,10 +2359,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User7",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3080),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9133),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 7",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2964,10 +2376,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User8",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3131),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9137),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 8",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -2981,7 +2393,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User9",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3139),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9140),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_0.jpg",
@@ -2998,7 +2410,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User10",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3144),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9144),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_4.jpg",
@@ -3015,10 +2427,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User11",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3149),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9147),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 11",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3032,10 +2444,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User12",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3154),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9150),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 12",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3049,10 +2461,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User13",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3160),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9153),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 13",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3066,10 +2478,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User14",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3165),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9156),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 14",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3083,10 +2495,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User15",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3171),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9159),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 15",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3100,10 +2512,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User16",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3176),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9162),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 16",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3117,10 +2529,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User17",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3183),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9166),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 17",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3134,10 +2546,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User18",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3188),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9169),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 18",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3151,10 +2563,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User19",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3194),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9173),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 19",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3168,7 +2580,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User20",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3199),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9176),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -3185,10 +2597,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User21",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3204),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9179),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 21",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3202,7 +2614,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User22",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3209),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9182),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_0.jpg",
@@ -3219,10 +2631,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User23",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3215),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9185),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 23",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3236,10 +2648,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User24",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3220),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9224),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 24",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3253,10 +2665,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User25",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3226),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9228),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 25",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3270,10 +2682,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User26",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3231),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9231),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 26",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3287,10 +2699,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User27",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3236),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9234),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 27",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3304,10 +2716,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User28",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3242),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9237),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 28",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3321,10 +2733,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User29",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3247),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9240),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 29",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3338,10 +2750,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User30",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3252),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9243),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 30",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3355,7 +2767,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User31",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3291),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9246),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_4.jpg",
@@ -3372,10 +2784,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User32",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3297),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9249),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 32",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3389,7 +2801,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User33",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3303),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9253),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_1.jpg",
@@ -3406,10 +2818,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User34",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3309),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9256),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 34",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3423,10 +2835,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User35",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3314),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9259),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 35",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3440,10 +2852,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User36",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3320),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9262),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 36",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3457,7 +2869,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User37",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3325),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9265),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_1.jpg",
@@ -3474,10 +2886,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User38",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3330),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9268),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 38",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3491,7 +2903,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User39",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3336),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9271),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_1.jpg",
@@ -3508,10 +2920,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User40",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3341),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9274),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 40",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3525,10 +2937,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User41",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3346),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9277),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 41",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3542,10 +2954,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User42",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3352),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9280),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 42",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3559,10 +2971,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User43",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3357),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9283),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 43",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3576,10 +2988,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User44",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3362),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9286),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 44",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3593,10 +3005,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User45",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3367),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9289),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 45",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3610,10 +3022,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User46",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3373),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9292),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 46",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3627,10 +3039,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User47",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3379),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9315),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 47",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3644,10 +3056,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User48",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3384),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9317),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 48",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3661,10 +3073,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User49",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3389),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9321),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 49",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3678,7 +3090,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User50",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3394),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9324),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_4.jpg",
@@ -3695,10 +3107,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User51",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3400),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9327),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 51",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3712,10 +3124,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User52",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3405),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9330),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 52",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3729,10 +3141,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User53",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3447),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9333),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 53",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3746,10 +3158,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User54",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3453),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9336),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 54",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3763,7 +3175,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User55",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3458),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9339),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -3780,10 +3192,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User56",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3464),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9342),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 56",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3797,10 +3209,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User57",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3469),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9345),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 57",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3814,10 +3226,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User58",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3475),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9348),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 58",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3831,10 +3243,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User59",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3480),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9351),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 59",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3848,7 +3260,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User60",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3486),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9354),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_4.jpg",
@@ -3865,10 +3277,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User61",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3491),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9357),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 61",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3882,10 +3294,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User62",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3496),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9360),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 62",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3899,10 +3311,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User63",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3502),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9363),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 63",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3916,10 +3328,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User64",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3507),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9366),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 64",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3933,7 +3345,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User65",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3514),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9370),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_4.jpg",
@@ -3950,10 +3362,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User66",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3519),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9373),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 66",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -3967,7 +3379,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User67",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3524),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9396),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_1.jpg",
@@ -3984,10 +3396,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User68",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3530),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9400),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 68",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4001,10 +3413,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User69",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3535),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9403),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 69",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4018,10 +3430,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User70",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3540),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9406),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 70",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4035,10 +3447,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User71",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3546),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9409),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 71",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4052,7 +3464,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User72",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3551),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9412),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -4069,10 +3481,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User73",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3590),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9416),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 73",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4086,10 +3498,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User74",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3597),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9419),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 74",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4103,10 +3515,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User75",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3602),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9422),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 75",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4120,7 +3532,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User76",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3607),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9425),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -4137,10 +3549,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User77",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3612),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9428),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 77",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4154,10 +3566,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User78",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3618),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9431),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 78",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4171,10 +3583,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User79",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3623),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9434),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 79",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4188,10 +3600,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User80",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3628),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9437),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_0.jpg",
                             Name = "User name 80",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4205,10 +3617,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User81",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3633),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9440),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 81",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4222,10 +3634,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User82",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3639),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9443),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 82",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4239,7 +3651,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User83",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3644),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9446),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_0.jpg",
@@ -4256,10 +3668,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User84",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3650),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9449),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 84",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4273,10 +3685,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User85",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3656),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9452),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_4.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 85",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4290,10 +3702,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User86",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3661),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9455),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 86",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4307,10 +3719,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User87",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3666),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9458),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 87",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4324,10 +3736,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User88",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3672),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9461),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 88",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4341,7 +3753,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User89",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3677),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9464),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_3.jpg",
@@ -4358,10 +3770,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User90",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3683),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9467),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_3.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 90",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4375,10 +3787,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User91",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3688),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9498),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 91",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4392,10 +3804,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User92",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3694),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9501),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_4.jpg",
                             Name = "User name 92",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4409,10 +3821,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User93",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3699),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9504),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_2.jpg",
+                            Image = "/Front/images/person_1.jpg",
                             Name = "User name 93",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4426,7 +3838,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User94",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3704),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9507),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -4443,7 +3855,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User95",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3710),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9510),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -4460,7 +3872,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User96",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3715),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9513),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_2.jpg",
@@ -4477,10 +3889,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User97",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3758),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9516),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_0.jpg",
+                            Image = "/Front/images/person_2.jpg",
                             Name = "User name 97",
                             Password = "222222",
                             PhoneNumber = "169888322",
@@ -4494,7 +3906,7 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User98",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3764),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9519),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
                             Image = "/Front/images/person_3.jpg",
@@ -4511,10 +3923,10 @@ namespace Lequ.Repository.Migrations
                             AboutShort = "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
                             Account = "User99",
                             Address = "Chendu. China",
-                            CreateDate = new DateTime(2021, 11, 9, 22, 30, 9, 374, DateTimeKind.Local).AddTicks(3769),
+                            CreateDate = new DateTime(2021, 11, 10, 1, 59, 38, 13, DateTimeKind.Local).AddTicks(9522),
                             CreateUserID = 1,
                             Email = "632871194@qq.com",
-                            Image = "/Front/images/person_1.jpg",
+                            Image = "/Front/images/person_3.jpg",
                             Name = "User name 99",
                             Password = "222222",
                             PhoneNumber = "169888322",

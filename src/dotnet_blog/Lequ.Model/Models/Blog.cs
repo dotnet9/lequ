@@ -10,7 +10,9 @@ namespace Lequ.Model.Models
 
         public string? Content { get; set; }
 
-        public List<BlogCategory>? BlogCategories { get; set; }
+		public int Rating { get; set; }
+
+		public List<BlogCategory>? BlogCategories { get; set; }
 
         public List<BlogTag>? BlogTags { get; set; }
 
