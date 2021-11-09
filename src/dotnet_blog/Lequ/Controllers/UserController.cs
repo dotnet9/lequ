@@ -20,6 +20,13 @@ namespace Lequ.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            return await Task.FromResult(View());
+        }
+
+
         public async Task<IActionResult> AdminUserList(int page = 1)
         {
             var pageUser = await _service.SelectAsync(pageSize: GlobalVar.SMALL_PAGE_SIZE, pageIndex: page,
