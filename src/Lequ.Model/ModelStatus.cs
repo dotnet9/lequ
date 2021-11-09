@@ -2,6 +2,9 @@
 {
     public enum ModelStatus
     {
-        IsDeleted, Normal, Disable, Check
+        IsDeleted,
+        Normal,
+        Disable,
+        Check
     }
 }

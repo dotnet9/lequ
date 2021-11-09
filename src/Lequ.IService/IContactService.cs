@@ -2,7 +2,7 @@
 
 namespace Lequ.IService
 {
-	public interface IContactService : IBaseService<Contact>
+    public interface IContactService : IBaseService<Contact>
     {
     }
 }

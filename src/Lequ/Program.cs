@@ -26,10 +26,7 @@ builder.Services.AddAutoMapperSetup();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
+if (!app.Environment.IsDevelopment()) app.UseExceptionHandler("/Home/Error");
 
 //app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 //app.UseHttpsRedirection();

@@ -12,5 +12,4 @@
         public List<CheckBoxModel>? Categories { get; set; }
         public List<CheckBoxModel>? Tags { get; set; }
     }
-
 }

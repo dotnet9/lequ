@@ -1,5 +1,6 @@
-﻿@using Lequ.Model.ViewModels
+﻿@using Lequ.Common.Helper
 @using Lequ.Model.ViewModels.Comments
+@using Lequ.Model.ViewModels
 @model PagingViewModelBase<CommentDto>
 @{
     ViewData["Title"] = "AdminCommentList";
@@ -8,56 +9,57 @@
 
 <div class="row">
     <div class="col-md-9">
-    <div class="card">
-        <div class="card-header p-2">
-        <ul class="nav nav-pills">
-        </ul>
-        </div>
-        <div class="card-body">
-        <div class="tab-content">
-            <div class="active tab-pane" id="activity">
-                @if (Model != null && Model.Datas != null)
-                {
-                    @foreach (var item in Model.Datas)
-                    {
-                        <div class="post">
-                            <div class="user-block">
-                                <img class="img-circle img-bordered-sm" src="@item.CreateUser?.Image" alt="user image">
-                                <span class="username">
-                                    <a href="#">@item.CreateUser?.Name </a> - <a href="/Blog/Details?id=@item.ID">@item.Blog?.Title</a>
-                                    <a href="/Comment/Delete?blogID=@item.BlogID&id=@item.ID" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                                </span>
-                                <span class="description">@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
-                            </div>
-                            <p>@item.Content</p>
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        @if (Model != null && Model.Datas != null)
+                        {
+                            @foreach (var item in Model.Datas)
+                            {
+                                <div class="post">
+                                    <div class="user-block">
+                                        <img class="img-circle img-bordered-sm" src="@item.CreateUser?.Image" alt="user image">
+                                        <span class="username">
+                                            <a href="#">@item.CreateUser?.Name </a> - <a href="/Blog/Details?id=@item.ID">@item.Blog?.Title</a>
+                                            <a href="/Comment/Delete?blogID=@item.BlogID&id=@item.ID" class="float-right btn-tool">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                        </span>
+                                        <span class="description">@item.CreateDateString</span>
+                                    </div>
+                                    <p>@item.Content</p>
 
-                            <p>
-                                <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                                <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                                <span class="float-right">
-                                    @if (Model.Statuses != null)
-                                    {
-                                        @foreach (var status in Model.Statuses)
-                                        {
-                                            <input type="radio" name="@item.ID" asp-for="@item.StatusEnum" value="@((int)status)" checked='@(item.StatusEnum == status)' onchange='change_status(@item.ID, @((int)status))'/>
-                                            @status.ToString()
-                                        }
+                                    <p>
+                                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                                        <span class="float-right">
+                                            @if (Model.Statuses != null)
+                                            {
+                                                @foreach (var status in Model.Statuses)
+                                                {
+                                                    <input type="radio" name="@item.ID" asp-for="@item.StatusEnum" value="@((int)status)" checked='@(item.StatusEnum == status)' onchange='change_status(@item.ID, @((int)status))'/>
+                                                    @status.ToString()
+                                                }
+                                            }
+                                            <a href="#" class="link-black text-sm">
+                                                <i class="far fa-comments mr-1"></i> Comments (5)
+                                            </a>
+                                        </span>
+                                    </p>
 
-                                    }
-                                    <a href="#" class="link-black text-sm">
-                                        <i class="far fa-comments mr-1"></i> Comments (5)
-                                    </a>
-                                </span>
-                            </p>
-
-                            <input id="text_@item.ID" class="form-control form-control-sm" type="text" placeholder="Type a comment" onkeydown="type_comment(@item.BlogID,@item.ID)">
-                        </div>
-                    }
-                }
+                                    <input id="text_@item.ID" class="form-control form-control-sm" type="text" placeholder="Type a comment" onkeydown="type_comment(@item.BlogID,@item.ID)">
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
     </div>
 </div>
 
@@ -66,10 +68,12 @@
     <div class="card-footer">
         <nav aria-label="Contacts Page Navigation">
             <ul class="pagination justify-content-center m-0">
-            @for (int i = 1; i <= Model.PageCount; i++)
-            {
-                    <li class='@(Model.PageIndex == i ? "page-item active" : "page-item")'><a class="page-link" href="/Comment/AdminCommentList?status=@Model.Status&page=@i">@i</a></li>
-            }
+                @for (var i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class='@(Model.PageIndex == i ? "page-item active" : "page-item")'>
+                        <a class="page-link" href="/Comment/AdminCommentList?status=@Model.Status&page=@i">@i</a>
+                    </li>
+                }
             </ul>
         </nav>
     </div>

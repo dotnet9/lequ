@@ -12,11 +12,11 @@ namespace Lequ.Repository
         public async Task<User?> GetByBlogID(int id)
         {
             var user = from tempUser in dbContext.Users
-                       join tempBlog in dbContext.Blogs
-                       on tempUser.ID equals tempBlog.CreateUserID
-                       where tempBlog.ID == id
-                       select tempUser;
-                       
+                join tempBlog in dbContext.Blogs
+                    on tempUser.ID equals tempBlog.CreateUserID
+                where tempBlog.ID == id
+                select tempUser;
+
             return user.FirstOrDefault();
         }
     }

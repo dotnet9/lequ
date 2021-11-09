@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
-	public class ContactController : Controller
+    public class ContactController : Controller
     {
-        private readonly IContactService _service;
         private readonly IMapper _mapper;
+        private readonly IContactService _service;
 
         public ContactController(IContactService service, IMapper mapper)
         {
@@ -18,9 +18,9 @@ namespace Lequ.Controllers
         }
 
         public async Task<IActionResult> SendMessage()
-		{
-			return await Task.FromResult(View());
-		}
+        {
+            return await Task.FromResult(View());
+        }
 
         [HttpPost]
         public async Task<IActionResult> SendMessage(Contact contact)
@@ -31,5 +31,5 @@ namespace Lequ.Controllers
             await _service.InsertAsync(contact);
             return RedirectToAction("SendMessage");
         }
-	}
+    }
 }

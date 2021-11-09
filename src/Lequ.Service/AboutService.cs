@@ -4,9 +4,9 @@ using Lequ.Model.Models;
 
 namespace Lequ.Service
 {
-	public class AboutService : BaseService<About>, IAboutService
+    public class AboutService : BaseService<About>, IAboutService
     {
-        public AboutService(IAboutRepository repository):base(repository)
+        public AboutService(IAboutRepository repository) : base(repository)
         {
         }
     }

@@ -12,7 +12,6 @@ namespace Lequ.Model.Models
 
         public Comment? Parent { get; set; }
 
-        [StringLength(200)]
-        public string? Content { get; set; }
+        [StringLength(200)] public string? Content { get; set; }
     }
 }

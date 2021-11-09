@@ -6,48 +6,48 @@
 
 
 <form class="form-group" method="post">
-    <input type="hidden" asp-for="@Model.ID" />
-    <input type="hidden" asp-for="@Model.CreateDate" />
+    <input type="hidden" asp-for="@Model.ID"/>
+    <input type="hidden" asp-for="@Model.CreateDate"/>
     @Html.Label("Account")
-    @Html.TextBoxFor(x=>x.Account, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.Account, new { @class = "form-control" })
+    <br/>
     @Html.Label("Password")
-    @Html.TextBoxFor(x=>x.Password, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+    <br/>
     @Html.Label("Name")
-    @Html.TextBoxFor(x=>x.Name, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br/>
     @Html.Label("Title")
-    @Html.TextBoxFor(x=>x.Title, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br/>
     @Html.Label("Cover Image")
-    @Html.TextBoxFor(x=>x.Image, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+    <br/>
     @Html.Label("About Short")
-    @Html.TextAreaFor(x=>x.AboutShort, 3, 20, new { @class= "form-control" })
-    <br />    
+    @Html.TextAreaFor(x => x.AboutShort, 3, 20, new { @class = "form-control" })
+    <br/>
     @Html.Label("About")
-    @Html.TextAreaFor(x=>x.About, 5, 20, new { @class= "form-control" })
-    <br />    
+    @Html.TextAreaFor(x => x.About, 5, 20, new { @class = "form-control" })
+    <br/>
     @Html.Label("Address")
-    @Html.TextBoxFor(x=>x.Address, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+    <br/>
     @Html.Label("PhoneNumber")
-    @Html.TextBoxFor(x=>x.PhoneNumber, new { @class= "form-control" })
-    <br />    
+    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+    <br/>
     @Html.Label("Email")
-    @Html.TextBoxFor(x=>x.Email, new { @class= "form-control" })
-    <br />      
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    <br/>
     @Html.Label("Status")
-    <br />
+    <br/>
     @if (Model != null && Model.Statuses != null)
     {
         @foreach (var item in Model.Statuses)
         {
-            <input type="radio" asp-for="StatusEnum" value="@((int)item)"  checked='@(Model.StatusEnum == item)'/>@item.ToString()
+            <input type="radio" asp-for="StatusEnum" value="@((int)item)" checked='@(Model.StatusEnum == item)'/>
+            @item.ToString()
         }
-
     }
-    <br />    
+    <br/>
     <button type="submit" class="btn btn-info">Save</button>
 </form>

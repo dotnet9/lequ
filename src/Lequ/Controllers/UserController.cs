@@ -11,8 +11,8 @@ namespace Lequ.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserService _service;
         private readonly IMapper _mapper;
+        private readonly IUserService _service;
 
         public UserController(IUserService service, IMapper mapper)
         {
@@ -22,7 +22,8 @@ namespace Lequ.Controllers
 
         public async Task<IActionResult> AdminUserList(int page = 1)
         {
-            var pageUser = await _service.SelectAsync(pageSize: GlobalVar.SMALL_PAGE_SIZE, pageIndex: page, whereLambda: x => x.ID > 0, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
+            var pageUser = await _service.SelectAsync(pageSize: GlobalVar.SMALL_PAGE_SIZE, pageIndex: page,
+                whereLambda: x => x.ID > 0, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
             var vm = new PagingViewModelBase<UserViewModel>();
             if (pageUser != null && pageUser.Item1.Count > 0)
             {
@@ -32,6 +33,7 @@ namespace Lequ.Controllers
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
                 vm.Datas = userVM;
             }
+
             return View(vm);
         }
 
@@ -65,10 +67,7 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var dbUser = await _service.GetAsync(x => x.ID == id);
-            if (dbUser == null)
-            {
-                return RedirectToAction(nameof(AdminUserList));
-            }
+            if (dbUser == null) return RedirectToAction(nameof(AdminUserList));
             var vm = _mapper.Map<UpdateUserViewModel>(dbUser);
             vm.Statuses = Enum.GetValues<ModelStatus>();
             return View(vm);
@@ -78,10 +77,7 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Update(UpdateUserViewModel user)
         {
             var dbUser = await _service.GetAsync(x => x.ID == user.ID);
-            if (dbUser == null)
-            {
-                return RedirectToAction(nameof(AdminUserList));
-            }
+            if (dbUser == null) return RedirectToAction(nameof(AdminUserList));
 
             _mapper.Map(user, dbUser, typeof(UpdateUserViewModel), typeof(User));
             dbUser.UpdateDate = DateTime.Now;

@@ -12,14 +12,16 @@ namespace Lequ.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IBlogService _service;
-        private readonly IUserService _userService;
+        private const int PAGE_SIZE = 6;
         private readonly IAlbumService _AlbumService;
         private readonly ICategoryService _categoryService;
-        private readonly ITagService _tagService;
         private readonly IMapper _mapper;
-        private const int PAGE_SIZE = 6;
-        public BlogController(IBlogService service, IUserService userService, IAlbumService albumService, ICategoryService categoryService, ITagService tagService, IMapper mapper)
+        private readonly IBlogService _service;
+        private readonly ITagService _tagService;
+        private readonly IUserService _userService;
+
+        public BlogController(IBlogService service, IUserService userService, IAlbumService albumService,
+            ICategoryService categoryService, ITagService tagService, IMapper mapper)
         {
             _service = service;
             _userService = userService;
@@ -45,17 +47,21 @@ namespace Lequ.Controllers
             List<Blog>? blogs;
             if (categoryID.HasValue)
             {
-                var values = await _service.ListDetailsAsync(x => x.BlogCategories != null && x.BlogCategories.Any(p => p.CategoryID == categoryID.Value), page, PAGE_SIZE);
+                var values = await _service.ListDetailsAsync(
+                    x => x.BlogCategories != null && x.BlogCategories.Any(p => p.CategoryID == categoryID.Value), page,
+                    PAGE_SIZE);
                 blogs = values.Item1;
             }
             else if (tagID.HasValue)
             {
-                var values = await _service.ListDetailsAsync(x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == tagID.Value), page, PAGE_SIZE);
+                var values = await _service.ListDetailsAsync(
+                    x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == tagID.Value), page, PAGE_SIZE);
                 blogs = values.Item1;
             }
             else if (albumID.HasValue)
             {
-                var values = await _service.ListDetailsAsync(x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == albumID.Value), page, PAGE_SIZE);
+                var values = await _service.ListDetailsAsync(
+                    x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == albumID.Value), page, PAGE_SIZE);
                 blogs = values.Item1;
             }
             else
@@ -63,10 +69,8 @@ namespace Lequ.Controllers
                 var values = await _service.ListDetailsAsync(x => x.Status == (int)ModelStatus.Normal, page, PAGE_SIZE);
                 blogs = values.Item1;
             }
-            if (blogs.Count > 0)
-            {
-                return PartialView(blogs);
-            }
+
+            if (blogs.Count > 0) return PartialView(blogs);
             return Json("");
         }
 
@@ -117,10 +121,7 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var blog = await _service.GetDetailsAsync(id);
-            if (blog == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
+            if (blog == null) return RedirectToAction(nameof(Index));
             var vm = new DetailsViewModel
             {
                 ID = id,
@@ -133,26 +134,24 @@ namespace Lequ.Controllers
         public async Task<IActionResult> AdminBlogList(int page = 1)
         {
             var vm = new PagingViewModelBase<Blog>();
-            var pageBlog = await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVar.DEFAULT_PAGE_SIZE);
+            var pageBlog =
+                await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVar.DEFAULT_PAGE_SIZE);
             var users = await _userService.SelectAsync();
             if (pageBlog != null && users != null)
             {
                 pageBlog.Item1.ForEach(cu =>
                 {
                     if (cu.CreateUserID.HasValue)
-                    {
                         cu.CreateUser = users.FirstOrDefault(x => x.ID == cu.CreateUserID.Value);
-                    }
                     if (cu.UpdateUserID.HasValue)
-                    {
                         cu.UpdateUser = users.FirstOrDefault(x => x.ID == cu.UpdateUserID.Value);
-                    }
                 });
                 vm.PageCount = (pageBlog.Item2 + GlobalVar.DEFAULT_PAGE_SIZE - 1) / GlobalVar.DEFAULT_PAGE_SIZE;
                 vm.PageIndex = page < 1 ? 1 : page;
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
                 vm.Datas = pageBlog.Item1;
             }
+
             return View(vm);
         }
 
@@ -163,40 +162,22 @@ namespace Lequ.Controllers
             var albums = await _AlbumService.SelectAsync();
             viewModel.Albums = new List<CheckBoxModel>();
             if (albums != null)
-            {
                 foreach (var album in albums)
-                {
                     if (album != null)
-                    {
                         viewModel.Albums.Add(new CheckBoxModel(album.Name, album.ID));
-                    }
-                }
-            }
             var categories = await _categoryService.SelectAsync();
             viewModel.Categories = new List<CheckBoxModel>();
             if (categories != null)
-            {
                 foreach (var category in categories)
-                {
                     if (category != null)
-                    {
                         viewModel.Categories.Add(new CheckBoxModel(category.Name, category.ID));
-                    }
-                }
-            }
             var tags = await _tagService.SelectAsync();
             viewModel.Tags = new List<CheckBoxModel>();
             if (tags != null)
-            {
                 foreach (var tag in tags)
-                {
                     if (tag != null)
-                    {
                         viewModel.Tags.Add(new CheckBoxModel(tag.Name, tag.ID));
-                    }
-                }
-            }
-            await this.ReadBindInfo();
+            await ReadBindInfo();
             viewModel.Statuses = Enum.GetValues<ModelStatus>();
             viewModel.CreateDate = DateTime.Now;
             viewModel.UpdateDate = DateTime.Now;
@@ -210,30 +191,18 @@ namespace Lequ.Controllers
             blog.BlogAlbums = new List<BlogAlbum>();
             var albums = vm.Albums?.Where(x => x.Checked).ToList();
             if (albums != null)
-            {
                 foreach (var item in albums)
-                {
-                    blog.BlogAlbums.Add(new BlogAlbum() { BlogID = blog.ID, AlbumID = item.Value });
-                }
-            }
+                    blog.BlogAlbums.Add(new BlogAlbum { BlogID = blog.ID, AlbumID = item.Value });
             blog.BlogCategories = new List<BlogCategory>();
             var categories = vm.Categories?.Where(x => x.Checked).ToList();
             if (categories != null)
-            {
                 foreach (var item in categories)
-                {
-                    blog.BlogCategories.Add(new BlogCategory() { BlogID = blog.ID, CategoryID = item.Value });
-                }
-            }
+                    blog.BlogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = item.Value });
             blog.BlogTags = new List<BlogTag>();
             var tags = vm.Tags?.Where(x => x.Checked).ToList();
             if (tags != null)
-            {
                 foreach (var item in tags)
-                {
-                    blog.BlogTags.Add(new BlogTag() { BlogID = blog.ID, TagID = item.Value });
-                }
-            }
+                    blog.BlogTags.Add(new BlogTag { BlogID = blog.ID, TagID = item.Value });
 
             await _service.InsertAsync(blog);
             return RedirectToAction(nameof(AdminBlogList));
@@ -255,40 +224,25 @@ namespace Lequ.Controllers
             var albums = await _AlbumService.SelectAsync();
             viewModel.Albums = new List<CheckBoxModel>();
             if (albums != null)
-            {
                 foreach (var album in albums)
-                {
                     if (album != null)
-                    {
-                        viewModel.Albums.Add(new CheckBoxModel(album.Name, album.ID, blog?.BlogAlbums?.Exists(x => x.AlbumID == album.ID) == true));
-                    }
-                }
-            }
+                        viewModel.Albums.Add(new CheckBoxModel(album.Name, album.ID,
+                            blog?.BlogAlbums?.Exists(x => x.AlbumID == album.ID) == true));
             var categories = await _categoryService.SelectAsync();
             viewModel.Categories = new List<CheckBoxModel>();
             if (categories != null)
-            {
                 foreach (var category in categories)
-                {
                     if (category != null)
-                    {
-                        viewModel.Categories.Add(new CheckBoxModel(category.Name, category.ID, blog?.BlogCategories?.Exists(x => x.CategoryID == category.ID) == true));
-                    }
-                }
-            }
+                        viewModel.Categories.Add(new CheckBoxModel(category.Name, category.ID,
+                            blog?.BlogCategories?.Exists(x => x.CategoryID == category.ID) == true));
             var tags = await _tagService.SelectAsync();
             viewModel.Tags = new List<CheckBoxModel>();
             if (tags != null)
-            {
                 foreach (var tag in tags)
-                {
                     if (tag != null)
-                    {
-                        viewModel.Tags.Add(new CheckBoxModel(tag.Name, tag.ID, blog?.BlogTags?.Exists(x => x.TagID == tag.ID) == true));
-                    }
-                }
-            }
-            await this.ReadBindInfo();
+                        viewModel.Tags.Add(new CheckBoxModel(tag.Name, tag.ID,
+                            blog?.BlogTags?.Exists(x => x.TagID == tag.ID) == true));
+            await ReadBindInfo();
             viewModel.Statuses = Enum.GetValues<ModelStatus>();
             return View(viewModel);
         }
@@ -297,60 +251,33 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Update(UpdateBlogViewModel vm)
         {
             var blog = await _service.GetDetailsAsync(vm.ID);
-            if (blog == null)
-            {
-                return View();
-            }
+            if (blog == null) return View();
 
             _mapper.Map(vm, blog, typeof(UpdateBlogViewModel), typeof(Blog));
             if (blog.BlogAlbums != null)
-            {
                 blog.BlogAlbums.Clear();
-            }
             else
-            {
                 blog.BlogAlbums = new List<BlogAlbum>();
-            }
             var albums = vm.Albums?.Where(x => x.Checked).ToList();
             if (albums != null)
-            {
                 foreach (var item in albums)
-                {
-                    blog.BlogAlbums.Add(new BlogAlbum() { BlogID = blog.ID, AlbumID = item.Value });
-                }
-            }
+                    blog.BlogAlbums.Add(new BlogAlbum { BlogID = blog.ID, AlbumID = item.Value });
             if (blog.BlogCategories != null)
-            {
                 blog.BlogCategories.Clear();
-            }
             else
-            {
                 blog.BlogCategories = new List<BlogCategory>();
-            }
             var categories = vm.Categories?.Where(x => x.Checked).ToList();
             if (categories != null)
-            {
                 foreach (var item in categories)
-                {
-                    blog.BlogCategories.Add(new BlogCategory() { BlogID = blog.ID, CategoryID = item.Value });
-                }
-            }
+                    blog.BlogCategories.Add(new BlogCategory { BlogID = blog.ID, CategoryID = item.Value });
             if (blog.BlogTags != null)
-            {
                 blog.BlogTags.Clear();
-            }
             else
-            {
                 blog.BlogTags = new List<BlogTag>();
-            }
             var tags = vm.Tags?.Where(x => x.Checked).ToList();
             if (tags != null)
-            {
                 foreach (var item in tags)
-                {
-                    blog.BlogTags.Add(new BlogTag() { BlogID = blog.ID, TagID = item.Value });
-                }
-            }
+                    blog.BlogTags.Add(new BlogTag { BlogID = blog.ID, TagID = item.Value });
 
             await _service.UpdateAsync(blog);
             return RedirectToAction(nameof(AdminBlogList));
@@ -359,11 +286,11 @@ namespace Lequ.Controllers
         private async Task ReadBindInfo()
         {
             ViewBag.Users = (from x in await _userService.SelectAsync()
-                             select new SelectListItem
-                             {
-                                 Text = x.Name,
-                                 Value = x.ID.ToString()
-                             }).ToList();
+                select new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.ID.ToString()
+                }).ToList();
         }
     }
 }

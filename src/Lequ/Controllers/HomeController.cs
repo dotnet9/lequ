@@ -1,6 +1,6 @@
-﻿using Lequ.Models;
+﻿using System.Diagnostics;
+using Lequ.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Lequ.Controllers
 {

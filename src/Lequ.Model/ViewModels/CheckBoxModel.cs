@@ -1,6 +1,5 @@
 ﻿namespace Lequ.Model.ViewModels
 {
-
     public class CheckBoxModel
     {
         public CheckBoxModel()
@@ -9,9 +8,9 @@
 
         public CheckBoxModel(string text, int value, bool isChecked = false)
         {
-            this.Text = text;
-            this.Value = value;
-            this.Checked = isChecked;
+            Text = text;
+            Value = value;
+            Checked = isChecked;
         }
 
         public int Value { get; set; }

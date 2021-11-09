@@ -1,6 +1,4 @@
-﻿using Lequ.Model.Models;
-
-namespace Lequ.Model.ViewModels.Comments
+﻿namespace Lequ.Model.ViewModels.Comments
 {
     public class BlogCommentListViewModel
     {

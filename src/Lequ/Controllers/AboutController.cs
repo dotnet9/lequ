@@ -1,21 +1,21 @@
 ﻿using AutoMapper;
 using Lequ.IService;
 using Lequ.Model;
-using Lequ.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
     public class AboutController : Controller
     {
-        private readonly IAboutService _service;
         private readonly IMapper _mapper;
+        private readonly IAboutService _service;
 
         public AboutController(IAboutService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
         }
+
         public async Task<IActionResult> Index()
         {
             var value = await _service.GetAsync(x => x.Status == (int)ModelStatus.Normal);

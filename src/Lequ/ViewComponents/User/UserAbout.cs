@@ -6,14 +6,15 @@ namespace Lequ.ViewComponents.User
 {
     public class UserAbout : ViewComponent
     {
-        private readonly IUserService _service;
         private readonly IMapper _mapper;
+        private readonly IUserService _service;
 
         public UserAbout(IUserService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
         }
+
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
             var user = await _service.GetByBlogID(blogID);

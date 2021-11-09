@@ -2,7 +2,7 @@
 
 namespace Lequ.IService
 {
-	public interface ITagService : IBaseService<Tag>
+    public interface ITagService : IBaseService<Tag>
     {
     }
 }

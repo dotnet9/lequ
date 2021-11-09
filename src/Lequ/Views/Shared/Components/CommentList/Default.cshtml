@@ -1,10 +1,12 @@
-﻿@model Lequ.Model.ViewModels.Comments.BlogCommentListViewModel
+﻿@using Lequ.Common.Helper
+@using Lequ.Model.ViewModels.Comments
+@model BlogCommentListViewModel
 
 <div class="comment-form-wrap pt-5">
     <h3 class="mb-5">Leave a comment</h3>
     <form method="post" action="/Comment/Leave" class="p-5 bg-light">
-        <input type="hidden" name="BlogID" value="@Model?.BlogID" />
-        <input type="hidden" id="parentid" name="ParentID" />
+        <input type="hidden" name="BlogID" value="@Model?.BlogID"/>
+        <input type="hidden" id="parentid" name="ParentID"/>
         <div class="form-group">
             <label id="messagetip" for="message">Message</label>
             <a href="#message" id="remove_reply" onclick="remove_replay_parent()" class="reply rounded"></a>
@@ -30,28 +32,32 @@
                     </div>
                     <div class="comment-body">
                         <span>Floor @item.Floor @item.CreateUser?.Name</span>
-                        <span class="meta">&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                        <span class="meta">&nbsp;-&nbsp; @item.CreateDateString</span>
 
 
                         @if (item.Parent != null)
                         {
                             <ul class="children bg-light">
                                 <li class="comment">
-                                    <div class="vcard">
-                                        <img src="@item.Parent.CreateUser?.Image" alt="Image placeholder">
-                                    </div>
-                                    <div class="comment-body">
-                                        <span>Floor @item.Parent.Floor：@item.Parent.CreateUser?.Name</span>
-                                        <span class="meta">&nbsp;-&nbsp; @(((DateTime)(item.Parent.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
-                                        <p>@item.Parent?.Content</p>
-                                        <p><a href="#message" onclick='reply(@item.Parent.ID, "@item.Parent.CreateUser?.Name")' class="reply rounded">Reply</a></p>
-                                    </div>
+                                <div class="vcard">
+                                    <img src="@item.Parent.CreateUser?.Image" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                    <span>Floor @item.Parent.Floor：@item.Parent.CreateUser?.Name</span>
+                                    <span class="meta">&nbsp;-&nbsp; @item.Parent.CreateDateString</span>
+                                    <p>@item.Parent?.Content</p>
+                                    <p>
+                                        <a href="#message" onclick='reply(@item.Parent.ID, "@item.Parent.CreateUser?.Name")' class="reply rounded">Reply</a>
+                                    </p>
+                                </div>
                                 <li>
                             </ul>
                         }
 
                         <p>@item.Content</p>
-                        <p><a href="#message" onclick='reply(@item.ID, "@item.CreateUser?.Name")' class="reply rounded">Reply</a></p>
+                        <p>
+                            <a href="#message" onclick='reply(@item.ID, "@item.CreateUser?.Name")' class="reply rounded">Reply</a>
+                        </p>
                     </div>
                 </li>
             }

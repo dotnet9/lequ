@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Lequ.Model.Models.Blog>
+﻿@using Lequ.Common.Helper
+@using Lequ.Model.Models
+@model IEnumerable<Blog>
 
 <div class="sidebar-box">
     <h3 class="heading">Popular Posts</h3>
@@ -14,7 +16,7 @@
                             <div class="text">
                                 <h4>@item.Title</h4>
                                 <div class="post-meta">
-                                    <span class="mr-2">@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                                    <span class="mr-2">@item.CreateDateString</span>
                                 </div>
                             </div>
                         </a>

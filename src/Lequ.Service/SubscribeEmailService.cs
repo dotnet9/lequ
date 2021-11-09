@@ -4,9 +4,9 @@ using Lequ.Model.Models;
 
 namespace Lequ.Service
 {
-	public class SubscribeEmailService : BaseService<SubscribeEmail>, ISubscribeEmailService
+    public class SubscribeEmailService : BaseService<SubscribeEmail>, ISubscribeEmailService
     {
-        public SubscribeEmailService(ISubscribeEmailRepository repository):base(repository)
+        public SubscribeEmailService(ISubscribeEmailRepository repository) : base(repository)
         {
         }
     }

@@ -1,5 +1,5 @@
-﻿@using Lequ.Model.Models
-@model List<Comment>
+﻿@using Lequ.Common.Helper
+@model List<Lequ.Model.Models.Comment>
 @{
     ViewData["Title"] = "AdminBlogCommentList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,51 +8,53 @@
 <!DOCTYPE html>
 <html>
 <body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <section class="content">
-            <div class="container-fluid">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <section class="content">
+        <div class="container-fluid">
 
-                <!-- Timelime example  -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- The time line -->
-                        <div class="timeline">
-                            @if (Model != null)
+            <!-- Timelime example  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- The time line -->
+                    <div class="timeline">
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model)
                             {
-                                @foreach (var item in Model)
-                                {
-                                    <!-- timeline time label -->
-                                    <div class="time-label">
-                                        <span class="bg-success">@(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
-                                    </div>
-                                    <!-- /.timeline-label -->
-                                    <!-- timeline item -->
-                                    <div>
-                                        <i class="fas fa-comment bg-yellow"></i>
-                                        <div class="timeline-item">
-                                            <h3 class="timeline-header"><a href="#">@item.CreateUser?.Name</a> @item.CreateUser?.Email</h3>
+                                <!-- timeline time label -->
+                                <div class="time-label">
+                                    <span class="bg-success">@item.CreateDateString</span>
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                <div>
+                                    <i class="fas fa-comment bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header">
+                                            <a href="#">@item.CreateUser?.Name</a> @item.CreateUser?.Email
+                                        </h3>
 
-                                            <div class="timeline-body">@item.Content</div>
-                                            <div class="timeline-footer">
-                                                <a href="/Blog/Details?id=@item.BlogID" class="btn btn-primary btn-sm">Read more</a>
-                                                <a href="/Comment/Delete?blogID=@item.BlogID&id=@item.ID" class="btn btn-danger btn-sm">Delete</a>
-                                            </div>
+                                        <div class="timeline-body">@item.Content</div>
+                                        <div class="timeline-footer">
+                                            <a href="/Blog/Details?id=@item.BlogID" class="btn btn-primary btn-sm">Read more</a>
+                                            <a href="/Comment/Delete?blogID=@item.BlogID&id=@item.ID" class="btn btn-danger btn-sm">Delete</a>
                                         </div>
                                     </div>
-                                    <!-- END timeline item -->
-                                }
+                                </div>
+                                <!-- END timeline item -->
                             }
-                        </div>
+                        }
                     </div>
-                    <!-- /.col -->
                 </div>
+                <!-- /.col -->
             </div>
-            <!-- /.timeline -->
+        </div>
+        <!-- /.timeline -->
 
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- ./wrapper -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- ./wrapper -->
 </body>
 </html>

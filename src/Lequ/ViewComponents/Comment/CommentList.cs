@@ -8,9 +8,9 @@ namespace Lequ.ViewComponents.Comment
 {
     public class CommentList : ViewComponent
     {
+        private readonly IMapper _mapper;
         private readonly ICommentService _service;
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
 
         public CommentList(ICommentService service, IUserService userService, IMapper mapper)
         {
@@ -21,30 +21,27 @@ namespace Lequ.ViewComponents.Comment
 
         public async Task<IViewComponentResult> InvokeAsync(int blogID)
         {
-            var comments = await _service.SelectAsync(x => x.BlogID == blogID && x.Status == (int)ModelStatus.Normal, x => x.Parent);
+            var comments = await _service.SelectAsync(x => x.BlogID == blogID && x.Status == (int)ModelStatus.Normal,
+                x => x.Parent);
             var vm = new BlogCommentListViewModel();
             vm.BlogID = blogID;
             if (comments != null && comments.Count > 0)
             {
                 vm.Comments = _mapper.Map<List<CommentDto>>(comments);
                 var users = await _userService.SelectAsync();
-                for (int i = 0; i < vm.Comments.Count; i++)
+                for (var i = 0; i < vm.Comments.Count; i++)
                 {
                     var item = vm.Comments[i];
-                    item.Floor = (i + 1);
-                    if (users != null)
-                    {
-                        item.CreateUser = users.FirstOrDefault(x => x.ID == item.CreateUserID);
-                    }
+                    item.Floor = i + 1;
+                    if (users != null) item.CreateUser = users.FirstOrDefault(x => x.ID == item.CreateUserID);
                 }
+
                 vm.Comments.ForEach(x =>
                 {
-                    if (x.Parent != null)
-                    {
-                        x.Parent = vm.Comments.Find(c => c.ID == x.Parent.ID);
-                    }
+                    if (x.Parent != null) x.Parent = vm.Comments.Find(c => c.ID == x.Parent.ID);
                 });
             }
+
             return View(vm);
         }
     }

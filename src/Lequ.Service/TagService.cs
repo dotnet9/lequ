@@ -4,9 +4,9 @@ using Lequ.Model.Models;
 
 namespace Lequ.Service
 {
-	public class TagService : BaseService<Tag>, ITagService
+    public class TagService : BaseService<Tag>, ITagService
     {
-        public TagService(ITagRepository repository):base(repository)
+        public TagService(ITagRepository repository) : base(repository)
         {
         }
     }

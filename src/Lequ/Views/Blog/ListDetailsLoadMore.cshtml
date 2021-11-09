@@ -1,4 +1,5 @@
-﻿@model List<Lequ.Model.Models.Blog>
+﻿@using Lequ.Common.Helper
+@model List<Lequ.Model.Models.Blog>
 @{
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
@@ -9,27 +10,39 @@
     {
         <div class="col-lg-4 mb-4">
             <div class="entry2">
-                <a href="/Blog/Details?id=@item.ID"><img src="@item.Image" alt="Image" class="img-fluid rounded"></a>
+                <a href="/Blog/Details?id=@item.ID">
+                    <img src="@item.Image" alt="Image" class="img-fluid rounded">
+                </a>
                 <div class="excerpt">
                     @if (item.BlogCategories != null)
                     {
                         @foreach (var category in item.BlogCategories)
                         {
-                            <span class="@((styles[new Random().Next(3)]))">
-                                <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID"><i class="fas fa-eye"></i> @category?.Category?.Name</a>
+                            <span class="@styles[new Random().Next(3)]">
+                                <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
+                                    <i class="fas fa-eye"></i> @category?.Category?.Name
+                                </a>
                             </span>
                         }
                     }
 
-                    <h2><a href="/Blog/Details?id=@item.ID">@item.Title</a></h2>
+                    <h2>
+                        <a href="/Blog/Details?id=@item.ID">@item.Title</a>
+                    </h2>
                     <div class="post-meta align-items-center text-left clearfix">
-                        <figure class="author-figure mb-0 mr-3 float-left"><img src="@item.CreateUser?.Image" alt="Image" class="img-fluid"></figure>
-                        <span class="d-inline-block mt-1"><a href="#">@item.CreateUserID</a></span>
-                        <span>&nbsp;-&nbsp; @(((DateTime)(item.CreateDate??DateTime.Now)).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                        <figure class="author-figure mb-0 mr-3 float-left">
+                            <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid">
+                        </figure>
+                        <span class="d-inline-block mt-1">
+                            <a href="#">@item.CreateUserID</a>
+                        </span>
+                        <span>&nbsp;-&nbsp; @item.CreateDateString</span>
                     </div>
 
-                    <p>@((item?.Content?.Length < 100 ? item?.Content : item?.Content?.Substring(0, 100)))...</p>
-                    <p><a href="#">Read More</a></p>
+                    <p>@(item?.Content?.Length < 100 ? item?.Content : item?.Content?.Substring(0, 100))...</p>
+                    <p>
+                        <a href="#">Read More</a>
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,4 @@
-﻿using Lequ.Model.Models;
-
-namespace Lequ.Model.ViewModels.Users
+﻿namespace Lequ.Model.ViewModels.Users
 {
     public class UserViewModel : ViewModelBase
     {

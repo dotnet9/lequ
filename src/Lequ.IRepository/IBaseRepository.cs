@@ -1,5 +1,5 @@
-﻿using Lequ.Model;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
+using Lequ.Model;
 
 namespace Lequ.IRepository
 {
@@ -21,8 +21,11 @@ namespace Lequ.IRepository
 
         Task<List<T>> SelectAsync(Expression<Func<T, bool>> whereLambda, params Expression<Func<T, object>>[] includes);
 
-        Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes);
+        Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda,
+            SortDirection sortDirection, params Expression<Func<T, object>>[] includes);
 
-        Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes);
+        Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLambda,
+            Expression<Func<T, S>> orderByLambda, SortDirection sortDirection,
+            params Expression<Func<T, object>>[] includes);
     }
 }

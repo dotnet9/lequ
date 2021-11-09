@@ -7,8 +7,8 @@ namespace Lequ.Controllers
 {
     public class SubscribeEmailController : Controller
     {
-        private readonly ISubscribeEmailService _service;
         private readonly IMapper _mapper;
+        private readonly ISubscribeEmailService _service;
 
         public SubscribeEmailController(ISubscribeEmailService service, IMapper mapper)
         {

@@ -1,7 +1,7 @@
-﻿using Lequ.IRepository;
+﻿using System.Linq.Expressions;
+using Lequ.IRepository;
 using Lequ.IService;
 using Lequ.Model;
-using System.Linq.Expressions;
 
 namespace Lequ.Service
 {
@@ -39,7 +39,8 @@ namespace Lequ.Service
             return await _repository.IsExistAsync(whereLambda);
         }
 
-        public async Task<T?> GetAsync(Expression<Func<T, bool>> whereLambda, params Expression<Func<T, object>>[] includes)
+        public async Task<T?> GetAsync(Expression<Func<T, bool>> whereLambda,
+            params Expression<Func<T, object>>[] includes)
         {
             return await _repository.GetAsync(whereLambda, includes);
         }
@@ -49,19 +50,25 @@ namespace Lequ.Service
             return await _repository.SelectAsync(includes);
         }
 
-        public async Task<List<T>> SelectAsync(Expression<Func<T, bool>> whereLambda, params Expression<Func<T, object>>[] includes)
+        public async Task<List<T>> SelectAsync(Expression<Func<T, bool>> whereLambda,
+            params Expression<Func<T, object>>[] includes)
         {
             return await _repository.SelectAsync(whereLambda, includes);
         }
-        
-        public async Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
+
+        public async Task<List<T>> SelectAsync<S>(Expression<Func<T, bool>> whereLambda,
+            Expression<Func<T, S>> orderByLambda, SortDirection sortDirection,
+            params Expression<Func<T, object>>[] includes)
         {
             return await _repository.SelectAsync<S>(whereLambda, orderByLambda, sortDirection, includes);
         }
 
-        public async Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection, params Expression<Func<T, object>>[] includes)
+        public async Task<Tuple<List<T>, int>> SelectAsync<S>(int pageSize, int pageIndex,
+            Expression<Func<T, bool>> whereLambda, Expression<Func<T, S>> orderByLambda, SortDirection sortDirection,
+            params Expression<Func<T, object>>[] includes)
         {
-            return await _repository.SelectAsync(pageSize, pageIndex, whereLambda, orderByLambda, sortDirection, includes);
+            return await _repository.SelectAsync(pageSize, pageIndex, whereLambda, orderByLambda, sortDirection,
+                includes);
         }
     }
 }
