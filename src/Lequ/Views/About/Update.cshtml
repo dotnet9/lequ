@@ -1,0 +1,29 @@
+﻿@model Lequ.Model.Models.About
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">About</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            @using (Html.BeginForm("Update", "About", FormMethod.Post))
+            {
+                <div class="card-body">
+
+                    <textarea name="Details1" class="form-control" rows="25">@Model?.Details1</textarea>
+                    <button class="btn btn-success">Update</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

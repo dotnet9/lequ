@@ -1,5 +1,4 @@
-﻿@using Lequ.Common.Helper
-@using Lequ.Model.Models
+﻿@using Lequ.Model.Models
 @using Lequ.Model.ViewModels
 @model PagingViewModelBase<Blog>
 @{
@@ -8,86 +7,112 @@
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
 
-<h1>Blog List</h1>
-<br/>
 <a href="/Blog/Add/" class="btn btn-primary">New</a>
-<table class="table table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Album</th>
-        <th>Category</th>
-        <th>Tag</th>
-        <th>Create User</th>
-        <th>Create Date</th>
-        <th>Update User</th>
-        <th>Update Date</th>
-        <th>Control</th>
-    </tr>
-    @if (Model != null && Model.Datas != null)
-    {
-        @foreach (var item in Model.Datas)
-        {
-            <tr>
-                <td>@item.ID</td>
-                <td>
-                    <a href="/Blog/Details?id=@item.ID">@item.Title</a>
-                </td>
-                <td>@item.StatusEnum</td>
-                <td>
-                    @if (item.BlogAlbums != null)
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Blog</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th style="width: 1%">ID</th>
+                    <th style="width: 20%">Title</th>
+                    <th style="width: 5%">Status</th>
+                    <th style="width: 5%">Album</th>
+                    <th style="width: 5%">Category</th>
+                    <th style="width: 5%">Tag</th>
+                    <th style="width: 10%">Create User</th>
+                    <th style="width: 20%">Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Datas != null)
+                {
+                    @foreach (var item in Model.Datas)
                     {
-                        @foreach (var album in item.BlogAlbums)
-                        {
-                            <span class="@styles[new Random().Next(3)]">
-                                <a href="/Blog/ListByAlbum?albumID=@album?.Album?.ID">
-                                    <i class="fas fa-eye"></i> @album?.Album?.Name
+                        <tr>
+                            <td>@item.ID</td>
+                            <th>
+                                <a>
+                                    <a href="/Blog/Details?id=@item.ID">@item.Title</a>
                                 </a>
-                            </span>
-                        }
+                                <br />
+                                <small>
+                                    Created @item.CreateDateString
+                                </small>
+                            </th>
+                            <td>@item.StatusEnum</td>
+                            <td>
+                                @if (item.BlogAlbums != null)
+                                {
+                                    @foreach (var album in item.BlogAlbums)
+                                    {
+                                        <span class="@styles[new Random().Next(3)]">
+                                            <a href="/Blog/ListByAlbum?albumID=@album?.Album?.ID">
+                                                @album?.Album?.Name
+                                            </a>
+                                        </span>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (item.BlogCategories != null)
+                                {
+                                    @foreach (var category in item.BlogCategories)
+                                    {
+                                        <span class="@styles[new Random().Next(3)]">
+                                            <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
+                                                @category?.Category?.Name
+                                            </a>
+                                        </span>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (item.BlogTags != null)
+                                {
+                                    @foreach (var tag in item.BlogTags)
+                                    {
+                                        <span class="@styles[new Random().Next(3)]">
+                                            <a href="/Blog/ListByTag?tagID=@tag?.Tag?.ID">
+                                                @tag?.Tag?.Name
+                                            </a>
+                                        </span>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <img alt="Avatar" class="table-avatar" src="@item.CreateUser?.Image">
+                                        @item.CreateUser?.Name
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</a>
+                                <a href="/Blog/Update?id=@item.ID" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>Edit</a>
+                                <a href="/Blog/Details?id=@item.ID" class="btn btn-primary btn-sm"><i class="fas fa-folder"></i>Detail</a>
+                                <a href="/Comment/AdminBlogCommentList?blogID=@item.ID" class="btn btn-dark"><i class="fas fa-comments"></i>Message(@item.Comments?.Count)</a>
+                            </td>
+                        </tr>
                     }
-                </td>
-                <td>
-                    @if (item.BlogCategories != null)
-                    {
-                        @foreach (var category in item.BlogCategories)
-                        {
-                            <span class="@styles[new Random().Next(3)]">
-                                <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
-                                    <i class="fas fa-eye"></i> @category?.Category?.Name
-                                </a>
-                            </span>
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.BlogTags != null)
-                    {
-                        @foreach (var tag in item.BlogTags)
-                        {
-                            <span class="@styles[new Random().Next(3)]">
-                                <a href="/Blog/ListByTag?tagID=@tag?.Tag?.ID">
-                                    <i class="fas fa-eye"></i> @tag?.Tag?.Name
-                                </a>
-                            </span>
-                        }
-                    }
-                </td>
-                <td>@item.CreateUser?.Name</td>
-                <td>@item.CreateDateString</td>
-                <td>@item.UpdateUser?.Name</td>
-                <td>@item.UpdateDateString</td>
-                <td>
-                    <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger">Delete</a>
-                    <a href="/Blog/Update?id=@item.ID" class="btn btn-warning">Edit</a>
-                    <a href="/Blog/Details?id=@item.ID" class="btn btn-success">Detail</a>
-                    <a href="/Comment/AdminBlogCommentList?blogID=@item.ID" class="btn btn-dark">Message(@item.Comments?.Count)</a>
-                </td>
-            </tr>
-        }
-    }
-</table>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
 @if (Model != null && Model.PageCount > 1)
 {
     <div class="card-footer">

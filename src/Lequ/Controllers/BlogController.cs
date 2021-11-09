@@ -135,7 +135,7 @@ namespace Lequ.Controllers
         {
             var vm = new PagingViewModelBase<Blog>();
             var pageBlog =
-                await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVar.DEFAULT_PAGE_SIZE);
+                await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVar.SMALL_PAGE_SIZE);
             var users = await _userService.SelectAsync();
             if (pageBlog != null && users != null)
             {
@@ -146,7 +146,7 @@ namespace Lequ.Controllers
                     if (cu.UpdateUserID.HasValue)
                         cu.UpdateUser = users.FirstOrDefault(x => x.ID == cu.UpdateUserID.Value);
                 });
-                vm.PageCount = (pageBlog.Item2 + GlobalVar.DEFAULT_PAGE_SIZE - 1) / GlobalVar.DEFAULT_PAGE_SIZE;
+                vm.PageCount = (pageBlog.Item2 + GlobalVar.SMALL_PAGE_SIZE - 1) / GlobalVar.SMALL_PAGE_SIZE;
                 vm.PageIndex = page < 1 ? 1 : page;
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
                 vm.Datas = pageBlog.Item1;
