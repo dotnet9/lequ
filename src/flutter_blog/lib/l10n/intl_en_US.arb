@@ -1,0 +1,13 @@
+{
+  "@@locale": "en-US",
+  "appTitle": "Fun programmer | LEQU.co",
+  "@appTitle": {
+    "description": "application's title"
+  },
+  "welcomeDesc": "A programmer's personal website keen on Internet sharing spirit, sharing here is more than technology",
+  "@welcomeDesc": {},
+  "welcomeTitle": "Welcome to Our Blog",
+  "@welcomeTitle": {
+    "description": "welcome message"
+  }
+}
