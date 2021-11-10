@@ -1,0 +1,134 @@
+﻿@using Lequ.Model.Models
+@using Lequ.Model.ViewModels
+@model PagingViewModelBase<Blog>
+@{
+    ViewData["Title"] = "UserBlogList";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{string color = "";}
+@{string casename = "";}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Blog list</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+                        ID
+                    </th>
+                    <th style="width: 15%">
+                        Title
+                    </th>
+                    <th>
+                        Create Date
+                    </th>
+                    <th style="width: 8%" class="text-center">
+                        Update Date
+                    </th>
+                    <th style="width: 20%">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null && Model.Datas != null)
+                {
+                    @foreach (var item in Model.Datas)
+                    {
+                        if(item.Rating >= 85)
+                        {
+                            color = "post-category text-white bg-success mb-3";
+                            casename = "Good";
+                        }
+                        else if(item.Rating>=70 && item.Rating<85)
+                        {
+                            color = "post-category text-white bg-info mb-3";
+                            casename = "Just so so";
+                        }
+                        else if(item.Rating>=50 && item.Rating<70)
+                        {
+                            color = "post-category text-warning bg-info mb-3";
+                            casename = "Bad";
+                        }
+                        else
+                        {
+                            color = "post-category text-white bg-danger mb-3";
+                            casename = "Danger";
+                        }
+                        <tr>
+                            <td>
+                                @item.ID
+                            </td>
+                            <th>
+                                <a>
+                                    @item.Title
+                                </a>
+                                <br />
+                                <small>
+                                    Created @item.CreateDateString
+                                </small>
+                            </th>
+                            <td class="project_progress">
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="@item.Rating" style="width: @item.Rating%">
+                                    </div>
+                                </div>
+                                <small>
+                                    Rating: @item.Rating
+                                </small>
+                            </td>
+                            <td class="project-state">
+                                <span class="badge badge-@color">@casename</span>
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="#">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    View
+                                </a>
+                                <a class="btn btn-info btn-sm" href="#">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@if (Model != null && Model.PageCount > 1)
+{
+    <div class="card-footer">
+        <nav aria-label="Contacts Page Navigation">
+            <ul class="pagination justify-content-center m-0">
+                @for (var i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class='@(Model.PageIndex == i ? "page-item active" : "page-item")'>
+                        <a class="page-link" href="/Category/AdminCategoryList?page=@i">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+}

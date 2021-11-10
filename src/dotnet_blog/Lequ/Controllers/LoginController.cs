@@ -44,9 +44,17 @@ namespace Lequ.Controllers
 				};
 			var userIdentity = new ClaimsIdentity(claims, "Account");
 			ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-			HttpContext.Session.Set(GlobalVar.SESSION_ACCOUNT_KEY, dbUser.Account);
+			HttpContext.Session.Set(GlobalVar.SESSION_USER_ACCOUNT_KEY, dbUser.Account);
+			HttpContext.Session.Set(GlobalVar.SESSION_USER_ID_KEY, dbUser.ID);
 			await HttpContext.SignInAsync(principal);
 			return RedirectToAction("Index", "User");
+		}
+
+		
+		public async Task<IActionResult> Logout()
+		{
+			await HttpContext.SignOutAsync();
+			return RedirectToAction("Index", "Blog");
 		}
 	}
 }

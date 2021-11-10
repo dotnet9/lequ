@@ -99,7 +99,7 @@ namespace Lequ.Repository
 					Title = $"WPF值得注意的IsHitTestVisible {i}",
 					Content = $"{i} {GetBlogContent()}",
 					Image = "/Front/images/img_1.jpg",
-					Rating = random.Next(10),
+					Rating = random.Next(100),
 					StatusEnum = ModelStatus.Normal,
 					CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
 					CreateDate = DateTime.Now

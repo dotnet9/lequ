@@ -1,36 +1,54 @@
-﻿@model Lequ.Model.ViewModels.Users.UserViewModel
+﻿@model Lequ.Model.Models.User
 
 
 <div class="tab-pane" id="settings">
     <form class="form-horizontal">
         <div class="form-group row">
-            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+            <label for="Name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputName" placeholder="Name" value="@Model?.Name">
+                <input type="email" class="form-control" id="Name" placeholder="Name" value="@Model?.Name">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <label for="Email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="@Model?.Email">
+                <input type="email" class="form-control" id="Email" placeholder="Email" value="@Model?.Email">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputName2" class="col-sm-2 col-form-label">Title</label>
+            <label for="Title" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputName2" placeholder="Title" value="@Model?.Title">
+                <input type="text" class="form-control" id="Title" placeholder="Title" value="@Model?.Title">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+            <label for="AboutShort" class="col-sm-2 col-form-label">About short</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                <input type="text" class="form-control" id="AboutShort" placeholder="AboutShort" value="@Model?.AboutShort">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+            <label for="PhoneNumber" class="col-sm-2 col-form-label">Phone numbers</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                <input type="text" class="form-control" id="PhoneNumber" placeholder="Phone Number" value="@Model?.PhoneNumber">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Image" class="col-sm-2 col-form-label">Photograph</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Image" placeholder="Photograph" value="@Model?.Image">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="Password" placeholder="Password" value="@Model?.Password">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="About" class="col-sm-2 col-form-label">About</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="About" placeholder="About" value="@Model?.About"></textarea>
             </div>
         </div>
         <div class="form-group row">

@@ -20,18 +20,17 @@ namespace Lequ.ViewComponents.User
 
         public async Task<IViewComponentResult> InvokeAsync()
 		{
-			var account = HttpContext.Session.Get<string>(GlobalVar.SESSION_ACCOUNT_KEY);
-			if (string.IsNullOrWhiteSpace(account))
+			var userID = HttpContext.Session.Get<int>(GlobalVar.SESSION_USER_ID_KEY);
+			if (userID <= 0)
 			{
 				return View();
 			}
-			var dbUser = await _service.GetAsync(x => x.Account == account);
+			var dbUser = await _service.GetAsync(x => x.ID == userID);
 			if (dbUser == null)
 			{
 				return View();
 			}
-			var vm = _mapper.Map<UserViewModel>(dbUser);
-			return View(vm);
+			return View(dbUser);
         }
     }
 }

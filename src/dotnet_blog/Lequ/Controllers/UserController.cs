@@ -6,25 +6,51 @@ using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
 using Lequ.Model.ViewModels.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
+	[Authorize]
 	public class UserController : Controller
 	{
 		private readonly IMapper _mapper;
 		private readonly IUserService _service;
+		private readonly IBlogService _blogService;
 
-		public UserController(IUserService service, IMapper mapper)
+		public UserController(IUserService service, IMapper mapper, IBlogService blogService)
 		{
 			_service = service;
 			_mapper = mapper;
+			_blogService = blogService;
 		}
 
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
 			return await Task.FromResult(View());
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> UserBlogList(int page = 1)
+		{
+			var userID = HttpContext.Session.Get<int>(GlobalVar.SESSION_USER_ID_KEY);
+			if (userID <= 0)
+			{
+				return View();
+			}
+			var pageBlog = await _blogService.SelectAsync(pageSize: GlobalVar.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
+				whereLambda: x => x.CreateUserID == userID, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
+			var vm = new PagingViewModelBase<Blog>();
+			if (pageBlog != null && pageBlog.Item1.Count > 0)
+			{
+				vm.PageCount = (pageBlog.Item2 + GlobalVar.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVar.PAGINATION_SMALL_PAGE_SIZE;
+				vm.PageIndex = page < 1 ? 1 : page;
+				vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
+				vm.Datas = pageBlog.Item1;
+			}
+
+			return View(vm);
 		}
 
 		public async Task<IActionResult> AdminUserList(int page = 1)
