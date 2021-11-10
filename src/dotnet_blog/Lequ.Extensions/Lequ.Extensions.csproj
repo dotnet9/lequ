@@ -7,16 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0-preview.1"/>
-        <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0"/>
-        <PackageReference Include="AutoMapper" Version="10.1.1"/>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+        <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lequ.Repository\Lequ.Repository.csproj"/>
-        <ProjectReference Include="..\Lequ.Service\Lequ.Service.csproj"/>
+        <ProjectReference Include="..\Lequ.Repository\Lequ.Repository.csproj" />
+        <ProjectReference Include="..\Lequ.Service\Lequ.Service.csproj" />
     </ItemGroup>
 
 </Project>
