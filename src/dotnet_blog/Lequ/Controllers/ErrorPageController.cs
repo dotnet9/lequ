@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Lequ.Controllers
 {
-	public class ErrorController : Controller
+	public class ErrorPageController : Controller
 	{
 		public async Task<IActionResult> Error()
 		{
