@@ -24,12 +24,12 @@ namespace Lequ.Controllers
 
         public async Task<IActionResult> AdminCategoryList(int page = 1)
         {
-            var pageCategory = await _service.SelectAsync(pageSize: GlobalVar.SMALL_PAGE_SIZE, pageIndex: page,
+            var pageCategory = await _service.SelectAsync(pageSize: GlobalVar.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
                 whereLambda: x => x.ID > 0, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
             var vm = new PagingViewModelBase<Category>();
             if (pageCategory != null && pageCategory.Item1.Count > 0)
             {
-                vm.PageCount = (pageCategory.Item2 + GlobalVar.SMALL_PAGE_SIZE - 1) / GlobalVar.SMALL_PAGE_SIZE;
+                vm.PageCount = (pageCategory.Item2 + GlobalVar.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVar.PAGINATION_SMALL_PAGE_SIZE;
                 vm.PageIndex = page < 1 ? 1 : page;
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
                 vm.Datas = pageCategory.Item1;

@@ -59,14 +59,14 @@ namespace Lequ.Controllers
                 whereLambda = x => x.ID > 0;
             else
                 whereLambda = x => x.Status == (int)status;
-            var pageComment = await _service.SelectAsync(pageSize: GlobalVar.SMALL_PAGE_SIZE, pageIndex: page,
+            var pageComment = await _service.SelectAsync(pageSize: GlobalVar.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
                 whereLambda, orderByLambda: x => x.UpdateDate, sortDirection: SortDirection.Descending, x => x.Blog);
             var vm = new PagingViewModelBase<CommentDto>();
             vm.Status = status;
             if (pageComment != null && pageComment.Item1.Count > 0)
             {
                 var commentVM = _mapper.Map<List<CommentDto>>(pageComment.Item1);
-                vm.PageCount = (pageComment.Item2 + GlobalVar.SMALL_PAGE_SIZE - 1) / GlobalVar.SMALL_PAGE_SIZE;
+                vm.PageCount = (pageComment.Item2 + GlobalVar.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVar.PAGINATION_SMALL_PAGE_SIZE;
                 vm.PageIndex = page < 1 ? 1 : page;
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
                 vm.Datas = commentVM;

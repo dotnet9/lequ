@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Lequ.Common;
 using Lequ.IService;
 using Lequ.Model.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Lequ.Extensions;
 
 namespace Lequ.Controllers
 {
@@ -35,12 +37,14 @@ namespace Lequ.Controllers
 			{
 				return View();
 			}
+
 			var claims = new List<Claim>
 				{
 					new Claim(ClaimTypes.Name, dbUser.Account)
 				};
-			var userIdentity = new ClaimsIdentity(claims, "a");
+			var userIdentity = new ClaimsIdentity(claims, "Account");
 			ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+			HttpContext.Session.Set(GlobalVar.SESSION_ACCOUNT_KEY, dbUser.Account);
 			await HttpContext.SignInAsync(principal);
 			return RedirectToAction("Index", "User");
 		}
