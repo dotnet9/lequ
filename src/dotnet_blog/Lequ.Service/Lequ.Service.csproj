@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -7,16 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="ValidationRules\"/>
+        <PackageReference Include="FluentValidation" Version="10.3.4" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.4"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Lequ.IRepository\Lequ.IRepository.csproj"/>
-        <ProjectReference Include="..\Lequ.IService\Lequ.IService.csproj"/>
+        <ProjectReference Include="..\Lequ.IRepository\Lequ.IRepository.csproj" />
+        <ProjectReference Include="..\Lequ.IService\Lequ.IService.csproj" />
     </ItemGroup>
 
 </Project>

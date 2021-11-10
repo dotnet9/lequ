@@ -37,5 +37,32 @@ namespace Lequ.Controllers
 
             return View(vm);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Save(Category category)
+        {
+            if(category == null)
+            {
+                return RedirectToAction(nameof(AdminCategoryList));
+            }
+            if (category.ID > 0)
+            {
+                var dbCategory = await _service.GetAsync(x => x.ID == category.ID);
+                if(dbCategory==null)
+                {
+                    return RedirectToAction(nameof(AdminCategoryList));
+                }
+                dbCategory.Name= category.Name;
+                dbCategory.Description = category.Description;
+                dbCategory.UpdateDate = DateTime.Now;
+                await _service.UpdateAsync(dbCategory);
+            }
+            else
+            {
+                category.CreateDate = DateTime.Now;
+                await _service.InsertAsync(category);
+            }
+            return RedirectToAction(nameof(AdminCategoryList));
+        }
     }
 }

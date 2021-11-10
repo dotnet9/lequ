@@ -5,11 +5,13 @@ using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
 using Lequ.Model.ViewModels.Blogs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lequ.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private const int PAGE_SIZE = 6;
@@ -31,17 +33,20 @@ namespace Lequ.Controllers
             _tagService = tagService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int page = 1)
         {
             ViewBag.Page = page;
             return await Task.FromResult(View());
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> ListDetails()
         {
             return await Task.FromResult(PartialView());
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> ListDetailsLoadMore(int? categoryID, int? tagID, int? albumID, int page = 1)
         {
             List<Blog>? blogs;
@@ -81,6 +86,7 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ListByAlbum(int albumID)
         {
             var category = await _AlbumService.GetAsync(x => x.ID == albumID);
@@ -88,6 +94,7 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ListByCategory(int categoryID)
         {
             var category = await _categoryService.GetAsync(x => x.ID == categoryID);
@@ -95,6 +102,7 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ListByTag(int tagID)
         {
             var category = await _tagService.GetAsync(x => x.ID == tagID);
@@ -102,6 +110,7 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Featured()
         {
             ViewBag.title1 = "test title";
@@ -112,12 +121,14 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> OtherFeatured()
         {
             return await Task.FromResult(PartialView());
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var blog = await _service.GetDetailsAsync(id);
@@ -130,7 +141,7 @@ namespace Lequ.Controllers
             return await Task.FromResult(PartialView(vm));
         }
 
-
+        [Authorize]
         public async Task<IActionResult> AdminBlogList(int page = 1)
         {
             var vm = new PagingViewModelBase<Blog>();
@@ -155,6 +166,7 @@ namespace Lequ.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = UserRole.Admin)]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -286,11 +298,11 @@ namespace Lequ.Controllers
         private async Task ReadBindInfo()
         {
             ViewBag.Users = (from x in await _userService.SelectAsync()
-                select new SelectListItem
-                {
-                    Text = x.Name,
-                    Value = x.ID.ToString()
-                }).ToList();
+                             select new SelectListItem
+                             {
+                                 Text = x.Name,
+                                 Value = x.ID.ToString()
+                             }).ToList();
         }
     }
 }

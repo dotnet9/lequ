@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lequ.Model.Models
 {
@@ -24,6 +25,30 @@ namespace Lequ.Model.Models
 
         [StringLength(100)] public string? Email { get; set; }
 
+        [StringLength(1)][Obsolete] public int Role { get; set; }
+
+        [NotMapped]
+        public UserRoleEnum? RoleEnum
+        {
+            get => (UserRoleEnum?)Enum.Parse(typeof(UserRoleEnum), Role.ToString());
+            set
+            {
+                if (value.HasValue)
+                    Role = (int)value.Value;
+                else
+                    Role = (int)UserRoleEnum.User;
+            }
+        }
+
         public IEnumerable<Blog>? Blogs { get; set; }
+    }
+
+    public enum UserRoleEnum { Admin, Author, User}
+
+    public class UserRole
+    {
+        public const string Admin = "Admin";
+        public const string Author ="Author";
+        public const string User = "User";
     }
 }

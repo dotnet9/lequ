@@ -5,6 +5,11 @@
     ViewData["Title"] = "AdminCategoryList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<script type="text/javascript">
+    function edit_category(id,name,desc) {
+        alert(id+"_"+name+"_"+desc);
+    }
+</script>
 
 <div class="card">
     <div class="card-header">
@@ -98,11 +103,11 @@
                                     </i>
                                     View
                                 </a>
-                                <a class="btn btn-info btn-sm" href="#">
+                                <button class="btn btn-info btn-sm" onclick='edit_category(@item.ID, "@item.Name", "@item.Description")' data-toggle="modal" data-target="#Modal1">
                                     <i class="fas fa-pencil-alt">
                                     </i>
                                     Edit
-                                </a>
+                                </button>
                                 <a class="btn btn-danger btn-sm" href="#">
                                     <i class="fas fa-trash">
                                     </i>
@@ -132,3 +137,26 @@
         </nav>
     </div>
 }
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Popup</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add</h2>
+            </div>
+            <form method="post" action="/Category/Add">
+                <div class="modal-body">
+                    <input type="hidden" id="categoryID"/>
+                    <label>Name</label>
+                    <input type="text" id="categoryName" name="Name" class="form-control"/>
+                    <br />
+                    <label>Description</label>
+                    <textarea type="text" id="categoryDescription" name="Description" class="form-control"/>
+                    <br />
+                    <button class="btn btn-info">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
