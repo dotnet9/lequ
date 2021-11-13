@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Lequ.Common;
+using Lequ.Extensions.ServiceExtensions;
 using Lequ.IService;
 using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
 using Lequ.Model.ViewModels.Blogs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -31,6 +33,18 @@ namespace Lequ.Controllers
             _AlbumService = albumService;
             _categoryService = categoryService;
             _tagService = tagService;
+        }
+
+        public async Task<IActionResult> SetLanguage(string lang)
+        {
+            var rreturnUrl = HttpContext.RequestReferer() ?? "/Home";
+
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)),
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+            return Redirect(rreturnUrl);
         }
 
         [AllowAnonymous]

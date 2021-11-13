@@ -4,6 +4,7 @@ using Lequ.Extensions.ServiceExtensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +14,9 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-	options.IdleTimeout = TimeSpan.FromSeconds(10);
-	options.Cookie.HttpOnly = true;
-	options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 // Add services to the container.
@@ -23,16 +24,20 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddMvc(config =>
 {
-	var policy = new AuthorizationPolicyBuilder()
-		.RequireAuthenticatedUser()
-		.Build();
-	config.Filters.Add(new AuthorizeFilter(policy));
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
 });
-builder.Services.AddMvc();
+builder.Services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix, opts => opts.ResourcesPath = "Resources")
+    .AddDataAnnotationsLocalization();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-	.AddCookie(x => x.LoginPath = "/Login/UserLogin");
+    .AddCookie(x => x.LoginPath = "/Login/UserLogin");
 
 builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddMixedLocalizationSetup(builder.Configuration);
 builder.Services.AddAutoMapperSetup();
 
 var app = builder.Build();
@@ -53,7 +58,7 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Blog}/{action=Index}/{id?}");
+    name: "default",
+    pattern: "{controller=Blog}/{action=Index}/{id?}");
 
 app.Run();

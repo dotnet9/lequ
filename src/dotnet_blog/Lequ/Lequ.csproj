@@ -8,6 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <EmbeddedResource Remove="Resources\Resource.resx" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\Resource.zh-Hant.resx" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\Resource.resx" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -30,6 +42,25 @@
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\Language.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>Language.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Language.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Language.tt</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
