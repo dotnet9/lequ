@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <EmbeddedResource Remove="Resources\Resource.resx" />
+      <EmbeddedResource Remove="Resources\Views\Blog\Index.ja.resx" />
     </ItemGroup>
 
     <ItemGroup>
@@ -39,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Include="Resources\Views\Blog\Index.ja.resx" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />

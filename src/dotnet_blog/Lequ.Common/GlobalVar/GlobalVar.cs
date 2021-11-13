@@ -1,6 +1,6 @@
-﻿namespace Lequ.Common
+﻿namespace Lequ.Common.GlobalVar
 {
-    public class GlobalVar
+    public class GlobalVars
     {
         public const int PAGINATION_SMALL_PAGE_SIZE = 6;
         public const int PAGINATION_DEFAULT_PAGE_SIZE = 20;

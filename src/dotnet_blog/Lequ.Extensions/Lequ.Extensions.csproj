@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Lequ.Common\Lequ.Common.csproj" />
         <ProjectReference Include="..\Lequ.Repository\Lequ.Repository.csproj" />
         <ProjectReference Include="..\Lequ.Service\Lequ.Service.csproj" />
     </ItemGroup>

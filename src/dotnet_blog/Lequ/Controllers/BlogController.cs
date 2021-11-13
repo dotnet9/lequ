@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
-using Lequ.Common;
-using Lequ.Extensions.ServiceExtensions;
+using Lequ.Common.GlobalVar;
 using Lequ.IService;
 using Lequ.Model;
 using Lequ.Model.Models;
 using Lequ.Model.ViewModels;
 using Lequ.Model.ViewModels.Blogs;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Localization;
 
 namespace Lequ.Controllers
 {
@@ -20,37 +19,29 @@ namespace Lequ.Controllers
         private readonly IAlbumService _AlbumService;
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<BlogController> _localizer;
         private readonly IBlogService _service;
         private readonly ITagService _tagService;
         private readonly IUserService _userService;
 
         public BlogController(IBlogService service, IUserService userService, IAlbumService albumService,
-            ICategoryService categoryService, ITagService tagService, IMapper mapper)
+            ICategoryService categoryService, ITagService tagService, IMapper mapper, IStringLocalizer<BlogController> localizer)
         {
             _service = service;
             _userService = userService;
             _mapper = mapper;
+            _localizer = localizer;
             _AlbumService = albumService;
             _categoryService = categoryService;
             _tagService = tagService;
-        }
-
-        public async Task<IActionResult> SetLanguage(string lang)
-        {
-            var rreturnUrl = HttpContext.RequestReferer() ?? "/Home";
-
-            Response.Cookies.Append(
-                CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)),
-                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-            );
-            return Redirect(rreturnUrl);
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index(int page = 1)
         {
             ViewBag.Page = page;
+            var testMessage = _localizer["Test"];
+            ViewData["Test"] = testMessage;
             return await Task.FromResult(View());
         }
 
@@ -160,7 +151,7 @@ namespace Lequ.Controllers
         {
             var vm = new PagingViewModelBase<Blog>();
             var pageBlog =
-                await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVar.PAGINATION_SMALL_PAGE_SIZE);
+                await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE);
             var users = await _userService.SelectAsync();
             if (pageBlog != null && users != null)
             {
@@ -171,7 +162,7 @@ namespace Lequ.Controllers
                     if (cu.UpdateUserID.HasValue)
                         cu.UpdateUser = users.FirstOrDefault(x => x.ID == cu.UpdateUserID.Value);
                 });
-                vm.PageCount = (pageBlog.Item2 + GlobalVar.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVar.PAGINATION_SMALL_PAGE_SIZE;
+                vm.PageCount = (pageBlog.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
                 vm.PageIndex = page < 1 ? 1 : page;
                 vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
                 vm.Datas = pageBlog.Item1;

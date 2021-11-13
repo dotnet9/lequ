@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.Common;
+using Lequ.Common.GlobalVar;
 using Lequ.Extensions;
 using Lequ.IService;
 using Lequ.Model;
@@ -34,17 +35,17 @@ namespace Lequ.Controllers
 		[HttpGet]
 		public async Task<IActionResult> UserBlogList(int page = 1)
 		{
-			var userID = HttpContext.Session.Get<int>(GlobalVar.SESSION_USER_ID_KEY);
+			var userID = HttpContext.Session.Get<int>(GlobalVars.SESSION_USER_ID_KEY);
 			if (userID <= 0)
 			{
 				return View();
 			}
-			var pageBlog = await _blogService.SelectAsync(pageSize: GlobalVar.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
+			var pageBlog = await _blogService.SelectAsync(pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
 				whereLambda: x => x.CreateUserID == userID, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
 			var vm = new PagingViewModelBase<Blog>();
 			if (pageBlog != null && pageBlog.Item1.Count > 0)
 			{
-				vm.PageCount = (pageBlog.Item2 + GlobalVar.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVar.PAGINATION_SMALL_PAGE_SIZE;
+				vm.PageCount = (pageBlog.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
 				vm.PageIndex = page < 1 ? 1 : page;
 				vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 				vm.Datas = pageBlog.Item1;
@@ -55,13 +56,13 @@ namespace Lequ.Controllers
 
 		public async Task<IActionResult> AdminUserList(int page = 1)
 		{
-			var pageUser = await _service.SelectAsync(pageSize: GlobalVar.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
+			var pageUser = await _service.SelectAsync(pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
 				whereLambda: x => x.ID > 0, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
 			var vm = new PagingViewModelBase<UserViewModel>();
 			if (pageUser != null && pageUser.Item1.Count > 0)
 			{
 				var userVM = _mapper.Map<List<UserViewModel>>(pageUser.Item1);
-				vm.PageCount = (pageUser.Item2 + GlobalVar.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVar.PAGINATION_SMALL_PAGE_SIZE;
+				vm.PageCount = (pageUser.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
 				vm.PageIndex = page < 1 ? 1 : page;
 				vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 				vm.Datas = userVM;

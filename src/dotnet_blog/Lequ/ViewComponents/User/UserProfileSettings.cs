@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using Lequ.Common;
+using Lequ.Common.GlobalVar;
 using Lequ.Extensions;
 using Lequ.IService;
-using Lequ.Model.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.User
 {
-	public class UserProfileSettings : ViewComponent
+    public class UserProfileSettings : ViewComponent
     {
         private readonly IMapper _mapper;
         private readonly IUserService _service;
@@ -20,7 +19,7 @@ namespace Lequ.ViewComponents.User
 
         public async Task<IViewComponentResult> InvokeAsync()
 		{
-			var userID = HttpContext.Session.Get<int>(GlobalVar.SESSION_USER_ID_KEY);
+			var userID = HttpContext.Session.Get<int>(GlobalVars.SESSION_USER_ID_KEY);
 			if (userID <= 0)
 			{
 				return View();
