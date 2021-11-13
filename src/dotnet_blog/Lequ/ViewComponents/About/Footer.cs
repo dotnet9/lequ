@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Lequ.IService;
+using Lequ.Model;
+using Lequ.Model.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.About
@@ -8,17 +10,20 @@ namespace Lequ.ViewComponents.About
     {
         private readonly IMapper _mapper;
         private readonly IAboutService _service;
+        private readonly ILinkService _linkService;
 
-        public Footer(IAboutService service, IMapper mapper)
+        public Footer(IAboutService service, ILinkService linkService, IMapper mapper)
         {
             _service = service;
+            this._linkService = linkService;
             _mapper = mapper;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int id)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await _service.SelectAsync();
-            return View(values);
+            var vm = new FooterViewModel();
+            vm.FriendLinks = await _linkService.SelectAsync(whereLambda: x => x.Status == (int)ModelStatus.Normal, orderByLambda: x => x.Index, sortDirection: SortDirection.Ascending);
+            return View(vm);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Lequ.IService;
 using Lequ.Model;
 using Lequ.Model.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
@@ -17,6 +18,7 @@ namespace Lequ.Controllers
 			_mapper = mapper;
 		}
 
+		[AllowAnonymous]
 		public async Task<IActionResult> Index()
 		{
 			var about = await _service.GetAsync(x => x.ID > 0);

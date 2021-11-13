@@ -1,47 +1,24 @@
-﻿@model IEnumerable<Lequ.Model.Models.About>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+
+@inject IViewLocalizer Localizer
+@model Lequ.Model.ViewModels.FooterViewModel
 
 <div class="site-footer">
     <div class="container">
         <div class="row mb-5">
-            @if (Model != null)
-            {
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-4">
-                        <h3 class="footer-heading mb-4">About Us</h3>
-                        <p>@item.Details1</p>
-                    </div>
-                }
-            }
             <div class="col-md-3 ml-auto">
-                <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
+                <h3 class="footer-heading mb-4">@Localizer["Links"]</h3>
                 <ul class="list-unstyled float-left mr-5">
-                    <li>
-                        <a href="#">About Us</a>
-                    </li>
-                    <li>
-                        <a href="#">Advertise</a>
-                    </li>
-                    <li>
-                        <a href="#">Careers</a>
-                    </li>
-                    <li>
-                        <a href="#">Subscribes</a>
-                    </li>
-                </ul>
-                <ul class="list-unstyled float-left">
-                    <li>
-                        <a href="#">Travel</a>
-                    </li>
-                    <li>
-                        <a href="#">Lifestyle</a>
-                    </li>
-                    <li>
-                        <a href="#">Sports</a>
-                    </li>
-                    <li>
-                        <a href="#">Nature</a>
-                    </li>
+                    @if (Model != null && Model.FriendLinks != null)
+                    {
+                        foreach (var item in Model.FriendLinks)
+                        {
+                            <li>
+                                <a href="@item.Url" title="@item.Description" target="_blank">@item.Name</a>
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
             <div class="col-md-4">
@@ -66,6 +43,7 @@
                             <span class="icon-envelope p-2"></span>
                         </a>
                     </p>
+                    @await Html.PartialAsync("~/Views/Home/SetLanguage.cshtml")
                 </div>
             </div>
         </div>

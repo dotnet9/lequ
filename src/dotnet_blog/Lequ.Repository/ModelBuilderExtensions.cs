@@ -151,6 +151,13 @@ namespace Lequ.Repository
                 ID = 1,
                 Details1 = "优美胜于丑陋。\r\n 明了胜于晦涩。\r\n 简洁胜于复杂。\r\n 复杂胜于凌乱。\r\n 扁平胜于嵌套。\r\n 宽松胜于紧凑。\r\n 可读性很重要。"
             });
+
+            modelBuilder.Entity<Link>().HasData(
+                new Link { ID = 1, Index = 1, Name = "Dotnet9", Url = "https://dotnet9.com", Description = "一个主要以分享 dotNET 技术文章为主题的网站", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
+                new Link { ID = 2, Index = 2, Name = "Murat Yücedağ", Url = "https://www.youtube.com/channel/UCbkbOlw8snP93RJ2BhH44Qw", Description = "Ücretsiz olarak çektiğim yazılım eğitim videolarını paylaşmak amacıyla oluşturduğum kanaldır.Ücretsiz Eğitim Videosu Hedefi: 3000 :)Misyonumun fikir babası İsmail Hakkı Tonguç ve Hasan Ali Yücel'dir. Onlardan aldığım meşaleyi bizden sonrakilere taşımak gayesindeyim. Bunu da lisans eğitimimde aldığım mühendislik disiplinini eğitmenlikle harmanlayarak yazılımda Türkçe kaynağın arttırılması yolunda çalışmalarımı \"her geçen gün bir önceki günden daha dolu olmalı\" ideali ile sürdürmekteyim.", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
+                new Link { ID = 3, Index = 3, Name = "老张的哲学", Url = "https://www.cnblogs.com/laozhang-is-phi/", Description = "博客园大拿", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
+                new Link { ID = 4, Index = 4, Name = "青成", Url = "https://qingchengblog.com/", Description = ".NET技术爱好者", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now }
+                );
         }
 
         private static string GetBlogContent()

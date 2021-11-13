@@ -34,7 +34,7 @@ builder.Services.AddMvc(config =>
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
-var supportedCultures = new[] { "en", "zh-Hans", "zh-Hant", "ja" };
+var supportedCultures = new[] { "en-US", "zh-Hans", "zh-Hant", "ja" };
 builder.Services.Configure<RequestLocalizationOptions>(options =>
     {
         options.SetDefaultCulture(supportedCultures[0])
