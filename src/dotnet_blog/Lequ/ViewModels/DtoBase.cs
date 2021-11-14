@@ -3,7 +3,7 @@ using Lequ.Models;
 
 namespace Lequ.ViewModels
 {
-    public class ViewModelBase
+    public class DtoBase
     {
         public int ID { get; set; }
 

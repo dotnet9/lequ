@@ -1,12 +1,12 @@
 ﻿namespace Lequ.ViewModels
 {
-    public class CheckBoxModel
+    public class CheckBoxDto
     {
-        public CheckBoxModel()
+        public CheckBoxDto()
         {
         }
 
-        public CheckBoxModel(string text, int value, bool isChecked = false)
+        public CheckBoxDto(string text, int value, bool isChecked = false)
         {
             Text = text;
             Value = value;

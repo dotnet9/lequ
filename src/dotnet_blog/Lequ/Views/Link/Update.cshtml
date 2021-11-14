@@ -1,4 +1,9 @@
-﻿@model Lequ.ViewModels.UpdateLinkViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@using Lequ.ViewModels
+
+@inject IViewLocalizer Localizer
+@model LinkForUpdateDto
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,40 +11,38 @@
 
 
 <form class="form-group" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="Name"></label>
+        @Localizer["Name"]
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Url"></label>
+        @Localizer["Url"]
         <input asp-for="Url" class="form-control" />
         <span asp-validation-for="Url" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Description"></label>
+        @Localizer["Description"]
         <textarea rows="4" cols="20" asp-for="Description" class="form-control" ></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Index"></label>
+        @Localizer["Index"]
         <input asp-for="Index" class="form-control" />
         <span asp-validation-for="Index" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Status"></label>
+        @Localizer["Status"]
         <br />
         @if (Model?.Statuses != null)
         {
             @foreach (var item in Model.Statuses)
             {
-                <input type="radio" asp-for="StatusEnum" value="@((int)item)" checked='@(Model.StatusEnum == item)' />
-                @item.ToString()
+                <input type="radio" asp-for="StatusEnum" value="@((int)item)" checked="@(Model.StatusEnum == item)" />
+                @Localizer[item.ToString()]
             }
-            <span asp-validation-for="StatusEnum" class="text-danger"></span>
         }
-        <br />
+        <span asp-validation-for="StatusEnum" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-info">Save</button>
+    <button type="submit" class="btn btn-info">@Localizer["Save"]</button>
 </form>

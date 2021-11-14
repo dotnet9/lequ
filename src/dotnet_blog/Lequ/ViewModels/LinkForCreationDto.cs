@@ -2,7 +2,7 @@
 
 namespace Lequ.ViewModels
 {
-    public class UpdateLinkViewModel : ViewModelBase
+    public class LinkForCreationDto : DtoBase
     {
         [StringLength(20)] public string? Name { get; set; }
 

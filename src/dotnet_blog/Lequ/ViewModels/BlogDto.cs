@@ -2,7 +2,7 @@
 
 namespace Lequ.ViewModels
 {
-    public class BlogViewModel : ViewModelBase
+    public class BlogDto : DtoBase
     {
         public string? Title { get; set; }
 

@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Lequ.GlobalVar;
 using Lequ.IRepository;
 using Lequ.IService;
@@ -21,6 +22,8 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddLocalization(o => o.ResourcesPath = ConfigurationConsts.RESOURCES_PATH);
 
+builder.Services.AddFluentValidationSetup();
+
 builder.Services.AddMvc(config =>
     {
         var policy = new AuthorizationPolicyBuilder()
@@ -28,6 +31,7 @@ builder.Services.AddMvc(config =>
             .Build();
         config.Filters.Add(new AuthorizeFilter(policy));
     })
+    .AddFluentValidation()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 

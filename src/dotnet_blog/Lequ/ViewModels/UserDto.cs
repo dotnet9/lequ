@@ -1,12 +1,10 @@
 ﻿namespace Lequ.ViewModels
 {
-    public class AddUserViewModel : ViewModelBase
+    public class UserDto : DtoBase
     {
         public string? Name { get; set; }
 
         public string? Account { get; set; }
-
-        public string? Password { get; set; }
 
         public string? Title { get; set; }
 

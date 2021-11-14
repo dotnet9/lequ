@@ -2,7 +2,7 @@
 
 namespace Lequ.ViewModels
 {
-    public class FooterViewModel
+    public class FooterDto
     {
         public List<Link>? FriendLinks { get; set; }
     }

@@ -25,7 +25,7 @@ namespace Lequ.Controllers
         {
             var pageCategory = await _service.SelectAsync(pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
                 whereLambda: x => x.ID > 0, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
-            var vm = new PagingViewModelBase<Category>();
+            var vm = new PagingDtoBase<Category>();
             if (pageCategory != null && pageCategory.Item1.Count > 0)
             {
                 vm.PageCount = (pageCategory.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVars.PAGINATION_SMALL_PAGE_SIZE;

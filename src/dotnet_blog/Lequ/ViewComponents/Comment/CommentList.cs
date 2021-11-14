@@ -23,7 +23,7 @@ namespace Lequ.ViewComponents.Comment
         {
             var comments = await _service.SelectAsync(x => x.BlogID == blogID && x.Status == (int)ModelStatus.Normal,
                 x => x.Parent);
-            var vm = new BlogCommentListViewModel();
+            var vm = new BlogCommentDto();
             vm.BlogID = blogID;
             if (comments != null && comments.Count > 0)
             {

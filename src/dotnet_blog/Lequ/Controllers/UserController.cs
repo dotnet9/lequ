@@ -38,7 +38,7 @@ namespace Lequ.Controllers
 			}
 			var pageBlog = await _blogService.SelectAsync(pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
 				whereLambda: x => x.CreateUserID == userID, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
-			var vm = new PagingViewModelBase<Blog>();
+			var vm = new PagingDtoBase<Blog>();
 			if (pageBlog != null && pageBlog.Item1.Count > 0)
 			{
 				vm.PageCount = (pageBlog.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
@@ -54,10 +54,10 @@ namespace Lequ.Controllers
 		{
 			var pageUser = await _service.SelectAsync(pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE, pageIndex: page,
 				whereLambda: x => x.ID > 0, orderByLambda: x => x.CreateDate, sortDirection: SortDirection.Descending);
-			var vm = new PagingViewModelBase<UserViewModel>();
+			var vm = new PagingDtoBase<UserDto>();
 			if (pageUser != null && pageUser.Item1.Count > 0)
 			{
-				var userVM = _mapper.Map<List<UserViewModel>>(pageUser.Item1);
+				var userVM = _mapper.Map<List<UserDto>>(pageUser.Item1);
 				vm.PageCount = (pageUser.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) / GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
 				vm.PageIndex = page < 1 ? 1 : page;
 				vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
@@ -71,13 +71,13 @@ namespace Lequ.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Add()
 		{
-			var vm = new AddUserViewModel();
+			var vm = new UserForCreationDto();
 			vm.Statuses = Enum.GetValues<ModelStatus>();
 			return await Task.FromResult(View(vm));
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Add(AddUserViewModel user)
+		public async Task<IActionResult> Add(UserForCreationDto user)
 		{
 			var dbUser = _mapper.Map<User>(user);
 			dbUser.CreateDate = DateTime.Now;
@@ -98,18 +98,18 @@ namespace Lequ.Controllers
 		{
 			var dbUser = await _service.GetAsync(x => x.ID == id);
 			if (dbUser == null) return RedirectToAction(nameof(AdminUserList));
-			var vm = _mapper.Map<UpdateUserViewModel>(dbUser);
+			var vm = _mapper.Map<UserForUpdateDto>(dbUser);
 			vm.Statuses = Enum.GetValues<ModelStatus>();
 			return View(vm);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Update(UpdateUserViewModel user)
+		public async Task<IActionResult> Update(UserForUpdateDto user)
 		{
 			var dbUser = await _service.GetAsync(x => x.ID == user.ID);
 			if (dbUser == null) return RedirectToAction(nameof(AdminUserList));
 
-			_mapper.Map(user, dbUser, typeof(UpdateUserViewModel), typeof(User));
+			_mapper.Map(user, dbUser, typeof(UserForUpdateDto), typeof(User));
 			dbUser.UpdateDate = DateTime.Now;
 			await _service.UpdateAsync(dbUser);
 			return RedirectToAction(nameof(AdminUserList));

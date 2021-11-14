@@ -8,14 +8,14 @@ namespace Lequ.AutoMapper
     {
         public CustomProfile()
         {
-            CreateMap<Blog, AddBlogViewModel>().ReverseMap();
-            CreateMap<Blog, UpdateBlogViewModel>().ReverseMap();
+            CreateMap<Blog, BlogForCreationDto>().ReverseMap();
+            CreateMap<Blog, BlogFotUpdateDto>().ReverseMap();
             CreateMap<Comment, CommentDto>();
-            CreateMap<User, UserViewModel>();
-            CreateMap<AddUserViewModel, User>();
-            CreateMap<User, UpdateUserViewModel>().ReverseMap();
-            CreateMap<CreateLinkViewModel, Link>();
-            CreateMap<UpdateLinkViewModel, Link>().ReverseMap();
+            CreateMap<User, UserDto>();
+            CreateMap<UserForCreationDto, User>();
+            CreateMap<User, UserForUpdateDto>().ReverseMap();
+            CreateMap<LinkForCreationDto, Link>();
+            CreateMap<LinkForUpdateDto, Link>().ReverseMap();
         }
     }
 }

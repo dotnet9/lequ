@@ -21,7 +21,7 @@ namespace Lequ.ViewComponents.About
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var vm = new FooterViewModel();
+            var vm = new FooterDto();
             vm.FriendLinks = await _linkService.SelectAsync(whereLambda: x => x.Status == (int)ModelStatus.Normal, orderByLambda: x => x.Index, sortDirection: SortDirection.Ascending);
             return View(vm);
         }

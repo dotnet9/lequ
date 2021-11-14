@@ -2,7 +2,7 @@
 
 namespace Lequ.ViewModels
 {
-    public class CommentDto : ViewModelBase
+    public class CommentDto : DtoBase
     {
         public int Floor { get; set; }
 

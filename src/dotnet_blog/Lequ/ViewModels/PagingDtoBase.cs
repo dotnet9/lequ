@@ -2,7 +2,7 @@
 
 namespace Lequ.ViewModels
 {
-    public class PagingViewModelBase<T>
+    public class PagingDtoBase<T>
     {
         public int PageIndex { get; set; }
 

@@ -1,16 +1,20 @@
-﻿@using Lequ.Models
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@using Lequ.Models
+
+@inject IViewLocalizer Localizer
 @model List<Link>
 
 @{
-    ViewData["Title"] = "AdminLinkList";
+    ViewData["Title"] = Localizer["Title"];
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
-<a href="/Link/Create/" class="btn btn-primary"><i class="fas fa-plus-square"></i>New</a>
+<a href="/Link/Create/" class="btn btn-primary"><i class="fas fa-plus-square"></i>@Localizer["Create"]</a>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Blog</h3>
+        <h3 class="card-title">@Localizer["Title"]</h3>
 
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -25,11 +29,11 @@
         <table class="table table-striped projects">
             <thead>
                 <tr>
-                    <th style="width: 1%">ID</th>
-                    <th style="width: 5%">Name</th>
-                    <th style="width: 1%">Index</th>
-                    <th style="width: 5%">Url</th>
-                    <th style="width: 20%">Description</th>
+                    <th style="width: 1%">@Localizer["ID"]</th>
+                    <th style="width: 5%">@Localizer["Name"]</th>
+                    <th style="width: 2%">@Localizer["Index"]</th>
+                    <th style="width: 5%">@Localizer["Url"]</th>
+                    <th style="width: 20%">@Localizer["Description"]</th>
                     <th style="width: 1%"></th>
                     <th style="width: 1%"></th>
                 </tr>
@@ -52,11 +56,11 @@
                             <td>@item.Url</td>
                             <td>@item.Description</td>
                             <td>
-                                <a asp-action="Update" asp-route-id="@item.ID" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>Update</a>
+                                <a asp-action="Update" asp-route-id="@item.ID" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>@Localizer["Update"]</a>
                             </td>
                             <td>
                                 <form asp-route-id="@item.ID" asp-action="Delete" method="post">
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>@Localizer["Delete"]</button>
                                 </form>
                             </td>
                         </tr>

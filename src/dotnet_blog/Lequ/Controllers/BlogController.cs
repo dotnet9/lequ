@@ -136,7 +136,7 @@ namespace Lequ.Controllers
         {
             var blog = await _service.GetDetailsAsync(id);
             if (blog == null) return RedirectToAction(nameof(Index));
-            var vm = new DetailsViewModel
+            var vm = new DetailsDto
             {
                 ID = id,
                 UserID = blog.CreateUserID!.Value
@@ -147,7 +147,7 @@ namespace Lequ.Controllers
         [Authorize]
         public async Task<IActionResult> AdminBlogList(int page = 1)
         {
-            var vm = new PagingViewModelBase<Blog>();
+            var vm = new PagingDtoBase<Blog>();
             var pageBlog =
                 await _service.ListDetailsAsync(x => x.ID > 0, pageIndex: page, pageSize: GlobalVars.PAGINATION_SMALL_PAGE_SIZE);
             var users = await _userService.SelectAsync();
@@ -173,25 +173,25 @@ namespace Lequ.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            AddBlogViewModel viewModel = new();
+            BlogForCreationDto viewModel = new();
             var albums = await _AlbumService.SelectAsync();
-            viewModel.Albums = new List<CheckBoxModel>();
+            viewModel.Albums = new List<CheckBoxDto>();
             if (albums != null)
                 foreach (var album in albums)
                     if (album != null)
-                        viewModel.Albums.Add(new CheckBoxModel(album.Name, album.ID));
+                        viewModel.Albums.Add(new CheckBoxDto(album.Name, album.ID));
             var categories = await _categoryService.SelectAsync();
-            viewModel.Categories = new List<CheckBoxModel>();
+            viewModel.Categories = new List<CheckBoxDto>();
             if (categories != null)
                 foreach (var category in categories)
                     if (category != null)
-                        viewModel.Categories.Add(new CheckBoxModel(category.Name, category.ID));
+                        viewModel.Categories.Add(new CheckBoxDto(category.Name, category.ID));
             var tags = await _tagService.SelectAsync();
-            viewModel.Tags = new List<CheckBoxModel>();
+            viewModel.Tags = new List<CheckBoxDto>();
             if (tags != null)
                 foreach (var tag in tags)
                     if (tag != null)
-                        viewModel.Tags.Add(new CheckBoxModel(tag.Name, tag.ID));
+                        viewModel.Tags.Add(new CheckBoxDto(tag.Name, tag.ID));
             await ReadBindInfo();
             viewModel.Statuses = Enum.GetValues<ModelStatus>();
             viewModel.CreateDate = DateTime.Now;
@@ -200,7 +200,7 @@ namespace Lequ.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddBlogViewModel vm)
+        public async Task<IActionResult> Add(BlogForCreationDto vm)
         {
             var blog = _mapper.Map<Blog>(vm);
             blog.BlogAlbums = new List<BlogAlbum>();
@@ -234,28 +234,28 @@ namespace Lequ.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var blog = await _service.GetDetailsAsync(id);
-            var viewModel = _mapper.Map<UpdateBlogViewModel>(blog);
+            var viewModel = _mapper.Map<BlogFotUpdateDto>(blog);
 
             var albums = await _AlbumService.SelectAsync();
-            viewModel.Albums = new List<CheckBoxModel>();
+            viewModel.Albums = new List<CheckBoxDto>();
             if (albums != null)
                 foreach (var album in albums)
                     if (album != null)
-                        viewModel.Albums.Add(new CheckBoxModel(album.Name, album.ID,
+                        viewModel.Albums.Add(new CheckBoxDto(album.Name, album.ID,
                             blog?.BlogAlbums?.Exists(x => x.AlbumID == album.ID) == true));
             var categories = await _categoryService.SelectAsync();
-            viewModel.Categories = new List<CheckBoxModel>();
+            viewModel.Categories = new List<CheckBoxDto>();
             if (categories != null)
                 foreach (var category in categories)
                     if (category != null)
-                        viewModel.Categories.Add(new CheckBoxModel(category.Name, category.ID,
+                        viewModel.Categories.Add(new CheckBoxDto(category.Name, category.ID,
                             blog?.BlogCategories?.Exists(x => x.CategoryID == category.ID) == true));
             var tags = await _tagService.SelectAsync();
-            viewModel.Tags = new List<CheckBoxModel>();
+            viewModel.Tags = new List<CheckBoxDto>();
             if (tags != null)
                 foreach (var tag in tags)
                     if (tag != null)
-                        viewModel.Tags.Add(new CheckBoxModel(tag.Name, tag.ID,
+                        viewModel.Tags.Add(new CheckBoxDto(tag.Name, tag.ID,
                             blog?.BlogTags?.Exists(x => x.TagID == tag.ID) == true));
             await ReadBindInfo();
             viewModel.Statuses = Enum.GetValues<ModelStatus>();
@@ -263,12 +263,12 @@ namespace Lequ.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateBlogViewModel vm)
+        public async Task<IActionResult> Update(BlogFotUpdateDto vm)
         {
             var blog = await _service.GetDetailsAsync(vm.ID);
             if (blog == null) return View();
 
-            _mapper.Map(vm, blog, typeof(UpdateBlogViewModel), typeof(Blog));
+            _mapper.Map(vm, blog, typeof(BlogFotUpdateDto), typeof(Blog));
             if (blog.BlogAlbums != null)
                 blog.BlogAlbums.Clear();
             else

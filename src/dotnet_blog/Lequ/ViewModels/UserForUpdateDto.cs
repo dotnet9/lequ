@@ -1,6 +1,6 @@
 ﻿namespace Lequ.ViewModels
 {
-    public class UpdateUserViewModel : ViewModelBase
+    public class UserForUpdateDto : DtoBase
     {
         public string? Name { get; set; }
 
