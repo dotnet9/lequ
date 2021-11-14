@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Lequ.Common.GlobalVar;
+using Lequ.GlobalVar;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.Models;
-using Lequ.Model.ViewModels;
-using Lequ.Model.ViewModels.Comments;
+using Lequ.Models;
+using Lequ.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 

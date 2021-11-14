@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.Models;
+using Lequ.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
-	public class ContactController : Controller
+    public class ContactController : Controller
 	{
 		private readonly IMapper _mapper;
 		private readonly IContactService _service;

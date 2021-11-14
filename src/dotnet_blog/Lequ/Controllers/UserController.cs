@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
-using Lequ.Common;
-using Lequ.Common.GlobalVar;
-using Lequ.Extensions;
+using Lequ.GlobalVar;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.Models;
-using Lequ.Model.ViewModels;
-using Lequ.Model.ViewModels.Users;
+using Lequ.Models;
+using Lequ.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers
 {
-	[Authorize]
+    [Authorize]
 	public class UserController : Controller
 	{
 		private readonly IMapper _mapper;

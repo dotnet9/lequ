@@ -1,18 +1,15 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Lequ.Common.GlobalVar;
-using Lequ.Extensions.ServiceExtensions;
+using Lequ.GlobalVar;
+using Lequ.IRepository;
+using Lequ.IService;
+using Lequ.Repository;
+using Lequ.Service;
+using Lequ.ServiceExtensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
-using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacModuleRegister()));
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -51,6 +48,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddAutoMapperSetup();
+builder.Services.AddRepositorySetup();
 
 var app = builder.Build();
 

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.Models;
+using Lequ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

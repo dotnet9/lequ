@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.ViewModels.Comments;
+using Lequ.Models;
+using Lequ.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.Comment

@@ -21,18 +21,19 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="FluentValidation" Version="10.3.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Lequ.Common\Lequ.Common.csproj" />
-        <ProjectReference Include="..\Lequ.Extensions\Lequ.Extensions.csproj" />
-        <ProjectReference Include="..\Lequ.Service\Lequ.Service.csproj" />
+        <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="6.13.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -47,6 +48,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Update="TestBlogContent.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="Resources\Language.tt">
         <Generator>TextTemplatingFileGenerator</Generator>
         <LastGenOutput>Language.cs</LastGenOutput>

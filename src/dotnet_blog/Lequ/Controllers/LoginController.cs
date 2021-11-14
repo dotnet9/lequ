@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Lequ.Common.GlobalVar;
-using Lequ.Extensions;
+using Lequ.GlobalVar;
 using Lequ.IService;
-using Lequ.Model.Models;
+using Lequ.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +9,7 @@ using System.Security.Claims;
 
 namespace Lequ.Controllers
 {
-    public class LoginController : Controller
+	public class LoginController : Controller
 	{
 		private readonly IMapper _mapper;
 		private readonly IUserService _service;
@@ -47,7 +46,7 @@ namespace Lequ.Controllers
 			HttpContext.Session.Set(GlobalVars.SESSION_USER_ACCOUNT_KEY, dbUser.Account);
 			HttpContext.Session.Set(GlobalVars.SESSION_USER_ID_KEY, dbUser.ID);
 			await HttpContext.SignInAsync(principal);
-			return RedirectToAction("Index", "User");
+			return RedirectToAction("AdminBlogList", "Blog");
 		}
 
 		

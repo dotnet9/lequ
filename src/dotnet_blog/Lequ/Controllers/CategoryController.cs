@@ -1,8 +1,7 @@
-﻿using Lequ.Common.GlobalVar;
+﻿using Lequ.GlobalVar;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.Models;
-using Lequ.Model.ViewModels;
+using Lequ.Models;
+using Lequ.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers

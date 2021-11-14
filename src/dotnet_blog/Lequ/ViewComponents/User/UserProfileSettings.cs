@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Lequ.Common.GlobalVar;
-using Lequ.Extensions;
+using Lequ.GlobalVar;
 using Lequ.IService;
 using Microsoft.AspNetCore.Mvc;
 

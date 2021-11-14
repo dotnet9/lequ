@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Model;
-using Lequ.Model.ViewModels;
+using Lequ.Models;
+using Lequ.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.About
@@ -15,7 +15,7 @@ namespace Lequ.ViewComponents.About
         public Footer(IAboutService service, ILinkService linkService, IMapper mapper)
         {
             _service = service;
-            this._linkService = linkService;
+            _linkService = linkService;
             _mapper = mapper;
         }
 
