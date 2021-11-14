@@ -1,11 +1,16 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+
+@inject IViewLocalizer Localizer
+
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Lequ.CO</title>
+    <title>@ViewData["Title"] - Lequ.CO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -50,14 +55,14 @@
                     </div>
 
                     <div class="col-4 site-logo">
-                        <a href="/Blog/Index/" class="text-black h2 mb-0">Lequ.CO</a>
+                        <a href="/Home/Index/" class="text-black h2 mb-0">Lequ.CO</a>
                     </div>
 
                     <div class="col-8 text-right">
                         <nav class="site-navigation" role="navigation">
                             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                                 <li>
-                                    <a href="/Blog/Index/">Home</a>
+                                    <a href="/Home/Index/">@Localizer["Home"]</a>
                                 </li>
                                 <li>
                                     <a href="/Blog/ListByCategory?categoryID=1">C#</a>
@@ -66,21 +71,21 @@
                                     <a href="/Blog/ListByCategory?categoryID=2">C++</a>
                                 </li>
                                 <li>
-                                    <a href="/Contact/SendMessage/">Contact</a>
+                                    <a href="/Contact/SendMessage/">@Localizer["Contact"]</a>
                                 </li>
                                 <li>
-                                    <a href="/About/Index/">About</a>
+                                    <a href="/About/Index/">@Localizer["About"]</a>
                                 </li>
                                 <li>
-                                    <a href="/Login/UserLogin/">Login</a>
+                                    <a href="/Login/UserLogin/">@Localizer["Login"]</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a id="dropdownSubMenu1" href="/Views/Login/UserLogin.cshtml" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dashboard</a>
+                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">@Localizer["Dashboard"]</a>
                                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                        <li><a href="#" class="dropdown-item">Post</a></li>
-                                        <li><a href="#" class="dropdown-item">Link</a></li>
-                                        <li><a href="#" class="dropdown-item">KuaiXun</a></li>
-                                        <li><a href="#" class="dropdown-item">Exit</a></li>
+                                        <li><a href="/Blog/Add" class="dropdown-item">@Localizer["AddPost"]</a></li>
+                                        <li><a href="/Link/Add" class="dropdown-item">@Localizer["AddLink"]</a></li>
+                                        <li><a href="#" class="dropdown-item">@Localizer["Kuaixun"]</a></li>
+                                        <li><a href="/Login/Logout" class="dropdown-item">@Localizer["Exit"]</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -103,6 +108,8 @@
         </header>
 
         @RenderBody()
+        
+        @await Component.InvokeAsync("Footer")
     </div>
 
     <script src="~/Front/js/jquery-3.3.1.min.js"></script>

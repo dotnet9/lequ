@@ -1,9 +1,5 @@
 using FluentValidation.AspNetCore;
 using Lequ.GlobalVar;
-using Lequ.IRepository;
-using Lequ.IService;
-using Lequ.Repository;
-using Lequ.Service;
 using Lequ.ServiceExtensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -79,6 +75,6 @@ app.UseRequestLocalization(localizationOptions);
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Blog}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

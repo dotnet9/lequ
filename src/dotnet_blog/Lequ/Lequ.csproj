@@ -37,11 +37,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Resources\Views\Blog\" />
         <Folder Include="Views\Tag\" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="Resources\Views\Blog\Index.ja.resx" />
+        <None Include="Resources\Views\Home\Index.ja.resx" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
         <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />

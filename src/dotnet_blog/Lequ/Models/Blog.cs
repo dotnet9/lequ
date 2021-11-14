@@ -12,6 +12,8 @@ namespace Lequ.Models
 
 		public int Rating { get; set; }
 
+		public bool InBanner { get; set; }
+
 		public List<BlogCategory>? BlogCategories { get; set; }
 
         public List<BlogTag>? BlogTags { get; set; }
