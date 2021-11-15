@@ -1,11 +1,9 @@
 ﻿@model Lequ.Models.About
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
 <div>
     @Model?.Details1
 </div>
-
-@await Component.InvokeAsync("Footer")

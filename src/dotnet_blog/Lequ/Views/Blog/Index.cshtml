@@ -5,7 +5,7 @@
 
 @{
     ViewData["Title"] = Localizer["Title"];
-    Layout = "~/Views/Shared/Layout.cshtml";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
 <h1>Welcome @Localizer["Title"] test @ViewData["Test"]</h1>
@@ -17,5 +17,3 @@
 @await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")
 
 @await Html.PartialAsync("~/Views/SubscribeEmail/AddEmail.cshtml")
-
-@await Component.InvokeAsync("Footer")

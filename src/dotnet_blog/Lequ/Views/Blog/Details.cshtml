@@ -1,7 +1,7 @@
 ﻿@model Lequ.ViewModels.DetailsDto
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
 <section class="site-section py-lg">
@@ -30,5 +30,3 @@
 @await Html.PartialAsync("~/Views/Blog/OtherFeatured.cshtml")
 
 @await Html.PartialAsync("~/Views/Blog/ListByUser.cshtml")
-
-@await Component.InvokeAsync("Footer")
