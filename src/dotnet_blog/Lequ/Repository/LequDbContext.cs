@@ -10,12 +10,15 @@ namespace Lequ.Repository
         }
 
         public DbSet<About>? Abouts { get; set; }
-        public DbSet<User>? Users { get; set; }
+        public DbSet<Album>? Albums { get; set; }
         public DbSet<Blog>? Blogs { get; set; }
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Comment>? Comments { get; set; }
         public DbSet<Contact>? Contacts { get; set; }
+        public DbSet<Link>? Links { get; set; }
         public DbSet<SubscribeEmail>? SubscribeEmails { get; set; }
+        public DbSet<Tag>? Tags { get; set; }
+        public DbSet<User>? Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

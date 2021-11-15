@@ -8,19 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="Resources\Resource.resx" />
-      <EmbeddedResource Remove="Resources\Views\Blog\Index.ja.resx" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Resource Include="Resources\Resource.zh-Hant.resx" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Resource Include="Resources\Resource.resx" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="AutoMapper" Version="10.1.1" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
@@ -45,16 +32,21 @@
         <Folder Include="Views\Tag\" />
     </ItemGroup>
 
-    <ItemGroup>
-        <None Include="Resources\Views\Home\Index.ja.resx" />
-        <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
-        <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
-        <None Include="wwwroot\Admin\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />
-    </ItemGroup>
+	<ItemGroup>
+		<None Include="wwwroot\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
     <ItemGroup>
       <None Update="lequ.db">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="lequ.db-shm">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="lequ.db-wal">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="TestBlogContent.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
