@@ -28,15 +28,11 @@ namespace Lequ.ViewModels
 
         public DateTime? CreateDate { get; set; }
 
-        public string CreateDateString { get { return CreateDate == null ? "-" : CreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss"); } }
-
         public int? UpdateUserID { get; set; }
 
         public User? UpdateUser { get; set; }
 
         public DateTime? UpdateDate { get; set; }
-
-        public string UpdateDateString { get { return UpdateDate == null ? "-" : UpdateDate.Value.ToString("yyyy-MM-dd HH:mm:ss"); } }
 
         public ModelStatus[]? Statuses { get; set; }
     }

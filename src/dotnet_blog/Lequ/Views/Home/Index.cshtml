@@ -8,7 +8,7 @@
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
-@await Html.PartialAsync("~/Views/Blog/Featured.cshtml")
+@await Component.InvokeAsync("Feature")
 
 @await Html.PartialAsync("~/Views/Blog/ListDetails.cshtml")
 

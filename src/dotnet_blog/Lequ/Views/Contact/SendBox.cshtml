@@ -86,7 +86,7 @@
                                                 <b>@item.Subject</b> - @(item?.Message?.Length < 100 ? item?.Message : item?.Message?.Substring(0, 100))...
                                             </td>
                                             <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">@item.CreateDateString</td>
+                                            <td class="mailbox-date">@item.CreateDate</td>
                                         </tr>
                                     }
                                 }

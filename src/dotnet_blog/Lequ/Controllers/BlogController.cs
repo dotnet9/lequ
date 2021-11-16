@@ -77,6 +77,11 @@ namespace Lequ.Controllers
                 var values = await _service.ListDetailsAsync(x => x.Status == (int)ModelStatus.Normal, page, PAGE_SIZE);
                 blogs = values.Item1;
             }
+            var users = await _userService.SelectAsync();
+            if (blogs != null && users != null)
+            {
+                blogs.ForEach(blog => blog.CreateUser = users.Find(c => c.ID == blog.CreateUserID));
+            }
 
             if (blogs.Count > 0) return PartialView(blogs);
             return Json("");
@@ -110,17 +115,6 @@ namespace Lequ.Controllers
         {
             var category = await _tagService.GetAsync(x => x.ID == tagID);
             return await Task.FromResult(View(category));
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Featured()
-        {
-            ViewBag.title1 = "test title";
-            ViewBag.img1 = "/Front/images/img_3.jpg";
-            ViewBag.date1 = DateTime.Now;
-
-            return await Task.FromResult(PartialView());
         }
 
         [HttpGet]

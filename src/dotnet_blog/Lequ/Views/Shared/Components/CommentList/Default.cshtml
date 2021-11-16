@@ -32,7 +32,7 @@
                     </div>
                     <div class="comment-body">
                         <span>Floor @item.Floor @item.CreateUser?.Name</span>
-                        <span class="meta">&nbsp;-&nbsp; @item.CreateDateString</span>
+                        <span class="meta">&nbsp;-&nbsp; @item.CreateDate</span>
 
 
                         @if (item.Parent != null)
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="comment-body">
                                     <span>Floor @item.Parent.Floor：@item.Parent.CreateUser?.Name</span>
-                                    <span class="meta">&nbsp;-&nbsp; @item.Parent.CreateDateString</span>
+                                    <span class="meta">&nbsp;-&nbsp; @item.Parent.CreateDate</span>
                                     <p>@item.Parent?.Content</p>
                                     <p>
                                         <a href="#message" onclick='reply(@item.Parent.ID, "@item.Parent.CreateUser?.Name")' class="reply rounded">Reply</a>

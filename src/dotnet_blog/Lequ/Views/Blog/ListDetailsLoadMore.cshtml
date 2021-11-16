@@ -1,5 +1,4 @@
-﻿
-@model List<Lequ.Models.Blog>
+﻿@model List<Lequ.Models.Blog>
 @{
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
@@ -34,9 +33,9 @@
                             <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid">
                         </figure>
                         <span class="d-inline-block mt-1">
-                            <a href="#">@item.CreateUserID</a>
+                            <a href="#">@item.CreateUser?.Name</a>
                         </span>
-                        <span>&nbsp;-&nbsp; @item.CreateDateString</span>
+                        <span>&nbsp;-&nbsp; @item.CreateDate</span>
                     </div>
 
                     <p>@(item?.Content?.Length < 100 ? item?.Content : item?.Content?.Substring(0, 100))...</p>

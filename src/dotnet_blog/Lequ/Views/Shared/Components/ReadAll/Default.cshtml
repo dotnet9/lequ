@@ -6,7 +6,7 @@
     <h1>@Model?.Title</h1>
     <p>
         <span>@Model?.CreateUserID</span>
-        <span>&nbsp;-&nbsp; @Model?.CreateDateString</span>
+        <span>&nbsp;-&nbsp; @Model?.CreateDate</span>
         @if (Model?.BlogCategories != null)
         {
             @foreach (var category in Model.BlogCategories)
