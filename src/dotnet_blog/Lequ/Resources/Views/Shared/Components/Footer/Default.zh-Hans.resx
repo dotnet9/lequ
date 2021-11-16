@@ -98,6 +98,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Links" xml:space="preserve">
-    <value>友情链接</value>
+    <value>友情链接：</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>联系站长：</value>
+  </data>
+  <data name="Cnblogs" xml:space="preserve">
+    <value>博客园</value>
+  </data>
+  <data name="Zhihu" xml:space="preserve">
+    <value>知乎</value>
+  </data>
+  <data name="Toutiao" xml:space="preserve">
+    <value>头条</value>
+  </data>
+  <data name="PoweredBy" xml:space="preserve">
+    <value>本站由</value>
+  </data>
+  <data name="PowerfulDrive" xml:space="preserve">
+    <value>强力驱动！</value>
+  </data>
+  <data name="SourceCodeOfSite" xml:space="preserve">
+    <value>本站源代码：</value>
+  </data>
+  <data name="HostedOn" xml:space="preserve">
+    <value>托管于</value>
+  </data>
+  <data name="AliCloud" xml:space="preserve">
+    <value>阿里云</value>
+  </data>
+  <data name="TencentCloud" xml:space="preserve">
+    <value>腾讯云</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>版权</value>
+  </data>
+  <data name="Webmaster" xml:space="preserve">
+    <value>沙漠尽头的狼</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>版权所有</value>
+  </data>
+  <data name="WeChatOfficialAccount" xml:space="preserve">
+    <value>本站公众号</value>
+  </data>
+  <data name="WeChatMiniProgram" xml:space="preserve">
+    <value>本站微信小程序</value>
   </data>
 </root>

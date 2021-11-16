@@ -6,54 +6,63 @@
 
 <div class="site-footer">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-3 ml-auto">
-                <h3 class="footer-heading mb-4">@Localizer["Links"]</h3>
-                <ul class="list-unstyled float-left mr-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <span class="footer-heading mb-4">@Localizer["Links"]</span>
                     @if (Model != null && Model.FriendLinks != null)
                     {
                         foreach (var item in Model.FriendLinks)
                         {
-                            <li>
-                                <a href="@item.Url" title="@item.Description" target="_blank">@item.Name</a>
-                            </li>
+                            <a href="@item.Url" title="@item.Description" target="_blank">@item.Name</a>
+                            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                         }
                     }
-                </ul>
+                </div>
+                <div class="row">
+                    <span class="footer-heading mb-4">@Localizer["Contact"]</span>
+                    <a href="https://github.com/dotnet9" target="_blank">Github</a>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <a href="https://www.cnblogs.com/Dotnet9-com/" target="_blank">@Localizer["Cnblogs"]</a>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <a href="https://me.csdn.net/HenryMoore">CSDN</a>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <a href="https://www.zhihu.com/people/dotnet9/posts">@Localizer["Zhihu"]</a>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <a href="https://www.toutiao.com/c/user/98075192460/#mid=1651788205627396">@Localizer["Toutiao"]</a>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=632871194@qq.com">E-mail</a>
+                </div>
+                <div class="row">
+                    @Localizer["PoweredBy"]<span class="footer-heading mb-4">&nbsp;.NET 6.0&nbsp;</span>@Localizer["PowerfulDrive"]
+                    @Localizer["SourceCodeOfSite"]<a href="https://github.com/dotnet9/lequ" target="_blank">Github</a>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    @Localizer["HostedOn"]<a href="https://www.aliyun.com/minisite/goods?userCode=5vad0ag3">@Localizer["AliCloud"]</a>&<a href="https://curl.qcloud.com/msyfhytx">@Localizer["TencentCloud"]</a>
+                </div>
+                <div class="row">
+                    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1280594159'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1280594159%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+                </div>
             </div>
-            <div class="col-md-4">
-
-
-                <div>
-                    <h3 class="footer-heading mb-4">Connect With Us</h3>
-                    <p>
-                        <a href="#">
-                            <span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span>
-                        </a>
-                        <a href="#">
-                            <span class="icon-twitter p-2"></span>
-                        </a>
-                        <a href="#">
-                            <span class="icon-instagram p-2"></span>
-                        </a>
-                        <a href="#">
-                            <span class="icon-rss p-2"></span>
-                        </a>
-                        <a href="#">
-                            <span class="icon-envelope p-2"></span>
-                        </a>
-                    </p>
-                    @await Html.PartialAsync("~/Views/Home/SetLanguage.cshtml")
+            <div class="col-md-2">
+                <div class="entry2">
+                    <img src="~/wechatpublic.jpg" alt="@Localizer["WeChatOfficialAccount"]" class="img-fluid rounded">
+                    <p class="footer-heading mb-4 text-center">@Localizer["WeChatOfficialAccount"]</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="entry2">
+                    <img src="~/wechatcode.jpg" alt="@Localizer["WeChatMiniProgram"]" class="img-fluid rounded">
+                    <p class="footer-heading mb-4 text-center">@Localizer["WeChatMiniProgram"]</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://beian.miit.gov.cn/">蜀ICP备19038256号-5</a> | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
+                @Localizer["Copyright"] &copy; <script>document.write(new Date().getFullYear());</script> @Localizer["Webmaster"] @Localizer["AllRightsReserved"]
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                Powered&Developed by @Localizer["Webmaster"]
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="https://beian.miit.gov.cn/">蜀ICP备19038256号-5</a>
             </div>
         </div>
     </div>

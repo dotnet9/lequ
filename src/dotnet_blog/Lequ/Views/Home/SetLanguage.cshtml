@@ -15,19 +15,17 @@
 }
 
 
-<div>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <div class="input-group-text">
-                <i class="fa fa-globe"></i>
-            </div>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            <i class="fa fa-globe"></i>
         </div>
-        <div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
-            <form id="selectLanguage" asp-controller="Home"
-                  asp-action="SetLanguage" asp-route-returnUrl="@returnUrl"
-                  method="post" class="form-horizontal" role="form">
-                <select class="form-control" name="culture" onchange="this.form.submit();" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
-            </form>
-        </div>
+    </div>
+    <div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
+        <form id="selectLanguage" asp-controller="Home"
+              asp-action="SetLanguage" asp-route-returnUrl="@returnUrl"
+              method="post" class="form-horizontal" role="form">
+            <select class="form-control" name="culture" onchange="this.form.submit();" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
+        </form>
     </div>
 </div>

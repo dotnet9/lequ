@@ -98,6 +98,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Links" xml:space="preserve">
-    <value>Links</value>
+    <value>Links：</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact the webmaster：</value>
+  </data>
+  <data name="Cnblogs" xml:space="preserve">
+    <value>cnblogs</value>
+  </data>
+  <data name="Zhihu" xml:space="preserve">
+    <value>zhihu</value>
+  </data>
+  <data name="Toutiao" xml:space="preserve">
+    <value>toutiao</value>
+  </data>
+  <data name="PoweredBy" xml:space="preserve">
+    <value>PoweredBy</value>
+  </data>
+  <data name="PowerfulDrive" xml:space="preserve">
+    <value>Powerful drive!</value>
+  </data>
+  <data name="SourceCodeOfSite" xml:space="preserve">
+    <value>Source code of this site：</value>
+  </data>
+  <data name="HostedOn" xml:space="preserve">
+    <value>Hosted on</value>
+  </data>
+  <data name="AliCloud" xml:space="preserve">
+    <value>Ali Cloud</value>
+  </data>
+  <data name="TencentCloud" xml:space="preserve">
+    <value>Tencent Cloud</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="Webmaster" xml:space="preserve">
+    <value>Wolf at the end of the desert</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>All rights reserved</value>
+  </data>
+  <data name="WeChatOfficialAccount" xml:space="preserve">
+    <value>WeChat Official Account of this site</value>
+  </data>
+  <data name="WeChatMiniProgram" xml:space="preserve">
+    <value>WeChat Mini Program of this site</value>
   </data>
 </root>

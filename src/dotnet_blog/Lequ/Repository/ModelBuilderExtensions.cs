@@ -19,7 +19,7 @@ namespace Lequ.Repository
                     RoleEnum = UserRoleEnum.User,
                     Name = $"User name {i}",
                     Account = $"User{i}",
-                    Password = "222222",
+                    Password = "666666",
                     Title = "Coder",
                     About =
                         "你好，我是本站（https://dotnet9.com）站长Dotnet9小编，曾用网名“沙漠之狐”、“沙漠尽头的狼”。本人从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。 89年Dotnet程序猿一枚，C#高级工程师， 目前从事B/S开发工作。",
@@ -155,7 +155,8 @@ namespace Lequ.Repository
                 new Link { ID = 1, Index = 1, Name = "Dotnet9", Url = "https://dotnet9.com", Description = "一个主要以分享 dotNET 技术文章为主题的网站", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
                 new Link { ID = 2, Index = 2, Name = "Murat Yücedağ", Url = "https://www.youtube.com/channel/UCbkbOlw8snP93RJ2BhH44Qw", Description = "Ücretsiz olarak çektiğim yazılım eğitim videolarını paylaşmak amacıyla oluşturduğum kanaldır.Ücretsiz Eğitim Videosu Hedefi: 3000 :)Misyonumun fikir babası İsmail Hakkı Tonguç ve Hasan Ali Yücel'dir. Onlardan aldığım meşaleyi bizden sonrakilere taşımak gayesindeyim. Bunu da lisans eğitimimde aldığım mühendislik disiplinini eğitmenlikle harmanlayarak yazılımda Türkçe kaynağın arttırılması yolunda çalışmalarımı \"her geçen gün bir önceki günden daha dolu olmalı\" ideali ile sürdürmekteyim.", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
                 new Link { ID = 3, Index = 3, Name = "老张的哲学", Url = "https://www.cnblogs.com/laozhang-is-phi/", Description = "博客园大拿", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
-                new Link { ID = 4, Index = 4, Name = "青成", Url = "https://qingchengblog.com/", Description = ".NET技术爱好者", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now }
+                new Link { ID = 4, Index = 4, Name = "Garfield-加菲的博客", Url = "http://www.randyfield.cn/", Description = "技术爱好者", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now },
+                new Link { ID = 5, Index = 5, Name = "青成", Url = "https://qingchengblog.com/", Description = "技术爱好者", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now }
                 );
         }
 

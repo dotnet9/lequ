@@ -98,6 +98,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Links" xml:space="preserve">
-    <value>リンク</value>
+    <value>リンク：</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>ウェブマスターに連絡する：</value>
+  </data>
+  <data name="Cnblogs" xml:space="preserve">
+    <value>cnblogs</value>
+  </data>
+  <data name="Zhihu" xml:space="preserve">
+    <value>zhihu</value>
+  </data>
+  <data name="Toutiao" xml:space="preserve">
+    <value>toutiao</value>
+  </data>
+  <data name="PoweredBy" xml:space="preserve">
+    <value>搭載</value>
+  </data>
+  <data name="PowerfulDrive" xml:space="preserve">
+    <value>強力なドライブ！</value>
+  </data>
+  <data name="SourceCodeOfSite" xml:space="preserve">
+    <value>このサイトのソースコード：</value>
+  </data>
+  <data name="AliCloud" xml:space="preserve">
+    <value>Ali Cloud</value>
+  </data>
+  <data name="TencentCloud" xml:space="preserve">
+    <value>Tencent Cloud</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>著作権</value>
+  </data>
+  <data name="HostedOn" xml:space="preserve">
+    <value>でホスト</value>
+  </data>
+  <data name="Webmaster" xml:space="preserve">
+    <value>砂漠の果てのオオカミ</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>全著作権所有</value>
+  </data>
+  <data name="WeChatOfficialAccount" xml:space="preserve">
+    <value>このサイトの公式アカウント</value>
+  </data>
+  <data name="WeChatMiniProgram" xml:space="preserve">
+    <value>このサイトのWeChatアプレット</value>
   </data>
 </root>
