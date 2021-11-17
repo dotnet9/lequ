@@ -2,7 +2,7 @@
 
 这个属性我们平时可能并不怎么用，先来看下MSDN上的解释:
 
-![](https://files.mdnice.com/user/5704/19e4a9ac-5a4a-4ac4-b8a5-03377e9757ba.png)
+![](https://img1.lequ.co/wechatpublic.jpg)
 
 解释的非常专业,然而我并没有看懂。
 
@@ -10,7 +10,7 @@
 
 这个属性能方便的解决工作中常见的麻烦,比如下面这个例子:
 
-![](https://files.mdnice.com/user/5704/807e7dd7-faaf-4a4d-b159-d3c667d969e2.png)
+![](https://img1.lequ.co/wechatpublic.jpg)
 
 注意上面那部分.效果很简单,就是个渐变的效果.但是这个渐变贯穿了两列,就使得处理起来有点小麻烦.
 
@@ -24,7 +24,7 @@ IsHitTestVisible属性就很好的解决了这个问题.直接在上层放个bor
 
 类似的我还想到了一个场景:
 
-![](https://files.mdnice.com/user/5704/a51536fe-1f8c-4485-a08d-263eefa41450.gif)
+![](https://img1.lequ.co/wechatpublic.jpg)
 
 这个效果顶层是个图片,IsHitTestVisible为false,透明为0.3.
 

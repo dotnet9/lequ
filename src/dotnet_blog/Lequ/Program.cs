@@ -1,10 +1,13 @@
 using FluentValidation.AspNetCore;
 using Lequ.GlobalVar;
 using Lequ.ServiceExtensions;
+using Markdig;
+using Markdig.Extensions.AutoIdentifiers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Westwind.AspNetCore.Markdown;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,30 @@ builder.Services.AddLocalization(o => o.ResourcesPath = ConfigurationConsts.RESO
 
 builder.Services.AddFluentValidationSetup();
 
+builder.Services.AddMarkdown(config =>
+{
+    // Create custom MarkdigPipeline 
+    // using MarkDig; for extension methods
+    config.ConfigureMarkdigPipeline = builder =>
+    {
+        builder.UseEmphasisExtras(Markdig.Extensions.EmphasisExtras.EmphasisExtraOptions.Default)
+            .UsePipeTables()
+            .UseGridTables()
+            .UseAutoIdentifiers(AutoIdentifierOptions.GitHub) // Headers get id="name" 
+            .UseAutoLinks() // URLs are parsed into anchors
+            .UseAbbreviations()
+            .UseYamlFrontMatter()
+            .UseEmojiAndSmiley(true)
+            .UseListExtras()
+            .UseFigures()
+            .UseTaskLists()
+            .UseCustomContainers()
+            .UseGenericAttributes();
+
+        //.DisableHtml();   // don't render HTML - encode as text
+    };
+});
+
 builder.Services.AddMvc(config =>
     {
         var policy = new AuthorizationPolicyBuilder()
@@ -29,7 +56,8 @@ builder.Services.AddMvc(config =>
     })
     .AddFluentValidation()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-    .AddDataAnnotationsLocalization();
+    .AddDataAnnotationsLocalization()
+    .AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
 
 var supportedCultures = new[] { "en-US", "zh-Hans", "zh-Hant", "ja" };
 builder.Services.Configure<RequestLocalizationOptions>(options =>
@@ -58,6 +86,8 @@ if (!app.Environment.IsDevelopment()) app.UseExceptionHandler("/Home/Error");
 app.UseStatusCodePagesWithReExecute("/ErrorPage/Error", "?code={0}");
 
 app.UseHttpsRedirection();
+
+app.UseMarkdown();
 app.UseStaticFiles();
 
 app.UseRouting();

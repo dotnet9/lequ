@@ -7,7 +7,7 @@
 {
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 mb-4">
+        <div class="col-lg-4 mb-0">
             <div class="entry2">
                 <a href="/Blog/Details?id=@item.ID">
                     <img src="@item.Image" alt="Image" class="img-fluid rounded">
@@ -25,9 +25,9 @@
                         }
                     }
 
-                    <h2>
+                    <h8>
                         <a href="/Blog/Details?id=@item.ID">@item.Title</a>
-                    </h2>
+                    </h8>
                     <div class="post-meta align-items-center text-left clearfix">
                         <figure class="author-figure mb-0 mr-3 float-left">
                             <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid">
@@ -38,7 +38,7 @@
                         <span>&nbsp;-&nbsp; @item.CreateDate</span>
                     </div>
 
-                    <p>@(item?.Content?.Length < 100 ? item?.Content : item?.Content?.Substring(0, 100))...</p>
+                    <p>@(item?.Content?.Length < 100 ? item?.Content : item?.Content?.Substring(0, 50))...</p>
                     <p>
                         <a href="#">Read More</a>
                     </p>

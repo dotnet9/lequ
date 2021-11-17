@@ -44,16 +44,10 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="entry2">
-                    <img src="~/wechatpublic.jpg" alt="@Localizer["WeChatOfficialAccount"]" class="img-fluid rounded">
-                    <p class="footer-heading mb-4 text-center">@Localizer["WeChatOfficialAccount"]</p>
-                </div>
+                @await Html.PartialAsync("~/Views/About/WeChatOfficialAccount.cshtml")
             </div>
             <div class="col-md-2">
-                <div class="entry2">
-                    <img src="~/wechatcode.jpg" alt="@Localizer["WeChatMiniProgram"]" class="img-fluid rounded">
-                    <p class="footer-heading mb-4 text-center">@Localizer["WeChatMiniProgram"]</p>
-                </div>
+                @await Html.PartialAsync("~/Views/About/WeChatMiniProgram.cshtml")
             </div>
         </div>
         <div class="row">

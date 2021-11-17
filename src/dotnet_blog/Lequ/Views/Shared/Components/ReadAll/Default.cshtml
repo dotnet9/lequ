@@ -1,11 +1,25 @@
-﻿
-@using Lequ.Models
+﻿@using Lequ.Models
+@using Westwind.AspNetCore.Markdown
 @model Blog
+
+@section Scripts {
+    <script src="~/highlight/highlight.js"></script>
+    <link href="~/highlight/styles/vs2015.css" rel="stylesheet" />
+    <script>
+        setTimeout(function () {
+            var pres = document.querySelectorAll("pre>code");
+            for (var i = 0; i < pres.length; i++) {
+                hljs.highlightBlock(pres[i]);
+            }
+        });
+
+    </script>
+}
 
 <div class="post-content-body">
     <h1>@Model?.Title</h1>
     <p>
-        <span>@Model?.CreateUserID</span>
+        <span>@Model?.CreateUser?.Name</span>
         <span>&nbsp;-&nbsp; @Model?.CreateDate</span>
         @if (Model?.BlogCategories != null)
         {
@@ -19,10 +33,5 @@
             }
         }
     </p>
-    <p>@Model?.Content</p>
-    <div class="row mb-5 mt-5">
-        <div class="col-md-12 mb-4">
-            <img src="@Model?.Image" alt="Image placeholder" class="img-fluid rounded">
-        </div>
-    </div>
+    <p>@Markdown.ParseHtmlString(Model?.Content)</p>
 </div>
