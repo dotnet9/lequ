@@ -11,28 +11,26 @@ namespace Lequ.Repository
         {
             Random random = new(DateTime.Now.Millisecond);
 
-            var lstUsers = new List<User>();
-            for (var i = 0; i < 100; i++)
-                lstUsers.Add(new User
-                {
-                    ID = i + 1,
-                    RoleEnum = UserRoleEnum.User,
-                    Name = $"User name {i}",
-                    Account = $"User{i}",
-                    Password = "666666",
-                    Title = "Coder",
-                    About =
-                        "你好，我是本站（https://dotnet9.com）站长Dotnet9小编，曾用网名“沙漠之狐”、“沙漠尽头的狼”。本人从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。 89年Dotnet程序猿一枚，C#高级工程师， 目前从事B/S开发工作。",
-                    AboutShort =
-                        "89年C# Coder,从事dotnet开发近10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
-                    Address = "Chendu. China",
-                    PhoneNumber = "169888322",
-                    Email = "632871194@qq.com",
-                    Image = $"/Front/images/person_{random.Next(5)}.jpg",
-                    StatusEnum = ModelStatus.Normal,
-                    CreateDate = DateTime.Now
-                });
-            modelBuilder.Entity<User>().HasData(lstUsers);
+            var user = new User
+            {
+                ID = 1,
+                RoleEnum = UserRoleEnum.User,
+                Name = $"沙漠尽头的狼",
+                Account = $"Lequ.CO",
+                Password = "Lequ.CO",
+                Title = "码农",
+                About =
+                    "你好，我是本站（https://lequ.co）站长“沙漠尽头的狼”。本人从事dotnet开发已有10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
+                AboutShort =
+                    "89年Dotnet程序猿一枚，C#高级工程师， 目前从事C/S开发工作。",
+                Address = "Chendu. China",
+                PhoneNumber = "169888322",
+                Email = "632871194@qq.com",
+                Image = $"/wolf.jpg",
+                StatusEnum = ModelStatus.Normal,
+                CreateDate = DateTime.Now
+            };
+            modelBuilder.Entity<User>().HasData(user);
 
             var blogCategories = new List<BlogCategory>();
 
@@ -48,7 +46,7 @@ namespace Lequ.Repository
                 Name = x,
                 Description = x,
                 StatusEnum = ModelStatus.Normal,
-                CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                CreateUserID = user.ID,
                 CreateDate = DateTime.Now
             });
             modelBuilder.Entity<Category>().HasData(lstCategories);
@@ -60,7 +58,7 @@ namespace Lequ.Repository
                 Name = x,
                 Description = x,
                 StatusEnum = ModelStatus.Normal,
-                CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                CreateUserID = user.ID,
                 CreateDate = DateTime.Now
             });
             modelBuilder.Entity<Tag>().HasData(lstTags);
@@ -72,7 +70,7 @@ namespace Lequ.Repository
                 Name = x,
                 Description = x,
                 StatusEnum = ModelStatus.Normal,
-                CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                CreateUserID = user.ID,
                 CreateDate = DateTime.Now
             });
             modelBuilder.Entity<Album>().HasData(lstAlbums);
@@ -85,12 +83,13 @@ namespace Lequ.Repository
                 var blog = new Blog
                 {
                     ID = i + 1,
-                    Title = $"WPF值得注意的IsHitTestVisible {i}",
+                    Title = $"怎么做一个专业的软件安装包？",
+                    BriefDescription = "C/S客户端开发完成，需要将程序交付给用户，直接压缩发给用户是可以的（只是有点不专业），如果能有一个比较好看的安装界面，那档次就不一样了。",
                     Content = $"{i} {GetBlogContent()}",
-                    Image = "/Front/images/img_1.jpg",
+                    Image = $"/Front/images/img_{random.Next(1, 4)}.jpg",
                     Rating = random.Next(100),
                     StatusEnum = ModelStatus.Normal,
-                    CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                    CreateUserID = user.ID,
                     CreateDate = DateTime.Now
                 };
 
@@ -100,7 +99,7 @@ namespace Lequ.Repository
                     BlogID = blog.ID,
                     CategoryID = lstCategories[random.Next(lstCategories.Count)].ID,
                     StatusEnum = ModelStatus.Normal,
-                    CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                    CreateUserID = user.ID,
                     CreateDate = DateTime.Now
                 });
 
@@ -109,7 +108,7 @@ namespace Lequ.Repository
                     BlogID = blog.ID,
                     TagID = lstTags[random.Next(lstTags.Count)].ID,
                     StatusEnum = ModelStatus.Normal,
-                    CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                    CreateUserID = user.ID,
                     CreateDate = DateTime.Now
                 });
 
@@ -118,7 +117,7 @@ namespace Lequ.Repository
                     BlogID = blog.ID,
                     AlbumID = lstAlbums[random.Next(lstAlbums.Count)].ID,
                     StatusEnum = ModelStatus.Normal,
-                    CreateUserID = lstUsers[random.Next(lstUsers.Count)].ID,
+                    CreateUserID = user.ID,
                     CreateDate = DateTime.Now
                 });
 

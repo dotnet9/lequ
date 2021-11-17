@@ -88,12 +88,6 @@ namespace Lequ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListByUser()
-        {
-            return await Task.FromResult(PartialView());
-        }
-
-        [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ListByAlbum(int albumID)
         {
