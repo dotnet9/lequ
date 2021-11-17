@@ -113,10 +113,10 @@
     <value>toutiao</value>
   </data>
   <data name="PoweredBy" xml:space="preserve">
-    <value>PoweredBy</value>
+    <value>Powered by</value>
   </data>
   <data name="PowerfulDrive" xml:space="preserve">
-    <value>Powerful drive!</value>
+    <value>powerful drive!</value>
   </data>
   <data name="SourceCodeOfSite" xml:space="preserve">
     <value>Source code of this site：</value>
