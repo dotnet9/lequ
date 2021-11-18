@@ -41,34 +41,18 @@
 	</ItemGroup>
 
     <ItemGroup>
-	  <None Update="lequ.db">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="lequ.db-shm">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="lequ.db-wal">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-      <None Update="TestBlogContent.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\Language.tt">
-        <Generator>TextTemplatingFileGenerator</Generator>
-        <LastGenOutput>Language.cs</LastGenOutput>
-      </None>
+	    <None Update="lequ.db">
+		    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    </None>
+	    <None Update="lequ.db-shm">
+		    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    </None>
+	    <None Update="lequ.db-wal">
+		    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    </None>
     </ItemGroup>
 
     <ItemGroup>
       <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Resources\Language.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Language.tt</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
 </Project>

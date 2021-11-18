@@ -1,5 +1,7 @@
 ﻿using Lequ.Models;
+using Lequ.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Lequ.Repository
 {
@@ -10,6 +12,20 @@ namespace Lequ.Repository
         public static void Seed(this ModelBuilder modelBuilder)
         {
             Random random = new(DateTime.Now.Millisecond);
+
+            var seedDir = "./../../../doc/blog_contents/blogs";
+            if (!Directory.Exists(seedDir))
+            {
+                return;
+            }
+            var seedBlogs = new List<BlogSeedDto>();
+            foreach (var blogInfoPath in Directory.GetFiles(seedDir, "*.info"))
+            {
+                var blogInfoText = File.ReadAllText(blogInfoPath);
+                var blogInfoDto = JsonConvert.DeserializeObject<BlogSeedDto>(blogInfoText);
+                blogInfoDto!.Content = File.ReadAllText(blogInfoPath.Replace("info", "md"));
+                seedBlogs.Add(blogInfoDto);
+            }
 
             var user = new User
             {
@@ -32,94 +48,118 @@ namespace Lequ.Repository
             };
             modelBuilder.Entity<User>().HasData(user);
 
+            var lstCategories = new List<Category>();
             var blogCategories = new List<BlogCategory>();
-
+            var lstTags = new List<Tag>();
             var blogTags = new List<BlogTag>();
-
+            var lstAlbums = new List<Album>();
             var blogAlbums = new List<BlogAlbum>();
-
-            var types = new string[] { "Winform", "WPF", "ASP.NET Core MVC", ".NET Core Web API", "Xamarin.Forms", "Flutter", "SwiftUI", "Qt Widget", "Qt Quick" };
-            int index = 0;
-            var lstCategories = types.ToList().ConvertAll(x => new Category
-            {
-                ID = ++index,
-                Name = x,
-                Description = x,
-                StatusEnum = ModelStatus.Normal,
-                CreateUserID = user.ID,
-                CreateDate = DateTime.Now
-            });
-            modelBuilder.Entity<Category>().HasData(lstCategories);
-
-            index = 0;
-            var lstTags = types.ToList().ConvertAll(x => new Tag
-            {
-                ID = ++index,
-                Name = x,
-                Description = x,
-                StatusEnum = ModelStatus.Normal,
-                CreateUserID = user.ID,
-                CreateDate = DateTime.Now
-            });
-            modelBuilder.Entity<Tag>().HasData(lstTags);
-
-            index = 0;
-            var lstAlbums = types.ToList().ConvertAll(x => new Album
-            {
-                ID = ++index,
-                Name = x,
-                Description = x,
-                StatusEnum = ModelStatus.Normal,
-                CreateUserID = user.ID,
-                CreateDate = DateTime.Now
-            });
-            modelBuilder.Entity<Album>().HasData(lstAlbums);
 
             List<Comment> comments = new();
 
             List<Blog> blogs = new();
-            for (var i = 0; i < 30; i++)
+            for (var i = 0; i < seedBlogs.Count; i++)
             {
+                var seedBlog = seedBlogs[i];
                 var blog = new Blog
                 {
                     ID = i + 1,
-                    Title = $"怎么做一个专业的软件安装包？",
-                    BriefDescription = "C/S客户端开发完成，需要将程序交付给用户，直接压缩发给用户是可以的（只是有点不专业），如果能有一个比较好看的安装界面，那档次就不一样了。",
-                    Content = $"{i} {GetBlogContent()}",
-                    Image = $"/Front/images/img_{random.Next(1, 4)}.jpg",
+                    Title = seedBlog.Title,
+                    BriefDescription = seedBlog.BriefDescription,
+                    Content = seedBlog.Content,
+                    Image = seedBlog.Cover,
                     Rating = random.Next(100),
                     StatusEnum = ModelStatus.Normal,
                     CreateUserID = user.ID,
-                    CreateDate = DateTime.Now
+                    CreateDate = seedBlog.CreateDate
                 };
 
-
-                blogCategories.Add(new BlogCategory
+                if (seedBlog.Categories != null && seedBlog.Categories.Count() > 0)
                 {
-                    BlogID = blog.ID,
-                    CategoryID = lstCategories[random.Next(lstCategories.Count)].ID,
-                    StatusEnum = ModelStatus.Normal,
-                    CreateUserID = user.ID,
-                    CreateDate = DateTime.Now
-                });
+                    for (int j = 0; j < seedBlog.Categories.Count(); j++)
+                    {
+                        var categoryName = seedBlog.Categories[j];
+                        var existCategory = lstCategories.FirstOrDefault(cu => cu.Name == categoryName);
+                        if (existCategory == null)
+                        {
+                            existCategory = new Category
+                            {
+                                ID = blogCategories.Count + 1,
+                                Name = categoryName,
+                                StatusEnum = ModelStatus.Normal,
+                                CreateUserID = user.ID,
+                                CreateDate = seedBlog.CreateDate
+                            };
+                            lstCategories.Add(existCategory);
+                        }
+                        blogCategories.Add(new BlogCategory
+                        {
+                            BlogID = blog.ID,
+                            CategoryID = existCategory.ID,
+                            StatusEnum = ModelStatus.Normal,
+                            CreateUserID = user.ID,
+                            CreateDate = seedBlog.CreateDate
+                        });
+                    }
+                }
 
-                blogTags.Add(new BlogTag
+                if (seedBlog.Tags != null && seedBlog.Tags.Count() > 0)
                 {
-                    BlogID = blog.ID,
-                    TagID = lstTags[random.Next(lstTags.Count)].ID,
-                    StatusEnum = ModelStatus.Normal,
-                    CreateUserID = user.ID,
-                    CreateDate = DateTime.Now
-                });
+                    for (int j = 0; j < seedBlog.Tags.Count(); j++)
+                    {
+                        var tagName = seedBlog.Tags[j];
+                        var existTag = lstTags.FirstOrDefault(cu => cu.Name == tagName);
+                        if (existTag == null)
+                        {
+                            existTag = new Tag
+                            {
+                                ID = lstTags.Count + 1,
+                                Name = tagName,
+                                StatusEnum = ModelStatus.Normal,
+                                CreateUserID = user.ID,
+                                CreateDate = seedBlog.CreateDate
+                            };
+                            lstTags.Add(existTag);
+                        }
+                        blogTags.Add(new BlogTag
+                        {
+                            BlogID = blog.ID,
+                            TagID = existTag.ID,
+                            StatusEnum = ModelStatus.Normal,
+                            CreateUserID = user.ID,
+                            CreateDate = seedBlog.CreateDate
+                        });
+                    }
+                }
 
-                blogAlbums.Add(new BlogAlbum
+                if (seedBlog.Albums != null && seedBlog.Albums.Count() > 0)
                 {
-                    BlogID = blog.ID,
-                    AlbumID = lstAlbums[random.Next(lstAlbums.Count)].ID,
-                    StatusEnum = ModelStatus.Normal,
-                    CreateUserID = user.ID,
-                    CreateDate = DateTime.Now
-                });
+                    for (int j = 0; j < seedBlog.Albums.Count(); j++)
+                    {
+                        var albumName = seedBlog.Albums[j];
+                        var existAlbum = lstAlbums.FirstOrDefault(cu => cu.Name == albumName);
+                        if (existAlbum == null)
+                        {
+                            existAlbum = new Album
+                            {
+                                ID = lstAlbums.Count + 1,
+                                Name = albumName,
+                                StatusEnum = ModelStatus.Normal,
+                                CreateUserID = user.ID,
+                                CreateDate = seedBlog.CreateDate
+                            };
+                            lstAlbums.Add(existAlbum);
+                        }
+                        blogAlbums.Add(new BlogAlbum
+                        {
+                            BlogID = blog.ID,
+                            AlbumID = existAlbum.ID,
+                            StatusEnum = ModelStatus.Normal,
+                            CreateUserID = user.ID,
+                            CreateDate = seedBlog.CreateDate
+                        });
+                    }
+                }
 
                 blogs.Add(blog);
 
@@ -130,9 +170,12 @@ namespace Lequ.Repository
                     Content = "This blog is very good , I like it, thank you!",
                     StatusEnum = ModelStatus.Check,
                     CreateUserID = 1,
-                    CreateDate = DateTime.Now
+                    CreateDate = seedBlog.CreateDate
                 });
             }
+            modelBuilder.Entity<Category>().HasData(lstCategories);
+            modelBuilder.Entity<Tag>().HasData(lstTags);
+            modelBuilder.Entity<Album>().HasData(lstAlbums);
 
             modelBuilder.Entity<Blog>().HasData(blogs);
 

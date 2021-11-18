@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lequ.Models
 {
@@ -23,5 +24,21 @@ namespace Lequ.Models
         public List<BlogAlbum>? BlogAlbums { get; set; }
 
         public List<Comment>? Comments { get; set; }
+
+
+        [Obsolete] public int BlogCopyrightType { get; set; }
+
+        [NotMapped]
+        public CopyrightType? BlogCopyrightTypeEnum
+        {
+            get => (CopyrightType?)Enum.Parse(typeof(CopyrightType), BlogCopyrightType.ToString());
+            set
+            {
+                if (value.HasValue)
+                    BlogCopyrightType = (int)value.Value;
+                else
+                    BlogCopyrightType = (int)CopyrightType.Default;
+            }
+        }
     }
 }

@@ -1,7 +1,11 @@
 {
     "Title":"【知乎】特斯拉为何使用.net core技术框架？为何不用java/go等？",
-    "Image":"https://files.mdnice.com/user/5704/643626f7-6b13-4355-b7fd-c918d94626cd.png",
+    "Cover":"https://img1.lequ.co/2021/11/cover_01.png",
+    "BriefDescription":"很简单，用是因为好用，性能和语法表现力/开发速度都比java/go强，干嘛不用呢。",
     "Categories":["大佬说法"],
     "Tags": [".NET CORE", "Java", "Go"],
+    "CopyrightType": "Reprint",
+    "Original": "知乎【AlseinX】",
+    "OriginalLink": "https://www.zhihu.com/question/496204534/answer/2213155471",
     "CreateDate": "2021-11-10 14:58:50"
 }
