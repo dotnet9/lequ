@@ -1,6 +1,6 @@
 {
     "Title":"如何处理EF Core的多对多关系？",
-    "Cover":"https://img1.lequ.co/2021/11/cover_05.png",
+    "Cover":"https://img1.lequ.co/2021/11/cover_05.jpeg",
     "BriefDescription":"展示如何创建多对多关系以及如何在 EF Core 中使用它们",
     "Categories":["EF Core"],
     "Tags": ["ORM", "EF Core"],

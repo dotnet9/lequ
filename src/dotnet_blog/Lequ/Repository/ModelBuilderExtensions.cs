@@ -58,9 +58,13 @@ namespace Lequ.Repository
             List<Comment> comments = new();
 
             List<Blog> blogs = new();
-            for (var i = 0; i < seedBlogs.Count; i++)
+            var sortBlogs = (from b in seedBlogs
+                            orderby b.CreateDate descending
+                            select b)
+                            .ToList();
+            for (var i = 0; i < sortBlogs.Count; i++)
             {
-                var seedBlog = seedBlogs[i];
+                var seedBlog = sortBlogs[i];
                 var blog = new Blog
                 {
                     ID = i + 1,
@@ -167,7 +171,7 @@ namespace Lequ.Repository
                 {
                     ID = i + 1,
                     BlogID = blog.ID,
-                    Content = "This blog is very good , I like it, thank you!",
+                    Content = "该项目一直在更新中，数据库可能会随时被清空，如有建议请先在Dotnet9留言区留言，这里留言可能随时都会消失哦，留言链接：https://dotnet9.com/questions-and-answers/19143.html",
                     StatusEnum = ModelStatus.Check,
                     CreateUserID = 1,
                     CreateDate = seedBlog.CreateDate
