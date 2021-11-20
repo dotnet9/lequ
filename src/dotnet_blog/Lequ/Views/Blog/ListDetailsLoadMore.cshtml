@@ -4,9 +4,9 @@
 {
     @foreach (var item in Model)
     {
-        <div class="col-lg-3 mb-0">
+        <div class="col-lg-4 mb-0">
             <div class="entry2">
-                <a href="/Blog/Details?id=@item.ID">
+                <a href="/Blog/Details?id=@item.ID" target='_blank'>
                     <div id="mycarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
@@ -14,11 +14,11 @@
                                 <div class="carousel-caption">
                                     @if (item.BlogCategories != null)
                                     {
-                                        <ul class="class="tags">
+                                        <ul class="class=" tags">
                                             @foreach (var category in item.BlogCategories)
                                             {
                                                 <li>
-                                                    <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
+                                                    <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID" target='_blank'>
                                                         @category?.Category?.Name
                                                     </a>
                                                 </li>
@@ -32,9 +32,11 @@
                 </a>
                 <div class="excerpt">
 
-                    <h6>
-                        <a href="/Blog/Details?id=@item.ID">@item.Title</a>
-                    </h6>
+                    <div class="post-meta align-items-center text-left clearfix">
+                        <span class="d-inline-block mt-1">
+                            <a href="/Blog/Details?id=@item.ID" target='_blank'>@item.Title</a>
+                        </span>
+                    </div>
                     <div class="post-meta align-items-center text-left clearfix">
                         @if (item.BlogCopyrightTypeEnum == CopyrightType.Default)
                         {
@@ -51,13 +53,12 @@
                                 <img src="~/author.jpg" alt="Image" class="img-fluid img-thumbnail">
                             </figure>
                             <span class="d-inline-block mt-1">
-                                <a href="#">@item.Original</a>
+                                <a href="@item.OriginalLink" target='_blank'>@item.Original</a>
                             </span>
                         }
-                        <span>&nbsp;-&nbsp; @item.CreateDate</span>
                     </div>
                     <p>
-                        <a href="#">Read More</a>
+                        <span>@item.CreateDate</span>
                     </p>
                 </div>
             </div>

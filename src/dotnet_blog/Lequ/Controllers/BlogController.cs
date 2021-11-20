@@ -13,7 +13,7 @@ namespace Lequ.Controllers
     [Authorize]
     public class BlogController : Controller
     {
-        private const int PAGE_SIZE = 8;
+        private const int PAGE_SIZE = 6;
         private readonly IAlbumService _AlbumService;
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
