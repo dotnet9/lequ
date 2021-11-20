@@ -9,7 +9,7 @@ namespace Lequ.Models
 
         [StringLength(200)] public string? BriefDescription { get; set; }
 
-        [StringLength(200)] public string? Image { get; set; }
+        [StringLength(200)] public string? Cover { get; set; }
 
         public string? Content { get; set; }
 
@@ -40,5 +40,7 @@ namespace Lequ.Models
                     BlogCopyrightType = (int)CopyrightType.Default;
             }
         }
+        public string? Original { get; set; }
+        public string? OriginalLink { get; set; }
     }
 }

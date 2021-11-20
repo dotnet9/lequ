@@ -29,6 +29,8 @@ builder.Services.AddMarkdown(config =>
     // using MarkDig; for extension methods
     config.ConfigureMarkdigPipeline = builder =>
     {
+        // optional Tag BlackList
+        config.HtmlTagBlackList = "script|iframe|object|embed|form"; // default
         builder.UseEmphasisExtras(Markdig.Extensions.EmphasisExtras.EmphasisExtraOptions.Default)
             .UsePipeTables()
             .UseGridTables()
@@ -42,8 +44,6 @@ builder.Services.AddMarkdown(config =>
             .UseTaskLists()
             .UseCustomContainers()
             .UseGenericAttributes();
-
-        //.DisableHtml();   // don't render HTML - encode as text
     };
 });
 

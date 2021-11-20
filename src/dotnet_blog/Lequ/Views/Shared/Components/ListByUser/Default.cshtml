@@ -11,7 +11,7 @@
         <div class="row align-items-stretch retro-layout">
 
             <div class="col-md-5 order-md-2">
-                <a href="/Blog/Details?id=@Model?[0].ID" class="hentry img-1 h-100 gradient" style="background-image: url('@Model?[0].Image');">
+                <a href="/Blog/Details?id=@Model?[0].ID" class="hentry img-1 h-100 gradient" style="background-image: url('@Model?[0].Cover');">
                     <span class="post-category text-white bg-danger">Travel</span>
                     <div class="text">
                         <h2>@Model?[0].Title</h2>
@@ -22,7 +22,7 @@
 
             <div class="col-md-7">
 
-                <a href="/Blog/Details?id=@Model?[1].ID" class="hentry img-2 v-height mb30 gradient" style="background-image: url('@Model?[1].Image');">
+                <a href="/Blog/Details?id=@Model?[1].ID" class="hentry img-2 v-height mb30 gradient" style="background-image: url('@Model?[1].Cover');">
                     <span class="post-category text-white bg-success">Nature</span>
                     <div class="text text-sm">
                         <h2>@Model?[1].Title</h2>
@@ -31,14 +31,14 @@
                 </a>
 
                 <div class="two-col d-block d-md-flex">
-                    <a href="/Blog/Details?id=@Model?[2].ID" class="hentry v-height img-2 gradient" style="background-image: url('@Model?[2].Image');">
+                    <a href="/Blog/Details?id=@Model?[2].ID" class="hentry v-height img-2 gradient" style="background-image: url('@Model?[2].Cover');">
                         <span class="post-category text-white bg-primary">Sports</span>
                         <div class="text text-sm">
                             <h2>@Model?[2].Title</h2>
                             <span>@Model?[2].CreateDate</span>
                         </div>
                     </a>
-                    <a href="/Blog/Details?id=@Model?[3].ID" class="hentry v-height img-2 ml-auto gradient" style="background-image: url('@Model?[3].Image');">
+                    <a href="/Blog/Details?id=@Model?[3].ID" class="hentry v-height img-2 ml-auto gradient" style="background-image: url('@Model?[3].Cover');">
                         <span class="post-category text-white bg-warning">Lifestyle</span>
                         <div class="text text-sm">
                             <h2>@Model?[3].Title</h2>

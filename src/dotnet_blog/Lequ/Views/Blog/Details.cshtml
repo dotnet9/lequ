@@ -12,8 +12,9 @@
 
                 @await Component.InvokeAsync("CommentList", new { blogID = Model?.ID })
             </div>
-            @*<div class="col-md-12 col-lg-4 sidebar">
-                @await Component.InvokeAsync("UserAbout", new { blogID = Model?.ID })
+            <div class="col-md-12 col-lg-4 sidebar">
+
+                @await Html.PartialAsync("~/Views/About/WeChatOfficialAccount.cshtml")
 
                 @await Component.InvokeAsync("UserPopularBlogList", new { id = Model?.UserID })
 
@@ -22,7 +23,9 @@
                 @await Component.InvokeAsync("BlogDetailsCategoryList", new { blogID = Model?.ID })
 
                 @await Component.InvokeAsync("BlogDetailsTagList", new { blogID = Model?.ID })
-                </div>*@
+
+                @await Html.PartialAsync("~/Views/About/WeChatMiniProgram.cshtml")
+            </div>
         </div>
     </div>
 </section>

@@ -1,30 +1,29 @@
 ﻿@model List<Lequ.Models.Blog>
-@{
-    string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
-}
 
 @if (Model != null)
 {
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 mb-0">
+        <div class="col-lg-3 mb-0">
             <div class="entry2">
                 <a href="/Blog/Details?id=@item.ID">
                     <div id="mycarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="@item.Image" alt="Image" class="img-fluid rounded">
+                                <img src="@item.Cover" alt="Image" class="img-fluid rounded">
                                 <div class="carousel-caption">
                                     @if (item.BlogCategories != null)
                                     {
-                                        @foreach (var category in item.BlogCategories)
-                                        {
-                                            <span class="@styles[new Random().Next(3)]">
-                                                <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID" class="btn btn-secondary">
-                                                    @category?.Category?.Name
-                                                </a>
-                                            </span>
-                                        }
+                                        <ul class="class="tags">
+                                            @foreach (var category in item.BlogCategories)
+                                            {
+                                                <li>
+                                                    <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
+                                                        @category?.Category?.Name
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
                                     }
                                 </div>
                             </div>
@@ -33,16 +32,28 @@
                 </a>
                 <div class="excerpt">
 
-                    <h8>
+                    <h6>
                         <a href="/Blog/Details?id=@item.ID">@item.Title</a>
-                    </h8>
+                    </h6>
                     <div class="post-meta align-items-center text-left clearfix">
-                        <figure class="author-figure mb-0 mr-3 float-left">
-                            <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid">
-                        </figure>
-                        <span class="d-inline-block mt-1">
-                            <a href="#">@item.CreateUser?.Name</a>
-                        </span>
+                        @if (item.BlogCopyrightTypeEnum == CopyrightType.Default)
+                        {
+                            <figure class="author-figure mb-0 mr-3 float-left">
+                                <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid img-thumbnail">
+                            </figure>
+                            <span class="d-inline-block mt-1">
+                                <a href="#">@item.CreateUser?.Name</a>
+                            </span>
+                        }
+                        else
+                        {
+                            <figure class="author-figure mb-0 mr-3 float-left">
+                                <img src="~/author.jpg" alt="Image" class="img-fluid img-thumbnail">
+                            </figure>
+                            <span class="d-inline-block mt-1">
+                                <a href="#">@item.Original</a>
+                            </span>
+                        }
                         <span>&nbsp;-&nbsp; @item.CreateDate</span>
                     </div>
                     <p>

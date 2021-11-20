@@ -2,24 +2,48 @@
 @using Westwind.AspNetCore.Markdown
 @model Blog
 
-@section Scripts {
-    <script src="~/highlight/highlight.js"></script>
-    <link href="~/highlight/styles/vs2015.css" rel="stylesheet" />
-    <script>
-        setTimeout(function () {
-            var pres = document.querySelectorAll("pre>code");
-            for (var i = 0; i < pres.length; i++) {
-                hljs.highlightBlock(pres[i]);
-            }
-        });
-
-    </script>
+@{
+    var blogUrl = "https://lequ.co/Blog/Details?id=" + Model?.ID;
 }
+
+@*@section Headers {
+    <style>
+    h3 {
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    }
+    /* vs2015 theme specific*/
+    pre {
+    background: #1E1E1E;
+    color: #eee;
+    padding: 0.5em !important;
+    overflow-x: auto;
+    white-space: pre;
+    word-break: normal;
+    word-wrap: normal;
+    }
+    img {
+    max-width: 100%
+    }
+
+    pre > code {
+    white-space: pre;
+    }
+    </style>
+    }*@
 
 <div class="post-content-body">
     <h1>@Model?.Title</h1>
     <p>
-        <span>@Model?.CreateUser?.Name</span>
+        @if (Model?.BlogCopyrightTypeEnum == CopyrightType.Default)
+        {
+            <span>@Model?.CreateUser?.Name</span>
+        }
+        else
+        {
+            <span><a href="@Model?.OriginalLink" target='_blank'>@Model?.Original</a></span>
+        }
         <span>&nbsp;-&nbsp; @Model?.CreateDate</span>
         @if (Model?.BlogCategories != null)
         {
@@ -33,5 +57,59 @@
             }
         }
     </p>
-    <p>@Markdown.ParseHtmlString(Model?.Content)</p>
+    <div class="sample-block">
+        @Markdown.ParseHtmlString(Model?.Content)
+    </div>
+    <div class="card">
+        <div class="card-header">
+            版权声明
+        </div>
+        <div class="card-body">
+            @switch (Model?.BlogCopyrightTypeEnum)
+            {
+                case CopyrightType.Contribution:
+                    {
+                        <p>本文来自投稿：</p>
+                        <p>本文观点不代表 <u><a href='https://lequ.co' target='_blank'>Lequ.CO</a></u> 立场，如若转载，请注明出处：<u><a href='@blogUrl' target='_blank'>@blogUrl</a></u></p>
+                    }
+                    break;
+                case CopyrightType.Reprint:
+                    {
+                        <p>本文来自转载：</p>
+                        <p>原文出处：<u><a href='@Model?.OriginalLink' target='_blank'>@Model?.Original</a></u></p>
+                        <p>原文链接：<u><a href='@Model?.OriginalLink' target='_blank'>@Model?.OriginalLink</a></u></p>
+                        <p>本文观点不代表<u><a href='https://lequ.co' target='_blank'>Lequ.CO</a></u> 立场，转载请联系原作者【<u><a href='@Model?.OriginalLink' target='_blank'>@Model?.Original</a></u>】，如有侵权请联系站长删除。</p>
+                    }
+                    break;
+                default:
+                    {
+                        <p>除非注明，文章均由 <u><a href='https://lequ.co' target='_blank'>Lequ.CO</a></u> 整理发布，欢迎转载。</p>
+                        <p>转载请注明：</p>
+                        <p>原文作者：@Model?.CreateUser?.Name</p>
+                        <p>原文标题：@Model?.Content</p>
+                        <p>原文链接：<span><u><a href='@blogUrl' target='_blank'>@blogUrl</a></u></span></p>
+                        <p>来源：<a href="https://lequ.co" target='_blank'>https://lequ.co</a></p>
+                        <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+                    }
+                    break;
+            }
+        </div>
+    </div>
 </div>
+@*@section Scripts {
+    <!-- Syntax Highlighting code -->
+    <script src="~/lib/highlightjs/highlight.pack.js"></script>
+    <link href="~/lib/highlightjs/styles/vs2015.css" rel="stylesheet" />
+    <script src="~/lib/highlightjs-badge.min.js"></script>
+
+    <script>
+    // apply HighlightJS
+    var pres = document.querySelectorAll("pre>code");
+    for (var i = 0; i < pres.length; i++) {
+    hljs.highlightBlock(pres[i]);
+    }
+
+    // https://github.com/RickStrahl/highlightjs-badge
+    window.highlightJsBadge();
+    </script>
+    }*@
