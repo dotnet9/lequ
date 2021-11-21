@@ -74,9 +74,12 @@ namespace Lequ.Controllers
             }
             else if (searchKey != null)
             {
-                var key = System.Net.WebUtility.UrlDecode(searchKey);
+                var key = System.Net.WebUtility.UrlDecode(searchKey).ToLower();
                 var values = await _service.ListDetailsAsync(
-                    x => x.Title.Contains(key) || x.Content.Contains(key), page, PAGE_SIZE);
+                    x => (x.Title != null ? x.Title.ToLower().Contains(key) : false)
+                    || (x.Content != null ? x.Content.ToLower().Contains(key) : false),
+                    page,
+                    PAGE_SIZE);
                 blogs = values.Item1;
             }
             else

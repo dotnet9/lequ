@@ -38,7 +38,7 @@
     <div class="post-meta align-items-center text-left clearfix">
         @if (Model?.BlogCopyrightTypeEnum == CopyrightType.Default)
         {
-            <figure class="author-figure mb-0 mr-3 float-left">
+            <figure class="author-figure mb-0 mr-1 float-left">
                 <img src="@Model.CreateUser?.Image" alt="Image" class="img-fluid img-thumbnail" width="32">
             </figure>
             <span class="d-inline-block mt-1">
@@ -47,7 +47,7 @@
         }
         else
         {
-            <figure class="author-figure mb-0 mr-3 float-left">
+            <figure class="author-figure mb-0 mr-1 float-left">
                 <img src="@Model?.OriginalAvatar" alt="Image" class="img-fluid img-thumbnail" width="32">
             </figure>
             <span class="d-inline-block mt-1">

@@ -715,11 +715,11 @@ h1, h2, h3, h4, h5,
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); }
 
 .entry2 img {
-  margin-bottom: 30px; }
+  margin-bottom: 3px; }
 
 .entry2 h2 {
   font-size: 24px;
-  margin-bottom: 30px;
+  margin-bottom: 3px;
   font-weight: 700; }
   .entry2 h2 a {
     color: #000; }

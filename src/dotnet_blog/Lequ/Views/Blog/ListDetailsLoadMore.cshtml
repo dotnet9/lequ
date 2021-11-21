@@ -4,8 +4,8 @@
 {
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 mb-0">
-            <div class="entry2">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-3">
+            <div class="card entry2">
                 <a href="/Blog/Details?id=@item.ID" target='_blank'>
                     <div id="mycarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -14,7 +14,7 @@
                                 <div class="carousel-caption">
                                     @if (item.BlogCategories != null)
                                     {
-                                        <ul class="class=" tags">
+                                        <ul class="tags float-left">
                                             @foreach (var category in item.BlogCategories)
                                             {
                                                 <li>
@@ -30,36 +30,31 @@
                         </div>
                     </div>
                 </a>
-                <div class="excerpt">
-
-                    <div class="post-meta align-items-center text-left clearfix">
-                        <span class="d-inline-block mt-1">
-                            <a href="/Blog/Details?id=@item.ID" target='_blank'>@item.Title</a>
+                <div class="post-meta align-items-center text-left clearfix">
+                    <span class="d-inline-block mt-0">
+                        <a href="/Blog/Details?id=@item.ID" target='_blank'>@item.Title</a>
+                    </span>
+                </div>
+                <div class="card-footer pb-0 mb-0">
+                    @if (item.BlogCopyrightTypeEnum == CopyrightType.Default)
+                    {
+                        <figure class="author-figure mb-0 mr-1 float-left">
+                            <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid img-thumbnail" width="32">
+                        </figure>
+                        <span class="d-inline-block mt-0">
+                            <a href="#">@item.CreateUser?.Name</a>
                         </span>
-                    </div>
-                    <div class="post-meta align-items-center text-left clearfix">
-                        @if (item.BlogCopyrightTypeEnum == CopyrightType.Default)
-                        {
-                            <figure class="author-figure mb-0 mr-3 float-left">
-                                <img src="@item.CreateUser?.Image" alt="Image" class="img-fluid img-thumbnail">
-                            </figure>
-                            <span class="d-inline-block mt-1">
-                                <a href="#">@item.CreateUser?.Name</a>
-                            </span>
-                        }
-                        else
-                        {
-                            <figure class="author-figure mb-0 mr-3 float-left">
-                                <img src="@item.OriginalAvatar" alt="Image" class="img-fluid img-thumbnail">
-                            </figure>
-                            <span class="d-inline-block mt-1">
-                                <a href="@item.OriginalLink" target='_blank'>@item.Original</a>
-                            </span>
-                        }
-                    </div>
-                    <p>
-                        <span>@item.CreateDate</span>
-                    </p>
+                    }
+                    else
+                    {
+                        <figure class="author-figure mb-0 mr-1 float-left">
+                            <img src="@item.OriginalAvatar" alt="Image" class="img-fluid img-thumbnail" width="32">
+                        </figure>
+                        <span class="d-inline-block mt-0">
+                            <a href="@item.OriginalLink" target='_blank'>@item.Original</a>
+                        </span>
+                    }
+                    <span>@item.CreateDate?.ToShortDateString()</span>
                 </div>
             </div>
         </div>
