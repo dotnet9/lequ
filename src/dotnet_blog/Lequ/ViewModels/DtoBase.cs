@@ -7,8 +7,10 @@ namespace Lequ.ViewModels
     {
         public int ID { get; set; }
 
-        [Obsolete] public int Status { get; set; }
+        // Used for EF Core
+        public int Status { get; set; }
 
+        // Used for code
         [NotMapped]
         public ModelStatus? StatusEnum
         {

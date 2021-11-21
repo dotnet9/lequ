@@ -106,6 +106,10 @@ namespace Lequ.Controllers
         public async Task<IActionResult> ChangeStatus(int id, int status)
         {
             var comment = await _service.GetAsync(x => x.ID == id);
+            if(comment == null)
+            {
+                return View("Error");
+            }
             comment.Status = status;
             await _service.UpdateAsync(comment);
             return Json(comment);

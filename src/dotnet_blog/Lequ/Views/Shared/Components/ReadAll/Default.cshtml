@@ -35,14 +35,24 @@
 
 <div class="post-content-body">
     <h1>@Model?.Title</h1>
-    <p>
+    <div class="post-meta align-items-center text-left clearfix">
         @if (Model?.BlogCopyrightTypeEnum == CopyrightType.Default)
         {
-            <span>@Model?.CreateUser?.Name</span>
+            <figure class="author-figure mb-0 mr-3 float-left">
+                <img src="@Model.CreateUser?.Image" alt="Image" class="img-fluid img-thumbnail" width="32">
+            </figure>
+            <span class="d-inline-block mt-1">
+                <a href="#">@Model.CreateUser?.Name</a>
+            </span>
         }
         else
         {
-            <span><a href="@Model?.OriginalLink" target='_blank'>@Model?.Original</a></span>
+            <figure class="author-figure mb-0 mr-3 float-left">
+                <img src="@Model?.OriginalAvatar" alt="Image" class="img-fluid img-thumbnail" width="32">
+            </figure>
+            <span class="d-inline-block mt-1">
+                <a href="@Model?.OriginalLink" target='_blank'>@Model?.Original</a>
+            </span>
         }
         <span>&nbsp;-&nbsp; @Model?.CreateDate</span>
         @if (Model?.BlogCategories != null)
@@ -50,13 +60,13 @@
             @foreach (var category in Model.BlogCategories)
             {
                 <span>
-                    <a href="#">
+                    <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID" target='_blank'>
                         <i class="fas fa-eye"></i> @category?.Category?.Name
                     </a>
                 </span>
             }
         }
-    </p>
+    </div>
     <div class="sample-block">
         @Markdown.ParseHtmlString(Model?.Content)
     </div>

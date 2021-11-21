@@ -25,9 +25,10 @@ namespace Lequ.Models
 
         public List<Comment>? Comments { get; set; }
 
+        // Used for EF Core
+        public int BlogCopyrightType { get; set; }
 
-        [Obsolete] public int BlogCopyrightType { get; set; }
-
+        // Used for code
         [NotMapped]
         public CopyrightType? BlogCopyrightTypeEnum
         {
@@ -41,6 +42,7 @@ namespace Lequ.Models
             }
         }
         public string? Original { get; set; }
+        public string? OriginalAvatar { get; set; }
         public string? OriginalLink { get; set; }
     }
 }

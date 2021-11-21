@@ -50,7 +50,7 @@ namespace Lequ.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> ListDetailsLoadMore(int? categoryID, int? tagID, int? albumID, int page = 1)
+        public async Task<IActionResult> ListDetailsLoadMore(int? categoryID, int? tagID, int? albumID, string? searchKey, int page = 1)
         {
             List<Blog>? blogs;
             if (categoryID.HasValue)
@@ -70,6 +70,13 @@ namespace Lequ.Controllers
             {
                 var values = await _service.ListDetailsAsync(
                     x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == albumID.Value), page, PAGE_SIZE);
+                blogs = values.Item1;
+            }
+            else if (searchKey != null)
+            {
+                var key = System.Net.WebUtility.UrlDecode(searchKey);
+                var values = await _service.ListDetailsAsync(
+                    x => x.Title.Contains(key) || x.Content.Contains(key), page, PAGE_SIZE);
                 blogs = values.Item1;
             }
             else
@@ -113,6 +120,13 @@ namespace Lequ.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public async Task<IActionResult> ListBySearch(string s)
+        {
+            return await Task.FromResult(View(new BlogForSearch { SearchKey = s }));
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> OtherFeatured()
         {
             return await Task.FromResult(PartialView());
@@ -127,6 +141,7 @@ namespace Lequ.Controllers
             var vm = new DetailsDto
             {
                 ID = id,
+                Title = blog.Title,
                 UserID = blog.CreateUserID!.Value
             };
             return await Task.FromResult(PartialView(vm));

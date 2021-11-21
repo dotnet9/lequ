@@ -6,8 +6,8 @@
 
 
 <form class="form-group" method="post">
-    <input type="hidden" asp-for="@Model.ID"/>
-    <input type="hidden" asp-for="@Model.CreateDate"/>
+    <input type="hidden" asp-for="@Model!.ID"/>
+    <input type="hidden" asp-for="@Model!.CreateDate"/>
     @Html.Label("Account")
     @Html.TextBoxFor(x => x.Account, new { @class = "form-control" })
     <br/>

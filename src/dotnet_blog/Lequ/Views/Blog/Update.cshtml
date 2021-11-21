@@ -6,7 +6,7 @@
 
 
 <form class="form-group" method="post">
-    <input type="hidden" asp-for="@Model.ID"/>
+    <input type="hidden" asp-for="@Model!.ID"/>
     @Html.Label("Title")
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
     <br/>

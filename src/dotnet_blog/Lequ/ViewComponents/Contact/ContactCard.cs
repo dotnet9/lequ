@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.Contact
 {
-	public class ContactCard : ViewComponent
+    public class ContactCard : ViewComponent
     {
         private readonly IMapper _mapper;
         private readonly IContactService _service;
@@ -17,7 +17,7 @@ namespace Lequ.ViewComponents.Contact
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            return await Task.FromResult(View());
         }
     }
 }

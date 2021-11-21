@@ -25,8 +25,10 @@ namespace Lequ.Models
 
         [StringLength(100)] public string? Email { get; set; }
 
-        [Obsolete] public int Role { get; set; }
+        // Used for EF Core
+        public int Role { get; set; }
 
+        // Used for code
         [NotMapped]
         public UserRoleEnum? RoleEnum
         {
