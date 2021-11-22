@@ -20,6 +20,7 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddLocalization(o => o.ResourcesPath = ConfigurationConsts.RESOURCES_PATH);
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddFluentValidationSetup();
 

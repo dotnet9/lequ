@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using Lequ.Models;
+﻿using Lequ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Lequ.Controllers;
 
@@ -30,6 +30,19 @@ public class HomeController : Controller
 	public IActionResult Error()
 	{
 		return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+	}
+
+	[HttpPost]
+	[AllowAnonymous]
+	public async Task<IActionResult> SetTheme(string theme, string returnUrl)
+	{
+		Response.Cookies.Append(
+			"theme",
+			theme,
+			new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMonths(1) }
+		);
+
+		return await Task.FromResult(LocalRedirect(returnUrl));
 	}
 
 	[AllowAnonymous]

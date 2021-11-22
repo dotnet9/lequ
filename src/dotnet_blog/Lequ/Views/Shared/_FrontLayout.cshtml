@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
+@inject IHttpContextAccessor httpContextAccessor
 
 @{
     Layout = null;
@@ -15,7 +16,15 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
 
     <link rel="stylesheet" href="~/Front/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="~/Front/css/bootstrap.min.css">
+    @{
+        var theme = httpContextAccessor?.HttpContext?.Request?.Cookies["theme"]?.ToString().ToLower();
+        var themepath = "~/Front/css/bootstrap.min.css";
+        if (!string.IsNullOrWhiteSpace(theme) && "default" != theme)
+        {
+            themepath = $"~/Front/css/bootstrap-{theme}.css";
+        }
+        <link rel="stylesheet" href="@themepath">
+    }
     <link rel="stylesheet" href="~/Front/css/magnific-popup.css">
     <link rel="stylesheet" href="~/Front/css/jquery-ui.css">
     <link rel="stylesheet" href="~/Front/css/owl.carousel.min.css">
@@ -46,9 +55,13 @@
             word-wrap: normal;
         }
 
-        img, video, source { max-width: 100% }
+        img, video, source {
+            max-width: 100%
+        }
 
-        pre > code { white-space: pre; }
+        pre > code {
+            white-space: pre;
+        }
     </style>
     }
 
@@ -66,127 +79,130 @@
 </head>
 <body>
 
-<div class="site-wrap">
+    <div class="site-wrap">
 
-    <div class="site-mobile-menu">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close mt-3">
-                <span class="icon-close2 js-menu-toggle"></span>
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
             </div>
+            <div class="site-mobile-menu-body"></div>
         </div>
-        <div class="site-mobile-menu-body"></div>
+
+        <header class="site-navbar" role="banner">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <div class="col-12 search-form-wrap js-search-form">
+                        <form method="get" asp-controller="Blog" asp-action="ListBySearch" role="form">
+                            <input type="text" id="s" class="form-control" name="s" placeholder="Search...">
+                            <button class="search-btn" type="submit">
+                                <span class="icon-search"></span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="col-4 site-logo">
+                        <a href="/Home/Index/" class="text-black h2 mb-0">
+                            <img src="~/logo.svg" width="200" />
+                        </a>
+                    </div>
+
+                    <div class="col-8 text-right">
+                        <nav class="site-navigation" role="navigation">
+                            <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
+                                <li>
+                                    <a href="/Home/Index/">@Localizer["Home"]</a>
+                                </li>
+                                <li>
+                                    <a href="/Blog/ListByCategory?categoryID=1">C#</a>
+                                </li>
+                                <li>
+                                    <a href="/Blog/ListByCategory?categoryID=2">C++</a>
+                                </li>
+                                <li>
+                                    <a href="/Contact/SendMessage/">@Localizer["Contact"]</a>
+                                </li>
+                                <li>
+                                    <a href="/About/Index/">@Localizer["About"]</a>
+                                </li>
+                                <li>
+                                    <a href="/Login/UserLogin/">@Localizer["Login"]</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">@Localizer["Dashboard"]</a>
+                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a href="/Blog/Add" class="dropdown-item">@Localizer["AddPost"]</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Link/Add" class="dropdown-item">@Localizer["AddLink"]</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="dropdown-item">@Localizer["Kuaixun"]</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Login/Logout" class="dropdown-item">@Localizer["Exit"]</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @await Component.InvokeAsync("SetTheme")
+                                </li>
+                                <li>
+                                    @await Html.PartialAsync("~/Views/Home/SetLanguage.cshtml")
+                                </li>
+                                <li class="d-none d-lg-inline-block">
+                                    <a href="#" class="js-search-toggle">
+                                        <span class="icon-search"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none">
+                            <span class="icon-menu h3"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        @RenderBody()
+
+        @await Component.InvokeAsync("Footer")
     </div>
 
-    <header class="site-navbar" role="banner">
-        <div class="container-fluid">
-            <div class="row align-items-center">
+    <script src="~/Front/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Front/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Front/js/jquery-ui.js"></script>
+    <script src="~/Front/js/popper.min.js"></script>
+    <script src="~/Front/js/bootstrap.min.js"></script>
+    <script src="~/Front/js/owl.carousel.min.js"></script>
+    <script src="~/Front/js/jquery.stellar.min.js"></script>
+    <script src="~/Front/js/jquery.countdown.min.js"></script>
+    <script src="~/Front/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Front/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Front/js/aos.js"></script>
 
-                <div class="col-12 search-form-wrap js-search-form">
-                    <form method="get" asp-controller="Blog" asp-action="ListBySearch" role="form">
-                        <input type="text" id="s" class="form-control" name="s" placeholder="Search...">
-                        <button class="search-btn" type="submit">
-                            <span class="icon-search"></span>
-                        </button>
-                    </form>
-                </div>
+    <script src="~/Front/js/main.js"></script>
+    @*@await RenderSectionAsync("Scripts", required: false)*@
 
-                <div class="col-4 site-logo">
-                    <a href="/Home/Index/" class="text-black h2 mb-0">
-                        <img src="~/logo.svg" width="200"/>
-                    </a>
-                </div>
+    <!-- Syntax Highlighting code -->
+    <script src="~/lib/highlightjs/highlight.pack.js"></script>
+    <link href="~/lib/highlightjs/styles/vs2015.css" rel="stylesheet" />
+    <script src="~/lib/highlightjs-badge.min.js"></script>
 
-                <div class="col-8 text-right">
-                    <nav class="site-navigation" role="navigation">
-                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                            <li>
-                                <a href="/Home/Index/">@Localizer["Home"]</a>
-                            </li>
-                            <li>
-                                <a href="/Blog/ListByCategory?categoryID=1">C#</a>
-                            </li>
-                            <li>
-                                <a href="/Blog/ListByCategory?categoryID=2">C++</a>
-                            </li>
-                            <li>
-                                <a href="/Contact/SendMessage/">@Localizer["Contact"]</a>
-                            </li>
-                            <li>
-                                <a href="/About/Index/">@Localizer["About"]</a>
-                            </li>
-                            <li>
-                                <a href="/Login/UserLogin/">@Localizer["Login"]</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">@Localizer["Dashboard"]</a>
-                                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                    <li>
-                                        <a href="/Blog/Add" class="dropdown-item">@Localizer["AddPost"]</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Link/Add" class="dropdown-item">@Localizer["AddLink"]</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item">@Localizer["Kuaixun"]</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Login/Logout" class="dropdown-item">@Localizer["Exit"]</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                @await Html.PartialAsync("~/Views/Home/SetLanguage.cshtml")
-                            </li>
-                            <li class="d-none d-lg-inline-block">
-                                <a href="#" class="js-search-toggle">
-                                    <span class="icon-search"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none">
-                        <span class="icon-menu h3"></span>
-                    </a>
-                </div>
-            </div>
+    <script>
+        // apply HighlightJS
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
 
-        </div>
-    </header>
-
-    @RenderBody()
-
-    @await Component.InvokeAsync("Footer")
-</div>
-
-<script src="~/Front/js/jquery-3.3.1.min.js"></script>
-<script src="~/Front/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="~/Front/js/jquery-ui.js"></script>
-<script src="~/Front/js/popper.min.js"></script>
-<script src="~/Front/js/bootstrap.min.js"></script>
-<script src="~/Front/js/owl.carousel.min.js"></script>
-<script src="~/Front/js/jquery.stellar.min.js"></script>
-<script src="~/Front/js/jquery.countdown.min.js"></script>
-<script src="~/Front/js/jquery.magnific-popup.min.js"></script>
-<script src="~/Front/js/bootstrap-datepicker.min.js"></script>
-<script src="~/Front/js/aos.js"></script>
-
-<script src="~/Front/js/main.js"></script>
-@*@await RenderSectionAsync("Scripts", required: false)*@
-
-<!-- Syntax Highlighting code -->
-<script src="~/lib/highlightjs/highlight.pack.js"></script>
-<link href="~/lib/highlightjs/styles/vs2015.css" rel="stylesheet"/>
-<script src="~/lib/highlightjs-badge.min.js"></script>
-
-<script>
-    // apply HighlightJS
-    var pres = document.querySelectorAll("pre>code");
-    for (var i = 0; i < pres.length; i++) {
-        hljs.highlightBlock(pres[i]);
-    }
-
-    // https://github.com/RickStrahl/highlightjs-badge
-    window.highlightJsBadge();
-</script>
+        // https://github.com/RickStrahl/highlightjs-badge
+        window.highlightJsBadge();
+    </script>
 </body>
 </html>
