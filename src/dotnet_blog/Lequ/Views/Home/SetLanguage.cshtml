@@ -12,18 +12,6 @@
     var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}" + $"{Context.Request.QueryString.Value}";
 }
 
-
-<div class="input-group">
-    <div class="input-group-prepend">
-        <div class="input-group-text">
-            <i class="fa fa-globe"></i>
-        </div>
-    </div>
-    <div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
-        <form id="selectLanguage" asp-controller="Home"
-              asp-action="SetLanguage" asp-route-returnUrl="@returnUrl"
-              method="post" class="form-horizontal" role="form">
-            <select name="culture" onchange="this.form.submit();" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
-        </form>
-    </div>
-</div>
+<form id="selectLanguage" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@returnUrl" method="post" class="form-horizontal" role="form">
+    <select name="culture" onchange="this.form.submit();" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
+</form>
