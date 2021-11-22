@@ -27,20 +27,21 @@
         page++;
 
         $('#loadMore').button("loading");
-        $.get("/Blog/ListDetailsLoadMore?page=" + page, function (data) {
-            if (data != '') {
-                $("#UserReviewsList").append(data);
-                $('#loadMore').button("reset");
-            }
-            else {
-                page = -1;
-                $('#loadMore').prop('class', 'btn btn-outline-secondary');
-                $('#loadMore').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No more data!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-            }
+        $.get("/Blog/ListDetailsLoadMore?page=" + page,
+            function(data) {
+                if (data != '') {
+                    $("#UserReviewsList").append(data);
+                    $('#loadMore').button("reset");
+                } else {
+                    page = -1;
+                    $('#loadMore').prop('class', 'btn btn-outline-secondary');
+                    $('#loadMore').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No more data!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+                }
 
-            _inCallback = false;
-        });
+                _inCallback = false;
+            });
     }
+
     window.onload = function() {
         loadmore();
     };

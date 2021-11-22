@@ -1,17 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lequ.Models
+namespace Lequ.Models;
+
+public class Comment : ModelBase
 {
-    public class Comment : ModelBase
-    {
-        public int BlogID { get; set; }
+	public int BlogID { get; set; }
 
-        public Blog? Blog { get; set; }
+	public Blog? Blog { get; set; }
 
-        public int? ParentID { get; set; }
+	public int? ParentID { get; set; }
 
-        public Comment? Parent { get; set; }
+	public Comment? Parent { get; set; }
 
-        [StringLength(200)] public string? Content { get; set; }
-    }
+	[StringLength(200)] public string? Content { get; set; }
 }

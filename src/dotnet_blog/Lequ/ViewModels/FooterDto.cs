@@ -1,9 +1,8 @@
 ﻿using Lequ.Models;
 
-namespace Lequ.ViewModels
+namespace Lequ.ViewModels;
+
+public class FooterDto
 {
-    public class FooterDto
-    {
-        public List<Link>? FriendLinks { get; set; }
-    }
+	public List<Link>? FriendLinks { get; set; }
 }

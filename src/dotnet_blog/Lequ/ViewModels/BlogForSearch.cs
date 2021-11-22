@@ -1,7 +1,6 @@
-﻿namespace Lequ.ViewModels
+﻿namespace Lequ.ViewModels;
+
+public class BlogForSearch
 {
-    public class BlogForSearch
-    {
-        public string SearchKey { get; set; }
-    }
+	public string SearchKey { get; set; }
 }

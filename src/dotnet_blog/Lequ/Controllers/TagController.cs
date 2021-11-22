@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Lequ.Controllers
+namespace Lequ.Controllers;
+
+public class TagController : Controller
 {
-    public class TagController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-    }
+	public IActionResult Index()
+	{
+		return View();
+	}
 }

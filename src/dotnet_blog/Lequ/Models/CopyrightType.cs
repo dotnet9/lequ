@@ -1,9 +1,8 @@
-﻿namespace Lequ.Models
+﻿namespace Lequ.Models;
+
+public enum CopyrightType
 {
-    public enum CopyrightType
-    {
-        Default,
-        Contribution,
-        Reprint
-    }
+	Default,
+	Contribution,
+	Reprint
 }

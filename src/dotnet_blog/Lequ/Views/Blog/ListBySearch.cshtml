@@ -1,4 +1,5 @@
-﻿@model Lequ.ViewModels.BlogForSearch
+﻿@using System.Net
+@model BlogForSearch
 @{
     ViewData["Title"] = "ListBySearch";
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
@@ -27,24 +28,25 @@
 
 <script type="text/javascript">
 
-        var page = 0;
-        var _inCallback = false;
+    var page = 0;
+    var _inCallback = false;
 
-        function loadmore() {
-            if (page <= -1 || _inCallback) {
-                return;
-            }
+    function loadmore() {
+        if (page <= -1 || _inCallback) {
+            return;
+        }
 
-            _inCallback = true;
-            page++;
+        _inCallback = true;
+        page++;
 
-            $('#loadMore').button("loading");
-            $.get('/Blog/ListDetailsLoadMore', {'searchKey':'@System.Net.WebUtility.UrlEncode(Model?.SearchKey)', 'page': page}, function (data) {
+        $('#loadMore').button("loading");
+        $.get('/Blog/ListDetailsLoadMore',
+            { 'searchKey': '@WebUtility.UrlEncode(Model?.SearchKey)', 'page': page },
+            function(data) {
                 if (data != '') {
                     $("#UserReviewsList").append(data);
                     $('#loadMore').button("reset");
-                }
-                else {
+                } else {
                     page = -1;
                     $('#loadMore').prop('class', 'btn btn-outline-secondary');
                     $('#loadMore').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No more data!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
@@ -52,9 +54,10 @@
 
                 _inCallback = false;
             });
-        }
-        window.onload = function() {
-            loadmore();
-        };
+    }
+
+    window.onload = function() {
+        loadmore();
+    };
 
 </script>

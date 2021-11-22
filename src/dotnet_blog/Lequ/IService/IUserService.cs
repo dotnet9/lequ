@@ -1,9 +1,8 @@
 ﻿using Lequ.Models;
 
-namespace Lequ.IService
+namespace Lequ.IService;
+
+public interface IUserService : IBaseService<User>
 {
-    public interface IUserService : IBaseService<User>
-    {
-        Task<User?> GetByBlogID(int id);
-    }
+	Task<User?> GetByBlogID(int id);
 }

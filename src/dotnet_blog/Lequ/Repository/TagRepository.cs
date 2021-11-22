@@ -1,12 +1,11 @@
 ﻿using Lequ.IRepository;
 using Lequ.Models;
 
-namespace Lequ.Repository
+namespace Lequ.Repository;
+
+public class TagRepository : BaseRepository<Tag>, ITagRepository
 {
-    public class TagRepository : BaseRepository<Tag>, ITagRepository
-    {
-        public TagRepository(LequDbContext context) : base(context)
-        {
-        }
-    }
+	public TagRepository(LequDbContext context) : base(context)
+	{
+	}
 }

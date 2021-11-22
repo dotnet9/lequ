@@ -1,6 +1,4 @@
-﻿@using Lequ.Models
-@using Lequ.ViewModels
-@model PagingDtoBase<Blog>
+﻿@model PagingDtoBase<Blog>
 @{
     ViewData["Title"] = "AdminBlogList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -24,88 +22,88 @@
     <div class="card-body p-0">
         <table class="table table-striped projects">
             <thead>
-                <tr>
-                    <th style="width: 1%">ID</th>
-                    <th style="width: 20%">Title</th>
-                    <th style="width: 5%">Status</th>
-                    <th style="width: 5%">Album</th>
-                    <th style="width: 5%">Category</th>
-                    <th style="width: 5%">Tag</th>
-                    <th style="width: 10%">Create User</th>
-                    <th style="width: 20%">Control</th>
-                </tr>
+            <tr>
+                <th style="width: 1%">ID</th>
+                <th style="width: 20%">Title</th>
+                <th style="width: 5%">Status</th>
+                <th style="width: 5%">Album</th>
+                <th style="width: 5%">Category</th>
+                <th style="width: 5%">Tag</th>
+                <th style="width: 10%">Create User</th>
+                <th style="width: 20%">Control</th>
+            </tr>
             </thead>
             <tbody>
-                @if (Model != null && Model.Datas != null)
+            @if (Model != null && Model.Datas != null)
+            {
+                @foreach (var item in Model.Datas)
                 {
-                    @foreach (var item in Model.Datas)
-                    {
-                        <tr>
-                            <td>@item.ID</td>
-                            <th>
-                                <a href="/Blog/Details?id=@item.ID">@item.Title</a>
-                                <br />
-                                <small>
-                                    Created @item.CreateDate
-                                </small>
-                            </th>
-                            <td>@item.StatusEnum</td>
-                            <td>
-                                @if (item.BlogAlbums != null)
+                    <tr>
+                        <td>@item.ID</td>
+                        <th>
+                            <a href="/Blog/Details?id=@item.ID">@item.Title</a>
+                            <br/>
+                            <small>
+                                Created @item.CreateDate
+                            </small>
+                        </th>
+                        <td>@item.StatusEnum</td>
+                        <td>
+                            @if (item.BlogAlbums != null)
+                            {
+                                @foreach (var album in item.BlogAlbums)
                                 {
-                                    @foreach (var album in item.BlogAlbums)
-                                    {
-                                        <span class="@styles[new Random().Next(3)]">
-                                            <a href="/Blog/ListByAlbum?albumID=@album?.Album?.ID">
-                                                @album?.Album?.Name
-                                            </a>
-                                        </span>
-                                    }
+                                    <span class="@styles[new Random().Next(3)]">
+                                        <a href="/Blog/ListByAlbum?albumID=@album?.Album?.ID">
+                                            @album?.Album?.Name
+                                        </a>
+                                    </span>
                                 }
-                            </td>
-                            <td>
-                                @if (item.BlogCategories != null)
+                            }
+                        </td>
+                        <td>
+                            @if (item.BlogCategories != null)
+                            {
+                                @foreach (var category in item.BlogCategories)
                                 {
-                                    @foreach (var category in item.BlogCategories)
-                                    {
-                                        <span class="@styles[new Random().Next(3)]">
-                                            <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
-                                                @category?.Category?.Name
-                                            </a>
-                                        </span>
-                                    }
+                                    <span class="@styles[new Random().Next(3)]">
+                                        <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID">
+                                            @category?.Category?.Name
+                                        </a>
+                                    </span>
                                 }
-                            </td>
-                            <td>
-                                @if (item.BlogTags != null)
+                            }
+                        </td>
+                        <td>
+                            @if (item.BlogTags != null)
+                            {
+                                @foreach (var tag in item.BlogTags)
                                 {
-                                    @foreach (var tag in item.BlogTags)
-                                    {
-                                        <span class="@styles[new Random().Next(3)]">
-                                            <a href="/Blog/ListByTag?tagID=@tag?.Tag?.ID">
-                                                @tag?.Tag?.Name
-                                            </a>
-                                        </span>
-                                    }
+                                    <span class="@styles[new Random().Next(3)]">
+                                        <a href="/Blog/ListByTag?tagID=@tag?.Tag?.ID">
+                                            @tag?.Tag?.Name
+                                        </a>
+                                    </span>
                                 }
-                            </td>
-                            <td>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="@item.CreateUser?.Image">
-                                        @item.CreateUser?.Name
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</a>
-                                <a href="/Blog/Update?id=@item.ID" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>Edit</a>
-                                <a href="/Blog/Details?id=@item.ID" class="btn btn-primary btn-sm"><i class="fas fa-folder"></i>Detail</a>
-                                <a href="/Comment/AdminBlogCommentList?blogID=@item.ID" class="btn btn-dark"><i class="fas fa-comments"></i>Message(@item.Comments?.Count)</a>
-                            </td>
-                        </tr>
-                    }
+                            }
+                        </td>
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="@item.CreateUser?.Image">
+                                    @item.CreateUser?.Name
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</a>
+                            <a href="/Blog/Update?id=@item.ID" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>Edit</a>
+                            <a href="/Blog/Details?id=@item.ID" class="btn btn-primary btn-sm"><i class="fas fa-folder"></i>Detail</a>
+                            <a href="/Comment/AdminBlogCommentList?blogID=@item.ID" class="btn btn-dark"><i class="fas fa-comments"></i>Message(@item.Comments?.Count)</a>
+                        </td>
+                    </tr>
                 }
+            }
             </tbody>
         </table>
     </div>

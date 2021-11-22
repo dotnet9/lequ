@@ -13,11 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
-    {
-        options.IdleTimeout = TimeSpan.FromSeconds(10);
-        options.Cookie.HttpOnly = true;
-        options.Cookie.IsEssential = true;
-    });
+{
+	options.IdleTimeout = TimeSpan.FromSeconds(10);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddLocalization(o => o.ResourcesPath = ConfigurationConsts.RESOURCES_PATH);
 
@@ -25,54 +25,53 @@ builder.Services.AddFluentValidationSetup();
 
 builder.Services.AddMarkdown(config =>
 {
-    // Create custom MarkdigPipeline 
-    // using MarkDig; for extension methods
-    config.ConfigureMarkdigPipeline = builder =>
-    {
-        // optional Tag BlackList
-        config.HtmlTagBlackList = "script|iframe|object|embed|form"; // default
-        builder.UseEmphasisExtras(Markdig.Extensions.EmphasisExtras.EmphasisExtraOptions.Default)
-            .UsePipeTables()
-            .UseGridTables()
-            .UseAutoIdentifiers(AutoIdentifierOptions.GitHub) // Headers get id="name" 
-            .UseAutoLinks() // URLs are parsed into anchors
-            .UseAbbreviations()
-            .UseYamlFrontMatter()
-            .UseEmojiAndSmiley(true)
-            .UseListExtras()
-            .UseFigures()
-            .UseTaskLists()
-            .UseCustomContainers()
-            .UseGenericAttributes();
-    };
+	// Create custom MarkdigPipeline 
+	// using MarkDig; for extension methods
+	config.ConfigureMarkdigPipeline = builder =>
+	{
+		// optional Tag BlackList
+		config.HtmlTagBlackList = "script|iframe|object|embed|form"; // default
+		builder.UseEmphasisExtras()
+			.UsePipeTables()
+			.UseGridTables()
+			.UseAutoIdentifiers(AutoIdentifierOptions.GitHub) // Headers get id="name" 
+			.UseAutoLinks() // URLs are parsed into anchors
+			.UseAbbreviations()
+			.UseYamlFrontMatter()
+			.UseEmojiAndSmiley()
+			.UseListExtras()
+			.UseFigures()
+			.UseTaskLists()
+			.UseCustomContainers()
+			.UseGenericAttributes();
+	};
 });
 
 builder.Services.AddMvc(config =>
-    {
-        var policy = new AuthorizationPolicyBuilder()
-            .RequireAuthenticatedUser()
-            .Build();
-        config.Filters.Add(new AuthorizeFilter(policy));
-    })
-    .AddFluentValidation()
-    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-    .AddDataAnnotationsLocalization()
-    .AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
+	{
+		var policy = new AuthorizationPolicyBuilder()
+			.RequireAuthenticatedUser()
+			.Build();
+		config.Filters.Add(new AuthorizeFilter(policy));
+	})
+	.AddFluentValidation()
+	.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+	.AddDataAnnotationsLocalization()
+	.AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
 
 var supportedCultures = new[] { "en-US", "zh-Hans", "zh-Hant", "ja" };
 builder.Services.Configure<RequestLocalizationOptions>(options =>
-    {
-        options.SetDefaultCulture(supportedCultures[0])
-            .AddSupportedCultures(supportedCultures)
-            .AddSupportedUICultures(supportedCultures);
-    });
+{
+	options.SetDefaultCulture(supportedCultures[0])
+		.AddSupportedCultures(supportedCultures)
+		.AddSupportedUICultures(supportedCultures);
+});
 
 builder.Services.AddControllersWithViews();
 
 
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(x => x.LoginPath = "/Login/UserLogin");
+	.AddCookie(x => x.LoginPath = "/Login/UserLogin");
 
 builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddAutoMapperSetup();
@@ -98,13 +97,13 @@ app.UseAuthorization();
 app.UseSession();
 
 var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
-    .AddSupportedCultures(supportedCultures)
-    .AddSupportedUICultures(supportedCultures);
+	.AddSupportedCultures(supportedCultures)
+	.AddSupportedUICultures(supportedCultures);
 
 app.UseRequestLocalization(localizationOptions);
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+	"default",
+	"{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

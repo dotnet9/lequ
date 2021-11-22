@@ -1,8 +1,7 @@
-﻿namespace Lequ.Models
+﻿namespace Lequ.Models;
+
+public enum SortDirection
 {
-    public enum SortDirection
-    {
-        Ascending,
-        Descending
-    }
+	Ascending,
+	Descending
 }

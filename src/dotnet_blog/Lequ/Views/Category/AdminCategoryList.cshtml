@@ -1,13 +1,11 @@
-﻿@using Lequ.Models
-@using Lequ.ViewModels
-@model PagingDtoBase<Category>
+﻿@model PagingDtoBase<Category>
 @{
     ViewData["Title"] = "AdminCategoryList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <script type="text/javascript">
-    function edit_category(id,name,desc) {
-        alert(id+"_"+name+"_"+desc);
+    function edit_category(id, name, desc) {
+        alert(id + "_" + name + "_" + desc);
     }
 </script>
 
@@ -27,96 +25,96 @@
     <div class="card-body p-0">
         <table class="table table-striped projects">
             <thead>
-                <tr>
-                    <th style="width: 1%">
-                        ID
-                    </th>
-                    <th style="width: 15%">
-                        Name
-                    </th>
-                    <th style="width: 20%">
-                        Description
-                    </th>
-                    <th>
-                        Create Date
-                    </th>
-                    <th style="width: 8%" class="text-center">
-                        Update Date
-                    </th>
-                    <th style="width: 20%">
-                    </th>
-                </tr>
+            <tr>
+                <th style="width: 1%">
+                    ID
+                </th>
+                <th style="width: 15%">
+                    Name
+                </th>
+                <th style="width: 20%">
+                    Description
+                </th>
+                <th>
+                    Create Date
+                </th>
+                <th style="width: 8%" class="text-center">
+                    Update Date
+                </th>
+                <th style="width: 20%">
+                </th>
+            </tr>
             </thead>
             <tbody>
 
-                @if (Model != null && Model.Datas != null)
+            @if (Model != null && Model.Datas != null)
+            {
+                @foreach (var item in Model.Datas)
                 {
-                    @foreach (var item in Model.Datas)
-                    {
-                        <tr>
-                            <td>
-                                @item.ID
-                            </td>
-                            <th>
-                                <a>
-                                    @item.Name
-                                </a>
-                                <br />
-                                <small>
-                                    Created @item.CreateDate
-                                </small>
-                            </th>
-                            <td>
-                                @item.Description
-                            </td>
-                            <td>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar.png">
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar2.png">
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar3.png">
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar04.png">
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="project_progress">
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
-                                    </div>
+                    <tr>
+                        <td>
+                            @item.ID
+                        </td>
+                        <th>
+                            <a>
+                                @item.Name
+                            </a>
+                            <br/>
+                            <small>
+                                Created @item.CreateDate
+                            </small>
+                        </th>
+                        <td>
+                            @item.Description
+                        </td>
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar.png">
+                                </li>
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar2.png">
+                                </li>
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar3.png">
+                                </li>
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="~/Admin/dist/img/avatar04.png">
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="project_progress">
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
                                 </div>
-                                <small>
-                                    57% Complete
-                                </small>
-                            </td>
-                            <td class="project-state">
-                                <span class="badge badge-success">Success</span>
-                            </td>
-                            <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    View
-                                </a>
-                                <button class="btn btn-info btn-sm" onclick='edit_category(@item.ID, "@item.Name", "@item.Description")' data-toggle="modal" data-target="#Modal1">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Edit
-                                </button>
-                                <a class="btn btn-danger btn-sm" href="#">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                    }
+                            </div>
+                            <small>
+                                57% Complete
+                            </small>
+                        </td>
+                        <td class="project-state">
+                            <span class="badge badge-success">Success</span>
+                        </td>
+                        <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="#">
+                                <i class="fas fa-folder">
+                                </i>
+                                View
+                            </a>
+                            <button class="btn btn-info btn-sm" onclick='edit_category(@item.ID, "@item.Name", "@item.Description")' data-toggle="modal" data-target="#Modal1">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </button>
+                            <a class="btn btn-danger btn-sm" href="#">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
                 }
+            }
             </tbody>
         </table>
     </div>
@@ -150,10 +148,10 @@
                     <input type="hidden" id="categoryID"/>
                     <label>Name</label>
                     <input type="text" id="categoryName" name="Name" class="form-control"/>
-                    <br />
+                    <br/>
                     <label>Description</label>
                     <textarea type="text" id="categoryDescription" name="Description" class="form-control"/>
-                    <br />
+                    <br/>
                     <button class="btn btn-info">Save</button>
                 </div>
             </form>

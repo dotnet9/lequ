@@ -1,7 +1,6 @@
-﻿namespace Lequ.Models
+﻿namespace Lequ.Models;
+
+public class SubscribeEmail : ModelBase
 {
-    public class SubscribeEmail : ModelBase
-    {
-        public string? Email { get; set; }
-    }
+	public string? Email { get; set; }
 }

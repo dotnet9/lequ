@@ -1,10 +1,9 @@
-﻿namespace Lequ.Models
+﻿namespace Lequ.Models;
+
+public enum ModelStatus
 {
-    public enum ModelStatus
-    {
-        IsDeleted,
-        Normal,
-        Disable,
-        Check
-    }
+	IsDeleted,
+	Normal,
+	Disable,
+	Check
 }

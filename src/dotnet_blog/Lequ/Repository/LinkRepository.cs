@@ -1,12 +1,11 @@
 ﻿using Lequ.IRepository;
 using Lequ.Models;
 
-namespace Lequ.Repository
+namespace Lequ.Repository;
+
+public class LinkRepository : BaseRepository<Link>, ILinkRepository
 {
-    public class LinkRepository : BaseRepository<Link>, ILinkRepository
-    {
-        public LinkRepository(LequDbContext context) : base(context)
-        {
-        }
-    }
+	public LinkRepository(LequDbContext context) : base(context)
+	{
+	}
 }

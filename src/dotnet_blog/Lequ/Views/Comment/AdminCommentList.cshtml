@@ -1,6 +1,4 @@
-﻿
-@using Lequ.ViewModels
-@model PagingDtoBase<CommentDto>
+﻿@model PagingDtoBase<CommentDto>
 @{
     ViewData["Title"] = "AdminCommentList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -51,7 +49,7 @@
                                         </span>
                                     </p>
 
-                                    <input id="text_@item.ID" class="form-control form-control-sm" type="text" placeholder="Type a comment" onkeydown="type_comment(@item.BlogID,@item.ID)">
+                                    <input id="text_@item.ID" class="form-control form-control-sm" type="text" placeholder="Type a comment" onkeydown="type_comment(@item.BlogID, @item.ID)">
                                 </div>
                             }
                         }
@@ -84,12 +82,13 @@
     }
 
     function type_comment(blogID, id) {
-        if(event.keyCode != 13){
+        if (event.keyCode != 13) {
             return;
         }
-        $.post('/Comment/Reply?blogID=' + blogID + '&commentID=' + id + '&userID=1&content=' + $("#text_"+id).val(), function (data) {
-            alert("Reply success");
-            $("#text_"+id).val("");
-        });
+        $.post('/Comment/Reply?blogID=' + blogID + '&commentID=' + id + '&userID=1&content=' + $("#text_" + id).val(),
+            function(data) {
+                alert("Reply success");
+                $("#text_" + id).val("");
+            });
     }
 </script>

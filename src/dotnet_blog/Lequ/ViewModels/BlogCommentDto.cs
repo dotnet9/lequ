@@ -1,8 +1,7 @@
-﻿namespace Lequ.ViewModels
+﻿namespace Lequ.ViewModels;
+
+public class BlogCommentDto
 {
-    public class BlogCommentDto
-    {
-        public int BlogID { get; set; }
-        public List<CommentDto>? Comments { get; set; }
-    }
+	public int BlogID { get; set; }
+	public List<CommentDto>? Comments { get; set; }
 }

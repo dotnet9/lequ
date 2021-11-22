@@ -2,12 +2,11 @@
 using Lequ.IService;
 using Lequ.Models;
 
-namespace Lequ.Service
+namespace Lequ.Service;
+
+public class CommentService : BaseService<Comment>, ICommentService
 {
-    public class CommentService : BaseService<Comment>, ICommentService
-    {
-        public CommentService(ICommentRepository repository) : base(repository)
-        {
-        }
-    }
+	public CommentService(ICommentRepository repository) : base(repository)
+	{
+	}
 }

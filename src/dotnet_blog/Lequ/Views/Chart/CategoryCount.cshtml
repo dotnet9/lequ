@@ -12,17 +12,18 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json",
                 url: '@Url.Action("CategoryCountData", "Chart")',
-                success: function (result) {
-                    google.charts.load('current', {
-                        'packages': ['corechart']
-                    });
-                    google.charts.setOnLoadCallback(function () {
+                success: function(result) {
+                    google.charts.load('current',
+                        {
+                            'packages': ['corechart']
+                        });
+                    google.charts.setOnLoadCallback(function() {
                         drawChart(result);
                     });
                 }
@@ -34,9 +35,10 @@
             data.addColumn('string', 'Name');
             data.addColumn('number', 'Stoklar');
             var dataArray = [];
-            $.each(result, function (i, obj) {
-                dataArray.push([obj.Name, obj.Count]);
-            });
+            $.each(result,
+                function(i, obj) {
+                    dataArray.push([obj.Name, obj.Count]);
+                });
             data.addRows(dataArray);
 
             var columnChartOptions = {
@@ -55,6 +57,6 @@
     </script>
 </head>
 <body>
-    <div id="Piechart_div"></div>
+<div id="Piechart_div"></div>
 </body>
 </html>

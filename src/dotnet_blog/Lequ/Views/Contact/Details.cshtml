@@ -1,4 +1,4 @@
-﻿@model Lequ.Models.Contact
+﻿@model Contact
 @{
     ViewData["Title"] = "MessageDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="/Contact/SendBox/" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
-                                
+
                 @await Component.InvokeAsync("ContactCard")
             </div>
             <!-- /.col -->
@@ -31,8 +31,12 @@
                         <h3 class="card-title">Read Mail</h3>
 
                         <div class="card-tools">
-                            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
-                            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
+                            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
                     <!-- /.card-header -->

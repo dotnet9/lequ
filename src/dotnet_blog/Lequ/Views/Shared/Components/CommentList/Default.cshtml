@@ -1,6 +1,4 @@
-﻿
-@using Lequ.ViewModels
-@model BlogCommentDto
+﻿@model BlogCommentDto
 
 <div class="comment-form-wrap pt-5">
     <h3 class="mb-5">Leave a comment</h3>
@@ -66,14 +64,15 @@
 </div>
 <script type="text/javascript">
     function reply(commentid, username) {
-        $('#messagetip').html('Reply for ' + username)
-        $('#parentid').val(commentid)
-        $('#remove_reply').html('X')
-        $('#remove_reply').show()
+        $('#messagetip').html('Reply for ' + username);
+        $('#parentid').val(commentid);
+        $('#remove_reply').html('X');
+        $('#remove_reply').show();
     }
+
     function remove_replay_parent() {
-        $('#messagetip').html('Message')
-        $('#parentid').val('')
-        $('#remove_reply').hide()
+        $('#messagetip').html('Message');
+        $('#parentid').val('');
+        $('#remove_reply').hide();
     }
 </script>

@@ -1,59 +1,55 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using Lequ.GlobalVar;
 using Lequ.IService;
 using Lequ.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
-namespace Lequ.Controllers
+namespace Lequ.Controllers;
+
+public class LoginController : Controller
 {
-	public class LoginController : Controller
+	private readonly IMapper _mapper;
+	private readonly IUserService _service;
+
+	public LoginController(IUserService service, IMapper mapper)
 	{
-		private readonly IMapper _mapper;
-		private readonly IUserService _service;
+		_service = service;
+		_mapper = mapper;
+	}
 
-		public LoginController(IUserService service, IMapper mapper)
+	[HttpGet]
+	[AllowAnonymous]
+	public async Task<IActionResult> UserLogin()
+	{
+		return await Task.FromResult(View());
+	}
+
+	[HttpPost]
+	[AllowAnonymous]
+	public async Task<IActionResult> UserLogin(User user)
+	{
+		var dbUser = await _service.GetAsync(x => x.Account == user.Account && x.Password == user.Password);
+		if (dbUser == null) return View();
+
+		var claims = new List<Claim>
 		{
-			_service = service;
-			_mapper = mapper;
-		}
+			new(ClaimTypes.Name, dbUser.Account)
+		};
+		var userIdentity = new ClaimsIdentity(claims, "Account");
+		var principal = new ClaimsPrincipal(userIdentity);
+		HttpContext.Session.Set(GlobalVars.SESSION_USER_ACCOUNT_KEY, dbUser.Account);
+		HttpContext.Session.Set(GlobalVars.SESSION_USER_ID_KEY, dbUser.ID);
+		await HttpContext.SignInAsync(principal);
+		return RedirectToAction("AdminBlogList", "Blog");
+	}
 
-		[HttpGet]
-		[AllowAnonymous]
-		public async Task<IActionResult> UserLogin()
-		{
-			return await Task.FromResult(View());
-		}
 
-		[HttpPost]
-		[AllowAnonymous]
-		public async Task<IActionResult> UserLogin(User user)
-		{
-			var dbUser = await _service.GetAsync(x => x.Account == user.Account && x.Password == user.Password);
-			if (dbUser == null)
-			{
-				return View();
-			}
-
-			var claims = new List<Claim>
-				{
-					new Claim(ClaimTypes.Name, dbUser.Account)
-				};
-			var userIdentity = new ClaimsIdentity(claims, "Account");
-			ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-			HttpContext.Session.Set(GlobalVars.SESSION_USER_ACCOUNT_KEY, dbUser.Account);
-			HttpContext.Session.Set(GlobalVars.SESSION_USER_ID_KEY, dbUser.ID);
-			await HttpContext.SignInAsync(principal);
-			return RedirectToAction("AdminBlogList", "Blog");
-		}
-
-		
-		public async Task<IActionResult> Logout()
-		{
-			await HttpContext.SignOutAsync();
-			return RedirectToAction("Index", "Home");
-		}
+	public async Task<IActionResult> Logout()
+	{
+		await HttpContext.SignOutAsync();
+		return RedirectToAction("Index", "Home");
 	}
 }

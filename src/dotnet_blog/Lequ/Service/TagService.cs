@@ -2,12 +2,11 @@
 using Lequ.IService;
 using Lequ.Models;
 
-namespace Lequ.Service
+namespace Lequ.Service;
+
+public class TagService : BaseService<Tag>, ITagService
 {
-    public class TagService : BaseService<Tag>, ITagService
-    {
-        public TagService(ITagRepository repository) : base(repository)
-        {
-        }
-    }
+	public TagService(ITagRepository repository) : base(repository)
+	{
+	}
 }

@@ -1,8 +1,7 @@
 ﻿using Lequ.Models;
 
-namespace Lequ.IService
+namespace Lequ.IService;
+
+public interface ICommentService : IBaseService<Comment>
 {
-    public interface ICommentService : IBaseService<Comment>
-    {
-    }
 }

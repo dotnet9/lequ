@@ -2,12 +2,11 @@
 using Lequ.IService;
 using Lequ.Models;
 
-namespace Lequ.Service
+namespace Lequ.Service;
+
+public class CategoryService : BaseService<Category>, ICategoryService
 {
-    public class CategoryService : BaseService<Category>, ICategoryService
-    {
-        public CategoryService(ICategoryRepository repository) : base(repository)
-        {
-        }
-    }
+	public CategoryService(ICategoryRepository repository) : base(repository)
+	{
+	}
 }

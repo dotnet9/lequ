@@ -2,20 +2,19 @@
 using Lequ.Models;
 using Lequ.ViewModels;
 
-namespace Lequ.AutoMapper
+namespace Lequ.AutoMapper;
+
+public class CustomProfile : Profile
 {
-    public class CustomProfile : Profile
-    {
-        public CustomProfile()
-        {
-            CreateMap<Blog, BlogForCreationDto>().ReverseMap();
-            CreateMap<Blog, BlogFotUpdateDto>().ReverseMap();
-            CreateMap<Comment, CommentDto>();
-            CreateMap<User, UserDto>();
-            CreateMap<UserForCreationDto, User>();
-            CreateMap<User, UserForUpdateDto>().ReverseMap();
-            CreateMap<LinkForCreationDto, Link>();
-            CreateMap<LinkForUpdateDto, Link>().ReverseMap();
-        }
-    }
+	public CustomProfile()
+	{
+		CreateMap<Blog, BlogForCreationDto>().ReverseMap();
+		CreateMap<Blog, BlogFotUpdateDto>().ReverseMap();
+		CreateMap<Comment, CommentDto>();
+		CreateMap<User, UserDto>();
+		CreateMap<UserForCreationDto, User>();
+		CreateMap<User, UserForUpdateDto>().ReverseMap();
+		CreateMap<LinkForCreationDto, Link>();
+		CreateMap<LinkForUpdateDto, Link>().ReverseMap();
+	}
 }

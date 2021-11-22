@@ -2,12 +2,11 @@
 using Lequ.IService;
 using Lequ.Models;
 
-namespace Lequ.Service
+namespace Lequ.Service;
+
+public class AlbumService : BaseService<Album>, IAlbumService
 {
-    public class AlbumService : BaseService<Album>, IAlbumService
-    {
-        public AlbumService(IAlbumRepository repository) : base(repository)
-        {
-        }
-    }
+	public AlbumService(IAlbumRepository repository) : base(repository)
+	{
+	}
 }

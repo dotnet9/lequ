@@ -1,8 +1,7 @@
 ﻿using Lequ.Models;
 
-namespace Lequ.IRepository
+namespace Lequ.IRepository;
+
+public interface IAlbumRepository : IBaseRepository<Album>
 {
-    public interface IAlbumRepository : IBaseRepository<Album>
-    {
-    }
 }

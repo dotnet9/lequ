@@ -2,12 +2,11 @@
 using Lequ.IService;
 using Lequ.Models;
 
-namespace Lequ.Service
+namespace Lequ.Service;
+
+public class SubscribeEmailService : BaseService<SubscribeEmail>, ISubscribeEmailService
 {
-    public class SubscribeEmailService : BaseService<SubscribeEmail>, ISubscribeEmailService
-    {
-        public SubscribeEmailService(ISubscribeEmailRepository repository) : base(repository)
-        {
-        }
-    }
+	public SubscribeEmailService(ISubscribeEmailRepository repository) : base(repository)
+	{
+	}
 }

@@ -1,8 +1,7 @@
 ﻿using Lequ.Models;
 
-namespace Lequ.IService
+namespace Lequ.IService;
+
+public interface IAboutService : IBaseService<About>
 {
-    public interface IAboutService : IBaseService<About>
-    {
-    }
 }

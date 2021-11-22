@@ -1,6 +1,6 @@
-﻿@model List<Lequ.Models.Blog>
+﻿@model List<Blog>
 
-<div class="site-section bg-light">
+<div class="site-section bg-secondary pb-3 pt-3">
     <div class="container">
         <div class="row align-items-stretch retro-layout-2">
             <div id="banner" class="carousel slide" data-ride="carousel">
@@ -21,7 +21,9 @@
                             <div class='carousel-item @(i == 0 ? "active" : "")' data-interval="3000">
                                 <img src="@Model[i].Cover">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h2><a href="/Blog/Details?id=@Model?[i].ID" target='_blank' style="color: white;">@Model?[i].Title</a></h2>
+                                    <h2>
+                                        <a href="/Blog/Details?id=@Model?[i].ID" target='_blank' style="color: white;">@Model?[i].Title</a>
+                                    </h2>
                                     <span class="date">@Model?[i].CreateDate</span>
                                 </div>
                             </div>

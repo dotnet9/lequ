@@ -1,7 +1,6 @@
-﻿namespace Lequ.GlobalVar
+﻿namespace Lequ.GlobalVar;
+
+public class ConfigurationConsts
 {
-    public class ConfigurationConsts
-    {
-        public const string RESOURCES_PATH = "Resources";
-    }
+	public const string RESOURCES_PATH = "Resources";
 }

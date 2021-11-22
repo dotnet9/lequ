@@ -1,8 +1,5 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@using System.Globalization
-@using Lequ.ViewModels
-
-@inject IViewLocalizer Localizer
+﻿@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
 @model LinkForUpdateDto
 @{
     ViewData["Title"] = "Update";
@@ -13,12 +10,12 @@
 <form class="form-group" method="post">
     <div class="form-group">
         @Localizer["Name"]
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="Name" class="form-control"/>
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="form-group">
         @Localizer["Url"]
-        <input asp-for="Url" class="form-control" />
+        <input asp-for="Url" class="form-control"/>
         <span asp-validation-for="Url" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -28,17 +25,17 @@
     </div>
     <div class="form-group">
         @Localizer["Index"]
-        <input asp-for="Index" class="form-control" />
+        <input asp-for="Index" class="form-control"/>
         <span asp-validation-for="Index" class="text-danger"></span>
     </div>
     <div class="form-group">
         @Localizer["Status"]
-        <br />
+        <br/>
         @if (Model?.Statuses != null)
         {
             @foreach (var item in Model.Statuses)
             {
-                <input type="radio" asp-for="StatusEnum" value="@((int)item)" checked="@(Model.StatusEnum == item)" />
+                <input type="radio" asp-for="StatusEnum" value="@((int)item)" checked="@(Model.StatusEnum == item)"/>
                 @Localizer[item.ToString()]
             }
         }
