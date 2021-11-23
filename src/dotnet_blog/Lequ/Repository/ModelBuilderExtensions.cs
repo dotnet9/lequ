@@ -1,4 +1,5 @@
-﻿using Lequ.Models;
+﻿using Lequ.GlobalVar;
+using Lequ.Models;
 using Lequ.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -10,11 +11,12 @@ public static class ModelBuilderExtensions
 	public static void Seed(this ModelBuilder modelBuilder)
 	{
 		Random random = new(DateTime.Now.Millisecond);
+		if (!File.Exists(ConfigurationConsts.BLOG_BASE_PATH) || !Directory.Exists(ConfigurationConsts.BLOG_POST_PATH)) return;
 
-		var seedDir = "./../../../doc/blog_contents/uploads";
-		if (!Directory.Exists(seedDir)) return;
+		var baseInfo = JsonConvert.DeserializeObject<BlogBaseDto>(File.ReadAllText(ConfigurationConsts.BLOG_BASE_PATH));
+
 		var seedBlogs = new List<BlogSeedDto>();
-		foreach (var blogInfoPath in Directory.GetFiles(seedDir, "*.info", SearchOption.AllDirectories))
+		foreach (var blogInfoPath in Directory.GetFiles(ConfigurationConsts.BLOG_POST_PATH, "*.info", SearchOption.AllDirectories))
 		{
 			var blogInfoText = File.ReadAllText(blogInfoPath);
 			var blogInfoDto = JsonConvert.DeserializeObject<BlogSeedDto>(blogInfoText);
@@ -50,12 +52,45 @@ public static class ModelBuilderExtensions
 		var lstAlbums = new List<Album>();
 		var blogAlbums = new List<BlogAlbum>();
 
+		if (baseInfo?.Categories != null)
+		{
+			lstCategories.AddRange(baseInfo.Categories.Select((t, i) => new Category
+			{
+				ID = i + 1,
+				Name = t.Name,
+				StatusEnum = ModelStatus.Normal,
+				CreateUserID = user.ID,
+				CreateDate = DateTime.Now
+			}));
+		}
+		if (baseInfo?.Tags != null)
+		{
+			lstTags.AddRange(baseInfo.Tags.Select((t, i) => new Tag
+			{
+				ID = i + 1,
+				Name = t.Name,
+				StatusEnum = ModelStatus.Normal,
+				CreateUserID = user.ID,
+				CreateDate = DateTime.Now
+			}));
+		}
+		if (baseInfo?.Albums != null)
+		{
+			lstAlbums.AddRange(baseInfo.Albums.Select((t, i) => new Album
+			{
+				ID = i + 1,
+				Name = t.Name,
+				Cover = t.Cover,
+				StatusEnum = ModelStatus.Normal,
+				CreateUserID = user.ID,
+				CreateDate = DateTime.Now
+			}));
+		}
+
 		List<Comment> comments = new();
 
 		List<Blog> blogs = new();
-		var sortBlogs = (from b in seedBlogs
-				orderby b.CreateDate
-				select b)
+		var sortBlogs = (from b in seedBlogs orderby b.CreateDate select b)
 			.ToList();
 		for (var i = 0; i < sortBlogs.Count; i++)
 		{
@@ -78,7 +113,7 @@ public static class ModelBuilderExtensions
 				CreateDate = seedBlog.CreateDate
 			};
 
-			if (seedBlog.Categories != null && seedBlog.Categories.Count() > 0)
+			if (seedBlog.Categories != null && seedBlog.Categories.Any())
 				for (var j = 0; j < seedBlog.Categories.Count(); j++)
 				{
 					var categoryName = seedBlog.Categories[j];
@@ -106,7 +141,7 @@ public static class ModelBuilderExtensions
 					});
 				}
 
-			if (seedBlog.Tags != null && seedBlog.Tags.Count() > 0)
+			if (seedBlog.Tags != null && seedBlog.Tags.Any())
 				for (var j = 0; j < seedBlog.Tags.Count(); j++)
 				{
 					var tagName = seedBlog.Tags[j];
@@ -134,7 +169,7 @@ public static class ModelBuilderExtensions
 					});
 				}
 
-			if (seedBlog.Albums != null && seedBlog.Albums.Count() > 0)
+			if (seedBlog.Albums != null && seedBlog.Albums.Any())
 				for (var j = 0; j < seedBlog.Albums.Count(); j++)
 				{
 					var albumName = seedBlog.Albums[j];
@@ -199,38 +234,65 @@ public static class ModelBuilderExtensions
 		modelBuilder.Entity<Link>().HasData(
 			new Link
 			{
-				ID = 1, Index = 1, Name = "Dotnet9", Url = "https://dotnet9.com",
-				Description = "一个主要以分享 dotNET 技术文章为主题的网站", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now
+				ID = 1,
+				Index = 1,
+				Name = "Dotnet9",
+				Url = "https://dotnet9.com",
+				Description = "一个主要以分享 dotNET 技术文章为主题的网站",
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
 			},
 			new Link
 			{
-				ID = 2, Index = 2, Name = "Murat Yücedağ",
+				ID = 2,
+				Index = 2,
+				Name = "Murat Yücedağ",
 				Url = "https://www.youtube.com/channel/UCbkbOlw8snP93RJ2BhH44Qw",
 				Description =
 					"Ücretsiz olarak çektiğim yazılım eğitim videolarını paylaşmak amacıyla oluşturduğum kanaldır.Ücretsiz Eğitim Videosu Hedefi: 3000 :)Misyonumun fikir babası İsmail Hakkı Tonguç ve Hasan Ali Yücel'dir. Onlardan aldığım meşaleyi bizden sonrakilere taşımak gayesindeyim. Bunu da lisans eğitimimde aldığım mühendislik disiplinini eğitmenlikle harmanlayarak yazılımda Türkçe kaynağın arttırılması yolunda çalışmalarımı \"her geçen gün bir önceki günden daha dolu olmalı\" ideali ile sürdürmekteyim.",
-				StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
 			},
 			new Link
 			{
-				ID = 3, Index = 3, Name = "老张的哲学", Url = "https://www.cnblogs.com/laozhang-is-phi/",
-				Description = "博客园大拿", StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now
+				ID = 3,
+				Index = 3,
+				Name = "老张的哲学",
+				Url = "https://www.cnblogs.com/laozhang-is-phi/",
+				Description = "博客园大拿",
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
 			},
 			new Link
 			{
-				ID = 4, Index = 4, Name = "Garfield-加菲的博客", Url = "http://www.randyfield.cn/", Description = "技术爱好者",
-				StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now
+				ID = 4,
+				Index = 4,
+				Name = "Garfield-加菲的博客",
+				Url = "http://www.randyfield.cn/",
+				Description = "技术爱好者",
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
 			},
 			new Link
 			{
-				ID = 5, Index = 5, Name = "青城", Url = "https://qingchengblog.com/", Description = "技术爱好者",
-				StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now
+				ID = 5,
+				Index = 5,
+				Name = "青城",
+				Url = "https://qingchengblog.com/",
+				Description = "技术爱好者",
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
 			},
 			new Link
 			{
-				ID = 6, Index = 6, Name = "Code Life", Url = "https://znlive.com/",
+				ID = 6,
+				Index = 6,
+				Name = "Code Life",
+				Url = "https://znlive.com/",
 				Description =
 					"Coding life is a website about programmer stories. Here, we will share information about how to code, how newcomers learn to code, coding challenges, coding games and IT industry news.",
-				StatusEnum = ModelStatus.Normal, CreateDate = DateTime.Now
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
 			}
 		);
 	}

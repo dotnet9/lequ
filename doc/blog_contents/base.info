@@ -66,10 +66,10 @@
         {"Name": "Visual Studio Code"}
     ],
     "Albums": [
-        {"Name": "开源C#", "Cover": "https://lequ.co/album_csharp.jpg"},
-        {"Name": "开源WPF", "Cover": "https://lequ.co/album_wpf.png"},
-        {"Name": "WPF Design", "Cover": "https://lequ.co/album_wpfdesign.png"},
-        {"Name": "开源Winform", "Cover": "https://lequ.co/album_winform.jpg"},
+        {"Name": "开源C#", "Cover": "https://img1.lequ.co/album_csharp.jpg"},
+        {"Name": "开源WPF", "Cover": "https://img1.lequ.co/album_wpf.png"},
+        {"Name": "WPF Design", "Cover": "https://img1.lequ.co/album_wpfdesign.png"},
+        {"Name": "开源Winform", "Cover": "https://img1.lequ.co/album_winform.jpg"},
         {"Name": "开源Flutter", "Cover": "https://img1.lequ.co/2021/07/cover_02.png"}
     ],
 }

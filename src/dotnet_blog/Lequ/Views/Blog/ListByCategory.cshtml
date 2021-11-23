@@ -1,16 +1,15 @@
 ﻿@model Category
 @{
-    ViewData["Title"] = "ListByCategory";
+    ViewData["Title"] = $"Category：{Model?.Name}";
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
 
-<div class="py-5 bg-light">
+<div class="py-5 bg-secondary">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <span>Category</span>
-                <h3>@Model?.Name</h3>
+                <span class="text-light">Category：@Model?.Name</span>
                 <p>@Model?.Description</p>
             </div>
         </div>
