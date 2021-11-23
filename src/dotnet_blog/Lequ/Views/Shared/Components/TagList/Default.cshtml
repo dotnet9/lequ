@@ -1,13 +1,14 @@
-﻿@model IEnumerable<BlogAlbum>
+﻿@model IEnumerable<Tag>
 <div class="sidebar-box">
-    <h3 class="heading">Albums</h3>
+    <h3 class="heading">Tags</h3>
     <ul class="tags">
+
         @if (Model != null)
         {
             @foreach (var item in Model)
             {
                 <li>
-                    <a href="/Blog/ListByAlbum?albumID=@item.Album?.ID" target='_blank'>@item.Album?.Name</a>
+                    <a href="/Blog/ListByTag?tagID=@item?.ID" target='_blank'>@item?.Name<span>(@item?.BlogTags.Count)</span></a>
                 </li>
             }
         }

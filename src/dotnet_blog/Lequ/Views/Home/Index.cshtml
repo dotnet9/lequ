@@ -22,6 +22,10 @@
 
                 @await Html.PartialAsync("~/Views/About/WeChatOfficialAccount.cshtml")
 
+                @await Component.InvokeAsync("CategoryList")
+
+                @await Component.InvokeAsync("TagList")
+
                 @await Html.PartialAsync("~/Views/About/WeChatMiniProgram.cshtml")
 
             </div>
