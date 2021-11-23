@@ -1,6 +1,18 @@
 # Lequ.CO
 
-## 1. docker部署
+一个采用 [ASP.NET Core MVC 6.0](https://docs.microsoft.com/zh-cn/aspnet/core/mvc/overview?view=aspnetcore-6.0) + [Bootstrap v5](https://getbootstrap.com/) 开发的个人开源博客网站。
+
+目录
+1. 本地与国际化
+2. 主题色切换
+3. Docker部署
+4. 推荐
+
+## 1. 本地与国际化
+
+## 2. 主题色切换
+
+## 3. docker部署
 
 ### 1.1 docker build
 
@@ -28,7 +40,7 @@ docker run -d -p 宿主机port:docker端口 IMAGE_ID
 - -d： 守护进程方式运行
 - -p： 指定宿主机和docker端口映射
 
-### 2 感谢
+## 4 推荐
 
 - 博客参考视频，YouTube大神[穆拉特·尤塞达格](https://www.youtube.com/user/YazilimHerYerde)的[Asp.Net Core 5.0 项目营](https://www.youtube.com/playlist?list=PLKnjBHu2xXNNkinaVhPqPZG0ubaLN63ci)系列
 - 前台前端模板[CoreBlogTema]()
