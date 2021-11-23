@@ -52,28 +52,6 @@ public static class ModelBuilderExtensions
 		var lstAlbums = new List<Album>();
 		var blogAlbums = new List<BlogAlbum>();
 
-		if (baseInfo?.Categories != null)
-		{
-			lstCategories.AddRange(baseInfo.Categories.Select((t, i) => new Category
-			{
-				ID = i + 1,
-				Name = t.Name,
-				StatusEnum = ModelStatus.Normal,
-				CreateUserID = user.ID,
-				CreateDate = DateTime.Now
-			}));
-		}
-		if (baseInfo?.Tags != null)
-		{
-			lstTags.AddRange(baseInfo.Tags.Select((t, i) => new Tag
-			{
-				ID = i + 1,
-				Name = t.Name,
-				StatusEnum = ModelStatus.Normal,
-				CreateUserID = user.ID,
-				CreateDate = DateTime.Now
-			}));
-		}
 		if (baseInfo?.Albums != null)
 		{
 			lstAlbums.AddRange(baseInfo.Albums.Select((t, i) => new Album
