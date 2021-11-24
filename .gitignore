@@ -349,3 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 src/dotnet_blog/Lequ/Migrations/
+src/dotnet_blog/Lequ/appsettings.Production.json
