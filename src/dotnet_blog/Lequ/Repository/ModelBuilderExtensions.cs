@@ -79,6 +79,7 @@ public static class ModelBuilderExtensions
 				Title = seedBlog.Title,
 				BriefDescription = seedBlog.BriefDescription,
 				Cover = seedBlog.Cover,
+				InBanner = seedBlog.InBanner,
 				Content = seedBlog.Content,
 				BlogCopyrightTypeEnum = (CopyrightType)Enum.Parse(typeof(CopyrightType),
 					seedBlog.CopyrightType ??= CopyrightType.Default.ToString()),
