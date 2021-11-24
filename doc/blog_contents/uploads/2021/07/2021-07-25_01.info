@@ -1,6 +1,7 @@
 {
     "Title":"WPF开源项目：AIStudio.Wpf.AClient",
     "Cover":"https://img1.lequ.co/2021/07/cover_01.png",
+    "InBanner": true,
     "BriefDescription":"开源客户端",
     "Categories":["WPF"],
     "Tags": ["WPF", "Prism", "MVVM", "ASP.NET Core"],

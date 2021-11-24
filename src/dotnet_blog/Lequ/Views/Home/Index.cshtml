@@ -8,6 +8,8 @@
 
 @await Component.InvokeAsync("Feature")
 
+@await Component.InvokeAsync("FeaturedAblumList")
+
 <section class="site-section py-lg">
     <div class="container">
         <div class="row blog-entries element-animate">
@@ -19,6 +21,10 @@
             <div class="col-md-12 col-lg-3">
 
                 @await Html.PartialAsync("~/Views/About/WeChatOfficialAccount.cshtml")
+
+                @await Component.InvokeAsync("CategoryList")
+
+                @await Component.InvokeAsync("TagList")
 
                 @await Html.PartialAsync("~/Views/About/WeChatMiniProgram.cshtml")
 

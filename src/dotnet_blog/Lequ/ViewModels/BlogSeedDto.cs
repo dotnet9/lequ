@@ -1,10 +1,14 @@
-﻿namespace Lequ.ViewModels;
+﻿using Lequ.Helper;
+using Newtonsoft.Json;
+
+namespace Lequ.ViewModels;
 
 public class BlogSeedDto
 {
 	public string? Title { get; set; }
 	public string? BriefDescription { get; set; }
 	public string? Cover { get; set; }
+	public bool InBanner { get; set; }
 	public string[]? Albums { get; set; }
 	public string[]? Categories { get; set; }
 	public string[]? Tags { get; set; }

@@ -7,7 +7,7 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <a href="/Blog/ListByAlbum?albumID=@item.Album?.ID">@item.Album?.Name</a>
+                    <a href="/Blog/ListByAlbum?albumID=@item.Album?.ID" target='_blank'>@item.Album?.Name</a>
                 </li>
             }
         }

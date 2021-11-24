@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Category>
+<div class="sidebar-box">
+    <h3 class="heading">Categories</h3>
+    <ul class="tags">
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="/Blog/ListByCategory?categoryID=@item?.ID" target='_blank'>@item?.Name<span>(@item?.BlogCategories.Count)</span></a>
+                </li>
+            }
+        }
+    </ul>
+</div>

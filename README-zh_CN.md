@@ -3,10 +3,68 @@
 一个采用 [ASP.NET Core MVC 6.0](https://docs.microsoft.com/zh-cn/aspnet/core/mvc/overview?view=aspnetcore-6.0) + [Bootstrap v5](https://getbootstrap.com/) 开发的个人开源博客网站。
 
 目录
-1. 本地与国际化
-2. 主题色切换
-3. Docker部署
-4. 推荐
+1. 配置
+2. 本地与国际化
+3. 主题色切换
+4. Docker部署
+5. 推荐
+
+1. 配置
+
+默认直接使用的生产环境配置，可修改环境变量`ASPNETCORE_ENVIRONMENT`为`Development`， 
+
+`launchSettings.json`
+
+```
+{
+  "profiles": {
+    "Lequ": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "applicationUrl": "http://localhost:5108",
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
+    }
+  }
+}
+```
+
+然后修改数据库（mysql）连接字符串，生产环境建议创建一个`appsettings.Production.json`文件，配置文件结构和`appsettings.Development.json`一样
+
+`appsettings.Development.json`
+
+```json
+{
+  "ConnectionStrings": {
+    //"DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;database=Lequ;integrated security=true;"
+    //"DefaultConnection": "Data Source=lequ.db"
+    "DefaultConnection": "server=[ip];user=[user];database=[dbname];port=[3306];password=[password];SslMode=None"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
+```
+
+执行数据库初始化，加一些数据种子：
+
+```
+Add-Migration InitDB
+Update-Database
+```
+
+最后F5即可运行。
 
 ## 1. 本地与国际化
 
