@@ -3,10 +3,23 @@
 一个采用 [ASP.NET Core MVC 6.0](https://docs.microsoft.com/zh-cn/aspnet/core/mvc/overview?view=aspnetcore-6.0) + [Bootstrap v5](https://getbootstrap.com/) 开发的个人开源博客网站。
 
 目录
-1. 本地与国际化
-2. 主题色切换
-3. Docker部署
-4. 推荐
+1. 配置
+2. 本地与国际化
+3. 主题色切换
+4. Docker部署
+5. 推荐
+
+1. 配置
+
+数据库连接信息存放在用户机密中（UserSecrets）
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "server=[ip];user=[user];database=[dbname];port=[3306];password=[password];SslMode=None"
+  }
+}
+```
 
 ## 1. 本地与国际化
 
