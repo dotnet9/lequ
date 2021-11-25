@@ -74,7 +74,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(x => x.LoginPath = "/Login/UserLogin");
 
-builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"), builder.Environment.EnvironmentName);
 builder.Services.AddAutoMapperSetup();
 builder.Services.AddRepositorySetup();
 

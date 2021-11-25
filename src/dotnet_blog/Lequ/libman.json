@@ -1,5 +1,10 @@
 {
   "version": "1.0",
   "defaultProvider": "cdnjs",
-  "libraries": []
+  "libraries": [
+    {
+      "library": "layer@3.5.1",
+      "destination": "wwwroot/lib/layer/"
+    }
+  ]
 }

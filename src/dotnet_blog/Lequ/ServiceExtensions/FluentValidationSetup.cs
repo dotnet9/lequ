@@ -10,6 +10,7 @@ public static class FluentValidationSetup
 	{
 		if (services == null) throw new ArgumentNullException(nameof(services));
 
+		services.AddTransient<IValidator<LoginDto>, LoginDtoValidator>();
 		services.AddTransient<IValidator<LinkForCreationDto>, LinkForCreationDtoValidator>();
 		services.AddTransient<IValidator<LinkForUpdateDto>, LinkForUpdateDtoValidator>();
 	}

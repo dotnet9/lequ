@@ -9,4 +9,7 @@ public class GlobalVars
 	public const string SessionUserAccountKey = "UserAccount";
 
 	public const string CookiesThemeKey = "Theme";
+
+	public const string EnvironmentNameDevelopment = "Development";
+	public const string EnvironmentNameProduction = "Production";
 }

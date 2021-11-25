@@ -1,15 +1,26 @@
-﻿using Lequ.Repository;
+﻿using Lequ.GlobalVar;
+using Lequ.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lequ.ServiceExtensions;
 
 public static class DbSetup
 {
-	public static void AddDbSetup(this IServiceCollection services, string connectionStr)
+	public static void AddDbSetup(this IServiceCollection services, string connectionStr, string environmentName)
 	{
 		if (services == null) throw new ArgumentNullException(nameof(services));
 
 		//services.AddDbContext<LequDbContext>(option => { option.UseSqlServer(connectionStr); });
-		services.AddDbContext<LequDbContext>(option => { option.UseMySql(connectionStr, MySqlServerVersion.LatestSupportedServerVersion); });
+		services.AddDbContext<LequDbContext>(option =>
+		{
+			if (environmentName == GlobalVars.EnvironmentNameDevelopment)
+			{
+				option.UseSqlite(connectionStr);
+			}
+			else
+			{
+				option.UseMySql(connectionStr, MySqlServerVersion.LatestSupportedServerVersion);
+			}
+		});
 	}
 }
