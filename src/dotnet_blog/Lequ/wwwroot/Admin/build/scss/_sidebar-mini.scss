@@ -33,7 +33,7 @@
 .brand-link {
   &.logo-switch {
     &::before {
-      content: '\00a0';
+      content: "\00a0";
     }
   }
 }
@@ -41,7 +41,7 @@
 // Add sidebar-mini class to the body tag to activate this feature
 .sidebar-mini {
   @include media-breakpoint-up(lg) {
-    @include sidebar-mini-breakpoint;
+    @include sidebar-mini-breakpoint ();
   }
 }
 @include media-breakpoint-down(md) {
@@ -52,7 +52,7 @@
 
 .sidebar-mini-md {
   @include media-breakpoint-up(md) {
-    @include sidebar-mini-breakpoint;
+    @include sidebar-mini-breakpoint ();
   }
 }
 @include media-breakpoint-down(sm) {
@@ -61,55 +61,414 @@
   }
 }
 
-.sidebar-collapse {
-  .main-sidebar.sidebar-focused,
-  .main-sidebar:hover {
-    .nav-header {
-      display: inline-block;
+.sidebar-mini-xs {
+  @include media-breakpoint-up(xs) {
+    @include sidebar-mini-breakpoint ();
+  }
+}
+
+.sidebar-mini,
+.sidebar-mini-md,
+.sidebar-mini-xs {
+  .main-sidebar {
+    .nav-child-indent .nav-treeview {
+      .nav-link {
+        width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 1rem);
+      }
+
+      .nav-treeview {
+        .nav-link {
+          width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 2rem);
+        }
+
+        .nav-treeview {
+          .nav-link {
+            width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 3rem);
+          }
+
+          .nav-treeview {
+            .nav-link {
+              width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 4rem);
+            }
+
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 5rem);
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav-legacy {
+      .nav-link {
+        width: $sidebar-width;
+      }
+      &.nav-child-indent {
+        .nav-treeview {
+          .nav-link {
+            width: calc(#{$sidebar-width} - 1rem);
+          }
+
+          .nav-treeview {
+            .nav-link {
+              width: calc(#{$sidebar-width} - 1rem - 1rem);
+            }
+
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - 1rem - 2rem);
+              }
+
+              .nav-treeview {
+                .nav-link {
+                  width: calc(#{$sidebar-width} - 1rem - 3rem);
+                }
+
+                .nav-treeview {
+                  .nav-link {
+                    width: calc(#{$sidebar-width} - 1rem - 4rem);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav-flat {
+      .nav-link {
+        width: $sidebar-width;
+      }
+      &.nav-child-indent {
+        .nav-treeview {
+          .nav-link {
+            width: calc(#{$sidebar-width});
+          }
+
+          .nav-treeview {
+            .nav-link {
+              width: calc(#{$sidebar-width} - .2rem);
+            }
+
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - .2rem * 2);
+              }
+
+              .nav-treeview {
+                .nav-link {
+                  width: calc(#{$sidebar-width} - .2rem * 3);
+                }
+
+                .nav-treeview {
+                  .nav-link {
+                    width: calc(#{$sidebar-width} - .2rem * 4);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav-child-indent.nav-compact .nav-treeview {
+      .nav-link {
+        width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - .5rem);
+      }
+
+      .nav-treeview {
+        .nav-link {
+          width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 1rem);
+        }
+
+        .nav-treeview {
+          .nav-link {
+            width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 1.5rem);
+          }
+
+          .nav-treeview {
+            .nav-link {
+              width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 2rem);
+            }
+
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2 - 2.5rem);
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav-child-indent.nav-legacy.nav-compact {
+      .nav-link {
+        width: $sidebar-width;
+      }
+      .nav-treeview {
+        .nav-link {
+          width: calc(#{$sidebar-width} - .5rem);
+        }
+
+        .nav-treeview {
+          .nav-link {
+            width: calc(#{$sidebar-width} - .5rem * 2);
+          }
+
+          .nav-treeview {
+            .nav-link {
+              width: calc(#{$sidebar-width} - .5rem * 3);
+            }
+
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - .5rem * 4);
+              }
+
+              .nav-treeview {
+                .nav-link {
+                  width: calc(#{$sidebar-width} - .5rem * 5);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav-link {
+      width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
+      @include transition(width $transition-fn $transition-speed);
     }
   }
+}
 
-  .sidebar-no-expand.main-sidebar.sidebar-focused,
-  .sidebar-no-expand.main-sidebar:hover {
-    width: $sidebar-mini-width;
+.sidebar-collapse {
+  &.sidebar-mini,
+  &.sidebar-mini-md,
+  &.sidebar-mini-xs {
+    .main-sidebar {
 
-    .nav-header {
-      display: none;
+      // Hide the sidebar search results when mini mode is active.
+      .sidebar-search-results {
+        display: none;
+      }
+
+      .nav-sidebar {
+        .nav-link {
+          width: $sidebar-mini-width - $sidebar-padding-x * 2;
+        }
+
+        &.nav-flat,
+        &.nav-legacy {
+          .nav-link {
+            width: $sidebar-mini-width;
+          }
+        }
+        &.nav-child-indent.nav-compact {
+          .nav-treeview {
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+          }
+
+          .nav-link {
+            width: calc(#{$sidebar-mini-width} - #{$sidebar-padding-x} * 2);
+          }
+        }
+      }
+
+      &.sidebar-focused,
+      &:hover {
+        .nav-link {
+          width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
+        }
+        &:not(.hide-nav-header-on-hover) {
+          .nav-header {
+            display: inline-block;
+          }
+        }
+
+        // Show sidebar search when hover/focus on the sidebar mini mode.
+        &:not(.sidebar-no-expand) {
+          .form-control-sidebar {
+            display: inline-block;
+          }
+          .form-control-sidebar ~ .input-group-append {
+            display: flex;
+          }
+          .sidebar-search-open .sidebar-search-results {
+            display: inline-block;
+          }
+        }
+
+        .nav-child-indent {
+          .nav-link {
+            width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
+          }
+        }
+        .nav-legacy {
+          .nav-link {
+            width: $sidebar-width;
+          }
+          &.nav-child-indent {
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - 1rem);
+              }
+
+              .nav-treeview {
+                .nav-link {
+                  width: calc(#{$sidebar-width} - 1rem - 1rem);
+                }
+
+                .nav-treeview {
+                  .nav-link {
+                    width: calc(#{$sidebar-width} - 1rem - 2rem);
+                  }
+
+                  .nav-treeview {
+                    .nav-link {
+                      width: calc(#{$sidebar-width} - 1rem - 3rem);
+                    }
+
+                    .nav-treeview {
+                      .nav-link {
+                        width: calc(#{$sidebar-width} - 1rem - 4rem);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .nav-flat {
+          .nav-link {
+            width: $sidebar-width;
+          }
+          &.nav-child-indent {
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width});
+              }
+
+              .nav-treeview {
+                .nav-link {
+                  width: calc(#{$sidebar-width} - .2rem);
+                }
+
+                .nav-treeview {
+                  .nav-link {
+                    width: calc(#{$sidebar-width} - .2rem * 2);
+                  }
+
+                  .nav-treeview {
+                    .nav-link {
+                      width: calc(#{$sidebar-width} - .2rem * 3);
+                    }
+
+                    .nav-treeview {
+                      .nav-link {
+                        width: calc(#{$sidebar-width} - .2rem * 4);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .nav-child-indent.nav-compact {
+          .nav-link {
+            width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
+          }
+        }
+        .nav-child-indent.nav-legacy.nav-compact {
+          .nav-link {
+            width: $sidebar-width;
+          }
+          .nav-treeview {
+            .nav-link {
+              width: calc(#{$sidebar-width} - .5rem);
+            }
+
+            .nav-treeview {
+              .nav-link {
+                width: calc(#{$sidebar-width} - .5rem * 2);
+              }
+
+              .nav-treeview {
+                .nav-link {
+                  width: calc(#{$sidebar-width} - .5rem * 3);
+                }
+
+                .nav-treeview {
+                  .nav-link {
+                    width: calc(#{$sidebar-width} - .5rem * 4);
+                  }
+
+                  .nav-treeview {
+                    .nav-link {
+                      width: calc(#{$sidebar-width} - .5rem * 5);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
-    .brand-link {
-      width: $sidebar-mini-width !important;
-    }
+    .sidebar-no-expand.main-sidebar.sidebar-focused,
+    .sidebar-no-expand.main-sidebar:hover {
+      width: $sidebar-mini-width;
 
-    .user-panel .image {
-      float: none !important;
-    }
+      .nav-header {
+        display: none;
+      }
 
-    .logo-xs {
-      opacity: 1;
-      visibility: visible;
-    }
+      .brand-link {
+        width: $sidebar-mini-width !important;
+      }
 
-    .logo-xl {
-      opacity: 0;
-      visibility: hidden;
-    }
+      .user-panel .image {
+        float: none !important;
+      }
 
-    .nav-sidebar.nav-child-indent .nav-treeview {
-      padding-left: 0;
-    }
+      .logo-xs {
+        animation-name: fadeIn;
+        animation-duration: $transition-speed;
+        animation-fill-mode: both;
+        visibility: visible;
+      }
 
-    .brand-text,
-    .user-panel > .info,
-    .nav-sidebar .nav-link p {
-      margin-left: -10px;
-      opacity: 0;
-      visibility: hidden;
-      width: 0;
-    }
+      .logo-xl {
+        animation-name: fadeOut;
+        animation-duration: $transition-speed;
+        animation-fill-mode: both;
+        visibility: hidden;
+      }
 
-    .nav-sidebar > .nav-item .nav-icon {
-      margin-right: 0;
+      .nav-sidebar.nav-child-indent .nav-treeview {
+        padding-left: 0;
+      }
+
+      .sidebar {
+        .brand-text,
+        .user-panel > .info,
+        .nav-sidebar .nav-link p {
+          margin-left: -10px;
+          animation-name: fadeOut;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
+          visibility: hidden;
+          width: 0;
+        }
+
+        .nav-sidebar > .nav-item .nav-icon {
+          margin-right: 0;
+        }
+      }
     }
   }
 }
@@ -144,5 +503,5 @@
 .main-sidebar .logo-xs,
 .main-sidebar .logo-xl,
 .sidebar .user-panel .info {
-  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease)
+  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease);
 }

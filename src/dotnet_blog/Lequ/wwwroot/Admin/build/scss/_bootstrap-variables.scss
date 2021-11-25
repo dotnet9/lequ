@@ -9,7 +9,7 @@
 //
 
 // stylelint-disable
-$white:    #ffffff !default;
+$white:    #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -23,15 +23,15 @@ $black:    #000 !default;
 
 $grays: () !default;
 $grays: map-merge((
-        "100": $gray-100,
-        "200": $gray-200,
-        "300": $gray-300,
-        "400": $gray-400,
-        "500": $gray-500,
-        "600": $gray-600,
-        "700": $gray-700,
-        "800": $gray-800,
-        "900": $gray-900
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
 ), $grays);
 
 $blue:    #007bff !default;
@@ -47,19 +47,19 @@ $cyan:    #17a2b8 !default;
 
 $colors: () !default;
 $colors: map-merge((
-        "blue":       $blue,
-        "indigo":     $indigo,
-        "purple":     $purple,
-        "pink":       $pink,
-        "red":        $red,
-        "orange":     $orange,
-        "yellow":     $yellow,
-        "green":      $green,
-        "teal":       $teal,
-        "cyan":       $cyan,
-        "white":      $white,
-        "gray":       $gray-600,
-        "gray-dark":  $gray-800
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
 ), $colors);
 
 $primary:       $blue !default;
@@ -73,14 +73,14 @@ $dark:          $gray-800 !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge((
-        "primary":    $primary,
-        "secondary":  $secondary,
-        "success":    $success,
-        "info":       $info,
-        "warning":    $warning,
-        "danger":     $danger,
-        "light":      $light,
-        "dark":       $dark
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
 ), $theme-colors);
 // stylelint-enable
 
@@ -91,7 +91,7 @@ $theme-color-interval:      8% !default;
 $yiq-contrasted-threshold: 150 !default;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
-$yiq-text-dark: #1F2D3D !default;
+$yiq-text-dark: #1f2d3d !default;
 $yiq-text-light: $white !default;
 
 // Options
@@ -112,6 +112,16 @@ $enable-responsive-font-sizes:                false !default;
 $enable-validation-icons:                     true !default;
 $enable-deprecation-messages:                 true !default;
 
+// Characters which are escaped by the escape-svg function
+$escaped-characters: (
+  ("<", "%3c"),
+  (">", "%3e"),
+  ("#", "%23"),
+  ("(", "%28"),
+  (")", "%29"),
+) !default;
+
+
 // Spacing
 //
 // Control the default styling of most Bootstrap elements by modifying these
@@ -122,21 +132,21 @@ $enable-deprecation-messages:                 true !default;
 $spacer: 1rem !default;
 $spacers: () !default;
 $spacers: map-merge((
-        0: 0,
-        1: ($spacer * .25),
-        2: ($spacer * .5),
-        3: $spacer,
-        4: ($spacer * 1.5),
-        5: ($spacer * 3)
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3)
 ), $spacers);
 
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: () !default;
 $sizes: map-merge((
-        25: 25%,
-        50: 50%,
-        75: 75%,
-        100: 100%
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
 ), $sizes);
 // stylelint-enable
 
@@ -169,11 +179,11 @@ $paragraph-margin-bottom:   1rem !default;
 // adapting to different screen sizes, for use in media queries.
 
 $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1200px
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
 ) !default;
 
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
@@ -185,10 +195,10 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-        sm: 540px,
-        md: 720px,
-        lg: 960px,
-        xl: 1140px
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
 ) !default;
 
 @include _assert-ascending($container-max-widths, "$container-max-widths");
@@ -491,7 +501,8 @@ $custom-select-bg:                  $white !default;
 $custom-select-disabled-bg:         $gray-200 !default;
 $custom-select-bg-size:             8px 10px !default; // In pixels because image dimensions
 $custom-select-indicator-color:     $gray-800 !default;
-$custom-select-indicator:           str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='#{$custom-select-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$custom-select-indicator:           url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'><path fill='#{$custom-select-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") !default;
+$custom-select-background:          escape-svg($custom-select-indicator) right $custom-select-padding-x center / $custom-select-bg-size no-repeat !default; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
 $custom-select-border-width:        $input-btn-border-width !default;
 $custom-select-border-color:        $input-border-color !default;
 $custom-select-border-radius:       $border-radius !default;
@@ -521,7 +532,7 @@ $custom-file-box-shadow:            $custom-select-focus-box-shadow !default;
 $custom-file-button-color:          $custom-file-color !default;
 $custom-file-button-bg:             $input-group-addon-bg !default;
 $custom-file-text: (
-        en: "Browse"
+  en: "Browse"
 ) !default;
 
 $custom-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-btn-focus-box-shadow !default;
@@ -760,6 +771,7 @@ $modal-title-line-height:           $line-height-base !default;
 $modal-content-bg:               $white !default;
 $modal-content-border-color:     rgba($black, .2) !default;
 $modal-content-border-width:     $border-width !default;
+$modal-content-border-radius:    $border-radius-lg !default;
 $modal-content-box-shadow-xs:    0 .25rem .5rem rgba($black, .5) !default;
 $modal-content-box-shadow-sm-up: 0 .5rem 1rem rgba($black, .5) !default;
 

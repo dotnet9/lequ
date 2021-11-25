@@ -1,17 +1,18 @@
 //
 // Component: Info Box
 //
- 
+
 .info-box {
   @include box-shadow($card-shadow);
   @include border-radius($border-radius);
 
-  background: $white;
+  background-color: $white;
   display: flex;
   margin-bottom: map-get($spacers, 3);
   min-height: 80px;
   padding: .5rem;
   position: relative;
+  width: 100%;
 
   .progress {
     background-color: rgba($black, .125);
@@ -41,12 +42,18 @@
   }
 
   .info-box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.8;
     flex: 1;
-    padding: 5px 10px;
+    padding: 0 10px;
+    overflow: hidden;
   }
 
   .info-box-number {
     display: block;
+    margin-top: .25rem;
     font-weight: $font-weight-bold;
   }
 
@@ -134,6 +141,25 @@
       .progress-description {
         @include font-size(1rem);
         display: block;
+      }
+    }
+  }
+}
+
+@include dark-mode () {
+  .info-box {
+    background-color: $dark;
+    color: $white;
+    @each $name, $color in $theme-colors-alt {
+      .info-box {
+        .bg-#{$name},
+        .bg-gradient-#{$name} {
+          color: color-yiq($color);
+
+          .progress-bar {
+            background-color: color-yiq($color);
+          }
+        }
       }
     }
   }

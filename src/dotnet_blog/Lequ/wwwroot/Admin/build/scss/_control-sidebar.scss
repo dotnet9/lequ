@@ -1,7 +1,7 @@
 //
 // Component: Control Sidebar
 //
- 
+
 html.control-sidebar-animate {
   overflow-x: hidden;
 }
@@ -11,18 +11,21 @@ html.control-sidebar-animate {
   position: absolute;
   top: $main-header-height;
   z-index: $zindex-control-sidebar;
-  
+
   &,
   &::before {
     bottom: $main-footer-height;
     display: none;
     right: -$control-sidebar-width;
     width: $control-sidebar-width;
-    @include transition(right $transition-speed $transition-fn, display $transition-speed $transition-fn);
+    @include transition(
+      right $transition-speed $transition-fn,
+      display $transition-speed $transition-fn
+    );
   }
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     position: fixed;
     top: 0;
@@ -46,16 +49,16 @@ body.text-sm {
 }
 
 .control-sidebar-push-slide {
-    .content-wrapper,
-    .main-footer {
-      @include transition(margin-right $transition-speed $transition-fn);
-    }
+  .content-wrapper,
+  .main-footer {
+    @include transition(margin-right $transition-speed $transition-fn);
   }
+}
 
 // Control sidebar open state
 .control-sidebar-open {
   .control-sidebar {
-    display: block;
+    display: block !important;
 
     &,
     &::before {
@@ -80,7 +83,10 @@ body.text-sm {
     &,
     &::before {
       right: 0;
-      @include transition(right $transition-speed $transition-fn, display $transition-speed $transition-fn);
+      @include transition(
+        right $transition-speed $transition-fn,
+        display $transition-speed $transition-fn
+      );
     }
   }
 
@@ -95,15 +101,12 @@ body.text-sm {
 
 // Dark skin
 .control-sidebar-dark {
+  background-color: $sidebar-dark-bg;
+
   &,
   a,
   .nav-link {
     color: $sidebar-dark-color;
-  }
-
-  //  Background
-  & {
-    background: $sidebar-dark-bg;
   }
 
   a:hover {
@@ -171,8 +174,6 @@ body.text-sm {
   color: lighten($sidebar-light-color, 10%);
 
   //  Background
-  & {
-    background: $sidebar-light-bg;
-    border-left: $main-header-bottom-border;
-  }
+  background-color: $sidebar-light-bg;
+  border-left: $main-header-bottom-border;
 }
