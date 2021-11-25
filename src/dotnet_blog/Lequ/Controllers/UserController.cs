@@ -31,15 +31,15 @@ public class UserController : Controller
 	[HttpGet]
 	public async Task<IActionResult> UserBlogList(int page = 1)
 	{
-		var userID = HttpContext.Session.Get<int>(GlobalVars.SESSION_USER_ID_KEY);
+		var userID = HttpContext.Session.Get<int>(GlobalVars.SessionUserIdKey);
 		if (userID <= 0) return View();
-		var pageBlog = await _blogService.SelectAsync(GlobalVars.PAGINATION_SMALL_PAGE_SIZE, page,
+		var pageBlog = await _blogService.SelectAsync(GlobalVars.PaginationSmallPageSize, page,
 			x => x.CreateUserID == userID, x => x.CreateDate, SortDirection.Descending);
 		var vm = new PagingDtoBase<Blog>();
 		if (pageBlog != null && pageBlog.Item1.Count > 0)
 		{
-			vm.PageCount = (pageBlog.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) /
-			               GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
+			vm.PageCount = (pageBlog.Item2 + GlobalVars.PaginationSmallPageSize - 1) /
+			               GlobalVars.PaginationSmallPageSize;
 			vm.PageIndex = page < 1 ? 1 : page;
 			vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 			vm.Datas = pageBlog.Item1;
@@ -50,14 +50,14 @@ public class UserController : Controller
 
 	public async Task<IActionResult> AdminUserList(int page = 1)
 	{
-		var pageUser = await _service.SelectAsync(GlobalVars.PAGINATION_SMALL_PAGE_SIZE, page,
+		var pageUser = await _service.SelectAsync(GlobalVars.PaginationSmallPageSize, page,
 			x => x.ID > 0, x => x.CreateDate, SortDirection.Descending);
 		var vm = new PagingDtoBase<UserDto>();
 		if (pageUser != null && pageUser.Item1.Count > 0)
 		{
 			var userVM = _mapper.Map<List<UserDto>>(pageUser.Item1);
-			vm.PageCount = (pageUser.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) /
-			               GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
+			vm.PageCount = (pageUser.Item2 + GlobalVars.PaginationSmallPageSize - 1) /
+			               GlobalVars.PaginationSmallPageSize;
 			vm.PageIndex = page < 1 ? 1 : page;
 			vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 			vm.Datas = userVM;

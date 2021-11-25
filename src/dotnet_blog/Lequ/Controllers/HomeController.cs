@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Lequ.GlobalVar;
 
 namespace Lequ.Controllers;
 
@@ -37,7 +38,7 @@ public class HomeController : Controller
 	public async Task<IActionResult> SetTheme(string theme, string returnUrl)
 	{
 		Response.Cookies.Append(
-			"theme",
+			GlobalVars.CookiesThemeKey,
 			theme,
 			new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMonths(1) }
 		);

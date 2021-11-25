@@ -57,15 +57,15 @@ public class CommentController : Controller
 			whereLambda = x => x.ID > 0;
 		else
 			whereLambda = x => x.Status == (int)status;
-		var pageComment = await _service.SelectAsync(GlobalVars.PAGINATION_SMALL_PAGE_SIZE, page,
+		var pageComment = await _service.SelectAsync(GlobalVars.PaginationSmallPageSize, page,
 			whereLambda, x => x.UpdateDate, SortDirection.Descending, x => x.Blog);
 		var vm = new PagingDtoBase<CommentDto>();
 		vm.Status = status;
 		if (pageComment != null && pageComment.Item1.Count > 0)
 		{
 			var commentVM = _mapper.Map<List<CommentDto>>(pageComment.Item1);
-			vm.PageCount = (pageComment.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) /
-			               GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
+			vm.PageCount = (pageComment.Item2 + GlobalVars.PaginationSmallPageSize - 1) /
+			               GlobalVars.PaginationSmallPageSize;
 			vm.PageIndex = page < 1 ? 1 : page;
 			vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 			vm.Datas = commentVM;

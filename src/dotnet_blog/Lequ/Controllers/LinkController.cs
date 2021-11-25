@@ -46,7 +46,7 @@ public class LinkController : Controller
 		{
 			var linkFromDatabase = _mapper.Map<Link>(addLinkDto);
 			linkFromDatabase.CreateDate = DateTime.Now;
-			linkFromDatabase.CreateUserID = HttpContext.Session.Get<int>(GlobalVars.SESSION_USER_ID_KEY);
+			linkFromDatabase.CreateUserID = HttpContext.Session.Get<int>(GlobalVars.SessionUserIdKey);
 			await _service.InsertAsync(linkFromDatabase);
 			return RedirectToAction(nameof(AdminLinkList));
 		}
@@ -88,7 +88,7 @@ public class LinkController : Controller
 			linkFromDatabase.Index = editLinkDto.Index;
 			linkFromDatabase.StatusEnum = editLinkDto.StatusEnum;
 			linkFromDatabase.UpdateDate = DateTime.Now;
-			linkFromDatabase.UpdateUserID = HttpContext.Session.Get<int>(GlobalVars.SESSION_USER_ID_KEY);
+			linkFromDatabase.UpdateUserID = HttpContext.Session.Get<int>(GlobalVars.SessionUserIdKey);
 
 			await _service.UpdateAsync(linkFromDatabase);
 			return RedirectToAction(nameof(AdminLinkList));

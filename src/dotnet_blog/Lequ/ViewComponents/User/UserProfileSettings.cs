@@ -18,7 +18,7 @@ public class UserProfileSettings : ViewComponent
 
 	public async Task<IViewComponentResult> InvokeAsync()
 	{
-		var userID = HttpContext.Session.Get<int>(GlobalVars.SESSION_USER_ID_KEY);
+		var userID = HttpContext.Session.Get<int>(GlobalVars.SessionUserIdKey);
 		if (userID <= 0) return View();
 		var dbUser = await _service.GetAsync(x => x.ID == userID);
 		if (dbUser == null) return View();

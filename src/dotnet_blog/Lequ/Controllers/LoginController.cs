@@ -40,8 +40,8 @@ public class LoginController : Controller
 		};
 		var userIdentity = new ClaimsIdentity(claims, "Account");
 		var principal = new ClaimsPrincipal(userIdentity);
-		HttpContext.Session.Set(GlobalVars.SESSION_USER_ACCOUNT_KEY, dbUser.Account);
-		HttpContext.Session.Set(GlobalVars.SESSION_USER_ID_KEY, dbUser.ID);
+		HttpContext.Session.Set(GlobalVars.SessionUserAccountKey, dbUser.Account);
+		HttpContext.Session.Set(GlobalVars.SessionUserIdKey, dbUser.ID);
 		await HttpContext.SignInAsync(principal);
 		return RedirectToAction("AdminBlogList", "Blog");
 	}

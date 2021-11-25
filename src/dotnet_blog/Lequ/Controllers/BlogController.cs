@@ -157,7 +157,7 @@ public class BlogController : Controller
 	{
 		var vm = new PagingDtoBase<Blog>();
 		var pageBlog =
-			await _service.ListDetailsAsync(x => x.ID > 0, page, GlobalVars.PAGINATION_SMALL_PAGE_SIZE);
+			await _service.ListDetailsAsync(x => x.ID > 0, page, GlobalVars.PaginationSmallPageSize);
 		var users = await _userService.SelectAsync();
 		if (pageBlog != null && users != null)
 		{
@@ -168,8 +168,8 @@ public class BlogController : Controller
 				if (cu.UpdateUserID.HasValue)
 					cu.UpdateUser = users.FirstOrDefault(x => x.ID == cu.UpdateUserID.Value);
 			});
-			vm.PageCount = (pageBlog.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) /
-			               GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
+			vm.PageCount = (pageBlog.Item2 + GlobalVars.PaginationSmallPageSize - 1) /
+			               GlobalVars.PaginationSmallPageSize;
 			vm.PageIndex = page < 1 ? 1 : page;
 			vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 			vm.Datas = pageBlog.Item1;
