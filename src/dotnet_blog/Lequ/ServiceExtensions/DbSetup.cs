@@ -15,7 +15,7 @@ public static class DbSetup
 		{
 			if (environmentName == GlobalVars.EnvironmentNameDevelopment)
 			{
-				option.UseSqlite(connectionStr);
+				option.UseSqlServer(connectionStr);
 			}
 			else
 			{
