@@ -42,7 +42,7 @@ public class Blog : ModelBase
 		}
 	}
 
-	public string? Original { get; set; }
-	public string? OriginalAvatar { get; set; }
-	public string? OriginalLink { get; set; }
+	[StringLength(100)] public string? Original { get; set; }
+	[StringLength(50)] public string? OriginalAvatar { get; set; }
+	[StringLength(200)] public string? OriginalLink { get; set; }
 }
