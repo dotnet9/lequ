@@ -4,6 +4,7 @@ public class GlobalVars
 {
 	public const int PaginationSmallPageSize = 6;
 	public const int PaginationDefaultPageSize = 20;
+	public const int PaginationMaxPageSize = 50;
 
 	public const string SessionUserIdKey = "UserID";
 	public const string SessionUserAccountKey = "UserAccount";

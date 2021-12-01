@@ -3,46 +3,46 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Tags</h3>
-            <div class="pull-right box-tools">
-                <button id="btnAdd" class="btn btn-primary" type="button" data-original-title="Add New" data-toggle="tooltip" data-widget="">
-                    <i class="fa fa-plus-square"></i>&nbsp;&nbsp;New
-                </button>
-                <button id="btnDelete" title="" class="btn btn-danger" type="button" data-original-title="Delete Tag" data-toggle="tooltip" data-widget="">
-                    <i class="fa fa-times"></i>&nbsp;&nbsp;Delete
-                </button>
-            </div>
-        </div>
-        <div class="box-body">
-            <div class="table-scrollable">
-                <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="sample_2_info">
-                    <thead>
-                    <tr role="row">
-                        <th class="table-checkbox" style="text-align: center; width: 40px;">
-                            <input id="checkAll" class="group-checkable" type="checkbox">
-                        </th>
-                        <th tabindex="0" aria-label="">
-                            Name
-                        </th>
-                        <th tabindex="0" aria-label="">
-                            Description
-                        </th>
-                        <th tabindex="0" style="width: 230px;" aria-label="">
-                            Control
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-                <div class="paging-toolbar">
-                    <ul id="grid_paging_part"></ul>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Tags</h3>
+
+        <div class="card-tools">
+            <button id="btnAdd" class="btn btn-primary" type="button" data-original-title="Add New" data-toggle="tooltip" data-widget="">
+                <i class="fa fa-plus-square"></i>&nbsp;&nbsp;New
+            </button>
+            <button id="btnDelete" title="" class="btn btn-danger" type="button" data-original-title="Delete Tag" data-toggle="tooltip" data-widget="">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Delete
+            </button>
         </div>
     </div>
+    <div class="card-body p-0">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="sample_2_info">
+            <thead>
+            <tr>
+                <th style="width: 1%;text-align: center;">
+                    <input id="checkAll" type="checkbox">
+                </th>
+                <th style="width: 5%">
+                    Name
+                </th>
+                <th style="width: 20%">
+                    Description
+                </th>
+                <th style="width: 5%">
+                    Control
+                </th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+<div class="card-footer">
+    <nav aria-label="Contacts Page Navigation">
+        <ul id="ulPagingPart" class="pagination justify-content-center m-0">
+        </ul>
+    </nav>
 </div>
 
 @await Html.PartialAsync("~/Views/Tag/_Edit.cshtml")

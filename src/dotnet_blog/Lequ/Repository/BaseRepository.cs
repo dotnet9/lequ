@@ -35,8 +35,9 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
 
 	public async Task<int> DeleteAsync(Expression<Func<T, bool>> whereLambda)
 	{
-		await dbContext.Set<T>().Where(whereLambda).DeleteAsync();
-		return await dbContext.SaveChangesAsync();
+		var deleteResult =  await dbContext.Set<T>().Where(whereLambda).DeleteAsync();
+		var saveResult = await dbContext.SaveChangesAsync();
+		return deleteResult;
 	}
 
 	public async Task<bool> IsExistAsync(Expression<Func<T, bool>> whereLambda)

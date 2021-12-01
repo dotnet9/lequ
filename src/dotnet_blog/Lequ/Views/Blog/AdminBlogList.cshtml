@@ -5,18 +5,12 @@
     string[] styles = { "post-category text-white bg-secondary mb-3", "post-category text-white bg-success mb-3", "post-category text-white bg-warning mb-3" };
 }
 
-<a href="/Blog/Add/" class="btn btn-primary">New</a>
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Blog</h3>
 
         <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                <i class="fas fa-times"></i>
-            </button>
+            <a href="/Blog/Add/" class="btn btn-primary">New</a>
         </div>
     </div>
     <div class="card-body p-0">
@@ -96,10 +90,10 @@
                             </ul>
                         </td>
                         <td>
-                            <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</a>
-                            <a href="/Blog/Update?id=@item.ID" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>Edit</a>
-                            <a href="/Blog/Details?id=@item.ID" class="btn btn-primary btn-sm"><i class="fas fa-folder"></i>Detail</a>
-                            <a href="/Comment/AdminBlogCommentList?blogID=@item.ID" class="btn btn-dark"><i class="fas fa-comments"></i>Message(@item.Comments?.Count)</a>
+                            <a href="/Blog/Delete?id=@item.ID" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i>Delete</a>
+                            <a href="/Blog/Update?id=@item.ID" class="btn btn-info btn-xs"><i class="fas fa-pencil-alt"></i>Edit</a>
+                            <a href="/Blog/Details?id=@item.ID" class="btn btn-primary btn-xs"><i class="fas fa-folder"></i>Detail</a>
+                            <a href="/Comment/AdminBlogCommentList?blogID=@item.ID" class="btn btn-dark btn-xs"><i class="fas fa-comments"></i>Message(@item.Comments?.Count)</a>
                         </td>
                     </tr>
                 }
