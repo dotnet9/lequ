@@ -12,21 +12,21 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.6</version>
+        <version>LATEST</version>
         <relativePath/>
     </parent>
 
     <properties>
-        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
-        <cloud-alibaba.version>2.2.0.RELEASE</cloud-alibaba.version>
-        <mybatis-plus.version>3.3.1</mybatis-plus.version>
-        <druid.version>1.1.21</druid.version>
-        <kaptcha.version>2.3.2</kaptcha.version>
-        <fastjson.version>1.2.8</fastjson.version>
-        <commons-lang.version>2.6</commons-lang.version>
-        <commons-collections.version>3.2.2</commons-collections.version>
-        <commons-io.version>2.6</commons-io.version>
-        <httpclientutil.version>1.0.4</httpclientutil.version>
+        <spring-cloud.version>LATEST</spring-cloud.version>
+        <cloud-alibaba.version>LATEST</cloud-alibaba.version>
+        <mybatis-plus.version>LATEST</mybatis-plus.version>
+        <druid.version>LATEST</druid.version>
+        <kaptcha.version>LATEST</kaptcha.version>
+        <fastjson.version>LATEST</fastjson.version>
+        <commons-lang.version>LATEST</commons-lang.version>
+        <commons-collections.version>LATEST</commons-collections.version>
+        <commons-io.version>LATEST</commons-io.version>
+        <httpclientutil.version>LATEST</httpclientutil.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
