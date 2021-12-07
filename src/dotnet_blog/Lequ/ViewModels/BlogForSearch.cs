@@ -2,5 +2,5 @@
 
 public class BlogForSearch
 {
-	public string SearchKey { get; set; }
+	public string? SearchKey { get; set; }
 }

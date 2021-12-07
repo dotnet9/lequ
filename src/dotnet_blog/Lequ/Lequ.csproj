@@ -41,6 +41,11 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Remove="wwwroot\css\markdown.css" />
+	  <Content Remove="wwwroot\js\markdown.js" />
+	</ItemGroup>
+
     <ItemGroup>
       <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>

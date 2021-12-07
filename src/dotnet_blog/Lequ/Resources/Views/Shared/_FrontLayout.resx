@@ -124,4 +124,10 @@
   <data name="Exit" xml:space="preserve">
     <value>Log out</value>
   </data>
+  <data name="WebTitle" xml:space="preserve">
+	  <value>Fun classroom</value>
+  </data>
+  <data name="SiteMotto" xml:space="preserve">
+	  <value>Fun classroom, keen on the spirit of sharing on the Internet, and firmly believe that concentration will succeed</value>
+  </data>
 </root>

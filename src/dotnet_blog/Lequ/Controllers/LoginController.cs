@@ -45,7 +45,7 @@ public class LoginController : Controller
 
 		var claims = new List<Claim>
 		{
-			new(ClaimTypes.Name, dbUser.Account)
+			new(ClaimTypes.Name, dbUser.Account!)
 		};
 		var userIdentity = new ClaimsIdentity(claims, "Account");
 		var principal = new ClaimsPrincipal(userIdentity);

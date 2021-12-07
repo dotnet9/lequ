@@ -124,4 +124,10 @@
   <data name="Exit" xml:space="preserve">
     <value>註銷</value>
   </data>
+  <data name="WebTitle" xml:space="preserve">
+	  <value>樂趣課堂</value>
+  </data>
+  <data name="SiteMotto" xml:space="preserve">
+	  <value>樂趣課堂，熱衷於互聯網分享精神，堅信專注定會成功</value>
+  </data>
 </root>

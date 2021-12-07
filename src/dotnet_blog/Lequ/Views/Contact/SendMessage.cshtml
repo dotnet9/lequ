@@ -1,21 +1,11 @@
-﻿@{
-    ViewData["Title"] = "SendMessage";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+@{
+    ViewData["Title"] = _localizer["Title"];
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
-
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('/Front/images/img_4.jpg');">
-    <div class="container">
-        <div class="row same-height justify-content-center">
-            <div class="col-md-12 col-lg-10">
-                <div class="post-entry text-center">
-                    <h1 class="">Contact Us</h1>
-                    <p class="lead mb-4 text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, adipisci?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<h2> @_localizer["Title"]</h2>
 
 <div class="site-section bg-light">
     <div class="container">
@@ -28,7 +18,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label class="text-black" for="fname">Name</label>
+                            <label class="text-black" for="fname">@_localizer["Name"]</label>
                             <input type="text" id="fname" name="Name" class="form-control">
                         </div>
                     </div>
@@ -44,21 +34,21 @@
                     <div class="row form-group">
 
                         <div class="col-md-12">
-                            <label class="text-black" for="subject">Subject</label>
+                            <label class="text-black" for="subject">@_localizer["Subject"]</label>
                             <input type="subject" id="subject" name="Subject" class="form-control">
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label class="text-black" for="message">Message</label>
-                            <textarea name="message" id="message" onabort="Message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+                            <label class="text-black" for="message">@_localizer["Message"]</label>
+                            <textarea name="message" id="message" onabort="Message" cols="30" rows="7" class="form-control" placeholder='@_localizer["MessagePlaceholder"]'></textarea>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white">
+                            <input type="submit" value='@_localizer["Send"]' class="btn btn-primary py-2 px-4 text-white">
                         </div>
                     </div>
 
@@ -68,17 +58,9 @@
             <div class="col-md-5">
 
                 <div class="p-4 mb-3 bg-white">
-                    <p class="mb-0 font-weight-bold">Address</p>
-                    <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
-
-                    <p class="mb-0 font-weight-bold">Phone</p>
-                    <p class="mb-4">
-                        <a href="#">+1 232 3235 324</a>
-                    </p>
-
-                    <p class="mb-0 font-weight-bold">Email Address</p>
+                    <p class="mb-0 font-weight-bold">Email</p>
                     <p class="mb-0">
-                        <a href="#">youremail@domain.com</a>
+                        <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=632871194@qq.com">632871194@qq.com</a>
                     </p>
 
                 </div>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Lequ.IService;
 using Lequ.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.Controllers;
@@ -16,11 +17,13 @@ public class ContactController : Controller
 		_mapper = mapper;
 	}
 
+	[AllowAnonymous]
 	public async Task<IActionResult> SendMessage()
 	{
 		return await Task.FromResult(View());
 	}
 
+	[AllowAnonymous]
 	[HttpPost]
 	public async Task<IActionResult> SendMessage(Contact contact)
 	{

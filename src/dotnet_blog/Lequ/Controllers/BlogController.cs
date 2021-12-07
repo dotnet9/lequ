@@ -14,7 +14,6 @@ namespace Lequ.Controllers;
 [Authorize]
 public class BlogController : Controller
 {
-	private const int PAGE_SIZE = 6;
 	private readonly IAlbumService _AlbumService;
 	private readonly ICategoryService _categoryService;
 	private readonly IStringLocalizer<BlogController> _localizer;
@@ -53,26 +52,26 @@ public class BlogController : Controller
 
 	[AllowAnonymous]
 	public async Task<IActionResult> ListDetailsLoadMore(int? categoryID, int? tagID, int? albumID, string? searchKey,
-		int page = 1)
+		int page = 1, int pageSize = GlobalVars.PaginationSmallPageSize)
 	{
 		List<Blog>? blogs;
 		if (categoryID.HasValue)
 		{
 			var values = await _service.ListDetailsAsync(
 				x => x.BlogCategories != null && x.BlogCategories.Any(p => p.CategoryID == categoryID.Value), page,
-				PAGE_SIZE);
+				pageSize);
 			blogs = values.Item1;
 		}
 		else if (tagID.HasValue)
 		{
 			var values = await _service.ListDetailsAsync(
-				x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == tagID.Value), page, PAGE_SIZE);
+				x => x.BlogTags != null && x.BlogTags.Any(cu => cu.TagID == tagID.Value), page, pageSize);
 			blogs = values.Item1;
 		}
 		else if (albumID.HasValue)
 		{
 			var values = await _service.ListDetailsAsync(
-				x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == albumID.Value), page, PAGE_SIZE);
+				x => x.BlogAlbums != null && x.BlogAlbums.Any(cu => cu.AlbumID == albumID.Value), page, pageSize);
 			blogs = values.Item1;
 		}
 		else if (searchKey != null)
@@ -82,18 +81,17 @@ public class BlogController : Controller
 				x => (x.Title != null ? x.Title.ToLower().Contains(key) : false)
 				     || (x.Content != null ? x.Content.ToLower().Contains(key) : false),
 				page,
-				PAGE_SIZE);
+				pageSize);
 			blogs = values.Item1;
 		}
 		else
 		{
-			var values = await _service.ListDetailsAsync(x => x.Status == (int)ModelStatus.Normal, page, PAGE_SIZE);
+			var values = await _service.ListDetailsAsync(x => x.Status == (int)ModelStatus.Normal, page, pageSize);
 			blogs = values.Item1;
 		}
 
 		var users = await _userService.SelectAsync();
-		if (blogs != null && users != null)
-			blogs.ForEach(blog => blog.CreateUser = users.Find(c => c.ID == blog.CreateUserID));
+		blogs.ForEach(blog => blog.CreateUser = users.Find(c => c.ID == blog.CreateUserID));
 
 		if (blogs.Count > 0) return PartialView(blogs);
 		return Json("");
@@ -188,19 +186,19 @@ public class BlogController : Controller
 		if (albums != null)
 			foreach (var album in albums)
 				if (album != null)
-					viewModel.Albums.Add(new CheckBoxDto(album.Name, album.ID));
+					viewModel.Albums.Add(new CheckBoxDto(album.Name!, album.ID));
 		var categories = await _categoryService.SelectAsync();
 		viewModel.Categories = new List<CheckBoxDto>();
 		if (categories != null)
 			foreach (var category in categories)
 				if (category != null)
-					viewModel.Categories.Add(new CheckBoxDto(category.Name, category.ID));
+					viewModel.Categories.Add(new CheckBoxDto(category.Name!, category.ID));
 		var tags = await _tagService.SelectAsync();
 		viewModel.Tags = new List<CheckBoxDto>();
 		if (tags != null)
 			foreach (var tag in tags)
 				if (tag != null)
-					viewModel.Tags.Add(new CheckBoxDto(tag.Name, tag.ID));
+					viewModel.Tags.Add(new CheckBoxDto(tag.Name!, tag.ID));
 		await ReadBindInfo();
 		viewModel.Statuses = Enum.GetValues<ModelStatus>();
 		viewModel.CreateDate = DateTime.Now;
@@ -247,25 +245,19 @@ public class BlogController : Controller
 
 		var albums = await _AlbumService.SelectAsync();
 		viewModel.Albums = new List<CheckBoxDto>();
-		if (albums != null)
-			foreach (var album in albums)
-				if (album != null)
-					viewModel.Albums.Add(new CheckBoxDto(album.Name, album.ID,
-						blog?.BlogAlbums?.Exists(x => x.AlbumID == album.ID) == true));
+		foreach (var album in albums)
+			viewModel.Albums.Add(new CheckBoxDto(album.Name!, album.ID,
+				blog?.BlogAlbums?.Exists(x => x.AlbumID == album.ID) == true));
 		var categories = await _categoryService.SelectAsync();
 		viewModel.Categories = new List<CheckBoxDto>();
-		if (categories != null)
-			foreach (var category in categories)
-				if (category != null)
-					viewModel.Categories.Add(new CheckBoxDto(category.Name, category.ID,
-						blog?.BlogCategories?.Exists(x => x.CategoryID == category.ID) == true));
+		foreach (var category in categories)
+			viewModel.Categories.Add(new CheckBoxDto(category.Name!, category.ID,
+				blog?.BlogCategories?.Exists(x => x.CategoryID == category.ID) == true));
 		var tags = await _tagService.SelectAsync();
 		viewModel.Tags = new List<CheckBoxDto>();
-		if (tags != null)
-			foreach (var tag in tags)
-				if (tag != null)
-					viewModel.Tags.Add(new CheckBoxDto(tag.Name, tag.ID,
-						blog?.BlogTags?.Exists(x => x.TagID == tag.ID) == true));
+		foreach (var tag in tags)
+			viewModel.Tags.Add(new CheckBoxDto(tag.Name!, tag.ID,
+				blog?.BlogTags?.Exists(x => x.TagID == tag.ID) == true));
 		await ReadBindInfo();
 		viewModel.Statuses = Enum.GetValues<ModelStatus>();
 		return View(viewModel);

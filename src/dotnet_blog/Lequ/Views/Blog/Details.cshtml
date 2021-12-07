@@ -5,29 +5,7 @@
 }
 
 @section Headers {
-    <style type="text/css">
-        h3 {
-            border-bottom: 1px solid #eee;
-            margin-top: 50px;
-            padding-bottom: 10px;
-        }
-
-        /* vs2015 theme specific*/
-
-        pre {
-            background: #1E1E1E;
-            color: #eee;
-            overflow-x: auto;
-            padding: 0.5em !important;
-            white-space: pre;
-            word-break: normal;
-            word-wrap: normal;
-        }
-
-        img, video, source { max-width: 100% }
-
-        pre > code { white-space: pre; }
-    </style>
+    <link rel="stylesheet" href="~/css/markdown.css">
 }
 
 <section class="site-section py-lg">
@@ -64,15 +42,5 @@
     <script src="~/lib/highlightjs/highlight.pack.js"></script>
     <link href="~/lib/highlightjs/styles/vs2015.css" rel="stylesheet"/>
     <script src="~/lib/highlightjs-badge.min.js"></script>
-
-    <script>
-        // apply HighlightJS
-        var pres = document.querySelectorAll("pre>code");
-        for (var i = 0; i < pres.length; i++) {
-            hljs.highlightBlock(pres[i]);
-        }
-
-        // https://github.com/RickStrahl/highlightjs-badge
-        window.highlightJsBadge();
-    </script>
+    <script src="~/js/markdown.js"></script>
 }

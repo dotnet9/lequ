@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@ViewData["Title"] - 乐趣课堂</title>
+    <title>@ViewData["Title"] - @Localizer["WebTitle"]</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -79,7 +79,7 @@
                     <a href="/Home/Index/" class="text-black h2 mb-0">
                         <img src="~/logo.svg" width="41"/>
                     </a>
-                    <span class="h4">乐趣课堂，热衷于互联网分享精神，专注定会成功</span>
+                    <span class="h4">@Localizer["SiteMotto"]</span>
                 </div>
 
                 <div class="col-8 text-right">
@@ -87,12 +87,6 @@
                         <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                             <li>
                                 <a href="/Home/Index/">@Localizer["Home"]</a>
-                            </li>
-                            <li>
-                                <a href="/Blog/ListByCategory?categoryID=1">C#</a>
-                            </li>
-                            <li>
-                                <a href="/Blog/ListByCategory?categoryID=2">C++</a>
                             </li>
                             <li>
                                 <a href="/Contact/SendMessage/">@Localizer["Contact"]</a>
