@@ -34,32 +34,7 @@
     <link rel="stylesheet" href="~/Front/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="~/Front/css/aos.css">
 
-    <link rel="stylesheet" href="~/Front/css/style.css">
-
-
-    <style type="text/css">
-        h3 {
-            border-bottom: 1px solid #eee;
-            margin-top: 50px;
-            padding-bottom: 10px;
-        }
-
-        /* vs2015 theme specific*/
-
-        pre {
-            background: #1E1E1E;
-            color: #eee;
-            overflow-x: auto;
-            padding: 0.5em !important;
-            white-space: pre;
-            word-break: normal;
-            word-wrap: normal;
-        }
-
-        img, video, source { max-width: 100% }
-
-        pre > code { white-space: pre; }
-    </style>
+    <link rel="stylesheet" href="~/Front/css/style.css">    
     }
 
     <script>
@@ -72,7 +47,7 @@
         })();
     </script>
 
-    @*@RenderSection("Headers", required: false)*@
+    @RenderSection("Headers", required: false)
 </head>
 <body class="bg-light">
 
@@ -191,7 +166,7 @@
 <script src="~/Front/js/aos.js"></script>
 
 <script src="~/Front/js/main.js"></script>
-@*@await RenderSectionAsync("Scripts", required: false)*@
+@await RenderSectionAsync("Scripts", required: false)
 
 <!-- Syntax Highlighting code -->
 <script src="~/lib/highlightjs/highlight.pack.js"></script>
