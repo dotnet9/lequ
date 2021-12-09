@@ -23,13 +23,13 @@ public class CategoryController : Controller
 
 	public async Task<IActionResult> AdminCategoryList(int page = 1)
 	{
-		var pageCategory = await _service.SelectAsync(GlobalVars.PAGINATION_SMALL_PAGE_SIZE, page,
+		var pageCategory = await _service.SelectAsync(GlobalVars.PaginationSmallPageSize, page,
 			x => x.ID > 0, x => x.CreateDate, SortDirection.Descending);
 		var vm = new PagingDtoBase<Category>();
 		if (pageCategory != null && pageCategory.Item1.Count > 0)
 		{
-			vm.PageCount = (pageCategory.Item2 + GlobalVars.PAGINATION_SMALL_PAGE_SIZE - 1) /
-			               GlobalVars.PAGINATION_SMALL_PAGE_SIZE;
+			vm.PageCount = (pageCategory.Item2 + GlobalVars.PaginationSmallPageSize - 1) /
+			               GlobalVars.PaginationSmallPageSize;
 			vm.PageIndex = page < 1 ? 1 : page;
 			vm.PageIndex = vm.PageIndex > vm.PageCount ? vm.PageCount : vm.PageIndex;
 			vm.Datas = pageCategory.Item1;

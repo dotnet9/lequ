@@ -17,7 +17,7 @@ public class TagList : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var value = await _service.SelectAsync(x => x.BlogTags);
+        var value = await _service.SelectAsync(x => x.BlogTags!);
         return View((from p in value orderby p.BlogTags?.Count descending select p).ToList());
     }
 }

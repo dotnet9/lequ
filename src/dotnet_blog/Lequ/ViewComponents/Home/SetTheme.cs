@@ -1,4 +1,5 @@
-﻿using Lequ.ViewModels;
+﻿using Lequ.GlobalVar;
+using Lequ.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.Home
@@ -13,7 +14,7 @@ namespace Lequ.ViewComponents.Home
 		}
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			var vm = new SetThemeDto { Theme = _httpContextAccessor?.HttpContext?.Request?.Cookies["theme"]?.ToString().ToLower() };
+			var vm = new SetThemeDto { Theme = _httpContextAccessor?.HttpContext?.Request?.Cookies[GlobalVars.CookiesThemeKey]?.ToString().ToLower() };
 			return await Task.FromResult(View(vm));
 		}
 	}

@@ -5,14 +5,14 @@
 // Sidebar Color
 @mixin sidebar-color($color) {
   .nav-sidebar > .nav-item {
-    & > .nav-link.active {
+    > .nav-link.active {
       background-color: $color;
       color: color-yiq($color);
     }
   }
 
   .nav-sidebar.nav-legacy > .nav-item {
-    & > .nav-link.active {
+    > .nav-link.active {
       border-color: $color;
     }
   }
@@ -25,7 +25,6 @@
   .nav-sidebar > .nav-header,
   .nav-sidebar .nav-link {
     white-space: nowrap;
-    overflow: hidden;
   }
 
   // When the sidebar is collapsed...
@@ -46,26 +45,33 @@
       display: none;
     }
 
-    .nav-sidebar .nav-link p {
+    .sidebar .nav-sidebar .nav-link p {
       width: 0;
+      white-space: nowrap;
     }
 
     .sidebar .user-panel > .info,
-    .nav-sidebar .nav-link p,
+    .sidebar .nav-sidebar .nav-link p,
     .brand-text {
       margin-left: -10px;
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
     }
 
     .logo-xl {
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
     }
 
     .logo-xs {
       display: inline-block;
-      opacity: 1;
+      animation-name: fadeIn;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: visible;
     }
 
@@ -103,17 +109,21 @@
         }
 
         .user-panel > .info,
-        .nav-sidebar .nav-link p,
+        .sidebar .nav-sidebar .nav-link p,
         .brand-text,
         .logo-xl {
           display: inline-block;
           margin-left: 0;
-          opacity: 1;
+          animation-name: fadeIn;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
           visibility: visible;
         }
 
         .logo-xs {
-          opacity: 0;
+          animation-name: fadeOut;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
           visibility: hidden;
         }
 
@@ -126,7 +136,7 @@
         .sidebar-form,
         .user-panel > .info {
           display: block !important;
-          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
         }
 
         .nav-sidebar > .nav-item > .nav-link > span {

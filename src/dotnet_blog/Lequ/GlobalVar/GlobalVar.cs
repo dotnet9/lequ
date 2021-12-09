@@ -2,9 +2,15 @@
 
 public class GlobalVars
 {
-	public const int PAGINATION_SMALL_PAGE_SIZE = 6;
-	public const int PAGINATION_DEFAULT_PAGE_SIZE = 20;
+	public const int PaginationSmallPageSize = 6;
+	public const int PaginationDefaultPageSize = 20;
+	public const int PaginationMaxPageSize = 50;
 
-	public const string SESSION_USER_ID_KEY = "UserID";
-	public const string SESSION_USER_ACCOUNT_KEY = "UserAccount";
+	public const string SessionUserIdKey = "UserID";
+	public const string SessionUserAccountKey = "UserAccount";
+
+	public const string CookiesThemeKey = "Theme";
+
+	public const string EnvironmentNameDevelopment = "Development";
+	public const string EnvironmentNameProduction = "Production";
 }

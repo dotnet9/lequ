@@ -42,7 +42,7 @@ public class AboutController : Controller
 		}
 		else
 		{
-			dbAbout.Details1 = about.Details1;
+			dbAbout.Details = about.Details;
 			dbAbout.UpdateDate = DateTime.Now;
 			await _service.UpdateAsync(dbAbout);
 		}

@@ -34,7 +34,7 @@ public class ChartController : Controller
 
 	public async Task<List<CountViewModel>> CategoryList()
 	{
-		var categories = from p in await _categoryService.SelectAsync(x => x.BlogCategories)
+		var categories = from p in await _categoryService.SelectAsync(x => x.BlogCategories!)
 			select new CountViewModel
 			{
 				Name = p.Name,

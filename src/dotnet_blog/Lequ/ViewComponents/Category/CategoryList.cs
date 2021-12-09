@@ -17,7 +17,7 @@ public class CategoryList : ViewComponent
 
 	public async Task<IViewComponentResult> InvokeAsync()
 	{
-		var value = await _service.SelectAsync(x=>x.BlogCategories);
+		var value = await _service.SelectAsync(x=>x.BlogCategories!);
 		return View((from p in value orderby p.BlogCategories?.Count descending select p).ToList());
 	}
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.FileProviders;
 using Westwind.AspNetCore.Markdown;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -74,14 +75,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(x => x.LoginPath = "/Login/UserLogin");
 
-builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddDbSetup(builder.Configuration.GetConnectionString("DefaultConnection"), builder.Environment.EnvironmentName);
 builder.Services.AddAutoMapperSetup();
 builder.Services.AddRepositorySetup();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment()) app.UseExceptionHandler("/Home/Error");
+if (app.Environment.IsDevelopment())
+{
+	app.UseExceptionHandler("/Home/Error");
+}
 
 app.UseStatusCodePagesWithReExecute("/ErrorPage/Error", "?code={0}");
 
@@ -89,6 +93,10 @@ app.UseHttpsRedirection();
 
 app.UseMarkdown();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+	FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory())
+});
 
 app.UseRouting();
 

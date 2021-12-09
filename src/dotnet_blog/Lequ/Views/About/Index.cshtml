@@ -1,9 +1,30 @@
-﻿@model About
+﻿@using Westwind.AspNetCore.Markdown
+@model About
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "About";
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
 }
 
-<div>
-    @Model?.Details1
-</div>
+@section Headers {
+    <link rel="stylesheet" href="~/css/markdown.css">
+}
+
+<section class="site-section py-lg">
+    <div class="container">
+        <div class="row blog-entries element-animate">
+            <div class="post-content-body">
+                <div class="sample-block">
+                    @Markdown.ParseHtmlString(@Model?.Details)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <!-- Syntax Highlighting code -->
+    <script src="~/lib/highlightjs/highlight.pack.js"></script>
+    <link href="~/lib/highlightjs/styles/vs2015.css" rel="stylesheet"/>
+    <script src="~/lib/highlightjs-badge.min.js"></script>
+    <script src="~/js/markdown.js"></script>
+}

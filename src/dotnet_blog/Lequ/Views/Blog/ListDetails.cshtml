@@ -8,7 +8,7 @@
     </div>
     <div class="row text-center pt-5 border-top">
         <div class="col-md-12">
-            <button id="loadMore" class="btn btn-outline-primary" data-loading-text="Loading..." onclick="loadmore()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click load more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            <button id="loadMore" class="btn btn-outline-primary" data-loading-text="Loading..." onclick="loadmore(6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click load more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
     var page = 0;
     var _inCallback = false;
 
-    function loadmore() {
+    function loadmore(pagesize) {
         if (page <= -1 || _inCallback) {
             return;
         }
@@ -27,7 +27,7 @@
         page++;
 
         $('#loadMore').button("loading");
-        $.get("/Blog/ListDetailsLoadMore?page=" + page,
+        $.get("/Blog/ListDetailsLoadMore?page=" + page + "&pageSize=" + pagesize,
             function(data) {
                 if (data != '') {
                     $("#UserReviewsList").append(data);
@@ -43,7 +43,7 @@
     }
 
     window.onload = function() {
-        loadmore();
+        loadmore(24);
     };
 
 </script>
