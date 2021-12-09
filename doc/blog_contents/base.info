@@ -1,6 +1,7 @@
 {
     "Albums": [
         {"Name": "开源C#", "Cover": "https://img1.lequ.co/album_csharp.jpg"},
+        {"Name": "ASP.NET Core & Blazor 1", "Cover": "https://img1.lequ.co/album_blazor1.png"},
         {"Name": "开源MAUI", "Cover": "https://img1.lequ.co/album_maui.png"},
         {"Name": "开源WPF", "Cover": "https://img1.lequ.co/album_wpf.png"},
         {"Name": "WPF Design", "Cover": "https://img1.lequ.co/album_wpfdesign.png"},
