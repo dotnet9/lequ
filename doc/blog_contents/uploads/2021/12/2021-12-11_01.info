@@ -1,0 +1,12 @@
+{
+    "Title":"Day 05 依賴注入(Dependency Injection)",
+    "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
+    "BriefDescription":"为什么Blazor会知道WeatherForecastService在这里可以调用？",
+    "Categories":["Blazor Server"],
+    "Tags": ["Blazor Server"],
+    "Albums": ["ASP.NET Core & Blazor 1"],
+    "CopyrightType": "Reprint",
+    "Original": "StrayaWorker",
+    "OriginalLink": "https://ithelp.ithome.com.tw/articles/10260278",
+    "CreateDate": "2021-12-11 13:27:42"
+}

@@ -1,7 +1,7 @@
 {
-    "Title":"Day 04 Compoent及路由介紹",
+    "Title":"Day 04 Component及路由介紹",
     "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
-    "BriefDescription":"Compoent及路由",
+    "BriefDescription":"Component及路由",
     "Categories":["Blazor Server"],
     "Tags": ["Blazor Server"],
     "Albums": ["ASP.NET Core & Blazor 1"],
