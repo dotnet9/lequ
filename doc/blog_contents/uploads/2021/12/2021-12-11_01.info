@@ -1,5 +1,5 @@
 {
-    "Title":"Day 05 依賴注入(Dependency Injection)",
+    "Title":"(5/30)Blazor系列：依賴注入(Dependency Injection)",
     "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
     "BriefDescription":"为什么Blazor会知道WeatherForecastService在这里可以调用？",
     "Categories":["Blazor Server"],
