@@ -1,6 +1,13 @@
-﻿@model List<Album>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+@model List<Album>
 
 <div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <h4>@_localizer["Header"]</h4>
+        </div>
+    </div>
     <div class="row">
         @if (Model != null && Model.Any())
         {

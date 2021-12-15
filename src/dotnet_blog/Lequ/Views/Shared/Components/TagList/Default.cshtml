@@ -1,6 +1,9 @@
-﻿@model IEnumerable<Tag>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+
+@model IEnumerable<Tag>
 <div class="sidebar-box">
-    <h3 class="heading">Tags</h3>
+    <h3 class="heading">@_localizer["Header"]</h3>
     <ul class="tags">
 
         @if (Model != null)

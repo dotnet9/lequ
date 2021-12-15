@@ -1,6 +1,8 @@
-﻿@model IEnumerable<Category>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+@model IEnumerable<Category>
 <div class="sidebar-box">
-    <h3 class="heading">Categories</h3>
+    <h3 class="heading">@_localizer["Header"]</h3>
     <ul class="tags">
 
         @if (Model != null)

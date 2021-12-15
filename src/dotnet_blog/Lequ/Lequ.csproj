@@ -31,10 +31,6 @@
         <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="6.13.0" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Resources\Views\Blog\" />
-    </ItemGroup>
-
 	<ItemGroup>
 		<None Include="wwwroot\**">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -44,6 +40,14 @@
 	<ItemGroup>
 	  <Content Remove="wwwroot\css\markdown.css" />
 	  <Content Remove="wwwroot\js\markdown.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Remove="Resources\Views\Blog\ListDetails.ja.resx" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="Resources\Views\Blog\ListDetails.ja.resx" />
 	</ItemGroup>
 
     <ItemGroup>
