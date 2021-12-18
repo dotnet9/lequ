@@ -1,11 +1,11 @@
 {
-    "Title":"(15/30)Blazor系列：CSS isolation（隔离）",
+    "Title":"(16/30)Blazor系列：建立数据库",
     "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
     "Categories":["Blazor Server"],
     "Tags": ["Blazor Server"],
     "Albums": ["ASP.NET Core & Blazor 1"],
     "CopyrightType": "Reprint",
     "Original": "StrayaWorker",
-    "OriginalLink": "https://ithelp.ithome.com.tw/articles/10264484",
-    "CreateDate": "2021-12-18 22:35:17"
+    "OriginalLink": "https://ithelp.ithome.com.tw/articles/10265408",
+    "CreateDate": "2021-12-18 23:34:26"
 }
