@@ -27,8 +27,6 @@
                 @await Component.InvokeAsync("BlogDetailsCategoryList", new { blogID = Model?.ID })
 
                 @await Component.InvokeAsync("BlogDetailsTagList", new { blogID = Model?.ID })
-
-                @await Html.PartialAsync("~/Views/About/WeChatMiniProgram.cshtml")
             </div>
         </div>
     </div>

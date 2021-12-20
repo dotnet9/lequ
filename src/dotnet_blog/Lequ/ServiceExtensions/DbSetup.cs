@@ -19,7 +19,8 @@ public static class DbSetup
 			}
 			else
 			{
-				option.UseMySql(connectionStr, MySqlServerVersion.LatestSupportedServerVersion);
+				option.UseSqlite(connectionStr);
+				//option.UseMySql(connectionStr, MySqlServerVersion.LatestSupportedServerVersion);
 			}
 		});
 	}
