@@ -31,11 +31,11 @@ public static class ModelBuilderExtensions
 			ID = 1,
 			RoleEnum = UserRoleEnum.User,
 			Name = "沙漠尽头的狼",
-			Account = "Lequ.CO",
-			Password = "Lequ.CO",
+			Account = "Dotnet9",
+			Password = "Dotnet9",
 			Title = "码农",
 			About =
-				"你好，我是本站（https://lequ.co）站长“沙漠尽头的狼”。本人从事dotnet开发已有10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
+				"你好，我是本站（https://Dotnet9.com）站长“沙漠尽头的狼”。本人从事dotnet开发已有10年，建此站目的在于分享以dotnet为主的技术类文章，希望以此平台与更多的程序员朋友交流技术，祝愿dotnet社区发展越来越好。",
 			AboutShort =
 				"89年Dotnet程序猿一枚，C#高级工程师， 目前从事C/S开发工作。",
 			Address = "Chendu. China",
@@ -183,7 +183,7 @@ public static class ModelBuilderExtensions
 				ID = i + 1,
 				BlogID = blog.ID,
 				Content =
-					"该项目一直在更新中，数据库可能会随时被清空，如有建议请先在Dotnet9留言区留言，这里留言可能随时都会消失哦，留言链接：https://dotnet9.com/questions-and-answers/19143.html",
+					"该项目一直在更新中，数据库可能会随时被清空，如有建议请先在Dotnet9公众号留言，这里留言可能随时都会消失哦！！！",
 				StatusEnum = ModelStatus.Normal,
 				CreateUserID = 1,
 				CreateDate = seedBlog.CreateDate
@@ -215,16 +215,6 @@ public static class ModelBuilderExtensions
 			{
 				ID = 1,
 				Index = 1,
-				Name = "Dotnet9",
-				Url = "https://dotnet9.com",
-				Description = "一个主要以分享 dotNET 技术文章为主题的网站",
-				StatusEnum = ModelStatus.Normal,
-				CreateDate = DateTime.Now
-			},
-			new Link
-			{
-				ID = 2,
-				Index = 2,
 				Name = "Murat Yücedağ",
 				Url = "https://www.youtube.com/channel/UCbkbOlw8snP93RJ2BhH44Qw",
 				Description =
@@ -234,11 +224,21 @@ public static class ModelBuilderExtensions
 			},
 			new Link
 			{
-				ID = 3,
-				Index = 3,
+				ID = 2,
+				Index = 2,
 				Name = "老张的哲学",
 				Url = "https://www.cnblogs.com/laozhang-is-phi/",
 				Description = "博客园大拿",
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
+			},
+			new Link
+			{
+				ID = 3,
+				Index = 3,
+				Name = "懒得勤快",
+				Url = "https://masuit.org/",
+				Description = "各种资源分享站",
 				StatusEnum = ModelStatus.Normal,
 				CreateDate = DateTime.Now
 			},
@@ -266,6 +266,17 @@ public static class ModelBuilderExtensions
 			{
 				ID = 6,
 				Index = 6,
+				Name = "江湖人士",
+				Url = "https://jhrs.com/",
+				Description =
+					"建站分享站",
+				StatusEnum = ModelStatus.Normal,
+				CreateDate = DateTime.Now
+			},
+			new Link
+			{
+				ID = 7,
+				Index = 7,
 				Name = "Code Life",
 				Url = "https://znlive.com/",
 				Description =
