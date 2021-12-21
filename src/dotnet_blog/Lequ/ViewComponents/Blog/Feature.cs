@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Lequ.IService;
-using Lequ.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lequ.ViewComponents.Blog;

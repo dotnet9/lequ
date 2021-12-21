@@ -12,9 +12,14 @@ namespace Lequ.ViewComponents.Home
 		{
 			_httpContextAccessor = httpContextAccessor;
 		}
+
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			var vm = new SetThemeDto { Theme = _httpContextAccessor?.HttpContext?.Request?.Cookies[GlobalVars.CookiesThemeKey]?.ToString().ToLower() };
+			var vm = new SetThemeDto
+			{
+				Theme = _httpContextAccessor?.HttpContext?.Request?.Cookies[GlobalVars.CookiesThemeKey]?.ToString()
+					.ToLower()
+			};
 			return await Task.FromResult(View(vm));
 		}
 	}

@@ -35,7 +35,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
 
 	public async Task<int> DeleteAsync(Expression<Func<T, bool>> whereLambda)
 	{
-		var deleteResult =  await dbContext.Set<T>().Where(whereLambda).DeleteAsync();
+		var deleteResult = await dbContext.Set<T>().Where(whereLambda).DeleteAsync();
 		var saveResult = await dbContext.SaveChangesAsync();
 		return deleteResult;
 	}

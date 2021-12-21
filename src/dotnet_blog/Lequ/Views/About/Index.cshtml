@@ -13,8 +13,14 @@
     <div class="container">
         <div class="row blog-entries element-animate">
             <div class="post-content-body">
-                <div class="sample-block">
-                    @Markdown.ParseHtmlString(@Model?.Details)
+
+                <div class="card">
+                    <div class="card-header">
+                        本站正在使用Blazor升级，敬请期待！！！
+                    </div>
+                    <div class="card-body">
+                        @Markdown.ParseHtmlString(Model?.Details)
+                    </div>
                 </div>
             </div>
         </div>

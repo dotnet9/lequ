@@ -1,10 +1,9 @@
-﻿@using System.Linq
-@model SetThemeDto
+﻿@model SetThemeDto
 @{
     var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}" + $"{Context.Request.QueryString.Value}";
     var themes = new[] { "Default", "Cerulean", "Darkly", "Morph", "Pulse", "Slate", "Superhero", "Yeti" }
         .ToList().ConvertAll(x => new SelectListItem { Text = x, Value = x });
 }
 <form id="selectTheme" asp-controller="Home" asp-action="SetTheme" asp-route-returnUrl="@returnUrl" method="post" class="form-horizontal" role="form">
-    @Html.DropDownListFor(x => x.Theme, themes, new { @onchange="this.form.submit(this.value);" })
+    @Html.DropDownListFor(x => x.Theme, themes, new { onchange = "this.form.submit(this.value);" })
 </form>

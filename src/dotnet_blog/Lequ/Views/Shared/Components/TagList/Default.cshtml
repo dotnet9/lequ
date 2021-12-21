@@ -1,6 +1,6 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer _localizer
+﻿@inject IViewLocalizer _localizer
 
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<Tag>
 <div class="sidebar-box">
     <h3 class="heading">@_localizer["Header"]</h3>
@@ -11,7 +11,9 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <a href="/Blog/ListByTag?tagID=@item?.ID" target='_blank'>@item?.Name<span>(@item?.BlogTags.Count)</span></a>
+                    <a href="/Blog/ListByTag?tagID=@item?.ID" target='_blank'>
+                        @item?.Name<span>(@item?.BlogTags.Count)</span>
+                    </a>
                 </li>
             }
         }

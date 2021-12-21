@@ -1,6 +1,6 @@
 ﻿@model List<Blog>
 
-<div class=-moz-element(#id)id)on bg-secondary pb-3 pt-3">
+<div class="-moz-element(#id)id)on" bg-secondary pb-3 pt-3">
     <div class="container">
         <div class="row align-items-stretch retro-layout-2">
             <div id="banner" class="carousel slide" data-ride="carousel">
@@ -20,7 +20,7 @@
                         {
                             <div class='carousel-item @(i == 0 ? "active" : "")' data-interval="3000">
                                 <img src="@Model[i].Cover">
-                                <div class="carousel-caption d-none d-md-block" style="background-color:rgba(0,0,0,0.2);">
+                                <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.2);">
                                     <h2>
                                         <a href="/Blog/Details?id=@Model?[i].ID" target='_blank' style="color: white;">@Model?[i].Title</a>
                                     </h2>
@@ -31,10 +31,10 @@
                     }
                 </div>
                 <a class="carousel-control-prev" href="#banner" data-slide="prev">
-                    <span class="carousel-control-prev-icon" style="background-color:rgba(0,0,0,0.5);"></span>
+                    <span class="carousel-control-prev-icon" style="background-color: rgba(0, 0, 0, 0.5);"></span>
                 </a>
                 <a class="carousel-control-next" href="#banner" data-slide="next">
-                    <span class="carousel-control-next-icon" style="background-color:rgba(0,0,0,0.5);"></span>
+                    <span class="carousel-control-next-icon" style="background-color: rgba(0, 0, 0, 0.5);"></span>
                 </a>
 
             </div>

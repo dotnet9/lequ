@@ -11,12 +11,14 @@ public static class ModelBuilderExtensions
 	public static void Seed(this ModelBuilder modelBuilder)
 	{
 		Random random = new(DateTime.Now.Millisecond);
-		if (!File.Exists(ConfigurationConsts.ABOUT_PATH) || !File.Exists(ConfigurationConsts.BLOG_BASE_PATH) || !Directory.Exists(ConfigurationConsts.BLOG_POST_PATH)) return;
+		if (!File.Exists(ConfigurationConsts.ABOUT_PATH) || !File.Exists(ConfigurationConsts.BLOG_BASE_PATH) ||
+		    !Directory.Exists(ConfigurationConsts.BLOG_POST_PATH)) return;
 
 		var baseInfo = JsonConvert.DeserializeObject<BlogBaseDto>(File.ReadAllText(ConfigurationConsts.BLOG_BASE_PATH));
 
 		var seedBlogs = new List<BlogSeedDto>();
-		foreach (var blogInfoPath in Directory.GetFiles(ConfigurationConsts.BLOG_POST_PATH, "*.info", SearchOption.AllDirectories))
+		foreach (var blogInfoPath in Directory.GetFiles(ConfigurationConsts.BLOG_POST_PATH, "*.info",
+			         SearchOption.AllDirectories))
 		{
 			var blogInfoText = File.ReadAllText(blogInfoPath);
 			var blogInfoDto = JsonConvert.DeserializeObject<BlogSeedDto>(blogInfoText);
@@ -53,7 +55,6 @@ public static class ModelBuilderExtensions
 		var blogAlbums = new List<BlogAlbum>();
 
 		if (baseInfo?.Albums != null)
-		{
 			lstAlbums.AddRange(baseInfo.Albums.Select((t, i) => new Album
 			{
 				ID = i + 1,
@@ -63,7 +64,6 @@ public static class ModelBuilderExtensions
 				CreateUserID = user.ID,
 				CreateDate = DateTime.Now
 			}));
-		}
 
 		List<Comment> comments = new();
 

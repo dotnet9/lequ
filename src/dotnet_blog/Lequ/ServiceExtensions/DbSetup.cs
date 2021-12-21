@@ -14,14 +14,10 @@ public static class DbSetup
 		services.AddDbContext<LequDbContext>(option =>
 		{
 			if (environmentName == GlobalVars.EnvironmentNameDevelopment)
-			{
 				option.UseSqlServer(connectionStr);
-			}
 			else
-			{
 				option.UseSqlite(connectionStr);
-				//option.UseMySql(connectionStr, MySqlServerVersion.LatestSupportedServerVersion);
-			}
+			//option.UseMySql(connectionStr, MySqlServerVersion.LatestSupportedServerVersion);
 		});
 	}
 }

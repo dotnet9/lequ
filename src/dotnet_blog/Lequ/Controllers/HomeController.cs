@@ -1,9 +1,9 @@
-﻿using Lequ.Models;
+﻿using System.Diagnostics;
+using Lequ.GlobalVar;
+using Lequ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Lequ.GlobalVar;
 
 namespace Lequ.Controllers;
 

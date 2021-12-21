@@ -14,11 +14,11 @@
                                 <div class="carousel-caption">
                                     @if (item.BlogCategories != null)
                                     {
-                                        <ul class="float-left" style="list-style-type:none;">
+                                        <ul class="float-left" style="list-style-type: none;">
                                             @foreach (var category in item.BlogCategories)
                                             {
                                                 <li>
-                                                    <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID" target='_blank' style="background-color:rgba(0,0,0,0.5);color:white;">
+                                                    <a href="/Blog/ListByCategory?categoryID=@category?.Category?.ID" target='_blank' style="background-color: rgba(0, 0, 0, 0.5); color: white;">
                                                         @category?.Category?.Name
                                                     </a>
                                                 </li>
