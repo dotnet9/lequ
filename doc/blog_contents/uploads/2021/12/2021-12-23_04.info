@@ -1,11 +1,11 @@
 {
-    "Title":"(18/30)跟我学Blazor系列：修改Add()方法",
+    "Title":"(24/30)跟我学Blazor系列：添加角色功能",
     "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
     "Categories":["Blazor Server"],
     "Tags": ["Blazor Server"],
     "Albums": ["ASP.NET Core & Blazor 1"],
     "CopyrightType": "Reprint",
     "Original": "StrayaWorker",
-    "OriginalLink": "https://ithelp.ithome.com.tw/articles/10267015",
-    "CreateDate": "2021-12-20 23:04:06"
+    "OriginalLink": "https://ithelp.ithome.com.tw/articles/10272010",
+    "CreateDate": "2021-12-23 23:08:41"
 }
