@@ -1,10 +1,10 @@
 {
-    "Title":"(5/30)跟我学Blazor系列：依賴注入(Dependency Injection)",
+    "Title":"(5/30)大家一起学Blazor系列：依賴注入(Dependency Injection)",
     "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
     "BriefDescription":"为什么Blazor会知道WeatherForecastService在这里可以调用？",
     "Categories":["Blazor Server"],
     "Tags": ["Blazor Server"],
-    "Albums": ["ASP.NET Core & Blazor 1"],
+    "Albums": ["大家一起学Blazor"],
     "CopyrightType": "Reprint",
     "Original": "StrayaWorker",
     "OriginalLink": "https://ithelp.ithome.com.tw/articles/10260278",

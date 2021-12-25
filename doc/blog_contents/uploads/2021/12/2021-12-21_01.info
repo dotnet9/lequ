@@ -1,9 +1,9 @@
 {
-    "Title":"(19/30)跟我学Blazor系列：上传图片",
+    "Title":"(19/30)大家一起学Blazor系列：上传图片",
     "Cover":"https://img1.lequ.co/2021/12/cover_05.png",
     "Categories":["Blazor Server"],
     "Tags": ["Blazor Server"],
-    "Albums": ["ASP.NET Core & Blazor 1"],
+    "Albums": ["大家一起学Blazor"],
     "CopyrightType": "Reprint",
     "Original": "StrayaWorker",
     "OriginalLink": "https://ithelp.ithome.com.tw/articles/10267909",
