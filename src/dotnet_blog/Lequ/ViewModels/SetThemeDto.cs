@@ -1,7 +1,6 @@
-﻿namespace Lequ.ViewModels
+﻿namespace Lequ.ViewModels;
+
+public class SetThemeDto
 {
-	public class SetThemeDto
-	{
-		public string? Theme { get; set; }
-	}
+	public string? Theme { get; set; }
 }

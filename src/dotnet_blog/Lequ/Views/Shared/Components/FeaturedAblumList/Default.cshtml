@@ -1,6 +1,13 @@
-﻿@model List<Album>
+﻿@inject IViewLocalizer _localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@model List<Album>
 
 <div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <h4>@_localizer["Header"]</h4>
+        </div>
+    </div>
     <div class="row">
         @if (Model != null && Model.Any())
         {
@@ -13,7 +20,7 @@
                                 <div class="carousel-inner">
                                     <div class="item active">
                                         <img src="@item?.Cover" alt="Image" class="img-fluid rounded">
-                                        <div class="carousel-caption" style="background-color:rgba(0,0,0,0.2);color:white;">
+                                        <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
                                             @item?.Name
                                         </div>
                                     </div>

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Lequ.Models;
 using Lequ.ViewModels;
 
 namespace Lequ.FluentValidation;

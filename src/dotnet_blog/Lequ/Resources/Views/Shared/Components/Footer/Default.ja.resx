@@ -142,7 +142,4 @@
   <data name="WeChatOfficialAccount" xml:space="preserve">
     <value>このサイトのWeChatパブリックアカウント</value>
   </data>
-  <data name="WeChatMiniProgram" xml:space="preserve">
-    <value>このサイトのWeChatアプレット</value>
-  </data>
 </root>

@@ -1,6 +1,8 @@
-﻿@model IEnumerable<Category>
+﻿@inject IViewLocalizer _localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<Category>
 <div class="sidebar-box">
-    <h3 class="heading">Categories</h3>
+    <h3 class="heading">@_localizer["Header"]</h3>
     <ul class="tags">
 
         @if (Model != null)
@@ -8,7 +10,9 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <a href="/Blog/ListByCategory?categoryID=@item?.ID" target='_blank'>@item?.Name<span>(@item?.BlogCategories.Count)</span></a>
+                    <a href="/Blog/ListByCategory?categoryID=@item?.ID" target='_blank'>
+                        @item?.Name<span>(@item?.BlogCategories.Count)</span>
+                    </a>
                 </li>
             }
         }

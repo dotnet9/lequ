@@ -2,7 +2,6 @@
 using AutoMapper;
 using Lequ.GlobalVar;
 using Lequ.IService;
-using Lequ.Models;
 using Lequ.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -32,10 +31,7 @@ public class LoginController : Controller
 	[AllowAnonymous]
 	public async Task<IActionResult> UserLogin(LoginDto loginDto)
 	{
-		if (!ModelState.IsValid)
-		{
-			return View();
-		}
+		if (!ModelState.IsValid) return View();
 		var dbUser = await _service.GetAsync(x => x.Account == loginDto.Account && x.Password == loginDto.Password);
 		if (dbUser == null)
 		{

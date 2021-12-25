@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Lequ.Models;
+﻿namespace Lequ.Models;
 
 public class About : ModelBase
 {

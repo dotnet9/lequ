@@ -2,7 +2,7 @@
 @model Blog
 
 @{
-    var blogUrl = "https://lequ.co/Blog/Details?id=" + Model?.ID;
+    var blogUrl = "https://dotnet9.com/Blog/Details?id=" + Model?.ID;
 }
 
 <div class="post-content-body">
@@ -39,8 +39,13 @@
             }
         }
     </div>
-    <div class="sample-block">
-        @Markdown.ParseHtmlString(Model?.Content)
+    <div class="card">
+        <div class="card-header">
+            本站正在使用Blazor升级，敬请期待！！！
+        </div>
+        <div class="card-body">
+            @Markdown.ParseHtmlString(Model?.Content)
+        </div>
     </div>
     <div class="card">
         <div class="card-header">
@@ -55,7 +60,7 @@
                     <p>
                         本文观点不代表
                         <u>
-                            <a href='https://lequ.co' target='_blank'>Lequ.CO</a>
+                            <a href='https://dotnet9.com' target='_blank'>Dotnet9</a>
                         </u> 立场，如若转载，请注明出处：
                         <u>
                             <a href='@blogUrl' target='_blank'>@blogUrl</a>
@@ -81,7 +86,7 @@
                     <p>
                         本文观点不代表
                         <u>
-                            <a href='https://lequ.co' target='_blank'>Lequ.CO</a>
+                            <a href='https://dotnet9.com' target='_blank'>Dotnet9</a>
                         </u> 立场，转载请联系原作者【
                         <u>
                             <a href='@Model?.OriginalLink' target='_blank'>@Model?.Original</a>
@@ -94,7 +99,7 @@
                     <p>
                         除非注明，文章均由
                         <u>
-                            <a href='https://lequ.co' target='_blank'>Lequ.CO</a>
+                            <a href='https://dotnet9.com' target='_blank'>Dotnet9</a>
                         </u> 整理发布，欢迎转载。
                     </p>
                     <p>转载请注明：</p>
@@ -108,7 +113,7 @@
                             </u>
                         </span>
                     </p>
-                    <p>来源：<a href="https://lequ.co" target='_blank'>https://lequ.co</a></p>
+                    <p>来源：<a href="https://dotnet9.com" target='_blank'>https://dotnet9.com</a></p>
                     <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
                 }
                     break;

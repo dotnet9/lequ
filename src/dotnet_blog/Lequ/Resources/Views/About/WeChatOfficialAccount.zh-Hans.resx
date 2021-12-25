@@ -142,7 +142,4 @@
   <data name="WeChatOfficialAccount" xml:space="preserve">
     <value>本站微信公众号</value>
   </data>
-  <data name="WeChatMiniProgram" xml:space="preserve">
-    <value>本站微信小程序</value>
-  </data>
 </root>

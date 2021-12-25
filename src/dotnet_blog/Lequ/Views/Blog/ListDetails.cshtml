@@ -1,7 +1,10 @@
-﻿<div class="container">
-    <div class="row mb-5">
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+
+<div class="container">
+    <div class="row">
         <div class="col-12">
-            <h2>Recent Posts</h2>
+            <h4>@_localizer["LatestBlogHeader"]</h4>
         </div>
     </div>
     <div id="UserReviewsList" class="row">

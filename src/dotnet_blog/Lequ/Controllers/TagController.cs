@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Lequ.GlobalVar;
+﻿using Lequ.GlobalVar;
 using Lequ.IService;
 using Lequ.Models;
 using Lequ.ViewModels;
@@ -26,9 +25,9 @@ public class TagController : Controller
 	public async Task<IActionResult> List(int page = 1)
 	{
 		var vm = new PagingDtoBase<Tag>();
-		var pageTag = await _service.SelectAsync(pageSize: GlobalVars.PaginationMaxPageSize, pageIndex: page,
-			whereLambda: x => x.ID > 0, orderByLambda: x => x.Name,
-			sortDirection: SortDirection.Ascending);
+		var pageTag = await _service.SelectAsync(GlobalVars.PaginationMaxPageSize, page,
+			x => x.ID > 0, x => x.Name,
+			SortDirection.Ascending);
 
 		vm.PageCount = (int)Math.Ceiling((decimal)pageTag.Item2 / GlobalVars.PaginationMaxPageSize);
 		vm.PageIndex = page < 1 ? 1 : page;
@@ -46,10 +45,7 @@ public class TagController : Controller
 	public async Task<IActionResult> Delete(int id)
 	{
 		var deleteResult = await _service.DeleteAsync(x => x.ID == id);
-		if (deleteResult > 0)
-		{
-			return Json(MessageDto<string>.Success());
-		}
+		if (deleteResult > 0) return Json(MessageDto<string>.Success());
 
 		return Json(MessageDto<string>.Fail("Deletion failed!"));
 	}
@@ -58,10 +54,7 @@ public class TagController : Controller
 	{
 		var idArray = ids.Split(',').ToList().ConvertAll(x => int.Parse(x));
 		var deleteResult = await _service.DeleteAsync(x => idArray.Contains(x.ID));
-		if (deleteResult > 0)
-		{
-			return Json(MessageDto<string>.Success());
-		}
+		if (deleteResult > 0) return Json(MessageDto<string>.Success());
 
 		return Json(MessageDto<string>.Fail("Deletion failed!"));
 	}
@@ -73,9 +66,7 @@ public class TagController : Controller
 		if (tag.ID > 0)
 		{
 			if (await _service.IsExistAsync(x => x.Name == tag.Name && x.ID != tag.ID))
-			{
 				return Json(MessageDto<string>.Fail("The name cannot be duplicate"));
-			}
 
 			var dbTag = await _service.GetAsync(x => x.ID == tag.ID);
 			if (dbTag == null) return RedirectToAction(nameof(List));
@@ -87,9 +78,7 @@ public class TagController : Controller
 		else
 		{
 			if (await _service.IsExistAsync(x => x.Name == tag.Name))
-			{
 				return Json(MessageDto<string>.Fail("The name cannot be duplicate"));
-			}
 
 			tag.CreateDate = DateTime.Now;
 			tag.StatusEnum = ModelStatus.Normal;
